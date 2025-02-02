@@ -322,7 +322,7 @@ ul.dropdown-menu.show .dropdown-item{
     border-radius: 50%;
 }
 /*TESTIMONIALS*/
-.testimonials-wrap {
+/* .testimonials-wrap {
     padding: 5rem 0;
 }
 .heading-section {
@@ -400,7 +400,7 @@ height:2rem;
 }
 
 .read-more-btn {
-    color: #007bff;  /* Bootstrap primary blue */
+    color: #007bff;  
     cursor: pointer;
     font-weight: bold;
     text-decoration: none;
@@ -443,7 +443,7 @@ height:2rem;
 .carousel-testimonial .owl-nav button.owl-next.disabled, 
 .carousel-testimonial .owl-nav button.owl-prev.disabled {
     opacity: 0.5;
-}
+} */
 
   /*   */
 footer{
