@@ -82,3 +82,44 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
+
+//counter
+
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const section = document.querySelector(".counter-section");
+    let started = false;
+
+    function startCounting() {
+      if (!started) {
+        counters.forEach(counter => {
+          let target = +counter.getAttribute("data-target");
+          let count = 0;
+          let increment = target / 100;
+
+          let updateCounter = () => {
+            if (count < target) {
+              count += increment;
+              counter.textContent = Math.floor(count);
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target;
+            }
+          };
+          updateCounter();
+        });
+        started = true;
+      }
+    }
+
+    window.addEventListener("scroll", () => {
+      let sectionPosition = section.getBoundingClientRect().top;
+      let screenPosition = window.innerHeight;
+
+      if (sectionPosition < screenPosition) {
+        startCounting();
+      }
+    });
+  });
