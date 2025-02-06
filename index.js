@@ -123,3 +123,32 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+
+
+  
+// JavaScript for Back-to-Top Button
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+  
+    // Show/Hide button based on scroll position
+    function toggleBackToTopBtn() {
+        if (window.scrollY > 200) { // Adjust the scroll threshold as needed
+            backToTopBtn.style.display = 'flex'; // Show the button
+        } else {
+            backToTopBtn.style.display = 'none'; // Hide the button
+        }
+    }
+  
+    // Scroll to top functionality
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Smooth scrolling
+        });
+    }
+  
+    // Attach event listeners
+    window.addEventListener('scroll', toggleBackToTopBtn);
+    backToTopBtn.addEventListener('click', scrollToTop);
+  });

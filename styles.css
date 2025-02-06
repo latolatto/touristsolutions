@@ -762,3 +762,46 @@ gap:0.5rem;
 .other-locations{
     color:#2973B2;
 }
+
+
+#backToTopBtn {
+    position: fixed;
+    bottom: 2.5rem;
+    right: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #ff9800; 
+    color: white;
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  #backToTopBtn .arrow {
+    display: inline-block;
+    animation: moveUp 3s infinite; 
+        position: absolute;
+        right: 28%;
+        top: 27%;
+  }
+  
+  @keyframes moveUp {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px); 
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  #backToTopBtn:hover {
+    background-color: #e68900;
+  }
