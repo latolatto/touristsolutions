@@ -9,7 +9,6 @@
 
 .contact-section {
 padding: 4rem 0;
-/* background-color: #f9f9f9; */
 }
 
 
@@ -154,6 +153,7 @@ margin-top: 2rem;
 
 .other-locations h4{
   color:#2973B2;
+  
 }
 .location-box {
 flex: 1;
