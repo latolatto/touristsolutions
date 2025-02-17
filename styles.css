@@ -225,7 +225,6 @@ ul.dropdown-menu.show .dropdown-item{
 .content{
     display:flex;
     background-color: #FAF8F4;
-
     flex-direction: column;
     gap:4rem;
 }
