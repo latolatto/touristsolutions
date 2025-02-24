@@ -46,7 +46,7 @@ padding: 20px 25px;
 }
 
 .accordion__header.active {
-    background-color: #ff9c04;
+    background-color: #f9af3f;
 }
 
 .accordion__header.active::after {
@@ -81,11 +81,11 @@ padding: 20px 25px;
     .still-q{
         padding:5%;
         width:100%;
-        background-color: #ff9c04;
+        background-color: white;
         text-align: center;
     }
     .email{
-        color:rgb(207, 207, 207) !important;
+        color:rgb(151, 151, 151) !important;
         text-decoration: underline !important;
         text-decoration-color: rgba(255, 255, 255, 0.6);
     }

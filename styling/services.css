@@ -1,0 +1,47 @@
+.content{
+    /* padding-top:5rem; */
+   background-color: #FAF8F4;
+justify-content: center;
+align-items: center;
+}
+.banner-div{
+    top:50%;
+}
+
+.services{
+    display:flex;
+    flex-direction: column;
+    
+    gap:4rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.content > .shadow{
+padding:5rem;
+font-size:1.1rem;
+}
+
+.featurette{
+    width:100%;
+    display:row;
+    align-items: center;
+}
+.featurette img{
+    height:20rem;
+    border-radius: 20px;
+}
+
+
+.lead{
+    font-size:1rem;
+}
