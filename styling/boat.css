@@ -35,3 +35,27 @@ align-items: center;
     display:block !important;
     flex: none  !important;
 }
+
+.card.h-100.shadow-lg.border-0.rounded-4.overflow-hidden{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.book-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    margin-bottom:2rem;
+    background: #ff9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    align-self: center;
+    text-align: center;
+  }
+  .book-btn:hover {
+    background: #e68900;
+  }

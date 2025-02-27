@@ -1,0 +1,200 @@
+.content{
+    padding-top:5rem;
+   background-color: #FAF8F4;
+justify-content: center;
+align-items: center;
+}
+
+.banner-div{
+    top:50%;
+}
+
+
+.twocolumns{
+display:flex;
+flex-direction: row;
+gap:5rem;
+}
+
+.image-card{
+    width:50%;
+}
+#boat-image{
+    height:70vh;
+    /* width:70%; */
+}
+
+.booking-container{
+    width:50%;
+}
+
+.booking-container {
+    margin: 0 auto;
+    padding: 1rem;
+    padding-top:5rem;
+    color: #333;
+    /* display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.book-date{
+    display: flex;
+    align-items: center;
+    margin-bottom:1.5rem;
+    justify-content: center;
+}
+
+label {
+    font-size: 1.1em;
+
+    /* margin-bottom: 1.5rem; */
+    width:40%;
+}
+
+.icon {
+    margin-right: 10px;
+    font-size: 1.3em;
+    color: #000;
+}
+
+.icon img{
+    height:1.3em;
+
+}
+
+.icon svg{
+    height:1em;
+
+}
+
+.custom-date-picker {
+    width: 40%;
+    padding: 10px;
+    font-size: 1em;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff00;
+    color: #333;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+
+.input-group {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.number-input {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    justify-content: space-between;
+}
+
+.number-input button {
+    background: none;
+    border: 1px solid #333;
+    color: #333;
+    font-size: 1.5em;
+    padding: 0.05rem 0.7rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.number-input input {
+    width: 40%;
+    padding: 1rem;
+    font-size: 1em;
+    /* border: 2px solid #ccc; */
+    /* border-radius: 8px; */
+    text-align: center;
+    border:0;
+    background-color: rgba(102, 51, 153, 0);
+}
+
+.number-input button:hover {
+    background-color: #f0f0f0;
+}
+
+.book-btn{
+    display:flex;
+    justify-content: center;
+    width:100%;
+}
+button.book-now-btn {
+    padding: 12px 30px;
+    background: #ff9800;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: max-content;
+    transition: all 0.3s ease;
+
+}
+
+button.book-now-btn:hover {
+    background: #e68900;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+
+.number-input input::-webkit-outer-spin-button,
+.number-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#special-requests{
+    width:80%;
+    margin-bottom:2rem;
+    padding:0.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-left: 3rem;
+    background-color: #33333300;
+
+}
+
+.special-requests{
+    margin-left: 3.5rem;
+margin-bottom: 1rem;
+}
+
+@media (max-width: 500px) {
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .number-input {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    input[type="number"], .custom-date-picker {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
