@@ -95,7 +95,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                   </svg>
-                  <span class="badge position-absolute top-0 translate-middle badge rounded-pill " id="cartItemCount" >0</span>
+                  <span class="badge position-absolute top-0 translate-middle badge rounded-pill " id="cartItemCount" ></span>
                 </button>
               </div>
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -141,19 +141,22 @@
               </div>
             </div>
           </nav>
+          
         </div>
         <div class="offcanvas offcanvas-end " data-bs-scroll="true"  tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
             <h5 id="offcanvasRightLabel">Cart</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body">
+          <div class="offcanvas-body" id="cart-items">
           </div>
-          <div id="cart-buttons-container" style="">
-            <a href="cart.html" class="btn view-cart-button">View Cart</a>
-            <a href="checkout.html" class="  checkout-button">Checkout</a>
-          </div>
+          <div class="cart-footer">
+            <p id="grand-total"></p>
+            <button id="clearCart" class="btn-clear">Clear Cart</button>
+            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'">Checkout</button>
         </div>
+        </div>
+        
       </div>
       
     </div>

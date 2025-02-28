@@ -152,3 +152,61 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', toggleBackToTopBtn);
     backToTopBtn.addEventListener('click', scrollToTop);
   });
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const grandTotalContainer = document.getElementById("grand-total");
+    const cartItemCount = document.getElementById("cartItemCount");
+
+    function updateCartDisplay() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            total += item.totalPrice;
+            const cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.innerHTML = `
+                <img src="${item.image}" class="cart-image" alt="${item.name}">
+                <div>
+                    <p><strong>${item.name} Boat Tour</strong></p>
+                    <p>${item.date}</p>
+                    ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
+                    ${item.children ? `<p>Children: ${item.children}</p>` : ""}
+                    ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
+                    <p><strong>Total: ${item.totalPrice.toLocaleString()} ALL</strong></p>
+                    <button class="remove-btn" data-index="${index}">Remove</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+        });
+
+        grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} ALL`;
+        cartItemCount.textContent = cart.length;
+    }
+
+    document.getElementById("clearCart").addEventListener("click", function () {
+        cart = [];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+    });
+
+    cartItemsContainer.addEventListener("click", function (event) {
+        if (event.target.classList.contains("remove-btn")) {
+            const index = event.target.getAttribute("data-index");
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartDisplay();
+        }
+    });
+
+    // Listen for updates from other tabs/pages
+    window.addEventListener("storage", function () {
+        cart = JSON.parse(localStorage.getItem("cart")) || [];
+        updateCartDisplay();
+    });
+
+    updateCartDisplay();
+});

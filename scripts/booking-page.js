@@ -1,3 +1,32 @@
+
+document.getElementById("year").innerHTML = new Date().getFullYear();
+
+// JavaScript for Back-to-Top Button
+document.addEventListener('DOMContentLoaded', () => {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+  
+    // Show/Hide button based on scroll position
+    function toggleBackToTopBtn() {
+        if (window.scrollY > 200) { // Adjust the scroll threshold as needed
+            backToTopBtn.style.display = 'flex'; // Show the button
+        } else {
+            backToTopBtn.style.display = 'none'; // Hide the button
+        }
+    }
+  
+    // Scroll to top functionality
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Smooth scrolling
+        });
+    }
+  
+    // Attach event listeners
+    window.addEventListener('scroll', toggleBackToTopBtn);
+    backToTopBtn.addEventListener('click', scrollToTop);
+  });
+
 document.querySelectorAll(".increase, .decrease").forEach(button => {
     button.addEventListener("click", function () {
       const targetId = this.getAttribute("data-target");
@@ -81,18 +110,35 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
+        // document.getElementById("bookNow").addEventListener("click", function () {
+        //     // Get the tour date value
+        //     let date = document.getElementById("tour-date").value;
+        
+        //     // Validate if the date is selected
+        //     if (!date) {
+        //         alert("Please select a tour date.");
+        //         return;
+        //     }
+        
+        //     // Reset form fields after successful submission
+        //     document.getElementById("tour-date").value = "";
+        //     document.getElementById("adults").value = 1;
+        //     document.getElementById("children").value = 0;
+        //     document.getElementById("infants").value = 0;
+        //     document.getElementById("special-requests").value = "";
 
+        // });
+        
+        
 
     
-
-
         document.addEventListener("DOMContentLoaded", function () {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             const cartOffcanvas = document.getElementById("cartOffcanvas");
             const cartItemsContainer = document.getElementById("cart-items");
             const grandTotalContainer = document.getElementById("grand-total");
             const cartItemCount = document.getElementById("cartItemCount");
-            
+        
             function updateCartDisplay() {
                 cartItemsContainer.innerHTML = "";
                 let total = 0;
@@ -103,12 +149,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     cartItem.innerHTML = `
                         <img src="${item.image}" class="cart-image" alt="${item.name}">
                         <div>
-                            <p><strong>${item.name}</strong></p>
+                            <p><strong>${item.name} Boat Tour</strong></p>
                             <p>${item.date}</p>
                             ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                             ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                             ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
-                            <p><strong>Total${item.totalPrice.toLocaleString()} ALL</strong></p>
+                            <p><strong>Total: ${item.totalPrice.toLocaleString()} ALL</strong></p>
                             <button class="remove-btn" data-index="${index}">Remove</button>
                         </div>
                     `;
@@ -117,13 +163,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} ALL`;
                 cartItemCount.textContent = cart.length;
             }
-    
+        
             document.getElementById("clearCart").addEventListener("click", function () {
                 cart = [];
                 localStorage.setItem("cart", JSON.stringify(cart));
                 updateCartDisplay();
             });
-            
+        
             document.getElementById("cart-items").addEventListener("click", function (event) {
                 if (event.target.classList.contains("remove-btn")) {
                     const index = event.target.getAttribute("data-index");
@@ -132,8 +178,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     updateCartDisplay();
                 }
             });
-    
+        
             updateCartDisplay();
+        
             document.getElementById("bookNow").addEventListener("click", function (event) {
                 event.preventDefault();
         
@@ -143,44 +190,43 @@ document.addEventListener("DOMContentLoaded", function () {
                 const children = parseInt(document.getElementById("children").value) || 0;
                 const infants = parseInt(document.getElementById("infants").value) || 0;
         
-                // Your original boatDetails object (unchanged)
                 const boatDetails = {
-                    "Aquamarine": {
-                        image: "./assets/images/other pages/boat-trip/aqua1.jpeg",
-                        features: [
-                            "🌊 Boat Tour: Guided exploration",
-                            "🏝️ Beach Stops: Relaxing breaks",
-                            "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
-                            "🎶 Party Onboard: DJ & entertainment",
-                            "🍽️ Dining: Bar & restaurant (meat & fish + 1500 ALL)",
-                            "🍉 Included: Free large fruit banquet"
-                        ],
-                        price: 2500
-                    },
-                    "Liburna": {
-                        image: "./assets/images/other pages/boat-trip/liburna1.jpg",
-                        features: [
-                            "🌊 Boat Tour: Guided exploration",
-                            "🏝️ Beach Stops: Relaxing breaks",
-                            "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
-                            "🎭 Entertainment: DJ, Pirate & Monkey Show",
-                            "🍕 Dining: Bar & pizzeria",
-                            "☕ Included: Free coffee"
-                        ],
-                        price: 2500
-                    },
-                    "Vlora Cruise": {
-                        image: "./assets/images/other pages/boat-trip/vlora1.png",
-                        features: [
-                            "🌊 Boat Tour: Guided exploration",
-                            "🏝️ Beach Stops: Relaxing breaks",
-                            "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
-                            "🧘 Relaxing Experience: Perfect for those who prefer a quiet trip without loud music or partying",
-                            "🍹 Bar: Refreshing drinks",
-                            "🥪 Included: Free sandwich"
-                        ],
-                        price: 2500
-                    }
+                 "Aquamarine": {
+            image: "./assets/images/other pages/boat-trip/aqua1.jpeg",
+            features: [
+                "🌊 Boat Tour: Guided exploration",
+                "🏝️ Beach Stops: Relaxing breaks",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
+                "🎶 Party Onboard: DJ & entertainment",
+                "🍽️ Dining: Bar & restaurant (meat & fish + 1500 ALL)",
+                "🍉 Included: Free large fruit banquet"
+            ],
+            price: 2500
+        },
+        "Liburna": {
+            image: "./assets/images/other pages/boat-trip/liburna1.jpg",
+            features: [
+                "🌊 Boat Tour: Guided exploration",
+                "🏝️ Beach Stops: Relaxing breaks",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
+                "🎭 Entertainment:DJ, Pirate & Monkey Show",
+                "🍕 Dining:Bar & pizzeria",
+                "☕ Included: Free coffee"
+            ],
+            price: 2500
+        },
+        "Vlora Cruise": {
+            image: "./assets/images/other pages/boat-trip/vlora1.png",
+            features: [
+                "🌊 Boat Tour: Guided exploration",
+                "🏝️ Beach Stops: Relaxing breaks",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
+                "🧘 Relaxing Experience: Perfect for those who prefer a quiet trip without loud music or partying",
+                "🍹 Bar: Refreshing drinks",
+                "🥪 Included: Free sandwich"
+            ],
+            price: 2500
+        }
                 };
         
                 // Validate inputs
@@ -212,22 +258,27 @@ document.addEventListener("DOMContentLoaded", function () {
                     children: children,
                     infants: infants,
                     totalPrice: totalPrice,
-                    image: boat.image // Ensure image is correctly accessed
+                    image: boat.image
                 });
         
                 localStorage.setItem("cart", JSON.stringify(cart));
                 updateCartDisplay();
-            });
         
-            document.getElementById("cart-items").addEventListener("click", function (event) {
-                if (event.target.classList.contains("remove-btn")) {
-                    const index = event.target.getAttribute("data-index");
-                    cart.splice(index, 1);
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                    updateCartDisplay();
-                }
+                // Reset form fields after successful submission
+                document.getElementById("tour-date").value = "";
+                document.getElementById("adults").value = 1;
+                document.getElementById("children").value = 0;
+                document.getElementById("infants").value = 0;
+                document.getElementById("special-requests").value = "";
+
             });
         
             updateCartDisplay();
         });
+
+        window.addEventListener("storage", function () {
+            cart = JSON.parse(localStorage.getItem("cart")) || [];
+            updateCartDisplay();
+        });
+        
         
