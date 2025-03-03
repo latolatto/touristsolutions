@@ -115,7 +115,13 @@ z-index:100;
 }
 
 #cartItemCount{
-    color:black;
+    color:#fff;
+    background-color: rgb(237, 108, 108);
+    background-color: #ff9800;
+    /* border-radius: 50%; */
+    /* padding: 0; */
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 

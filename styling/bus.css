@@ -8,34 +8,18 @@ align-items: center;
     top:50%;
 }
 
-
-.carousel img{
-    height:100%;
-    /* width:100%; */
+.card-img-top{
+    /* height:10rem ;
+    width:auto; */
 }
 
-.layered-info{
-    /* z-index:400; */
-    color:black;
+.col{
+    width:40%;
 }
 
-.card-info{
-    /* margin-top:3rem;
-    padding:3rem; */
-    /* z-index:400; */
-
-}
-
-
-.card-body{
-    display:block !important;
-    flex: none  !important;
-}
-
-.card.h-100.shadow-lg.border-0.rounded-4.overflow-hidden{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
+.row{
+    justify-content: center;
+    gap:5rem;
 }
 
 

@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cartItem.innerHTML = `
                 <img src="${item.image}" class="cart-image" alt="${item.name}">
                 <div>
-                    <p><strong>${item.name} Boat Tour</strong></p>
+                    <p><strong>${item.name} ${item.headline}</strong></p>
                     <p>${item.date}</p>
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
