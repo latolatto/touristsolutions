@@ -154,8 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+  //CART
   document.addEventListener("DOMContentLoaded", function () {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartOffcanvas = document.getElementById("cartOffcanvas");
     const cartItemsContainer = document.getElementById("cart-items");
     const grandTotalContainer = document.getElementById("grand-total");
     const cartItemCount = document.getElementById("cartItemCount");
@@ -173,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div>
                     <p><strong>${item.name} ${item.headline}</strong></p>
                     <p>${item.date}</p>
+                    ${item.name.includes("Vlora-") ? `<p>Time: ${item.time}</p>` : ""}
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
@@ -185,6 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} ALL`;
         cartItemCount.textContent = cart.length;
+
+               // Get buttons
+    const clearCartBtn = document.getElementById("clearCart");
+    const checkoutBtn = document.getElementById("checkout");
+
+    // Disable buttons if cart is empty
+    if (cart.length === 0) {
+        clearCartBtn.disabled = true;
+        checkoutBtn.disabled = true;
+    } else {
+        clearCartBtn.disabled = false;
+        checkoutBtn.disabled = false;
+    }
     }
 
     document.getElementById("clearCart").addEventListener("click", function () {
@@ -210,3 +226,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCartDisplay();
 });
+
+

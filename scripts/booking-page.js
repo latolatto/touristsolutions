@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display product details
     if (productName && productDetails[productName]) {
         const isitbus = productName.includes("Vlora-");
-const additionalinfo=bookingtitle= isitbus?"" :  `      <section class="container py-5">
+const additionalinfo= isitbus?"" :  `      <section class="container py-5">
 <h2 class="text-center pb-3">Pricing</h2>
 <div class="row justify-content-center">
     
@@ -247,7 +247,19 @@ const additionalinfo=bookingtitle= isitbus?"" :  `      <section class="containe
 </div>`;
 
         const isbus = productName.includes("Vlora-");
-const booknowtitle=bookingtitle= isbus? "Book Your Bus Seat" : "Book Your Tour";
+const booknowtitle= isbus? "Book Your Bus Seat" : "Book Your Tour";
+
+         const booktime= isbus? `  <label for="appt"> <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+  <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z"/>
+  <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"/>
+  <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5"/>
+</svg>Select a time:</label>
+  <input type="time" id="appt" name="appt">` :"";
+        document.getElementById("book-time").innerHTML= booktime;
+        
+  const booktimevisibility=isbus? "visible" : "hidden";
+  document.getElementById("book-time").style.visibility=booktimevisibility;
+
         document.getElementById("additional-info").innerHTML=additionalinfo;
         document.getElementById("booknow-title").textContent=booknowtitle;
         document.getElementById("boat-name").textContent = productName;
@@ -271,7 +283,7 @@ const booknowtitle=bookingtitle= isbus? "Book Your Bus Seat" : "Book Your Tour";
 
 
 
-//CART
+// CART
 document.addEventListener("DOMContentLoaded", function () {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartOffcanvas = document.getElementById("cartOffcanvas");
@@ -291,6 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div>
                     <p><strong>${item.name} ${item.headline}</strong></p>
                     <p>${item.date}</p>
+                    ${item.name.includes("Vlora-") ? `<p>Time: ${item.time}</p>` : ""}
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
@@ -302,6 +315,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} ALL`;
         cartItemCount.textContent = cart.length;
+
+
+        // Get buttons
+    const clearCartBtn = document.getElementById("clearCart");
+    const checkoutBtn = document.getElementById("checkout");
+
+    // Disable buttons if cart is empty
+    if (cart.length === 0) {
+        clearCartBtn.disabled = true;
+        checkoutBtn.disabled = true;
+    } else {
+        clearCartBtn.disabled = false;
+        checkoutBtn.disabled = false;
+    }
     }
 
     document.getElementById("clearCart").addEventListener("click", function () {
@@ -327,10 +354,31 @@ document.addEventListener("DOMContentLoaded", function () {
         const boatName = document.getElementById("boat-name").textContent;
         const isBus = boatName.includes("Vlora-");
         const headline = isBus ? "Bus Seat" : "Boat Tour";
-                const date = document.getElementById("tour-date").value;
+        const date = document.getElementById("tour-date").value;
+        
+        // Fetch the time input correctly
+        const timeInput = document.getElementById("appt");
+        const time = timeInput ? timeInput.value : null;
+
+        if (!date) {
+            alert("Please select a valid date.");
+            return;
+        }
+
+        if (isBus && !time) {
+            alert("Please select a valid time stamp.");
+            console.log("Error: Missing time for bus trip");
+            return;
+        }
+
         const adults = parseInt(document.getElementById("adults").value) || 0;
         const children = parseInt(document.getElementById("children").value) || 0;
         const infants = parseInt(document.getElementById("infants").value) || 0;
+
+        if (adults < 1) {
+            alert("Please select at least one adult.");
+            return;
+        }
 
         const boatDetails = {
             "Aquamarine": {
@@ -355,18 +403,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
 
-        if (!date) {
-            alert("Please select a valid date.");
-            return;
-        }
-        if (adults < 1) {
-            alert("Please select at least one adult.");
-            return;
-        }
-
         const boat = boatDetails[boatName];
         if (!boat) {
-            alert("Invalid  selection.");
+            alert("Invalid selection.");
             return;
         }
 
@@ -381,6 +420,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: boatName,
             headline: headline,
             date: date,
+            time: time || "N/A", // Ensuring a valid value
             adults: adults,
             children: children,
             infants: infants,
@@ -391,7 +431,9 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartDisplay();
 
+        // Reset form fields
         document.getElementById("tour-date").value = "";
+        document.getElementById("appt").value = "";
         document.getElementById("adults").value = 1;
         document.getElementById("children").value = 0;
         document.getElementById("infants").value = 0;
