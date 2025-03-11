@@ -166,10 +166,7 @@ button.book-now-btn:hover {
     background: #e68900;
 }
 
-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
+
 
 
 .number-input input::-webkit-outer-spin-button,
