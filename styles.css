@@ -1060,3 +1060,11 @@ width:70%
 .actively{
     background-color: #adadad;
 }
+
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        flex-direction: row;
+        align-items: center;
+    }
+}

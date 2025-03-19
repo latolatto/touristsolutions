@@ -169,78 +169,109 @@
             <!-- <p class="fs-5 fw-bold text-danger">Price: 2500 ALL per adult</p> -->
           </div>
           <ul class="list-group list-group-flush px-3 pb-3">
+            <div id="boat-pricing-container"></div>
             <div id="boat-features"></div>
+            <div class="alert alert-warning mt-4">
+              ⏳ Please arrive <strong>30-40 minutes before departure</strong> for check-in.
+            </div>
           </ul>          
         </div>
         <!-- Booking Section -->
         <div class="booking-container">
           <h3 id="booknow-title"></h3>
           <div class="book-date">
-            <label for="tour-date">
-              <span class="icon"><svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
-                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-              </svg></span> Select Date:
-            </label>
-            <input type="date" id="tour-date" class="custom-date-picker" required>
+              <label for="tour-date">
+                  <span class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                          <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/>
+                          <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2m3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                      </svg>
+                  </span> Select Date:
+              </label>
+              <input type="date" id="tour-date" class="custom-date-picker" required>
           </div>
+      
           <div id="book-time"></div>
+      
           <div class="input-group">
-            <label for="adults">
-              <span class="icon"><img src="./assets/images/other pages/boat-trip/adult.png"></span> Adults:
-            </label>
-            <!-- <div class="number-input">
-              <button class="decrease">-</button>
-              <input type="number" id="adults" value="1" min="1">
-              <button class="increase">+</button>
-            </div> -->
-            <div class="number-input">
-              <button class="decrease" data-target="adults">-</button>
-              <input type="number" id="adults" value="1" min="1" required step="1">
-              <button class="increase" data-target="adults">+</button>
-            </div>
+              <label for="adults">
+                  <span class="icon"><img src="./assets/images/other pages/boat-trip/adult.png"></span> Adults:
+              </label>
+              <div class="number-input">
+                  <button class="decrease" data-target="adults">-</button>
+                  <input type="number" id="adults" value="1" min="1" required step="1">
+                  <button class="increase" data-target="adults">+</button>
+              </div>
           </div>   
+      
           <div class="input-group">
-            <label for="children">
-              <span class="icon"><img src="./assets/images/other pages/boat-trip/children.png"></span>Children:
-            </label>
-            <!-- <div class="number-input">
-              <button class="decrease">-</button>
-              <input type="number" id="children" value="0" min="0">
-              <button class="increase">+</button>
-            </div> -->
-            <div class="number-input">
-              <button class="decrease" data-target="children">-</button>
-              <input type="number" id="children" value="0" min="0" step="1">
-              <button class="increase" data-target="children">+</button>
-            </div>
+              <label for="children">
+                  <span class="icon"><img src="./assets/images/other pages/boat-trip/children.png"></span>Children:
+              </label>
+              <div class="number-input">
+                  <button class="decrease" data-target="children">-</button>
+                  <input type="number" id="children" value="0" min="0" step="1">
+                  <button class="increase" data-target="children">+</button>
+              </div>
           </div>
+      
           <div class="input-group">
-            <label for="infants">
-              <span class="icon"><img src="./assets/images/other pages/boat-trip/infant.png"></span>Infants:
-            </label>
-            <!-- <div class="number-input">
-              <button class="decrease">-</button>
-              <input type="number" id="infants" value="0" min="0">
-              <button class="increase">+</button>
-            </div> -->
-            <div class="number-input">
-              <button class="decrease" data-target="infants">-</button>
-              <input type="number" id="infants" value="0" min="0" step="1">
-              <button class="increase" data-target="infants">+</button>
-            </div>
+              <label for="infants">
+                  <span class="icon"><img src="./assets/images/other pages/boat-trip/infant.png"></span>Infants:
+              </label>
+              <div class="number-input">
+                  <button class="decrease" data-target="infants">-</button>
+                  <input type="number" id="infants" value="0" min="0" step="1">
+                  <button class="increase" data-target="infants">+</button>
+              </div>
           </div>
+      
+          <!-- Special Add-Ons (ONLY for Aquamarine) -->
+<!-- Extra Options for Aquamarine -->
+<div id="extra-options" class="extra-options" style="display: none;">
+  <h4>Optional Add-ons</h4>
+  
+  <label for="speedboat-option">
+      <span>🚤 Speedboat Tour (+1500 ALL per person)</span>
+      <input type="checkbox" id="speedboat-option">
+  </label>
+  
+  <div id="speedboat-quantity" class="number-input" style="display: none;">
+      <button class="decrease" data-target="speedboat-tickets">-</button>
+      <input type="number" id="speedboat-tickets" value="1" min="1" step="1">
+      <button class="increase" data-target="speedboat-tickets">+</button>
+  </div>
+
+  <label for="meal-option">
+      <span>🍽️ Meat/Fish Meal (+1500 ALL per person)</span>
+      <input type="checkbox" id="meal-option">
+  </label>
+
+  <div id="meal-quantity" class="number-input" style="display: none;">
+      <button class="decrease" data-target="meal-tickets">-</button>
+      <input type="number" id="meal-tickets" value="1" min="1" step="1">
+      <button class="increase" data-target="meal-tickets">+</button>
+  </div>
+</div>
+
+      
           <label for="special-requests" class="special-requests">
-            <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
-              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
-              <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
-            </svg></span>Anything Else?
+              <span class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-card-text" viewBox="0 0 16 16">
+                      <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                      <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 5.5m0 2.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8m0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5"/>
+                  </svg>
+              </span>Anything Else?
           </label>
           <textarea rows="5" id="special-requests" placeholder="Additional requests or things that we should know..."></textarea>
+      
+
+      
           <div class="book-btn">
-            <button type="submit" id="bookNow" class="book-now-btn">Book Now</button>
+              <button type="submit" id="bookNow" class="book-now-btn">Book Now</button>
           </div>
-        </div>
+      </div>
+      
       </div>
 <div id="additional-info"></div>
 <footer class="">
