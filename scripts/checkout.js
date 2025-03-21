@@ -56,16 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 purchase_units: [{
                     amount: { value: totalAmount.toFixed(2), 
                         currency_code: "USD" },
-                        shipping: {
-                            address: {
-                                address_line_1: '',
-                                address_line_2: '',
-                                admin_area_1: '',
-                                admin_area_2: '',
-                                postal_code: '',
-                                country_code: ''
-                            } 
-                                                }
                               
                 }]
             });
