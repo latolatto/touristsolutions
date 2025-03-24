@@ -148,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             doc.text(`   Price: ${item.totalPrice.toLocaleString()} ALL`, 10, y);
             y += 12; // Space between items
             doc.text("-------------------------------------", 10, y);
+            y += 18; 
             total += item.totalPrice;
         });
     
