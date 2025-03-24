@@ -300,6 +300,38 @@ ul.dropdown-menu.show .dropdown-item{
   .cta-link:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 768px) {
+    .grid2-col1 {
+      flex-direction: column; /* Stack elements on smaller screens */
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  
+    .below-banner,
+    .grid2-cta {
+      width: 100%; /* Full width on smaller screens */
+      text-align: center;
+    }
+  
+    .below-banner img {
+      position: relative; /* Adjust positioning */
+      top: 0;
+      height: 2rem; /* Adjust image size */
+      left: 0;
+      margin-bottom: 1rem;
+    }
+  
+    .below-banner h2 {
+      font-size: 2rem; /* Adjust heading size */
+      line-height: 2.5rem;
+    }
+  
+    .below-banner-p {
+      font-size: 1rem; /* Adjust paragraph font size */
+      line-height: 1.4rem;
+    }
+  }
 .grid2-col2{
     display:flex;
     flex-direction: row; 

@@ -53,12 +53,29 @@ document.addEventListener("DOMContentLoaded", function () {
         createOrder: function (data, actions) {
             let totalAmount = parseFloat(orderTotal.textContent.replace(/,/g, ""));
             return actions.order.create({
+
                 purchase_units: [{
-                    amount: { value: totalAmount.toFixed(2), 
-                        currency_code: "USD" },
-                              
-                }]
+                    amount: { 
+                        value: totalAmount.toFixed(2), 
+                        currency_code: "USD" 
+                    }  ,
+
+                }],
+                // experience_context_base: {
+                //     shipping_preference: 'NO_SHIPPING' // Disables address collection
+                //   },
+                //   application_context: {
+                //     shipping_preference: 'NO_SHIPPING' // Disables address collection
+                //   }
+                // no_shipping:0
+                no_shipping: 1  // This disables shipping and billing address
+
             });
+        },
+        style: {
+            layout: 'vertical', // You can adjust the layout style here
+            color: 'gold', // Customize button color
+            shape: 'rect', // Button shape
         },
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
@@ -77,38 +94,76 @@ document.addEventListener("DOMContentLoaded", function () {
                     generatePDF(customerData);
                 };
             });
-        }
+        },
+                    // Handle errors
+                    onError: function (err) {
+                        console.error('Error during transaction:', err);
+                        alert('An error occurred. Please try again.');
+                    },
+
     }).render("#paypal-button-container");
 
     function generatePDF(customerData) {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        let orderText = `Order Confirmation\n\n`;
-        orderText += `Customer Details:\n`;
-        orderText += `Name: ${customerData.name} ${customerData.surname}\n`;
-        orderText += `Email: ${customerData.email}\n`;
-        orderText += `Phone: ${customerData.phone}\n\n`;
-        orderText += `Order Summary:\n`;
-        let total = 0;
-        cart.forEach((item, index) => {
-            orderText += `${index + 1}. ${item.name} ${item.headline}\n`;
-            orderText += `   Date: ${item.date}\n`;
-            if (item.time) orderText += `   Time: ${item.time}\n`;
-            if (item.adults) orderText += `   Adults: ${item.adults}\n`;
-            if (item.children) orderText += `   Children: ${item.children}\n`;
-            if (item.infants) orderText += `   Infants: ${item.infants}\n`;
-            orderText += `   Extras: ${item.extras || "None"}\n`;
-            orderText += `   Price: ${item.totalPrice.toLocaleString()} ALL\n`;
-            orderText += `-------------------------------------\n`;
-            totalPrice += item.totalPrice;
+    
+        // ✅ Business Header
+        doc.setFontSize(14);
+        doc.text("Tourist Solutions", 10, 10);
+        doc.setFontSize(10);
+        doc.text("Email: support@touristsolutions.info", 10, 20);
+        doc.text("Phone: +355698136849", 10, 30);
+    
+        // ✅ Customer Details
+        doc.setFontSize(12);
+        doc.text("Order Confirmation", 10, 50);
+        doc.setFontSize(10);
         
+        let y = 60; // Starting position
+        doc.text(`Customer Details:`, 10, y);
+        y += 10;
+        doc.text(`Name: ${customerData.name} ${customerData.surname}`, 10, y);
+        y += 10;
+        doc.text(`Email: ${customerData.email}`, 10, y);
+        y += 10;
+        doc.text(`Phone: ${customerData.phone}`, 10, y);
+        y += 20; // Extra spacing before order summary
+    
+        // ✅ Order Summary
+        doc.text("Order Summary:", 10, y);
+        y += 10;
+    
+        let total = 0;
+        cart.forEach((item) => {
+            doc.text(`• ${item.name} ${item.headline}`, 10, y);
+            y += 8;
+            doc.text(`   Date: ${item.date}`, 10, y);
+            y += 8;
+            if (item.time) { doc.text(`   Time: ${item.time}`, 10, y); y += 8; }
+            if (item.adults) { doc.text(`   Adults: ${item.adults}`, 10, y); y += 8; }
+            if (item.children) { doc.text(`   Children: ${item.children}`, 10, y); y += 8; }
+            if (item.infants) { doc.text(`   Infants: ${item.infants}`, 10, y); y += 8; }
+            doc.text(`   Extras: ${item.extras || "None"}`, 10, y);
+            y += 8;
+            doc.text(`   Price: ${item.totalPrice.toLocaleString()} ALL`, 10, y);
+            y += 12; // Space between items
+            doc.text("-------------------------------------", 10, y);
+            total += item.totalPrice;
         });
-        orderText += `\nTotal: ${total.toLocaleString()} ALL`;
-        doc.text(orderText, 10, 10);
+    
+        // ✅ Total Price
+        y += 10;
+        doc.setFontSize(12);
+        doc.text(`Total: ${total.toLocaleString()} ALL`, 10, y);
+    
+        // ✅ Save the PDF
         doc.save("Order_Confirmation.pdf");
+    
+        // ✅ Clear Data After Download
         localStorage.removeItem("cart");
         localStorage.removeItem("customerData");
     }
+    
 
     closeModal.addEventListener("click", function () {
         localStorage.removeItem("cart");
