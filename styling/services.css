@@ -45,3 +45,28 @@ font-size:1.1rem;
 .lead{
     font-size:1rem;
 }
+
+
+@media (max-width: 768px) {
+.shadow{
+    text-align: center;
+}
+
+.services{
+    justify-content: center;
+    align-items: center;
+}
+
+.services .col-md-7{
+    margin-bottom:1rem;
+}
+.featurette {
+    border: 2px  #ccc; /* Dashed border for distinction */
+    padding: 20px; /* Adds spacing inside */
+    margin-bottom: 30px; /* Space between each section */
+    border-radius: 10px; /* Slightly rounded corners */
+    background-color: #f9f9f9; /* Light background for contrast */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+}

@@ -1024,6 +1024,7 @@ width:70%
 }
 }
 
+
 @media (max-width: 768px) {
     .grid2-col1 {
       flex-direction: column; /* Stack elements on smaller screens */
@@ -1104,6 +1105,10 @@ width:70%
 
 .grid2-arrow{
     transform: rotate(-40deg);
+}
+
+.grid5-intro{
+    width:80%;
 }
   }
 
