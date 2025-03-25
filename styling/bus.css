@@ -39,3 +39,10 @@ align-items: center;
   .book-btn:hover {
     background: #e68900;
   }
+
+
+  @media (max-width:768px) {
+    .col {
+        width: 100%;
+    }
+  }

@@ -85,44 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-//counter
 
-document.addEventListener("DOMContentLoaded", () => {
-    const counters = document.querySelectorAll(".counter");
-    const section = document.querySelector(".counter-section");
-    let started = false;
 
-    function startCounting() {
-      if (!started) {
-        counters.forEach(counter => {
-          let target = +counter.getAttribute("data-target");
-          let count = 0;
-          let increment = target / 100;
-
-          let updateCounter = () => {
-            if (count < target) {
-              count += increment;
-              counter.textContent = Math.floor(count);
-              requestAnimationFrame(updateCounter);
-            } else {
-              counter.textContent = target;
-            }
-          };
-          updateCounter();
-        });
-        started = true;
-      }
-    }
-
-    window.addEventListener("scroll", () => {
-      let sectionPosition = section.getBoundingClientRect().top;
-      let screenPosition = window.innerHeight;
-
-      if (sectionPosition < screenPosition) {
-        startCounting();
-      }
-    });
-  });
 
 
 
@@ -179,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
-                    <p><strong>Total: ${item.totalPrice.toLocaleString()} ALL</strong></p>
-                    <button class="remove-btn" data-index="${index}">Remove</button>
+                    <p><strong>Total: ${item.totalPrice?.toLocaleString() || "0"} ALL</strong></p>
+                     <button class="remove-btn" data-index="${index}">Remove</button>
                 </div>
             `;
             cartItemsContainer.appendChild(cartItem);

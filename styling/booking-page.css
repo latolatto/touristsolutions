@@ -24,53 +24,36 @@ gap:5rem;
     /* width:70%; */
 }
 
-.booking-container{
-    width:50%;
-}
-
 .booking-container {
+    width: 50%;
+    max-width: 40rem; /* Prevents it from becoming too wide on large screens */
     margin: 0 auto;
     padding: 1rem;
-    padding-top:3rem;
+    padding-top: 3rem;
     color: #333;
-    /* display:flex;
+    display:flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center; */
+    align-items: flex-start;
 }
 
-.booking-container h3{
-    margin-bottom:2rem;
-}
-
-h3 {
+.booking-container h3 {
     text-align: center;
-    font-size: 1.5em;
-    /* margin-bottom: 2rem; */
+    font-size: 1.5rem;
     font-weight: 600;
+    margin-bottom: 2rem;
 }
 
-.book-date{
+.book-date,
+.input-group {
     display: flex;
     align-items: center;
-    margin-bottom:2rem;
+    margin-bottom: 2rem;
     justify-content: center;
-}
-
-
-#book-time{
-    display: flex;
-    align-items: center;
-    margin-bottom:1.5rem;
-    justify-content: center;
-    width:100%;
-    visibility: hidden;
+    width: 100%;
 }
 label {
-    font-size: 1.1em;
-
-    /* margin-bottom: 1.5rem; */
-    width:40%;
+    font-size: 1.1rem;
+    width: 40%;
 }
 
 .icon {
@@ -89,9 +72,11 @@ label {
 
 }
 
+
+
 .custom-date-picker {
     width: 40%;
-    padding: 10px;
+    padding: 0.7rem;
     font-size: 1em;
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -103,13 +88,6 @@ label {
 }
 
 
-.input-group {
-    display: flex;
-    align-items: center;
-    /* justify-content: space-between; */
-    margin-bottom: 1.5rem;
-    justify-content: center;
-}
 
 .number-input {
     display: flex;
@@ -118,17 +96,22 @@ label {
     justify-content: space-between;
 }
 
-.number-input button {
-    background: none;
-    border: 1px solid #333;
-    color: #333;
-    font-size: 1.5em;
-    padding: 0.05rem 0.7rem;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s;
+.number-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
+
+.number-input button {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    border: none;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
 .number-input input {
     width: 40%;
     padding: 1rem;
@@ -142,7 +125,9 @@ label {
 
 .number-input button:hover {
     background-color: #f0f0f0;
+    border:0.3px solid black;
 }
+
 
 .book-btn{
     display:flex;
@@ -150,7 +135,7 @@ label {
     width:100%;
 }
 button.book-now-btn {
-    padding: 12px 30px;
+    padding: 1rem 2rem;
     background: #ff9800;
     color: white;
     font-size: 1.2em;
@@ -165,7 +150,6 @@ button.book-now-btn {
 button.book-now-btn:hover {
     background: #e68900;
 }
-
 
 
 
@@ -192,44 +176,39 @@ margin-bottom: 1rem;
 }
 
 
-#appt{
-    padding: 10px;
-    font-size: 1em;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    background-color: #ffffff00;
-    color: #333;
-    /* margin-top:1em;
-    margin-bottom:1.5rem; */
-    text-align: center;
-    outline: none;
-    align-self: center;
-    width: 40%;
-
+/* Special Requests */
+.special-requests {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
 }
 
-.bi-clock-history{
-
-    height:1.5rem;
-margin-right:0.8em;
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.125rem solid #ccc;
+    font-size: 1rem;
 }
+
+
 
 @media (max-width: 500px) {
-    .input-group {
+    /* .input-group {
         flex-direction: column;
         align-items: stretch;
     }
     
     .number-input {
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        width:60%;
     }
 
     input[type="number"], .custom-date-picker {
         width: 100%;
         margin-bottom: 10px;
-    }
+    } */
 }
 
 
@@ -298,3 +277,92 @@ margin-right:0.8em;
     transform: scale(1.3);
     margin-left: 10px;
 }
+
+@media (max-width: 480px) {
+    .booking-container {
+        padding: 1rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .custom-date-picker {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .book-now-btn {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+@media (max-width:768px) {
+    .twocolumns{
+        flex-direction: column;
+    }
+    .image-card{
+        width:100%;
+    }
+
+    #boat-image{
+        height:50vh;
+    }
+
+    .booking-container {
+        width: 100%;
+    }
+}
+
+
+
+
+@media (max-width: 768px) {
+    .booking-container {
+        width: 90%;
+    }
+
+    .book-date,
+    .input-group {
+        flex-direction: row;
+        align-items: center;
+        /* width:60%; */
+        gap:1rem;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+
+    .book-date label{
+        width:100%;
+    }
+/* 
+    label {
+        width: 100%;
+    } */
+
+    .custom-date-picker {
+        width: 100%;
+    }
+    .number-input {
+        width: 40%;
+    }
+    .number-input {
+        justify-content: space-between;
+    }
+
+    #special-requests{
+        width:100%;
+
+        margin-left: 0;
+    
+    }
+    
+    .special-requests{
+        margin-left: 0;
+        width:100%;
+
+    }
+}
+
+

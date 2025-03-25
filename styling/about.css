@@ -83,3 +83,23 @@ align-items: center;
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
+
+@media (max-width: 768px) {
+.about-intro p{
+    width:80%;
+}
+.btn-animated {
+    background:orange;
+    color: black;
+}
+
+.btn-animated:hover {
+    transform: none;
+ 
+}
+
+.about1-flex .row .col{
+justify-content: center;
+align-items: center;
+}
+}

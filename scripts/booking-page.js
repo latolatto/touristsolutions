@@ -225,17 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const isbus = productName.includes("Vlora-");
         const booknowtitle = isbus ? "Book Your Bus Seat" : "Book Your Tour";
     
-        const booktime = isbus ? `<label for="appt"> <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
-  <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z"/>
-  <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"/>
-  <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5"/>
-</svg> Select a time:</label>
-        <input type="time" id="appt" name="appt">` : "";
-        
-        document.getElementById("book-time").innerHTML = booktime;
-        
-        const booktimevisibility = isbus ? "visible" : "hidden";
-        document.getElementById("book-time").style.visibility = booktimevisibility;
+
     
 
         document.getElementById("additional-info").innerHTML = additionalinfo;
@@ -253,29 +243,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Generate pricing details
         const priceData = productDetails[productName].price;
         let pricingHTML = `
-            <div class="container py-3">
-                <h4 class="text-center pb-2">Pricing</h4>
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-lg border-0 rounded-4 p-3">
-                            <h5 class="fw-bold">👶 Infants (${priceData.infant.age})</h5>
-                            <h4 class="text-success">${priceData.infant.value === 0 ? "FREE" : priceData.infant.value + " ALL"}</h4>
+                                <div class="pricing text-center my-3 pb-2">
+                          <h4 class="fw-bold text-primary">Pricing</h4>
+                          <p><span class="badge bg-success">Infants (${priceData.infant.age}): ${priceData.infant.value === 0 ? "FREE" : priceData.infant.value + " ALL"}</span></p>
+                          <p><span class="badge bg-danger">Children (${priceData.child.age}): ${priceData.child.value} ALL</span></p>
+                          <p><span class="badge bg-warning text-dark">Adults (${priceData.adult.age}): ${priceData.adult.value} ALL</span></p>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-lg border-0 rounded-4 p-3">
-                            <h5 class="fw-bold">🧒 Children (${priceData.child.age})</h5>
-                            <h4 class="text-danger">${priceData.child.value} ALL</h4>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-lg border-0 rounded-4 p-3">
-                            <h5 class="fw-bold">🧑 Adults (${priceData.adult.age})</h5>
-                            <h4 class="text-danger">${priceData.adult.value} ALL</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
+            `;
         document.getElementById("boat-pricing-container").innerHTML = pricingHTML;
 
         // Show add-ons ONLY for Aquamarine
@@ -329,7 +303,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div>
                     <p><strong>${item.name} ${item.headline}</strong></p>
                     <p>${item.date}</p>
-                    ${item.name.includes("Vlora-") ? `<p>Time: ${item.time}</p>` : ""}
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
@@ -387,15 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Fetch the time input correctly
-        const timeInput = document.getElementById("appt");
-        const time = timeInput ? timeInput.value : null;
 
-        if (isBus && !time) {
-            alert("Please select a valid time stamp.");
-            console.log("Error: Missing time for bus trip");
-            return;
-        }
 
         const adults = parseInt(document.getElementById("adults").value) || 0;
         const children = parseInt(document.getElementById("children").value) || 0;
@@ -466,7 +431,6 @@ document.addEventListener("DOMContentLoaded", function () {
             name: boatName,
             headline: headline,
             date: date,
-            time: time || "N/A",
             adults: adults,
             children: children,
             infants: infants,
@@ -480,7 +444,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // ✅ Fix: Reset Fields Properly
         document.getElementById("tour-date").value = "";
-        if (timeInput) document.getElementById("appt").value = "";
         document.getElementById("adults").value = 1;
         document.getElementById("children").value = 0;
         document.getElementById("infants").value = 0;
