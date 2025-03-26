@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="cart-item-details">
                     <p><strong>${item.name} ${item.headline}</strong></p>
                     <p>Date: ${item.date}</p>
-                    ${item.time ? `<p>Time: ${item.time}</p>` : ""}
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
@@ -106,64 +105,144 @@ document.addEventListener("DOMContentLoaded", function () {
     function generatePDF(customerData) {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
+        const pageHeight = doc.internal.pageSize.getHeight();
+        const marginBottom = 10;
+        const newPageTopMargin = 40; // New page tickets will start at y = 20
     
-        // ✅ Business Header
-        doc.setFontSize(14);
-        doc.text("Tourist Solutions", 10, 10);
+        // Capture the current page for the logo
+        const logoPage = doc.getNumberOfPages();
+    
+        // ✅ Business Header with Logo
+        let logoPromise = new Promise((resolve) => {
+            let img = new Image();
+            img.src = "./assets/images/logo.png";
+            img.onload = function () {
+                doc.setPage(logoPage);
+                doc.addImage(img, "PNG", 80, 5, 50, 20); // Logo centered
+                resolve();
+            };
+        });
+    
+        // ✅ Business Name & Contact Info
+        doc.setFontSize(16);
+        doc.text("Tourist Solutions", 80, 30);
         doc.setFontSize(10);
-        doc.text("Email: support@touristsolutions.info", 10, 20);
-        doc.text("Phone: +355698136849", 10, 30);
+        doc.text("Email: support@touristsolutions.info", 80, 37);
+        doc.text("Phone: +355698136849", 80, 44);
     
         // ✅ Customer Details
         doc.setFontSize(12);
-        doc.text("Order Confirmation", 10, 50);
+        doc.text("Order Confirmation", 10, 55);
         doc.setFontSize(10);
-        
-        let y = 60; // Starting position
-        doc.text(`Customer Details:`, 10, y);
-        y += 10;
+    
+        let y = 65;
+        doc.text("Customer Details:", 10, y);
+        y += 8;
         doc.text(`Name: ${customerData.name} ${customerData.surname}`, 10, y);
-        y += 10;
+        y += 8;
         doc.text(`Email: ${customerData.email}`, 10, y);
-        y += 10;
+        y += 8;
         doc.text(`Phone: ${customerData.phone}`, 10, y);
-        y += 20; // Extra spacing before order summary
+        y += 12;
     
         // ✅ Order Summary
-        doc.text("Order Summary:", 10, y);
+        doc.setFontSize(12);
+        doc.text("Order Tickets:", 10, y);
         y += 10;
     
         let total = 0;
+        let promises = [logoPromise];
+    
         cart.forEach((item) => {
-            doc.text(`• ${item.name} ${item.headline}`, 10, y);
-            y += 8;
-            doc.text(`   Date: ${item.date}`, 10, y);
-            y += 8;
-            if (item.time) { doc.text(`   Time: ${item.time}`, 10, y); y += 8; }
-            if (item.adults) { doc.text(`   Adults: ${item.adults}`, 10, y); y += 8; }
-            if (item.children) { doc.text(`   Children: ${item.children}`, 10, y); y += 8; }
-            if (item.infants) { doc.text(`   Infants: ${item.infants}`, 10, y); y += 8; }
-            doc.text(`   Extras: ${item.extras || "None"}`, 10, y);
-            y += 8;
-            doc.text(`   Price: ${item.totalPrice.toLocaleString()} ALL`, 10, y);
-            y += 12; // Space between items
-            doc.text("-------------------------------------", 10, y);
-            y += 18; 
+            // Ticket height is fixed at 60 units.
+            if (y + 60 > pageHeight - marginBottom) {
+                doc.addPage();
+                y = newPageTopMargin;  // start a bit lower on the new page
+            }
+            // Capture the current page number for this ticket.
+            const ticketPage = doc.getNumberOfPages();
+            const ticketY = y;
+    
+            // 🎟️ **Ticket Border**
+            doc.setDrawColor(0);
+            doc.setLineWidth(0.5);
+            doc.rect(10, ticketY, 180, 55);
+    
+            // 🖼️ **Image Embedding**
+            let imagePromise = new Promise((resolve) => {
+                let img = new Image();
+                img.src = item.image;
+                img.onload = function () {
+                    // Ensure the image is added to the page where the ticket is drawn.
+                    doc.setPage(ticketPage);
+                    doc.addImage(img, "JPEG", 12, ticketY + 3, 30, 30);
+                    resolve();
+                };
+            });
+            promises.push(imagePromise);
+    
+            // 📝 **Ticket Content**
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "bold");
+            doc.text(`${item.name} - ${item.headline}`, 45, ticketY + 10);
+            doc.setFont("helvetica", "normal");
+    
+            doc.text(`Date: ${item.date}`, 45, ticketY + 18);
+            
+            // ✅ If it's a bus ticket, add "Agency" field
+            if (item.name.includes("Vlora-Saranda") || item.name.includes("Vlora-Berat")) {
+                doc.text("Agency: ___________________________", 45, ticketY + 26);
+                y += 8;
+            }
+    
+            if (item.adults) { doc.text(`Adults: ${item.adults}`, 45, ticketY + 36); }
+            if (item.children) { doc.text(`Children: ${item.children}`, 45, ticketY + 44); }
+            if (item.infants) { doc.text(`Infants: ${item.infants}`, 45, ticketY + 52); }
+    
+            // ✅ **Extras now appear below "Extras:" if selected**
+            doc.text("Extras:", 120, ticketY + 10);
+            if (item.extras) {
+                let extrasList = item.extras.replace(/🚤|🍽️/g, "").trim().split(", ");
+                extrasList.forEach((extra, idx) => {
+                    doc.text(`• ${extra}`, 120, ticketY + 18 + (idx * 8));
+                });
+                y += (extrasList.length * 8);
+            } else {
+                doc.text("None", 120, ticketY + 18);
+            }
+    
+            doc.setFont("helvetica", "bold");
+            doc.text(`Price: ${item.totalPrice.toLocaleString()} ALL`, 120, ticketY + 40);
+    
             total += item.totalPrice;
+    
+            // Increase y position for the next ticket.
+            y += 60;
         });
     
         // ✅ Total Price
         y += 10;
+        if (y > pageHeight - marginBottom) {
+            doc.addPage();
+            y = newPageTopMargin;
+        }
         doc.setFontSize(12);
         doc.text(`Total: ${total.toLocaleString()} ALL`, 10, y);
     
-        // ✅ Save the PDF
-        doc.save("Order_Confirmation.pdf");
-    
-        // ✅ Clear Data After Download
-        localStorage.removeItem("cart");
-        localStorage.removeItem("customerData");
+        // ✅ Save after images load
+        Promise.all(promises).then(() => {
+            doc.save("Order_Confirmation.pdf");
+            localStorage.removeItem("cart");
+            localStorage.removeItem("customerData");
+        });
     }
+    
+    
+    
+    
+    
+    
+    
     
 
     closeModal.addEventListener("click", function () {

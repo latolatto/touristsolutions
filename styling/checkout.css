@@ -203,5 +203,23 @@ color: #d9534f;
     .checkout-right{
         order:-1;
     }
+
+    .modal-content{
+        width:90%;
+    }
+
+    .modal-footer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #close-modal{
+        width:50%;
+    }
+
+    .modal{
+        top:10%;
+    }
 }
 
