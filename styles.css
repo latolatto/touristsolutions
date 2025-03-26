@@ -1098,7 +1098,7 @@ width:70%
 }
 .arrow {
     position: absolute;
-    top: 30%;
+    top: 25%;
     right: 5%;
     transform: rotate(-40deg);
 }
@@ -1109,6 +1109,16 @@ width:70%
 
 .grid5-intro{
     width:80%;
+}
+
+.grid5-banner img {
+    top: 70%;
+    left: 15%;
+}
+
+.grid5 h2 {
+    font-size: 3rem;
+
 }
   }
 
