@@ -28,23 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   //booking +/- buttons
+// Booking +/- buttons
 document.querySelectorAll(".increase, .decrease").forEach(button => {
     button.addEventListener("click", function () {
-      const targetId = this.getAttribute("data-target");
-      const input = document.getElementById(targetId);
-      let value = parseInt(input.value);
-      
-      if (this.classList.contains("increase")) {
-        input.value = value + 1;
-      } else if (this.classList.contains("decrease")) {
-        if (targetId === "adults" && value > 1) {
-          input.value = value - 1;
-        } else if ((targetId === "children" || targetId === "infants") && value > 0) {
-          input.value = value - 1;
+        const targetId = this.getAttribute("data-target");
+        const input = document.getElementById(targetId);
+        let value = parseInt(input.value) || 0; // Ensure value is a number
+        
+        if (this.classList.contains("increase")) {
+            input.value = value + 1;
+        } else if (this.classList.contains("decrease") && value > 0) {
+            input.value = value - 1;
         }
-      }
     });
-  });
+});
+
 
 
 // Remove any non-integer characters
@@ -276,8 +274,9 @@ document.addEventListener("DOMContentLoaded", function () {
             total += (speedboat + meal);
         }
 
-        document.getElementById("total-price").textContent = total + " ALL";
-    }
+        let priceElement = document.getElementById("total-price");
+        priceElement ? (priceElement.textContent = total + " ALL") : console.log("Element not found!");
+            }
 
     // Attach event listeners to input fields
     document.querySelectorAll("input").forEach(input => input.addEventListener("input", updateTotalPrice));

@@ -47,34 +47,26 @@ document.addEventListener("DOMContentLoaded", function () {
         paypalContainer.style.display = "block";
         proceedToPaymentBtn.style.display = "none";
     });
-
+    
     paypal.Buttons({
         createOrder: function (data, actions) {
             let totalAmount = parseFloat(orderTotal.textContent.replace(/,/g, ""));
             return actions.order.create({
-
                 purchase_units: [{
                     amount: { 
                         value: totalAmount.toFixed(2), 
-                        currency_code: "USD" 
-                    }  ,
-
+                        currency_code: "USD"
+                    }
                 }],
-                // experience_context_base: {
-                //     shipping_preference: 'NO_SHIPPING' // Disables address collection
-                //   },
-                //   application_context: {
-                //     shipping_preference: 'NO_SHIPPING' // Disables address collection
-                //   }
-                // no_shipping:0
-                no_shipping: 1  // This disables shipping and billing address
-
+                application_context: {
+                    shipping_preference: 'NO_SHIPPING' // Disables shipping address collection
+                }
             });
         },
         style: {
-            layout: 'vertical', // You can adjust the layout style here
-            color: 'gold', // Customize button color
-            shape: 'rect', // Button shape
+            layout: 'vertical',
+            color: 'gold',
+            shape: 'rect'
         },
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
@@ -94,13 +86,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
             });
         },
-                    // Handle errors
-                    onError: function (err) {
-                        console.error('Error during transaction:', err);
-                        alert('An error occurred. Please try again.');
-                    },
-
+        onError: function (err) {
+            console.error("Error during transaction:", err);
+            alert("An error occurred. Please try again.");
+        }
     }).render("#paypal-button-container");
+    
 
     function generatePDF(customerData) {
         const { jsPDF } = window.jspdf;
@@ -237,18 +228,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     
-    
-    
-    
-    
-    
-    
+
+    if (cart.length === 0) {
+        const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
+        formFields.forEach(field => field.disabled = true);
+      }
+      
     
 
     closeModal.addEventListener("click", function () {
         localStorage.removeItem("cart");
         localStorage.removeItem("customerData");
         location.reload();
+        const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
+        formFields.forEach(field => field.disabled = true);
     });
     displayCart();
 });
