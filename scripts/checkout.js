@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 purchase_units: [{
                     amount: { 
                         value: totalAmount.toFixed(2), 
-                        currency_code: "USD"
+                        currency_code: "EUR"
                     }
                 }],
                 application_context: {
