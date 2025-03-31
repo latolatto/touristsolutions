@@ -380,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             "Liburna": {
                 image: "./assets/images/other pages/boat-trip/liburna1.jpg",
-                price: { infant: 0, child: 1500, adult: 2500 }
+                price: { infant: 0, child: 1500, adult: 0.5 }
             },
             "Vlora Cruise": {
                 image: "./assets/images/other pages/boat-trip/vlora1.png",
