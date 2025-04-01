@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
                     ${item.extras ? `<p>Extras: ${item.extras}</p>` : ""}
-                    <p class="price"><strong>${item.totalPrice.toLocaleString()} €</strong></p>
+                    <p class="price"><strong>€ ${item.totalPrice.toLocaleString()} </strong></p>
                 </div>
             `;
             cartSummary.appendChild(cartItem);
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p><strong>Phone:</strong> ${customerData.phone}</p>
                     <h3>Order Summary</h3>
                     ${cartSummary.innerHTML}
-                    <h3>Total: ${orderTotal.textContent} €</h3>
+                    <h3>Total: € ${orderTotal.textContent} </h3>
                 `;
                 downloadOrderBtn.onclick = function () {
                     generatePDF(customerData);
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
     
             doc.setFont("helvetica", "bold");
-            doc.text(`Price: ${item.totalPrice.toLocaleString()} €`, 120, ticketY + 40);
+            doc.text(`Price: €${item.totalPrice.toLocaleString()} `, 120, ticketY + 40);
     
             total += item.totalPrice;
     
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
             y = newPageTopMargin;
         }
         doc.setFontSize(12);
-        doc.text(`Total: ${total.toLocaleString()} €`, 10, y);
+        doc.text(`Total: € ${total.toLocaleString()} `, 10, y);
     
         // ✅ Save after images load
         Promise.all(promises).then(() => {
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem("cart");
         localStorage.removeItem("customerData");
         location.reload();
-        const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
+        const formFields = document.querySelectora('form input, form select, form textarea, form button');
         formFields.forEach(field => field.disabled = true);
     });
     displayCart();

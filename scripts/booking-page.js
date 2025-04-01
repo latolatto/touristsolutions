@@ -66,9 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
             features: [
                 "🌊 Boat Tour: Guided exploration",
                 "🏝️ Beach Stops: Relaxing breaks",
-                "🚤 Speedboat Option: Haxhi Ali Cave (+15 €)",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+ €15 )",
                 "🎶 Party Onboard: DJ & entertainment",
-                "🍽️ Dining: Bar & restaurant (meat & fish + 15 €)",
+                "🍽️ Dining: Bar & restaurant (meat & fish + €15 )",
                 "🍉 Included: Free large fruit banquet"
             ],
             price: {
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
             features: [
                 "🌊 Boat Tour: Guided exploration",
                 "🏝️ Beach Stops: Relaxing breaks",
-                "🚤 Speedboat Option: Haxhi Ali Cave (+15 €)",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+ €15 )",
                 "🎭 Entertainment: DJ, Pirate & Monkey Show",
                 "🍕 Dining: Bar & pizzeria",
                 "☕ Included: Free coffee"
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             features: [
                 "🌊 Boat Tour: Guided exploration",
                 "🏝️ Beach Stops: Relaxing breaks",
-                "🚤 Speedboat Option: Haxhi Ali Cave (+15 €)",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+ €15 )",
                 "🧘 Relaxing Experience: Perfect for those who prefer a quiet trip without loud music or partying",
                 "🍹 Bar: Refreshing drinks",
                 "🥪 Included: Free sandwich"
@@ -120,34 +120,42 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Vlora-Saranda": {
                     image: "./assets/images/bus1.jpeg",
                     features: [
-                        "🏷️ Price: 15 € per adult | 8 € per child",
-                        "🕒 Departure (Vlora): 07:00 AM | 11:30 AM | 04:00 PM",
-                        "🕒 Departure (Saranda): 09:30 AM | 02:00 PM | 07:00 PM",
-                        "📍 Stops: Orikum, Dhermi, Himara, Borsh",
-                        "⏳ Duration: ~3.5 hours",
-                        "🚌 Bus Type: Air-conditioned, 50-seater",
-                        "💳 Payment: Cash or card on board"
+                        "🕒 Departure: Lungomare Vlora (Tourist Solutions) – 08:30 AM",
+                        "📍 Stop 1: The Blue Eye Beach(Walking ~1.3 km) – Stay for 40-50 min",
+                        "📍 Stop 2: Saranda – Arrival around 12:30 PM",
+                        "📍 Stop 3: Ksamil – Free time for beach & lunch (💥Not included in the price💥)",
+                        "⏳ Return: Departure from Ksamil at 6:00 PM, with one optional stop",
+                        "🕒 Arrival in Vlora:</strong> Around 8:30 PM",
+                        "🎒 Recommended: Backpack, 1L water bottle,change of cotton clothes, swimwear, travel medication if needed",
+                        "⚠️ Infants (0-2) must share seat with 1 adult ! "
                     ],
                     price: {
-                        adult: 15,
-                        child: 8
+                        infant: { age: "0-2 years", value: 0 },
+                        child: { age: "3-6 years", value: 40  },
+                        adult: { age: "7+ years", value: 50 }
+                        // adult: 50,
+                        // child: 40
                     },
-                    mainInfo: "Daily transportation service"
+                    mainInfo: "Daily Van Tour"
                 },
                 "Vlora-Berat": {
                     image: "./assets/images/bus2.jpeg",
                     features: [
-                        "🏷️ Price: 15 € per adult | 8 € per child",
-                        "🕒 Departure (Vlora): 06:30 AM | 12:30 PM | 05:30 PM",
-                        "🕒 Departure (Berat): 09:00 AM | 03:00 PM | 08:00 PM",
-                        "📍 Stops: Fier, Lushnje",
-                        "⏳ Duration: ~2.5 hours",
-                        "🚌 Bus Type: Comfortable, 40-seater",
-                        "💳 Payment: Cash or card on board"
+                        "🕒 Departure: Lungomare Vlora (Tourist Solutions) – 09:00 AM<",
+                        "📍 Stop 1: Visit to Berat, a UNESCO-protected city",
+                        "🕒 Arrival in Berat: Around 11:00 AM",
+                        "📍 Stop 2: Visit to Berat Castle – Free time for sightseeing & lunch (💥Not included in the price💥)",
+                        "⏳ Return: Departure from Berat at 4:00 PM, with one optional stop",
+                        "🕒 Arrival in Vlora:</strong> Around 6:30 PM",
+                        "🎒 Recommended:</strong> Backpack, 1L water bottle, sun hat, and travel medication if needed",
+                        "⚠️ Infants (0-2) must share seat with 1 adult ! "
                     ],
                     price: {
-                        adult: 12,
-                        child: 7
+                        infant: { age: "0-2 years", value: 0 },
+                        child: { age: "3-6 years", value: 32  },
+                        adult: { age: "7+ years", value: 40 }
+                        // adult: 40,
+                        // child: 32
                     },
                     mainInfo: "Daily transportation service"
                 }
@@ -184,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="fs-4 me-3"><img width="70" src="./assets/images/other pages/boat-trip/haxhi-ali.jpg"></span>
                             <div>
                                 <h5 class="mb-1">Stop 2 – Haxhi Ali Cave</h5>
-                                <p class="mb-0">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+15 €, ~20 minutes)</p>
+                                <p class="mb-0">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+ €15 , ~20 minutes)</p>
                             </div>
                         </div>
                         <!-- Stop 3: Sazan Island -->
@@ -212,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <ul class="list-unstyled text-center mt-3">
                             <li>🍽️ Food & drinks from the onboard restaurant/bar</li>
                             <li>⛱️ Sunbeds and umbrellas at the beach</li>
-                            <li>🚤 Optional speedboat tour inside Haxhi Ali Cave (+15 €)</li>
+                            <li>🚤 Optional speedboat tour inside Haxhi Ali Cave (+ €15 )</li>
                         </ul>
                     </div>
                 </div>
@@ -243,9 +251,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let pricingHTML = `
                                 <div class="pricing text-center my-3 pb-2">
                           <h4 class="fw-bold text-primary">Pricing</h4>
-                          <p><span class="badge bg-success">Infants (${priceData.infant.age}): ${priceData.infant.value === 0 ? "FREE" : priceData.infant.value + " €"}</span></p>
-                          <p><span class="badge bg-danger">Children (${priceData.child.age}): ${priceData.child.value} €</span></p>
-                          <p><span class="badge bg-warning text-dark">Adults (${priceData.adult.age}): ${priceData.adult.value} €</span></p>
+                          <p><span class="badge bg-success">Infants (${priceData.infant.age}): ${priceData.infant.value === 0 ? "FREE" : " €" + priceData.infant.value  }</span></p>
+                          <p><span class="badge bg-danger">Children (${priceData.child.age}): €${priceData.child.value} </span></p>
+                          <p><span class="badge bg-warning text-dark">Adults (${priceData.adult.age}): €${priceData.adult.value} </span></p>
                         </div>
             `;
         document.getElementById("boat-pricing-container").innerHTML = pricingHTML;
@@ -269,13 +277,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Only apply add-ons if Aquamarine is selected
         if (productName === "Aquamarine") {
-            let speedboat = document.getElementById("speedboat-option").checked ? 1500 : 0;
-            let meal = document.getElementById("meal-option").checked ? 1500 : 0;
+            let speedboat = document.getElementById("speedboat-option").checked ? 15 : 0;
+            let meal = document.getElementById("meal-option").checked ? 15 : 0;
             total += (speedboat + meal);
         }
 
         let priceElement = document.getElementById("total-price");
-        priceElement ? (priceElement.textContent = total + " €") : console.log("Element not found!");
+        priceElement ? (priceElement.textContent = " €" + total  ) : console.log("Element not found!");
             }
 
     // Attach event listeners to input fields
@@ -306,13 +314,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
                     ${item.extras ? `<p>Extras: ${item.extras}</p>` : ""}
-                    <p><strong>Total: ${item.totalPrice.toLocaleString()} €</strong></p>
+                    <p><strong>Total: €${item.totalPrice.toLocaleString()} </strong></p>
                     <button class="remove-btn" data-index="${index}">Remove</button>
                 </div>
             `;
             cartItemsContainer.appendChild(cartItem);
         });
-        grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} €`;
+        grandTotalContainer.textContent = `Grand total: €${total.toLocaleString()} `;
         cartItemCount.textContent = cart.length;  // ✅ Updates cart icon count
 
         // Get buttons
@@ -388,11 +396,11 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             "Vlora-Saranda": {
                 image: "./assets/images/bus1.jpeg",
-                price: { adult: 15, child: 8 }
+                price: { adult: 50, child: 40 }
             },
             "Vlora-Berat": {
                 image: "./assets/images/bus2.jpeg",
-                price: { adult: 12, child: 7 }
+                price: { adult: 40, child: 32 }
             }
         };
 
