@@ -143,14 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
-                    <p><strong>Total: ${item.totalPrice?.toLocaleString() || "0"} ALL</strong></p>
+                    <p><strong>Total: ${item.totalPrice?.toLocaleString() || "0"} €</strong></p>
                      <button class="remove-btn" data-index="${index}">Remove</button>
                 </div>
             `;
             cartItemsContainer.appendChild(cartItem);
         });
 
-        grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} ALL`;
+        grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} €`;
         cartItemCount.textContent = cart.length;
 
                // Get buttons

@@ -66,20 +66,20 @@ document.addEventListener("DOMContentLoaded", function () {
             features: [
                 "🌊 Boat Tour: Guided exploration",
                 "🏝️ Beach Stops: Relaxing breaks",
-                "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+15 €)",
                 "🎶 Party Onboard: DJ & entertainment",
-                "🍽️ Dining: Bar & restaurant (meat & fish + 1500 ALL)",
+                "🍽️ Dining: Bar & restaurant (meat & fish + 15 €)",
                 "🍉 Included: Free large fruit banquet"
             ],
             price: {
                 infant: { age: "0-4 years", value: 0 },
-                child: { age: "5-10 years", value: 1500 },
-                adult: { age: "11+ years", value: 2500 }
+                child: { age: "5-10 years", value: 15  },
+                adult: { age: "11+ years", value: 25 }
             },
             mainInfo: "Guided boat tour of Karaburun-Sazan National Marine Park",
             extras: {
-                speedboat: { label: "🚤 Speedboat Tour", price: 1500 },
-                meal: { label: "🍽️ Meat/Fish Meal", price: 1500 }
+                speedboat: { label: "🚤 Speedboat Tour", price: 15 },
+                meal: { label: "🍽️ Meat/Fish Meal", price: 15 }
             }
         },
         "Liburna": {
@@ -87,15 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
             features: [
                 "🌊 Boat Tour: Guided exploration",
                 "🏝️ Beach Stops: Relaxing breaks",
-                "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+15 €)",
                 "🎭 Entertainment: DJ, Pirate & Monkey Show",
                 "🍕 Dining: Bar & pizzeria",
                 "☕ Included: Free coffee"
             ],
             price: {
                 infant: { age: "0-3 years", value: 0 },
-                child: { age: "4-6 years", value: 1500 },
-                adult: { age: "7+ years", value: 2500 }
+                child: { age: "4-6 years", value: 15 },
+                adult: { age: "7+ years", value: 0.5 }
             },
             mainInfo: "Guided boat tour of Karaburun-Sazan National Marine Park"
         },
@@ -104,15 +104,15 @@ document.addEventListener("DOMContentLoaded", function () {
             features: [
                 "🌊 Boat Tour: Guided exploration",
                 "🏝️ Beach Stops: Relaxing breaks",
-                "🚤 Speedboat Option: Haxhi Ali Cave (+1500 ALL)",
+                "🚤 Speedboat Option: Haxhi Ali Cave (+15 €)",
                 "🧘 Relaxing Experience: Perfect for those who prefer a quiet trip without loud music or partying",
                 "🍹 Bar: Refreshing drinks",
                 "🥪 Included: Free sandwich"
             ],
             price: {
                 infant: { age: "0-3 years", value: 0 },
-                child: { age: "4-9 years", value: 1500 },
-                adult: { age: "10+ years", value: 2500 }
+                child: { age: "4-9 years", value: 15 },
+                adult: { age: "10+ years", value: 25 }
             },
             mainInfo: "Guided boat tour of Karaburun-Sazan National Marine Park"
         },
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "Vlora-Saranda": {
                     image: "./assets/images/bus1.jpeg",
                     features: [
-                        "🏷️ Price: 1500 ALL per adult | 800 ALL per child",
+                        "🏷️ Price: 15 € per adult | 8 € per child",
                         "🕒 Departure (Vlora): 07:00 AM | 11:30 AM | 04:00 PM",
                         "🕒 Departure (Saranda): 09:30 AM | 02:00 PM | 07:00 PM",
                         "📍 Stops: Orikum, Dhermi, Himara, Borsh",
@@ -129,15 +129,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         "💳 Payment: Cash or card on board"
                     ],
                     price: {
-                        adult: 1500,
-                        child: 800
+                        adult: 15,
+                        child: 8
                     },
                     mainInfo: "Daily transportation service"
                 },
                 "Vlora-Berat": {
                     image: "./assets/images/bus2.jpeg",
                     features: [
-                        "🏷️ Price: 1500 ALL per adult | 800 ALL per child",
+                        "🏷️ Price: 15 € per adult | 8 € per child",
                         "🕒 Departure (Vlora): 06:30 AM | 12:30 PM | 05:30 PM",
                         "🕒 Departure (Berat): 09:00 AM | 03:00 PM | 08:00 PM",
                         "📍 Stops: Fier, Lushnje",
@@ -146,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "💳 Payment: Cash or card on board"
                     ],
                     price: {
-                        adult: 1200,
-                        child: 700
+                        adult: 12,
+                        child: 7
                     },
                     mainInfo: "Daily transportation service"
                 }
@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="fs-4 me-3"><img width="70" src="./assets/images/other pages/boat-trip/haxhi-ali.jpg"></span>
                             <div>
                                 <h5 class="mb-1">Stop 2 – Haxhi Ali Cave</h5>
-                                <p class="mb-0">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+1500 ALL, ~20 minutes)</p>
+                                <p class="mb-0">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+15 €, ~20 minutes)</p>
                             </div>
                         </div>
                         <!-- Stop 3: Sazan Island -->
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <ul class="list-unstyled text-center mt-3">
                             <li>🍽️ Food & drinks from the onboard restaurant/bar</li>
                             <li>⛱️ Sunbeds and umbrellas at the beach</li>
-                            <li>🚤 Optional speedboat tour inside Haxhi Ali Cave (+1500 ALL)</li>
+                            <li>🚤 Optional speedboat tour inside Haxhi Ali Cave (+15 €)</li>
                         </ul>
                     </div>
                 </div>
@@ -243,9 +243,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let pricingHTML = `
                                 <div class="pricing text-center my-3 pb-2">
                           <h4 class="fw-bold text-primary">Pricing</h4>
-                          <p><span class="badge bg-success">Infants (${priceData.infant.age}): ${priceData.infant.value === 0 ? "FREE" : priceData.infant.value + " ALL"}</span></p>
-                          <p><span class="badge bg-danger">Children (${priceData.child.age}): ${priceData.child.value} ALL</span></p>
-                          <p><span class="badge bg-warning text-dark">Adults (${priceData.adult.age}): ${priceData.adult.value} ALL</span></p>
+                          <p><span class="badge bg-success">Infants (${priceData.infant.age}): ${priceData.infant.value === 0 ? "FREE" : priceData.infant.value + " €"}</span></p>
+                          <p><span class="badge bg-danger">Children (${priceData.child.age}): ${priceData.child.value} €</span></p>
+                          <p><span class="badge bg-warning text-dark">Adults (${priceData.adult.age}): ${priceData.adult.value} €</span></p>
                         </div>
             `;
         document.getElementById("boat-pricing-container").innerHTML = pricingHTML;
@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let priceElement = document.getElementById("total-price");
-        priceElement ? (priceElement.textContent = total + " ALL") : console.log("Element not found!");
+        priceElement ? (priceElement.textContent = total + " €") : console.log("Element not found!");
             }
 
     // Attach event listeners to input fields
@@ -306,13 +306,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
                     ${item.extras ? `<p>Extras: ${item.extras}</p>` : ""}
-                    <p><strong>Total: ${item.totalPrice.toLocaleString()} ALL</strong></p>
+                    <p><strong>Total: ${item.totalPrice.toLocaleString()} €</strong></p>
                     <button class="remove-btn" data-index="${index}">Remove</button>
                 </div>
             `;
             cartItemsContainer.appendChild(cartItem);
         });
-        grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} ALL`;
+        grandTotalContainer.textContent = `Grand total: ${total.toLocaleString()} €`;
         cartItemCount.textContent = cart.length;  // ✅ Updates cart icon count
 
         // Get buttons
@@ -374,25 +374,25 @@ document.addEventListener("DOMContentLoaded", function () {
             "Aquamarine": {
                 image: "./assets/images/other pages/boat-trip/aqua1.jpeg",
                 price: {
-                    infant: 0, child: 1500, adult: 2500
+                    infant: 0, child: 15, adult: 25
                 },
-                extras: { speedboat: 1500, meal: 1500 }
+                extras: { speedboat: 15, meal: 15 }
             },
             "Liburna": {
                 image: "./assets/images/other pages/boat-trip/liburna1.jpg",
-                price: { infant: 0, child: 1500, adult: 0.5 }
+                price: { infant: 0, child: 15, adult: 0.5 }
             },
             "Vlora Cruise": {
                 image: "./assets/images/other pages/boat-trip/vlora1.png",
-                price: { infant: 0, child: 1500, adult: 2500 }
+                price: { infant: 0, child: 15, adult: 25 }
             },
             "Vlora-Saranda": {
                 image: "./assets/images/bus1.jpeg",
-                price: { adult: 1500, child: 800 }
+                price: { adult: 15, child: 8 }
             },
             "Vlora-Berat": {
                 image: "./assets/images/bus2.jpeg",
-                price: { adult: 1200, child: 700 }
+                price: { adult: 12, child: 7 }
             }
         };
 
