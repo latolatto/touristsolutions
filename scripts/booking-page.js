@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
                 // 🚍 BUSES
                 "Vlora-Saranda": {
-                    image: "./assets/images/bus1.jpeg",
+                    image: "./assets/images/other pages/boat-trip/saranda.jpg",
                     features: [
                         "🕒 Departure: Lungomare Vlora (Tourist Solutions) – 08:30 AM",
                         "📍 Stop 1: The Blue Eye Beach(Walking ~1.3 km) – Stay for 40-50 min",
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     mainInfo: "Daily Van Tour"
                 },
                 "Vlora-Berat": {
-                    image: "./assets/images/bus2.jpeg",
+                    image: "./assets/images/other pages/boat-trip/berat.jpg",
                     features: [
                         "🕒 Departure: Lungomare Vlora (Tourist Solutions) – 09:00 AM<",
                         "📍 Stop 1: Visit to Berat, a UNESCO-protected city",

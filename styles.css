@@ -513,33 +513,55 @@ height:2rem;
 } */
   /*   */
 
-
-  .booking-section, .grid4 {
-    padding: 0;
-    margin:0;
-    padding-top:2rem;
+  .booking-section {
+    background: #111;
+    color:#faf8f4b0;
+    padding: 4rem 0;
+    padding-bottom:0;
   }
-
-  .booking-title{
+  .booking-title {
     font-size: 2.5rem;
     text-align: center;
-margin-bottom:3rem;
+    margin-bottom: 3rem;
+    color: #ff9800;
   }
 
-  .booking-grid {
+  .boat-trips-container, .van-tours-container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:5rem;
+  }
+  .boat-trips-container > p, .van-tours-container > p{
+text-align: center;
+  }
+  .boat-trips-container h2, .van-tours-container h2{
+    font-size: 1.5rem;
+  }
+
+  .boat-trips-container h3, .van-tours-container h3{
+    font-size: 1.3rem;
+    padding-top:1rem;
+    font-weight: 500;
+  }
+
+  .boat-option p, .van-option p{
+    font-size: 0.9rem;
+  }
+  .boat-trips-grid, .van-tours-grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     gap: 2rem;
+    align-items: center;
+    
   }
-  .booking-item {
-    flex: 1 1 45%;
-    background: white;
+  .boat-option, .van-option {
+    flex: 1 1 30%;
+    background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
   }
   .booking-img {
@@ -547,33 +569,29 @@ margin-bottom:3rem;
     height: auto;
     max-height: 200px;
     object-fit: cover;
-    /* border-radius: 0.5rem; */
-  }
-  .booking-content {
-    margin-top: 1rem;
+    border-radius: 0.5rem;
   }
   .booking-section .btn {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    margin-top: 1rem;
+    margin-top: 3rem;
     background: #ff9800;
     color: white;
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: bold;
   }
-  .booking-section .btn:hover {
+ .booking-section  .btn:hover {
     background: #e68900;
   }
   @media (max-width: 768px) {
-    .booking-grid {
+    .boat-trips-grid, .van-tours-grid {
       flex-direction: column;
     }
-    .booking-item {
+    .boat-option, .van-option {
       flex: 1 1 100%;
     }
   }
-
 
   .grid5{
 display:flex;

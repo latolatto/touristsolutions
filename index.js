@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div>
                     <p><strong>${item.name} ${item.headline}</strong></p>
                     <p>${item.date}</p>
-                    ${item.name.includes("Vlora-") ? `<p>Time: ${item.time}</p>` : ""}
                     ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
                     ${item.children ? `<p>Children: ${item.children}</p>` : ""}
                     ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
