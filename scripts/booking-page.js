@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         // adult: 40,
                         // child: 32
                     },
-                    mainInfo: "Daily transportation service"
+                    mainInfo: "Daily Van Tour"
                 }
     };
 
