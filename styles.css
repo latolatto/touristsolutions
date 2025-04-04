@@ -782,7 +782,7 @@ gap:0.5rem;
 }
 .col1 img{
     height:2.5rem;
-    width:fit-content !important;
+    width:fit-content ;
 }
 
 .social-icons{

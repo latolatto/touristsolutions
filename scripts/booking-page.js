@@ -368,7 +368,26 @@ document.addEventListener("DOMContentLoaded", function () {
         const boatName = document.getElementById("boat-name").textContent;
         const isBus = boatName.includes("Vlora-");
         const headline = isBus ? "Daily Van Tour " : "Boat Tour";
-        const date = document.getElementById("tour-date").value;
+        // const date = document.getElementById("tour-date").value;
+
+
+        const rawDate = document.getElementById("tour-date").value;
+const selectedDate = new Date(rawDate);
+
+if (isNaN(selectedDate)) {
+    alert("Please select a valid date.");
+    return;
+}
+
+
+const date = selectedDate.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+});
+
+
+// Now use this formattedDate instead of raw date
 
         if (!date) {
             alert("Please select a valid date.");
