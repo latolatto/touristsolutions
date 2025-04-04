@@ -54,9 +54,37 @@ document.querySelectorAll(".increase, .decrease").forEach(button => {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+
+
     // Get the product (boat or bus) name from the URL
     const params = new URLSearchParams(window.location.search);
     const productName = params.get("boat") || params.get("bus"); // Supports both "boat" and "bus"
+      // Restrict date selection
+      const dateInput = document.getElementById("tour-date");
+      if (dateInput) {
+          dateInput.addEventListener("input", function () {
+              const selectedDate = new Date(this.value);
+              const month = selectedDate.getMonth() + 1; // JS months are 0-based
+              const day = selectedDate.getDate();
+              
+              // Check if the month is within June - September
+              if (month < 6 || month > 9) {
+                  alert("Tours are only available from June to September.");
+                  this.value = "";
+                  return;
+              }
+              
+              // Special rules for van tours
+              if (productName === "Vlora-Saranda" && day % 2 === 0) {
+                  alert("This tour is only available on odd dates.");
+                  this.value = "";
+              } else if (productName === "Vlora-Berat" && day % 2 !== 0) {
+                  alert("This tour is only available on even dates.");
+                  this.value = "";
+              }
+          });
+      }
 
     // Define product details (boats + buses)
     const productDetails = {
@@ -229,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>`;
     
         const isbus = productName.includes("Vlora-");
-        const booknowtitle = isbus ? "Book Your Bus Seat" : "Book Your Tour";
+        const booknowtitle = isbus ? "Book Your Daily Van Tour" : "Book Your Tour";
     
 
     
@@ -292,6 +320,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    const  popSound= new Audio("./assets/images/cart-pop.mp3");
+    popSound.preload = 'auto';
+
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartOffcanvas = document.getElementById("cartOffcanvas");
     const cartItemsContainer = document.getElementById("cart-items");
@@ -359,7 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const boatName = document.getElementById("boat-name").textContent;
         const isBus = boatName.includes("Vlora-");
-        const headline = isBus ? "Bus Seat" : "Boat Tour";
+        const headline = isBus ? "Daily Van Tour " : "Boat Tour";
         const date = document.getElementById("tour-date").value;
 
         if (!date) {
@@ -377,6 +409,10 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Please select at least one adult.");
             return;
         }
+
+        
+
+
 
         const boatDetails = {
             "Aquamarine": {
@@ -408,6 +444,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!boat) {
             alert("Invalid selection.");
             return;
+        }else{
+ // Assuming reservation is successful, show the message and play sound
+ const addedToCartMessage = document.getElementById("added-to-cart");
+
+ addedToCartMessage.style.display = "block"; // Show the message
+ popSound.play(); // Play the sound
+
+
+//  setTimeout(function() {
+//     popSound.play();
+// }, 2000);
+ // Hide the message after 2 seconds
+ setTimeout(() => {
+     addedToCartMessage.style.display = "none";
+ }, 2000);
         }
 
         let totalPrice = (adults * boat.price.adult) + (children * boat.price.child);
