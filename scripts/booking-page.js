@@ -60,31 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get the product (boat or bus) name from the URL
     const params = new URLSearchParams(window.location.search);
     const productName = params.get("boat") || params.get("bus"); // Supports both "boat" and "bus"
-      // Restrict date selection
-      const dateInput = document.getElementById("tour-date");
-      if (dateInput) {
-          dateInput.addEventListener("input", function () {
-              const selectedDate = new Date(this.value);
-              const month = selectedDate.getMonth() + 1; // JS months are 0-based
-              const day = selectedDate.getDate();
-              
-              // Check if the month is within June - September
-              if (month < 6 || month > 9) {
-                  alert("Tours are only available from June to September.");
-                  this.value = "";
-                  return;
-              }
-              
-              // Special rules for van tours
-              if (productName === "Vlora-Saranda" && day % 2 === 0) {
-                  alert("This tour is only available on odd dates.");
-                  this.value = "";
-              } else if (productName === "Vlora-Berat" && day % 2 !== 0) {
-                  alert("This tour is only available on even dates.");
-                  this.value = "";
-              }
-          });
-      }
+
 
     // Define product details (boats + buses)
     const productDetails = {
