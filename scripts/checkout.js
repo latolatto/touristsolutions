@@ -91,8 +91,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById("hidden-surname").value = customerData.surname;
                 document.getElementById("hidden-email").value = customerData.email;
                 document.getElementById("hidden-phone").value = customerData.phone;
-                document.getElementById("hidden-order-summary").value = cartSummary.innerText + `\nTotal: € ${orderTotal.textContent}`;
-        
+                document.getElementById("hidden-order-summary").value = `
+                <h3>Order Details:</h3>
+                <ul>
+                    <li><strong>Name:</strong> ${customerData.name} ${customerData.surname}</li>
+                    <li><strong>Email:</strong> ${customerData.email}</li>
+                    <li><strong>Phone:</strong> ${customerData.phone}</li>
+                </ul>
+                <h4>Order Summary:</h4>
+                <ul>
+                    <li><strong>Item Name:</strong> ${item.name}</li>
+                    <li><strong>Price:</strong> €${item.totalPrice}</li>
+                    <!-- Add other order details here -->
+                </ul>
+                <hr>
+                <p><strong>Total:</strong> €${orderTotal.textContent}</p>
+                <hr>
+            `;
+                    
                 // Submit Pageclip form
                 form.submit();
         
@@ -110,6 +126,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }).render("#paypal-button-container");
     
+    const form = document.getElementById("hidden-email-form");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        // Retrieve the current order number from localStorage, default to 1 if not found
+        let orderNumber = localStorage.getItem("orderNumber");
+        if (!orderNumber) {
+            orderNumber = 1;
+        } else {
+            orderNumber = parseInt(orderNumber) + 1;
+        }
+    
+        // Store the updated order number back to localStorage
+        localStorage.setItem("orderNumber", orderNumber);
+    
+        // Set custom subject (Order Number increments with each order)
+        form.action = form.action + "?subject=" + encodeURIComponent("New Order: Order #" + orderNumber);
+    
+        // Now submit the form to Pageclip
+        form.submit();
+    });
+    
+
+
 
     function generatePDF(customerData) {
 
