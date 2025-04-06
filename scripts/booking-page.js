@@ -369,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const isBus = boatName.includes("Vlora-");
         const headline = isBus ? "Daily Van Tour " : "Boat Tour";
         // const date = document.getElementById("tour-date").value;
-
+        const specialrequests= document.getElementById("special-requests").value;
 
         const rawDate = document.getElementById("tour-date").value;
 const selectedDate = new Date(rawDate);
@@ -426,11 +426,11 @@ const date = selectedDate.toLocaleDateString("en-GB", {
                 price: { infant: 0, child: 15, adult: 25 }
             },
             "Vlora-Saranda": {
-                image: "./assets/images/bus1.jpeg",
+                image: "./assets/images/other pages/boat-trip/saranda.jpg",
                 price: { adult: 50, child: 40 }
             },
             "Vlora-Berat": {
-                image: "./assets/images/bus2.jpeg",
+                image: "./assets/images/other pages/boat-trip/berat.jpg",
                 price: { adult: 40, child: 32 }
             }
         };
@@ -488,6 +488,7 @@ const date = selectedDate.toLocaleDateString("en-GB", {
             children: children,
             infants: infants,
             extras: extrasList.length > 0 ? extrasList.join(", ") : null,
+            specialrequests : specialrequests ? specialrequests : null,
             totalPrice: totalPrice,
             image: boat.image
         });

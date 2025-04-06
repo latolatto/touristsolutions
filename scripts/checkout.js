@@ -71,7 +71,10 @@ document.addEventListener("DOMContentLoaded", function () {
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 modal.style.display = "flex";
+        
                 let customerData = JSON.parse(localStorage.getItem("customerData")) || {};
+        
+                // Fill the modal content
                 orderDetails.innerHTML = `
                     <h3>Customer Details</h3>
                     <p><strong>Name:</strong> ${customerData.name} ${customerData.surname}</p>
@@ -79,13 +82,28 @@ document.addEventListener("DOMContentLoaded", function () {
                     <p><strong>Phone:</strong> ${customerData.phone}</p>
                     <h3>Order Summary</h3>
                     ${cartSummary.innerHTML}
-                    <h3>Total: € ${orderTotal.textContent} </h3>
+                    <h3>Total: € ${orderTotal.textContent}</h3>
                 `;
+        
+                // 📨 Prepare Pageclip form
+                const form = document.getElementById("hidden-email-form");
+                document.getElementById("hidden-name").value = customerData.name;
+                document.getElementById("hidden-surname").value = customerData.surname;
+                document.getElementById("hidden-email").value = customerData.email;
+                document.getElementById("hidden-phone").value = customerData.phone;
+                document.getElementById("hidden-order-summary").value = cartSummary.innerText + `\nTotal: € ${orderTotal.textContent}`;
+        
+                // Submit Pageclip form
+                form.submit();
+        
+                // Setup for PDF download
                 downloadOrderBtn.onclick = function () {
                     generatePDF(customerData);
                 };
             });
         },
+
+        
         onError: function (err) {
             console.error("Error during transaction:", err);
             alert("An error occurred. Please try again.");
@@ -94,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     function generatePDF(customerData) {
+
+
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
         const pageHeight = doc.internal.pageSize.getHeight();
@@ -226,8 +246,43 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem("cart");
             localStorage.removeItem("customerData");
         });
-    }
+        uploadPDFToFileIO(pdfBlob)
+        .then(pdfDownloadLink => {
+            // Now, send email with the PDF link
+            sendEmail(customerData, pdfDownloadLink);
+        })
+        .catch(error => {
+            console.error("Error uploading PDF:", error);
+        });
+}
+
+function uploadPDFToFileIO(pdfBlob) {
+    return new Promise((resolve, reject) => {
+        const formData = new FormData();
+        formData.append("file", pdfBlob, "Order_Confirmation.pdf");
+
+        fetch("https://file.io", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                resolve(data.link); // The generated link from file.io
+            } else {
+                reject("Failed to upload file to file.io");
+            }
+        })
+        .catch(error => {
+            reject("Error uploading PDF: " + error);
+        });
+    });
+}
+
+
     
+
+
 
     if (cart.length === 0) {
         const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
