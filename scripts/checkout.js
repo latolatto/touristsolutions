@@ -69,56 +69,91 @@ document.addEventListener("DOMContentLoaded", function () {
             shape: 'rect'
         },
         onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-                modal.style.display = "flex";
-        
-                let customerData = JSON.parse(localStorage.getItem("customerData")) || {};
-        
-                // Fill the modal content
-                orderDetails.innerHTML = `
-                    <h3>Customer Details</h3>
-                    <p><strong>Name:</strong> ${customerData.name} ${customerData.surname}</p>
-                    <p><strong>Email:</strong> ${customerData.email}</p>
-                    <p><strong>Phone:</strong> ${customerData.phone}</p>
-                    <h3>Order Summary</h3>
-                    ${cartSummary.innerHTML}
-                    <h3>Total: € ${orderTotal.textContent}</h3>
-                `;
-        
-                // 📨 Prepare Pageclip form
-                const form = document.getElementById("hidden-email-form");
-                document.getElementById("hidden-name").value = customerData.name;
-                document.getElementById("hidden-surname").value = customerData.surname;
-                document.getElementById("hidden-email").value = customerData.email;
-                document.getElementById("hidden-phone").value = customerData.phone;
-                document.getElementById("hidden-order-summary").value = `
-                <h3>Order Details:</h3>
-                <ul>
-                    <li><strong>Name:</strong> ${customerData.name} ${customerData.surname}</li>
-                    <li><strong>Email:</strong> ${customerData.email}</li>
-                    <li><strong>Phone:</strong> ${customerData.phone}</li>
-                </ul>
-                <h4>Order Summary:</h4>
-                <ul>
-                    <li><strong>Item Name:</strong> ${item.name}</li>
-                    <li><strong>Price:</strong> €${item.totalPrice}</li>
-                    <!-- Add other order details here -->
-                </ul>
-                <hr>
-                <p><strong>Total:</strong> €${orderTotal.textContent}</p>
-                <hr>
-            `;
-                    
-                // Submit Pageclip form
-                form.submit();
-        
-                // Setup for PDF download
-                downloadOrderBtn.onclick = function () {
-                    generatePDF(customerData);
-                };
-            });
-        },
+            return actions.order.capture().then(async function (details) {
+              modal.style.display = "flex";
+          
+              let customerData = JSON.parse(localStorage.getItem("customerData")) || {};
+          
+              // Update modal content
+              orderDetails.innerHTML = `
+                <h3>Customer Details</h3>
+                <p><strong>Name:</strong> ${customerData.name} ${customerData.surname}</p>
+                <p><strong>Email:</strong> ${customerData.email}</p>
+                <p><strong>Phone:</strong> ${customerData.phone}</p>
+                <h3>Order Summary</h3>
+                ${cartSummary.innerHTML}
+                <h3>Total: € ${orderTotal.textContent}</h3>
+              `;
+          
+              // Fill hidden text fields
+              document.getElementById("hidden-name").value = customerData.name;
+              document.getElementById("hidden-surname").value = customerData.surname;
+              document.getElementById("hidden-email").value = customerData.email;
+              document.getElementById("hidden-phone").value = customerData.phone;
+          
+              // Format the order summary
+              let formattedOrder = "";
+              cart.forEach((item, index) => {
+                formattedOrder += `
+          ------------------------------
+          Product ${index + 1}: ${item.name.toUpperCase()} ${item.headline ? item.headline + "\n" : ""}
+          ${item.date ? "Date: " + item.date + "\n" : ""}
+          ${item.adults ? "Adults: " + item.adults + "\n" : ""}
+          ${item.children ? "Children: " + item.children + "\n" : ""}
+          ${item.infants ? "Infants: " + item.infants + "\n" : ""}
+          ${item.extras ? "Extras: " + item.extras + "\n" : ""}
+          Subtotal: € ${item.totalPrice.toLocaleString()}
+          `;
+              });
+              formattedOrder += `\n==============================\nGRAND TOTAL: € ${orderTotal.textContent}`;
+              document.getElementById("hidden-order-summary").value = formattedOrder;
+          
+              // 📄 Generate PDF blob
+const pdfBlob = await generatePDF(customerData);
 
+// 🧠 Auto-incrementing number
+let orderCount = parseInt(localStorage.getItem("orderCount") || "0", 10) + 1;
+localStorage.setItem("orderCount", orderCount);
+
+const filename = `Order_Confirmation_#${orderCount}.pdf`;
+const file = new File([pdfBlob], filename, { type: "application/pdf" });
+
+// 📎 Set the PDF into the hidden file input
+const pdfInput = document.getElementById("pdfInput");
+const dt = new DataTransfer();
+dt.items.add(file);
+pdfInput.files = dt.files;
+
+          
+              // 📨 Submit final form via fetch
+              const form = document.getElementById("hidden-email-form");
+              const finalFormData = new FormData(form);
+          
+              fetch("https://formsubmit.co/latolatto16@gmail.com", {
+                method: "POST",
+                body: finalFormData,
+              })
+                .then(response => {
+                  if (response.ok) {
+                    console.log("✅ Email sent successfully with PDF attached.");
+                  } else {
+                    throw new Error("❌ FormSubmit error");
+                  }
+                })
+                .catch(error => {
+                  console.error("Email sending failed:", error);
+                });
+          
+              // Allow download of PDF for user too (optional)
+              downloadOrderBtn.onclick = function () {
+                generatePDF(customerData, false);
+              };
+          
+              localStorage.removeItem("cart");
+              localStorage.removeItem("customerData");
+            });
+          },
+          
         
         onError: function (err) {
             console.error("Error during transaction:", err);
@@ -126,36 +161,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }).render("#paypal-button-container");
     
-    const form = document.getElementById("hidden-email-form");
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
-    
-        // Retrieve the current order number from localStorage, default to 1 if not found
-        let orderNumber = localStorage.getItem("orderNumber");
-        if (!orderNumber) {
-            orderNumber = 1;
-        } else {
-            orderNumber = parseInt(orderNumber) + 1;
-        }
-    
-        // Store the updated order number back to localStorage
-        localStorage.setItem("orderNumber", orderNumber);
-    
-        // Set custom subject (Order Number increments with each order)
-        form.action = form.action + "?subject=" + encodeURIComponent("New Order: Order #" + orderNumber);
-    
-        // Now submit the form to Pageclip
-        form.submit();
-    });
-    
-
-
 
     function generatePDF(customerData) {
-
-
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        return new Promise((resolve) => {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+        // const { jsPDF } = window.jspdf;
+        // const doc = new jsPDF();
         const pageHeight = doc.internal.pageSize.getHeight();
         const marginBottom = 10;
         const newPageTopMargin = 40; // New page tickets will start at y = 20
@@ -285,44 +297,14 @@ document.addEventListener("DOMContentLoaded", function () {
             doc.save("Order_Confirmation.pdf");
             localStorage.removeItem("cart");
             localStorage.removeItem("customerData");
-        });
-        uploadPDFToFileIO(pdfBlob)
-        .then(pdfDownloadLink => {
-            // Now, send email with the PDF link
-            sendEmail(customerData, pdfDownloadLink);
-        })
-        .catch(error => {
-            console.error("Error uploading PDF:", error);
-        });
-}
-
-function uploadPDFToFileIO(pdfBlob) {
-    return new Promise((resolve, reject) => {
-        const formData = new FormData();
-        formData.append("file", pdfBlob, "Order_Confirmation.pdf");
-
-        fetch("https://file.io", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                resolve(data.link); // The generated link from file.io
-            } else {
-                reject("Failed to upload file to file.io");
-            }
-        })
-        .catch(error => {
-            reject("Error uploading PDF: " + error);
+            const pdfBlob = doc.output("blob");
+            resolve(pdfBlob);
         });
     });
-}
-
+    }
 
     
-
-
+    
 
     if (cart.length === 0) {
         const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
