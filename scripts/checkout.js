@@ -118,6 +118,9 @@ localStorage.setItem("orderCount", orderCount);
 const filename = `Order_Confirmation_#${orderCount}.pdf`;
 const file = new File([pdfBlob], filename, { type: "application/pdf" });
 
+document.querySelector('input[name="_subject"]').value = `New Order #${orderCount} from website`;
+
+
 // 📎 Set the PDF into the hidden file input
 const pdfInput = document.getElementById("pdfInput");
 const dt = new DataTransfer();
