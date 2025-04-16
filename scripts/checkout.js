@@ -132,7 +132,7 @@ pdfInput.files = dt.files;
               const form = document.getElementById("hidden-email-form");
               const finalFormData = new FormData(form);
           
-              fetch("https://formsubmit.co/latolatto16@gmail.com", {
+              fetch("https://formsubmit.co/solutions.tourist@gmail.com", {
                 method: "POST",
                 body: finalFormData,
               })
