@@ -369,7 +369,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const isBus = boatName.includes("Vlora-");
         const headline = isBus ? "Daily Van Tour " : "Boat Tour";
         // const date = document.getElementById("tour-date").value;
-        const specialrequests= document.getElementById("special-requests").value;
 
         const rawDate = document.getElementById("tour-date").value;
 const selectedDate = new Date(rawDate);
@@ -488,7 +487,6 @@ const date = selectedDate.toLocaleDateString("en-GB", {
             children: children,
             infants: infants,
             extras: extrasList.length > 0 ? extrasList.join(", ") : null,
-            specialrequests : specialrequests ? specialrequests : null,
             totalPrice: totalPrice,
             image: boat.image
         });
@@ -505,7 +503,6 @@ const date = selectedDate.toLocaleDateString("en-GB", {
         document.getElementById("meal-option").checked = false;
         document.getElementById("speedboat-quantity").style.display = "none";
         document.getElementById("meal-quantity").style.display = "none";
-        document.getElementById("special-requests").value = "";
     });
 
     // ✅ Fix: Ensure cart updates across all pages

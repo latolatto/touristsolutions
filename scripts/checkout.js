@@ -33,20 +33,52 @@ document.addEventListener("DOMContentLoaded", function () {
         orderTotal.textContent = total.toLocaleString();
     }
 
-    proceedToPaymentBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        const name = document.getElementById("name").value;
-        const surname = document.getElementById("surname").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-        if (!name || !surname || !email || !phone) {
-            alert("Please fill all fields before proceeding.");
+proceedToPaymentBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const surname = document.getElementById("surname").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const agency= document.getElementById("agency").value.trim();
+
+    // Regex validations
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/; // Allows letters, spaces, accents, apostrophes
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[1-9]\d{7,14}$/; // E.164 format (+ and digits only)
+    if (!name || !surname || !email || !phone) {
+        alert("Please fill all fields before proceeding.");
+        return;
+    }else{
+        if (!nameRegex.test(name)) {
+            alert("Please enter a valid first name (letters only).");
             return;
         }
-        localStorage.setItem("customerData", JSON.stringify({ name, surname, email, phone }));
-        paypalContainer.style.display = "block";
-        proceedToPaymentBtn.style.display = "none";
-    });
+    
+        if (!nameRegex.test(surname)) {
+            alert("Please enter a valid surname (letters only).");
+            return;
+        }
+    
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+    
+        if (!phoneRegex.test(phone)) {
+            alert("Please enter a valid phone number in international format (e.g. +355...).");
+            return;
+        }
+    }
+
+
+
+    // ✅ All validations passed
+    localStorage.setItem("customerData", JSON.stringify({ name, surname, email, phone, agency }));
+    paypalContainer.style.display = "block";
+    proceedToPaymentBtn.style.display = "none";
+});
+
     
     paypal.Buttons({
         createOrder: function (data, actions) {
@@ -80,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p><strong>Name:</strong> ${customerData.name} ${customerData.surname}</p>
                 <p><strong>Email:</strong> ${customerData.email}</p>
                 <p><strong>Phone:</strong> ${customerData.phone}</p>
+                 <p><strong>Tour Agency/Hotel:</strong> ${customerData.agency ? customerData.agency : "__________________________________"}</p>
                 <h3>Order Summary</h3>
                 ${cartSummary.innerHTML}
                 <h3>Total: € ${orderTotal.textContent}</h3>
@@ -90,7 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
               document.getElementById("hidden-surname").value = customerData.surname;
               document.getElementById("hidden-email").value = customerData.email;
               document.getElementById("hidden-phone").value = customerData.phone;
-          
+              console.log("Agency from customerData:", customerData.agency);
+              document.getElementById("hidden-agency").value = customerData.agency || "__________________________________";
+              
               // Format the order summary
               let formattedOrder = "";
               cart.forEach((item, index) => {
@@ -195,6 +230,8 @@ pdfInput.files = dt.files;
         doc.setFontSize(10);
         doc.text("Email: support@touristsolutions.info", 80, 37);
         doc.text("Phone: +355698136849", 80, 44);
+
+
     
         // ✅ Customer Details
         doc.setFontSize(12);
@@ -209,7 +246,9 @@ pdfInput.files = dt.files;
         doc.text(`Email: ${customerData.email}`, 10, y);
         y += 8;
         doc.text(`Phone: ${customerData.phone}`, 10, y);
-        y += 12;
+        y += 8;
+        doc.text(`Tour Agency/Hotel: ${customerData.agency ? customerData.agency : "__________________________________"}`, 10, y);
+        y +=12;
     
         // ✅ Order Summary
         doc.setFontSize(12);
@@ -256,10 +295,10 @@ pdfInput.files = dt.files;
             doc.text(`Date: ${item.date}`, 45, ticketY + 18);
             
             // ✅ If it's a bus ticket, add "Agency" field
-            if (item.name.includes("Vlora-Saranda") || item.name.includes("Vlora-Berat")) {
-                doc.text("Agency: ___________________________", 45, ticketY + 26);
-                y += 8;
-            }
+            // if (item.name.includes("Vlora-Saranda") || item.name.includes("Vlora-Berat")) {
+            //     doc.text("Agency: ___________________________", 45, ticketY + 26);
+            //     y += 8;
+            // }
     
             if (item.adults) { doc.text(`Adults: ${item.adults}`, 45, ticketY + 36); }
             if (item.children) { doc.text(`Children: ${item.children}`, 45, ticketY + 44); }
@@ -297,7 +336,10 @@ pdfInput.files = dt.files;
     
         // ✅ Save after images load
         Promise.all(promises).then(() => {
-            doc.save("Order_Confirmation.pdf");
+            const orderCount = localStorage.getItem("orderCount") || 1;
+          doc.save(`Order_Confirmation_#${orderCount}.pdf`);
+ 
+            // doc.save(`Order_Confirmation_#${orderCount}.pdf`);
             localStorage.removeItem("cart");
             localStorage.removeItem("customerData");
             const pdfBlob = doc.output("blob");
