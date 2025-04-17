@@ -1046,9 +1046,22 @@ width:70%
     width:7rem;
 }
 }
-
-
+img#desktop{
+    display:block;
+}
+img#tel{
+display:none;
+  }
 @media (max-width: 768px) {
+
+    img#desktop{
+        display:none;
+    }
+    
+      img#tel{
+        display:block;
+    }
+    
     .grid2-col1 {
       flex-direction: column; /* Stack elements on smaller screens */
       padding-left: 2rem;
