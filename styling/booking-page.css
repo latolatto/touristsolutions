@@ -333,7 +333,7 @@ input#meal-tickets{
     }
 
     #boat-image{
-        height:50vh;
+        height:40vh;
     }
 
     .booking-container {
@@ -394,4 +394,29 @@ input#meal-tickets{
     
 }
 
+/* .flatpickr-calendar {
+    background: white !important;
+    color: black !important;
+  }
+  .flatpickr-day, .flatpickr-month, .flatpickr-weekday {
+    color: black !important;
+  }
+  .flatpickr-day.today {
+    border-color: #aaa !important;
+  }
+   */
 
+
+   @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+    100% { transform: translateX(0); }
+  }
+
+  .date-warning {
+    color: red;
+    margin-top: 4px;
+    font-size: 0.9rem;
+  }

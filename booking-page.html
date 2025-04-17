@@ -17,6 +17,7 @@
     <!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css" >
     <link href="./styling/booking-page.css" rel="stylesheet">
@@ -394,21 +395,66 @@
   </script>
   <!-- /Hoversignal -->
   <script>
+// document.addEventListener("DOMContentLoaded", function () {
+//     let urlParams = new URLSearchParams(window.location.search);
+//     let bus = urlParams.get("bus") ;
+//     let boat = urlParams.get("boat"); // Check for boat selection
+
+//     function getDisabledDates(oddOrEven) {
+//         let disabledDates = [];
+//         for (let year = 2025; year <= 2040; year++) { // Allow future years
+//             for (let month = 5; month <= 8; month++) { // June to September
+//                 for (let day = 1; day <= 31; day++) {
+//                     let date = new Date(year, month, day);
+//                     if (date.getMonth() !== month) continue; // Skip invalid dates
+//                     if ((oddOrEven === "even" && day % 2 === 0) || 
+//                         (oddOrEven === "odd" && day % 2 !== 0)) {
+//                         disabledDates.push(date.toISOString().split("T")[0]); // Convert to YYYY-MM-DD
+//                     }
+//                 }
+//             }
+//         }
+//         return disabledDates;
+//     }
+
+//     function updateDatePicker() {
+//         let config = {
+//             dateFormat: "Y-m-d",
+//             minDate: "2025-06-01",
+//             maxDate: "2025-09-30"
+//         };
+
+//         if (bus === "Vlora-Saranda") {
+//             config.disable = getDisabledDates("even");
+//         } else if (bus === "Vlora-Berat") {
+//             config.disable = getDisabledDates("odd");
+//         } else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
+//             // ✅ Boats: Allow all dates between June and September
+//             config.disable = [];
+//         }
+
+//         flatpickr("#tour-date", config);
+//     }
+
+//     updateDatePicker();
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
-    let urlParams = new URLSearchParams(window.location.search);
-    let bus = urlParams.get("bus") ;
-    let boat = urlParams.get("boat"); // Check for boat selection
+    const urlParams = new URLSearchParams(window.location.search);
+    const bus = urlParams.get("bus");
+    const boat = urlParams.get("boat");
 
     function getDisabledDates(oddOrEven) {
-        let disabledDates = [];
-        for (let year = 2025; year <= 2040; year++) { // Allow future years
-            for (let month = 5; month <= 8; month++) { // June to September
+        const disabledDates = [];
+        for (let year = 2025; year <= 2040; year++) {
+            for (let month = 5; month <= 8; month++) { // June (5) to September (8)
                 for (let day = 1; day <= 31; day++) {
-                    let date = new Date(year, month, day);
-                    if (date.getMonth() !== month) continue; // Skip invalid dates
-                    if ((oddOrEven === "even" && day % 2 === 0) || 
-                        (oddOrEven === "odd" && day % 2 !== 0)) {
-                        disabledDates.push(date.toISOString().split("T")[0]); // Convert to YYYY-MM-DD
+                    const date = new Date(year, month, day);
+                    if (date.getMonth() !== month) continue; // skip invalid dates
+                    if ((oddOrEven === "even" && day % 2 !== 0) || 
+                        (oddOrEven === "odd" && day % 2 === 0)) {
+                        // push YYYY-MM-DD format
+                        disabledDates.push(date.toISOString().split("T")[0]);
                     }
                 }
             }
@@ -416,20 +462,31 @@ document.addEventListener("DOMContentLoaded", function () {
         return disabledDates;
     }
 
+    function getAdjustedMinDate() {
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const juneStart = new Date(currentYear, 5, 1); // June 1
+        const septEnd = new Date(currentYear, 8, 30);  // Sept 30
+
+        if (today < juneStart) return "2025-06-01";
+        if (today > septEnd) return "2025-06-01";
+        return today;
+    }
+
     function updateDatePicker() {
-        let config = {
+        const config = {
             dateFormat: "Y-m-d",
-            minDate: "2025-06-01",
-            maxDate: "2025-09-30"
+            minDate: getAdjustedMinDate(),
+            maxDate: "2025-09-30",
+            disableMobile: true
         };
 
         if (bus === "Vlora-Saranda") {
-            config.disable = getDisabledDates("even");
+            config.disable = getDisabledDates("even"); // allow only odd
         } else if (bus === "Vlora-Berat") {
-            config.disable = getDisabledDates("odd");
+            config.disable = getDisabledDates("odd"); // allow only even
         } else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
-            // ✅ Boats: Allow all dates between June and September
-            config.disable = [];
+            config.disable = []; // no restriction
         }
 
         flatpickr("#tour-date", config);
@@ -437,7 +494,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateDatePicker();
 });
-
 
     </script>
   <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
