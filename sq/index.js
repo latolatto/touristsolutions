@@ -11,7 +11,7 @@ $('.carousel-testimonial').owlCarousel({
             items:1,
             nav:true
         },
-        768:{
+        600:{
             items:3,
             nav:false
         },

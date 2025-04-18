@@ -632,9 +632,9 @@ position: relative;
 
   .arrow{
     position:absolute;
-    top:65%;
-    right:5%;
-    /* transform: rotate(-20deg); */
+    top: 50%;
+    right: 50%;
+    transform: rotate(30deg);
   }
 
 /*WHY CHOOSE US */
@@ -818,6 +818,7 @@ gap:0.5rem;
     align-items: center;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
   }
   
   #backToTopBtn .arrow {
@@ -1246,3 +1247,84 @@ h3#booknow-title {
     align-self: center;
 }
 
+@media screen and (min-width: 769px) and (max-width: 991.5px) {
+
+    .below-banner img {
+        left: 0;
+        top: 35%;
+    }
+
+    .grid5-banner img {
+        top: 30%;
+        left: 0;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 60%;
+        right: 50%;
+        transform: rotate(10deg);
+    }
+    .lupa-div {
+        bottom: 4%;
+        top: 75%;
+    }
+.lupa-div-main{
+    bottom: 0;
+    top: 80%;
+}
+.grid2-col2-1 img {
+    height: 2rem;
+}
+
+.counter-percent{
+    width:100%;
+}
+
+.links{
+    display:none;
+    }
+
+}
+
+
+@media screen and (min-width: 865px) and (max-width: 991.5px){
+    .lupa-div {
+        bottom: 4%;
+        top: 70%;
+    }
+.lupa-div-main{
+    bottom: 0;
+    top: 80%;
+}
+
+}
+
+@media screen and (min-width: 941px) and (max-width: 1029.33px){
+    .below-banner img {
+        top: 45%;
+    }
+}
+
+
+@media screen and (min-width: 991.6px) and (max-width: 1029.33px){
+    .lupa-div-main{
+        bottom: 0;
+        top: 65%;
+    }
+    .lupa-div-first{
+        bottom: 4%;
+        top: 70%;  
+    }
+
+    .navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
+        justify-content: center;
+}
+.container-fluid {
+    gap: 2rem;
+}
+
+.links{
+    display:none;
+    }
+}

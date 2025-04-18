@@ -182,7 +182,7 @@
         <!-- Booking Section -->
         <div class="booking-container">
           <h3 id="booknow-title"></h3>
-          <p class="date-warning">*Reservations available only from June to September!</p>
+          <p class="date-warning">*Reservations are available only from June to September!</p>
           <div class="book-date">
             <label for="tour-date">
               <span class="icon">
@@ -523,22 +523,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateDatePicker();
 
-    // ✅ Show warning if calendar focused before season
-    const dateInput = document.querySelector("#tour-date");
-    dateInput.addEventListener("focus", function () {
-        const now = new Date();
-        const juneStart = new Date(now.getFullYear(), 5, 1); // June 1
-
-        if (now < juneStart) {
-            if (!document.querySelector(".date-warning")) {
-                const warning = document.createElement("div");
-                warning.classList.add("date-warning");
-                warning.textContent = "Reservations are available from June!";
-                dateInput.insertAdjacentElement("afterend", warning);
-                setTimeout(() => warning.remove(), 3000);
-            }
-        }
-    });
 });
 
 

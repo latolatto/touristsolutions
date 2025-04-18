@@ -421,3 +421,12 @@ input#meal-tickets{
     text-align: right;
     align-self: center;
   }
+
+
+
+  @media screen  and (max-width: 991.5px) {
+    .date-warning {
+        text-align: center;
+    }
+  }
+
