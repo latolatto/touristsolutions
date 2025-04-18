@@ -407,16 +407,11 @@ input#meal-tickets{
    */
 
 
-   @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-4px); }
-    50% { transform: translateX(4px); }
-    75% { transform: translateX(-4px); }
-    100% { transform: translateX(0); }
-  }
 
   .date-warning {
     color: red;
     margin-top: 4px;
     font-size: 0.9rem;
+    text-align: right;
+    align-self: center;
   }

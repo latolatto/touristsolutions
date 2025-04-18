@@ -182,6 +182,7 @@
         <!-- Booking Section -->
         <div class="booking-container">
           <h3 id="booknow-title"></h3>
+          <p class="date-warning">*Reservations available only from June to September!</p>
           <div class="book-date">
             <label for="tour-date">
               <span class="icon">
@@ -440,25 +441,52 @@
 // });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const bus = urlParams.get("bus");
-    const boat = urlParams.get("boat");
+    let urlParams = new URLSearchParams(window.location.search);
+    let bus = urlParams.get("bus");
+    let boat = urlParams.get("boat");
 
-    function getDisabledDates(oddOrEven) {
-        const disabledDates = [];
-        for (let year = 2025; year <= 2040; year++) {
-            for (let month = 5; month <= 8; month++) { // June (5) to September (8)
-                for (let day = 1; day <= 31; day++) {
-                    const date = new Date(year, month, day);
-                    if (date.getMonth() !== month) continue; // skip invalid dates
-                    if ((oddOrEven === "even" && day % 2 !== 0) || 
-                        (oddOrEven === "odd" && day % 2 === 0)) {
-                        // push YYYY-MM-DD format
-                        disabledDates.push(date.toISOString().split("T")[0]);
-                    }
+    // ✅ Extra dates manually enabled (for exceptions)
+    const extraEnabledDates = {
+        "Vlora-Berat": [
+            // "2025-06-10",
+            // "2025-07-20",
+            // "2025-08-17"
+        ],
+        "Vlora-Saranda": [
+            // "2025-06-17",
+            // "2025-06-05",
+            // "2025-06-13"
+        ]
+    };
+
+    function getDisabledDates(busType, oddOrEven) {
+        let disabledDates = [];
+        const currentYear = new Date().getFullYear();
+
+        for (let month = 5; month <= 8; month++) { // June (5) to September (8)
+            const daysInMonth = new Date(currentYear, month + 1, 0).getDate();
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(currentYear, month, day);
+                const formatted = date.toISOString().split("T")[0];
+
+                // Skip if manually enabled
+                if (extraEnabledDates[busType]?.includes(formatted)) continue;
+
+                // Apply odd/even logic
+                if ((oddOrEven === "even" && day % 2 !== 0) ||
+                    (oddOrEven === "odd" && day % 2 === 0)) {
+                    disabledDates.push(formatted);
+                }
+
+                // Disable past dates in current month/year
+                const today = new Date();
+                if (date < today.setHours(0, 0, 0, 0)) {
+                    disabledDates.push(formatted);
                 }
             }
         }
+
         return disabledDates;
     }
 
@@ -466,34 +494,53 @@ document.addEventListener("DOMContentLoaded", function () {
         const today = new Date();
         const currentYear = today.getFullYear();
         const juneStart = new Date(currentYear, 5, 1); // June 1
-        const septEnd = new Date(currentYear, 8, 30);  // Sept 30
+        const septEnd = new Date(currentYear, 8, 30);  // September 30
 
-        if (today < juneStart) return "2025-06-01";
-        if (today > septEnd) return "2025-06-01";
-        return today;
+        if (today < juneStart) return `${currentYear}-06-01`;
+        if (today > septEnd) return `${currentYear + 1}-06-01`;
+        return today.toISOString().split("T")[0];
     }
 
     function updateDatePicker() {
-        const config = {
+        let config = {
             dateFormat: "Y-m-d",
             minDate: getAdjustedMinDate(),
-            maxDate: "2025-09-30",
-            disableMobile: true
+            maxDate: new Date().getFullYear() + "-09-30",
+            disableMobile: true,
+            disable: []
         };
 
         if (bus === "Vlora-Saranda") {
-            config.disable = getDisabledDates("even"); // allow only odd
+            config.disable = getDisabledDates("Vlora-Saranda", "odd");
         } else if (bus === "Vlora-Berat") {
-            config.disable = getDisabledDates("odd"); // allow only even
+            config.disable = getDisabledDates("Vlora-Berat", "even");
         } else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
-            config.disable = []; // no restriction
+            config.disable = [];
         }
 
         flatpickr("#tour-date", config);
     }
 
     updateDatePicker();
+
+    // ✅ Show warning if calendar focused before season
+    const dateInput = document.querySelector("#tour-date");
+    dateInput.addEventListener("focus", function () {
+        const now = new Date();
+        const juneStart = new Date(now.getFullYear(), 5, 1); // June 1
+
+        if (now < juneStart) {
+            if (!document.querySelector(".date-warning")) {
+                const warning = document.createElement("div");
+                warning.classList.add("date-warning");
+                warning.textContent = "Reservations are available from June!";
+                dateInput.insertAdjacentElement("afterend", warning);
+                setTimeout(() => warning.remove(), 3000);
+            }
+        }
+    });
 });
+
 
     </script>
   <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>

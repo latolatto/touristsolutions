@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
                 // 🚍 BUSES
                 "Vlora-Saranda": {
-                    image: "./assets/images/other pages/boat-trip/saranda.jpg",
+                    image: "./assets/images/other pages/boat-trip/saranda.png",
                     features: [
                         "🕒 Departure: Lungomare Vlora (Tourist Solutions) – 08:30 AM",
                         "📍 Stop 1: The Blue Eye Beach(Walking ~1.3 km) – Stay for 40-50 min",
@@ -425,7 +425,7 @@ const date = selectedDate.toLocaleDateString("en-GB", {
                 price: { infant: 0, child: 15, adult: 25 }
             },
             "Vlora-Saranda": {
-                image: "./assets/images/other pages/boat-trip/saranda.jpg",
+                image: "./assets/images/other pages/boat-trip/saranda.png",
                 price: { adult: 50, child: 40 }
             },
             "Vlora-Berat": {
