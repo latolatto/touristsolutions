@@ -390,7 +390,13 @@ input#meal-tickets{
         width:100%;
 
     }
-
+    .date-warning {
+        color: red;
+        margin-top: 4px;
+        font-size: 0.9rem;
+        text-align: right;
+        align-self: center;
+      }
     
 }
 
