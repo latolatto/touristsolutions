@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         price: {
           infant: { age: "0-3", value: 0 },
           child: { age: "4-6", value: 15 },
-          adult: { age: "7+", value: 0.5 }
+          adult: { age: "7+", value: 0.1 }
         },
         mainInfo: "maininfo.liburna"
       },
@@ -470,7 +470,7 @@ if (!date) {
             },
             "Liburna": {
                 image: "./assets/images/other-pages/boat-trip/liburna1.jpg",
-                price: { infant: 0, child: 15, adult: 0.5 }
+                price: { infant: 0, child: 15, adult: 0.1 }
             },
             "Vlora Cruise": {
                 image: "./assets/images/other-pages/boat-trip/vlora1.png",
