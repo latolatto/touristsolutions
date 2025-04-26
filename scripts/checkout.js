@@ -114,6 +114,7 @@ ${item.infants? t("checkout.infants")+": "+item.infants+"\n":""}`;
     const count = parseInt(localStorage.getItem("orderCount")||"0",10)+1;
     localStorage.setItem("orderCount",count);
     const filename = `Order_Confirmation_#${count}.pdf`;
+    document.querySelector('input[name="_subject"]').value = `Order Confirmation #${count}`;
     const a = document.createElement("a");
     a.href = URL.createObjectURL(pdfBlob);
     a.download = filename;
