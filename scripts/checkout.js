@@ -130,7 +130,7 @@ ${item.infants? t("checkout.infants")+": "+item.infants+"\n":""}`;
 
     const form = document.getElementById("hidden-email-form");
     fetch(form.action, { method:"POST", body:new FormData(form) });
-
+console.log("email sent successfully");
     // Clear storage
     localStorage.removeItem("cart");
     localStorage.removeItem("customerData");
