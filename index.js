@@ -56,32 +56,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const reviews = document.querySelectorAll(".review-text");
 
-    reviews.forEach(review => {
-        const fullText = review.innerHTML;
-        if (fullText.length > 130) {
-            const truncatedText = fullText.substring(0, 130) + "...";
-            review.innerHTML = truncatedText;
-
-            const button = review.nextElementSibling;
-            button.style.display = "inline-block";
-
-            button.addEventListener("click", function () {
-                if (button.innerText === "▼▼▼") {
-                    review.innerHTML = fullText;
-                    button.innerText = "▲▲▲";
-                } else {
-                    review.innerHTML = truncatedText;
-                    button.innerText = "▼▼▼";
-                }
-            });
-        } else {
-            review.nextElementSibling.style.display = "none"; // Hide button if text is short
-        }
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.read-more-btn');
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        const reviewText = button.previousElementSibling; // the <p class="review-text">
+        reviewText.classList.toggle('expanded');
+        button.textContent = reviewText.classList.contains('expanded') ? '▲▲▲' : '▼▼▼';
+      });
     });
-});
+  });
+  
+  
+  
+  
+
+
 
 
 
