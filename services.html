@@ -24,9 +24,9 @@
 <body>
   <div class="body-container">
      <div class="grid1">
-      <img class="banner" src="./assets/images//other pages/services.jpg"> 
+      <img class="banner" src="./assets/images//other-pages/services.jpg"> 
       <div class="banner-div">
-        <h1>Our Services</h1>
+        <h1 data-i18n="services.title">Our Services</h1>
         <!-- <h4>Boat trips, bus tickets, and travel info—all in one place.</h4> -->
         <!-- <button type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'"> Get Started </button> -->
       </div>
@@ -66,18 +66,18 @@
             </a>
           </div>
           <div class="dropdown-lang">
-            <button class="btn  dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               EN
             </button>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-              <li><a class="dropdown-item actively" href=""  aria-current="true" >EN <img class="flag" src="./assets/flags/en.png"></a></li>
-              <li><a class="dropdown-item" href="" >AL <img class="flag" src="./assets/flags/al.png"></a></li>
-              <li><a class="dropdown-item" href="" >IT <img class="flag" src="./assets/flags/it.png"></a></li>
-              <li><a class="dropdown-item" href="" >RU <img class="flag" src="./assets/flags/ru.png"></a></li>
-              <li><a class="dropdown-item" href="" >FR <img class="flag" src="./assets/flags/fr.png"></a></li>
-              <li><a class="dropdown-item" href="" >ES <img class="flag" src="./assets/flags/es.png"></a></li>
+              <li><a class="dropdown-item actively" href="#" data-lang="en">EN <img class="flag" src="./assets/flags/en.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="sq">AL <img class="flag" src="./assets/flags/al.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="it">IT <img class="flag" src="./assets/flags/it.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="ru">RU <img class="flag" src="./assets/flags/ru.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="fr">FR <img class="flag" src="./assets/flags/fr.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="es">ES <img class="flag" src="./assets/flags/es.png"></a></li>
             </ul>
-          </div>
+          </div>          
         </div>
         <div id="menuja"  style="background-color: #FAF8F4;">
           <nav class="  navbar navbar-expand-lg container">
@@ -99,41 +99,22 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link menu-item " aria-current="page" href="index.html" data-i18n="nav.home">HOME</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="services.html">SERVICES</a>
+                    <a class="nav-link menu-item " href="services.html" data-i18n="nav.services">SERVICES</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="boat.html">BOAT TRIPS</a>
+                    <a class="nav-link menu-item " href="boat.html"  data-i18n="nav.boat">BOAT TRIPS</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="bus.html">DAILY TOURS</a>
+                    <a class="nav-link menu-item " href="bus.html"  data-i18n="nav.bus">DAILY TOURS</a>
                   </li>
-                  <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BOAT TRIPS
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Boat 1</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 2</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 3</a></li>
-                          </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BUS LINES
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Bus Line 1</a></li>
-                            <li><a class="dropdown-item" href="#">Bus Line 2</a></li>
-                          </ul>
-                        </li> -->
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="inclusive.html">INCLUSIVITY </a>
+                    <a class="nav-link menu-item " href="inclusive.html"  data-i18n="nav.inclusivity">INCLUSIVITY </a>
                   </li> 
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="contact.html">CONTACT</a>
+                    <a class="nav-link menu-item " href="contact.html"  data-i18n="nav.contact">CONTACT</a>
                   </li>
                 </ul>
               </div>
@@ -143,40 +124,40 @@
         </div>
         <div class="offcanvas offcanvas-end " data-bs-scroll="true"  tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Cart</h5>
+            <h5 id="offcanvasRightLabel"  data-i18n="cart.1">Cart</h5>
             <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body" id="cart-items">
           </div>
           <div class="cart-footer">
             <p id="grand-total"></p>
-            <button id="clearCart" class="btn-clear">Clear Cart</button>
-            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'">Checkout</button>
+            <button id="clearCart" class="btn-clear"  data-i18n="cart.clear">Clear Cart</button>
+            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'"  data-i18n="cart.checkout">Checkout</button>
         </div>
         </div>
         
       </div>
      </div>
      <div class="content">
-        <div class="shadow" >
+        <div class="shadow" data-i18n="services.txt">
             InfoPoint Tourist Solutions Vlora operates across <b>four locations</b> throughout the city, offering a wide range of travel services both <b>online and in-site</b>. From hassle-free daily van tours bookings to financial services and exclusive travel experiences, we’re here to make your journey smooth and convenient.Whether you're looking to book a trip, exchange currency, or find the perfect rental, we’ve got you covered. Scroll down to explore our services in detail!
         </div>
         <div class="services container">
         <div class="row featurette container">
             <div class="col-md-7">
-              <h2 class="featurette-heading fw-normal lh-1">🚤 Boat Trip Bookings</h2>
-              <p class="lead">Set sail on an unforgettable journey with our <b>tourist boat trips</b> to <b>Sazan Island & Karaburun</b>. Choose from three different options tailored for every type of traveler. <b>Reservations and payments are made online</b>, ensuring a seamless booking experience.</p>
-              <a href="boat.html" class="">📅 Book Your Boat Trip</a>
+              <h2 class="featurette-heading fw-normal lh-1" data-i18n="service.1">🚤 Boat Trip Bookings</h2>
+              <p class="lead" data-i18n="service1.txt">Set sail on an unforgettable journey with our <b>tourist boat trips</b> to <b>Sazan Island & Karaburun</b>. Choose from three different options tailored for every type of traveler. <b>Reservations and payments are made online</b>, ensuring a seamless booking experience.</p>
+              <a href="boat.html" class="" data-i18n="service1.cta">📅 Book Your Boat Trip</a>
             </div>
             <div class="col-md-5">
-                <img src="./assets/images/other pages/service1.jpeg">
+                <img src="./assets/images/other-pages/service1.jpeg">
             </div>
           </div>
           <div class="row featurette container">
-            <div class="col-md-7 order-md-2">
-              <h2 class="featurette-heading fw-normal lh-1">🚌 Daily Van Tour Bookings</h2>
-              <p class="lead">Explore the beauty of <b>Albania’s southern coast</b> with a visit to the Blue Eye spring, the lively city of Saranda, and the picturesque beaches of Ksamil. Or, immerse yourself in the history of Berat, a UNESCO city renowned for its Ottoman architecture and rich heritage.<b>All reservations and payments are made online </b>for maximum convenience.</p>
-              <a href="bus.html" class="">📅 Book Your Daily Van Tour</a>
+            <div class="col-md-7 order-md-2"> 
+              <h2 class="featurette-heading fw-normal lh-1" data-i18n="service.2">🚌 Daily Van Tour Bookings</h2>
+              <p class="lead" data-i18n="service2.txt">Explore the beauty of <b>Albania’s southern coast</b> with a visit to the Blue Eye spring, the lively city of Saranda, and the picturesque beaches of Ksamil. Or, immerse yourself in the history of Berat, a UNESCO city renowned for its Ottoman architecture and rich heritage.<b>All reservations and payments are made online </b>for maximum convenience.</p>
+              <a href="bus.html" class="" data-i18n="service2.cta">📅 Book Your Daily Van Tour</a>
             </div>
             <div class="col-md-5 order-md-1">
                 <img src="./assets/images/van1.jpeg">
@@ -184,43 +165,43 @@
           </div>
           <div class="row featurette container">
             <div class="col-md-7">
-              <h2 class="featurette-heading fw-normal lh-1">♿ Inclusive InfoPoint</h2>
-              <p class="lead">Our commitment to accessibility ensures that everyone can access essential travel information. Our in-site Inclusive InfoPoint offers:
+              <h2 class="featurette-heading fw-normal lh-1" data-i18n="service.3">♿ Inclusive InfoPoint</h2>
+              <p class="lead" data-i18n="service3.txt">Our commitment to accessibility ensures that everyone can access essential travel information. Our in-site Inclusive InfoPoint offers:
 
             <br><br>    Braille maps
             <br>    Sign language assistance
             <br>    Barrier-free wheelchair access
             <br>    Personalized travel support</p>
-            <a href="inclusive.html" class="">🔍 Learn More</a>
+            <a href="inclusive.html" class="" data-i18n="service3.cta">🔍 Learn More</a>
             </div>
             <div class="col-md-5">
-                <img src="./assets/images/other pages/service3.jpg">
+                <img src="./assets/images/other-pages/service3.jpg">
             </div>
           </div>
           <div class="row featurette container">
             <div class="col-md-7 order-md-2">
-              <h2 class="featurette-heading fw-normal lh-1">🏡🚗 Rentals & Private Tours 🚌⛵</h2>
-              <p class="lead">For <b>house rentals, car rentals</b>, and private tours (including <b>private bus & speedboat trips</b>), we offer a more personalized service. Contact us directly via <b>WhatsApp</b> to arrange bookings, with payments made on-site.</p>
-              <a href="https://wa.me/yourwhatsappnumber" target="_blank">📲 Book via WhatsApp</a>
+              <h2 class="featurette-heading fw-normal lh-1" data-i18n="service.4">🏡🚗 Rentals & Private Tours 🚌⛵</h2>
+              <p class="lead" data-i18n="service4.txt">For <b>house rentals, car rentals</b>, and private tours (including <b>private bus & speedboat trips</b>), we offer a more personalized service. Contact us directly via <b>WhatsApp</b> to arrange bookings, with payments made on-site.</p>
+              <a href="https://api.whatsapp.com/send?phone=355698136849" target="_blank" data-i18n="service4.cta">📲 Book via WhatsApp</a>
             </div>
             <div class="col-md-5 order-md-1">
-                <img src="./assets/images/other pages/rentals.png">
+                <img src="./assets/images/other-pages/rentals.png">
             </div>
           </div>
           <div class="row featurette container">
             <div class="col-md-7">
-              <h2 class="featurette-heading fw-normal lh-1">💳 Financial & Travel Essentials</h2>
-              <p class="lead">Access essential travel services <b>in-site</b> at our locations, including:
+              <h2 class="featurette-heading fw-normal lh-1" data-i18n="service.5">💳 Financial & Travel Essentials</h2>
+              <p class="lead" data-i18n="service5.txt">Access essential travel services <b>in-site</b> at our locations, including:
                 <br><br>24/7 ATM
                 <br>Currency Exchange
                 <br>Money Transfers
                 <br>Airplane Ticket Booking
                 <br>Bill Payments via EasyPay
               </p>
-               <a href="./contact.html#location-section" class="">📍 Visit Us for More Info</a>
+               <a href="./contact.html#location-section" class="" data-i18n="service5.cta">📍 Visit Us for More Info</a>
             </div>
             <div class="col-md-5">
-                <img src="./assets/images/other pages/financial.png">
+                <img src="./assets/images/other-pages/financial.png">
             </div>
           </div>
         </div>
@@ -228,7 +209,7 @@
           <div class="footer-columns-div">
             <div class="footer-columns col1">
               <img src="./assets/images/white-logo.png">
-              <p>
+              <p data-i18n="footer.txt">
                 Your go-to travel partner in Vlora. From boat trips to daily van tours and local travel services, we’re here to make your journey smooth and enjoyable.
               </p>
               <div class="social-icons">
@@ -245,37 +226,37 @@
               </div>
             </div>
             <div class="footer-columns col2">
-              <h6>QUICK LINKS</h6>
+              <h6 data-i18n="quick.links">QUICK LINKS</h6>
               <ul>
                 <li class="">
-                  <a href="./about.html" class="">
+                  <a href="./about.html" class="" data-i18n="quick.1">
                     About Us
                    </a>
                 </li>
                 <li class="">
-                  <a href="./boat.html" class="">
+                  <a href="./boat.html" class="" data-i18n="quick.2">
                     Book a Boat Tour
                   </a>
                 </li>
                 <li class="">
-                  <a href="./bus.html" class="">
+                  <a href="./bus.html" class="" data-i18n="quick.3">
                    Book a Van Tour
                   </a>
                 </li>
                 <li class="">
-                  <a href="./faqs.html" class="">
+                  <a href="./faqs.html" class="" data-i18n="quick.4">
                     FAQs
                   </a>
                 </li>
                 <li class="">
-                  <a href="./contact.html" class="">
+                  <a href="./contact.html" class="" data-i18n="quick.5">
                     Contact Us
                   </a>
                 </li>
               </ul>
             </div>
             <div class="footer-columns col3">
-              <h6>GET IN TOUCH</h6>
+              <h6 data-i18n="footer.getintouch">GET IN TOUCH</h6>
               <ul class="get_say_info_sec">
                 <li>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill=" #faf8f4b0" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -298,7 +279,7 @@
                 </li>
                 <li> 
                   
-                  <a class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
+                  <a data-i18n="find.locations" class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                   </svg> Find other locations</a>
                 </li>
@@ -306,8 +287,8 @@
             </div>
           </div>
           <div class="rights ">
-            <p class="">
-              © <span id="year"> </span> | All rights reserved
+            <p class="" >
+              © <span id="year"> </span> | <span data-i18n="copy.right">All rights reserved</span>
             </p>
           </div>
           <button id="backToTopBtn">
@@ -339,5 +320,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./index.js"></script>
+  <script src="translations.js"></script>
+  <script src="lang.js"></script> 
 </body>
 </html>

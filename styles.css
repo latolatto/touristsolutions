@@ -102,7 +102,7 @@ z-index:100;
 .dropdown-menu {
     position: absolute; /* Or fixed if needed */
     z-index: 1040; /* Slightly lower than offcanvas */
-    background-color: cadetblue;
+    background-color: black;
 
 }
 
@@ -172,7 +172,7 @@ h1{
     font-family: "Abril Fatface", serif;
     font-weight: 600 !important;
     font-style: normal;
-
+    text-align: center;
     font-size: 6rem !important;
     text-shadow: 
         -1px -1px 0 black, /* Top-left */

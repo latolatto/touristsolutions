@@ -24,9 +24,9 @@
 <body>
   <div class="body-container">
      <div class="grid1">
-      <img class="banner" src="./assets/images//other pages/aboutuspage.jpg"> 
+      <img class="banner" src="./assets/images//other-pages/aboutuspage.jpg"> 
       <div class="banner-div">
-        <h1>About Us</h1>
+        <h1 data-i18n="about.title">About Us</h1>
         <!-- <h4>Boat trips, bus tickets, and travel info—all in one place.</h4> -->
         <!-- <button type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'"> Get Started </button> -->
       </div>
@@ -66,18 +66,18 @@
             </a>
           </div>
           <div class="dropdown-lang">
-            <button class="btn  dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               EN
             </button>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-              <li><a class="dropdown-item actively" href=""  aria-current="true" >EN <img class="flag" src="./assets/flags/en.png"></a></li>
-              <li><a class="dropdown-item" href="" >AL <img class="flag" src="./assets/flags/al.png"></a></li>
-              <li><a class="dropdown-item" href="" >IT <img class="flag" src="./assets/flags/it.png"></a></li>
-              <li><a class="dropdown-item" href="" >RU <img class="flag" src="./assets/flags/ru.png"></a></li>
-              <li><a class="dropdown-item" href="" >FR <img class="flag" src="./assets/flags/fr.png"></a></li>
-              <li><a class="dropdown-item" href="" >ES <img class="flag" src="./assets/flags/es.png"></a></li>
+              <li><a class="dropdown-item actively" href="#" data-lang="en">EN <img class="flag" src="./assets/flags/en.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="sq">AL <img class="flag" src="./assets/flags/al.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="it">IT <img class="flag" src="./assets/flags/it.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="ru">RU <img class="flag" src="./assets/flags/ru.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="fr">FR <img class="flag" src="./assets/flags/fr.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="es">ES <img class="flag" src="./assets/flags/es.png"></a></li>
             </ul>
-          </div>
+          </div>          
         </div>
         <div id="menuja"  style="background-color: #FAF8F4;">
           <nav class="  navbar navbar-expand-lg container">
@@ -99,41 +99,22 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link menu-item " aria-current="page" href="index.html" data-i18n="nav.home">HOME</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="services.html">SERVICES</a>
+                    <a class="nav-link menu-item " href="services.html" data-i18n="nav.services">SERVICES</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="boat.html">BOAT TRIPS</a>
+                    <a class="nav-link menu-item " href="boat.html"  data-i18n="nav.boat">BOAT TRIPS</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="bus.html">DAILY TOURS</a>
+                    <a class="nav-link menu-item " href="bus.html"  data-i18n="nav.bus">DAILY TOURS</a>
                   </li>
-                  <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BOAT TRIPS
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Boat 1</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 2</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 3</a></li>
-                          </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BUS LINES
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Bus Line 1</a></li>
-                            <li><a class="dropdown-item" href="#">Bus Line 2</a></li>
-                          </ul>
-                        </li> -->
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="inclusive.html">INCLUSIVITY </a>
+                    <a class="nav-link menu-item " href="inclusive.html"  data-i18n="nav.inclusivity">INCLUSIVITY </a>
                   </li> 
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="contact.html">CONTACT</a>
+                    <a class="nav-link menu-item " href="contact.html"  data-i18n="nav.contact">CONTACT</a>
                   </li>
                 </ul>
               </div>
@@ -143,15 +124,15 @@
         </div>
         <div class="offcanvas offcanvas-end " data-bs-scroll="true"  tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Cart</h5>
+            <h5 id="offcanvasRightLabel"  data-i18n="cart.1">Cart</h5>
             <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body" id="cart-items">
           </div>
           <div class="cart-footer">
             <p id="grand-total"></p>
-            <button id="clearCart" class="btn-clear">Clear Cart</button>
-            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'">Checkout</button>
+            <button id="clearCart" class="btn-clear"  data-i18n="cart.clear">Clear Cart</button>
+            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'"  data-i18n="cart.checkout">Checkout</button>
         </div>
         </div>
         
@@ -160,66 +141,66 @@
      <div class="content ">
         <div class="about-intro container">
             <img src="./assets/images/logo-removebg-preview.png">
-            <p>Located along the stunning coastline of Vlora Beach - Lungomare, InfoPoint Vlora is your go-to center for seamless travel planning. Although we are a recent addition, our impact has been immense, ensuring travelers enjoy a hassle-free experience.<br> As a multifunctional tourist info and service point, we are dedicated to making travel accessible to all. Whether you're looking to book boat trips or daily van tours online, find essential travel information, exchange currency, rent a car, or secure accommodations, we have you covered.<br> Our commitment to inclusivity ensures that every traveler, regardless of their needs, can navigate Vlora with ease. From adventure seekers to casual explorers, we are here to make your journey smooth, enjoyable, and stress-free.</p>
-            <a href="services.html" class="cta">Explore Our Services <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+            <p data-i18n="about.txt">Located along the stunning coastline of Vlora Beach - Lungomare, InfoPoint Vlora is your go-to center for seamless travel planning. Although we are a recent addition, our impact has been immense, ensuring travelers enjoy a hassle-free experience.<br> As a multifunctional tourist info and service point, we are dedicated to making travel accessible to all. Whether you're looking to book boat trips or daily van tours online, find essential travel information, exchange currency, rent a car, or secure accommodations, we have you covered.<br> Our commitment to inclusivity ensures that every traveler, regardless of their needs, can navigate Vlora with ease. From adventure seekers to casual explorers, we are here to make your journey smooth, enjoyable, and stress-free.</p>
+            <a href="services.html" class="cta" data-i18n="about.cta">Explore Our Services <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
               </svg></a>
         </div>
         <div class="row align-items-md-stretch container">
             <div class="col-md-6">
               <div class="h-100 p-5 text-bg-dark rounded-3">
-                <h2>More Than Just One Location                </h2>
-                <p>While our newest InfoPoint is making waves, our experience runs deep. We operate three other locations specializing in currency exchange, money transfers, and flight ticket services.</p>
-                <button class="btn btn-outline-light" type="button" onclick="window.location.href='./contact.html#location-section'">Find Our Locations</button>
+                <h2 data-i18n="about.col1">More Than Just One Location</h2>
+                <p data-i18n="about.col1.txt">While our newest InfoPoint is making waves, our experience runs deep. We operate three other locations specializing in currency exchange, money transfers, and flight ticket services.</p>
+                <button class="btn btn-outline-light" type="button" onclick="window.location.href='./contact.html#location-section'" data-i18n="about.col1.cta">Find Our Locations</button>
               </div>
             </div>
             <div class="col-md-6">
               <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                <h2>Committed to Inclusivity</h2>
-                <p>At InfoPoint Vlora, we believe that travel should be accessible to everyone. Our center provides special services such as Braille maps, sign language assistance, and barrier-free access.</p>
-                <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='./inclusivity.html'">Learn More</button>
+                <h2 data-i18n="about.col2">Committed to Inclusivity</h2>
+                <p data-i18n="about.col2.txt">At InfoPoint Vlora, we believe that travel should be accessible to everyone. Our center provides special services such as Braille maps, sign language assistance, and barrier-free access.</p>
+                <button class="btn btn-outline-secondary" type="button" onclick="window.location.href='./inclusivity.html'" data-i18n="about.col2.cta">Learn More</button>
               </div>
             </div>
           </div>
 
           <section class="faq-cta">
             <div class="container text-center">
-                <h2 class="fw-bold">Got Questions? We've Got Answers! 🤔</h2>
-                <p class="lead">Everything you need to know about our services, travel tips, and more—explained simply.</p>
+                <h2 class="fw-bold" data-i18n="about.faq">Got Questions? We've Got Answers! 🤔</h2>
+                <p class="lead" data-i18n="about.faq.txt">Everything you need to know about our services, travel tips, and more—explained simply.</p>
                 
                 <div class="faq-box">
-                    <p class="faq-text">Discover helpful answers in our FAQ section.</p>
-                    <a href="faqs.html" class="btn btn-lg  btn-animated">Visit FAQs 🚀</a>
+                    <p class="faq-text" data-i18n="about.faq.title">Discover helpful answers in our FAQ section.</p>
+                    <a href="faqs.html" class="btn btn-lg  btn-animated" data-i18n="about.faq.cta">Visit FAQs 🚀</a>
                 </div>
             </div>
         </section>
         <div class="about1-flex row row-cols-1  row-cols-md-2 row-cols-lg-2 align-items-md-center justify-content-center  py-5 container">
-            <img class="about1" src="./assets/images/other pages/about1.jpg">
+            <img class="about1" src="./assets/images/other-pages/about1.jpg">
       
             <div class="col">
               <div class="row row-cols-1 row-cols-sm-2 g-4">
                 <div class="col d-flex flex-column gap-2">
                    <span style="font-size: 2rem;" >🚍</span>
                   <h3>200,000+</h3>
-                  <p>Van Tour Tickets Sold</p>
+                  <p data-i18n="number.1">Van Tour Tickets Sold</p>
                 </div>
       
                 <div class="col d-flex flex-column gap-2">
                     <span style="font-size: 2rem;" >🛥️</span> 
                   <h3>150,000+</h3>
-                  <p>Boat Tickets Sold</p>
+                  <p data-i18n="number.2">Boat Tickets Sold</p>
                 </div>
       
                 <div class="col d-flex flex-column gap-2">
                     <span style="font-size: 2rem;" >🌍</span>
                   <h3>500,000+</h3>
-                <p>Tourists Assisted</p>
+                <p data-i18n="number.3">Tourists Assisted</p>
                 </div>
       
                 <div class="col d-flex flex-column gap-2">
                     <span style="font-size: 2rem;" >⭐</span>  
                   <h3>94%</h3>
-                  <p>Customer Satisfaction</p>
+                  <p data-i18n="number.4">Customer Satisfaction</p>
                 </div>
               </div>
             </div>
@@ -227,17 +208,17 @@
 
           <section class="grid6 final-section ">
             <div class="container">
-              <h2>Ready to Explore Vlora?</h2>
-              <p>
+              <h2 data-i18n="about.end">Ready to Explore Vlora?</h2>
+              <p data-i18n="about.end.txt">
                 Plan your journey with us today! Whether you're booking a boat trip, a daily van tour, or have any questions or inquiries, we're here to help.</p>
-              <a href="contact.html" class="cta-button">Get in Touch</a>
+              <a href="contact.html" data-i18n="about.end.cta" class="cta-button">Get in Touch</a>
             </div>
           </section>
           <footer class="">
             <div class="footer-columns-div">
               <div class="footer-columns col1">
                 <img src="./assets/images/white-logo.png">
-                <p>
+                <p data-i18n="footer.txt">
                   Your go-to travel partner in Vlora. From boat trips to daily van tours and local travel services, we’re here to make your journey smooth and enjoyable.
                 </p>
                 <div class="social-icons">
@@ -254,37 +235,37 @@
                 </div>
               </div>
               <div class="footer-columns col2">
-                <h6>QUICK LINKS</h6>
+                <h6 data-i18n="quick.links">QUICK LINKS</h6>
                 <ul>
                   <li class="">
-                    <a href="./about.html" class="">
+                    <a href="./about.html" class="" data-i18n="quick.1">
                       About Us
                      </a>
                   </li>
                   <li class="">
-                    <a href="./boat.html" class="">
+                    <a href="./boat.html" class="" data-i18n="quick.2">
                       Book a Boat Tour
                     </a>
                   </li>
                   <li class="">
-                    <a href="./bus.html" class="">
+                    <a href="./bus.html" class="" data-i18n="quick.3">
                      Book a Van Tour
                     </a>
                   </li>
                   <li class="">
-                    <a href="./faqs.html" class="">
+                    <a href="./faqs.html" class="" data-i18n="quick.4">
                       FAQs
                     </a>
                   </li>
                   <li class="">
-                    <a href="./contact.html" class="">
+                    <a href="./contact.html" class="" data-i18n="quick.5">
                       Contact Us
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="footer-columns col3">
-                <h6>GET IN TOUCH</h6>
+                <h6 data-i18n="footer.getintouch">GET IN TOUCH</h6>
                 <ul class="get_say_info_sec">
                   <li>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill=" #faf8f4b0" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -307,7 +288,7 @@
                   </li>
                   <li> 
                     
-                    <a class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
+                    <a data-i18n="find.locations" class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
                       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                     </svg> Find other locations</a>
                   </li>
@@ -315,8 +296,8 @@
               </div>
             </div>
             <div class="rights ">
-              <p class="">
-                © <span id="year"> </span> | All rights reserved
+              <p class="" >
+                © <span id="year"> </span> | <span data-i18n="copy.right">All rights reserved</span>
               </p>
             </div>
             <button id="backToTopBtn">
@@ -348,5 +329,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./index.js"></script>
+  <script src="translations.js"></script>
+  <script src="lang.js"></script> 
 </body>
 </html>

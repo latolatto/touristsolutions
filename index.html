@@ -47,9 +47,9 @@
         </div>
      </div> 
       <div class="banner-div">
-        <h1 data-i18n="bannerHeading">Explore Vlora</h1>
-        <h4 data-i18n="bannerSub">Boat trips, daily tours, and travel info—all in one place.</h4>
-        <button data-i18n="getStarted" type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'"> Get Started </button>
+        <h1 data-i18n="banner.heading">Explore Vlora</h1>
+        <h4 data-i18n="banner.sub">Boat trips, daily tours, and travel info—all in one place.</h4>
+        <button data-i18n="get.started" type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'"> Get Started </button>
       </div>
       <div class="fixed-top-div">
         <div class="top-bar ">
@@ -87,18 +87,18 @@
             </a>
           </div>
           <div class="dropdown-lang">
-            <button class="btn  dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               EN
             </button>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-              <li><a class="dropdown-item actively" href=""  aria-current="true" >EN <img class="flag" src="./assets/flags/en.png"></a></li>
-              <li><a class="dropdown-item" href="./sq/index.html" >AL <img class="flag" src="./assets/flags/al.png"></a></li>
-              <li><a class="dropdown-item" href="" >IT <img class="flag" src="./assets/flags/it.png"></a></li>
-              <li><a class="dropdown-item" href="" >RU <img class="flag" src="./assets/flags/ru.png"></a></li>
-              <li><a class="dropdown-item" href="" >FR <img class="flag" src="./assets/flags/fr.png"></a></li>
-              <li><a class="dropdown-item" href="" >ES <img class="flag" src="./assets/flags/es.png"></a></li>
+              <li><a class="dropdown-item actively" href="#" data-lang="en">EN <img class="flag" src="./assets/flags/en.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="sq">AL <img class="flag" src="./assets/flags/al.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="it">IT <img class="flag" src="./assets/flags/it.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="ru">RU <img class="flag" src="./assets/flags/ru.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="fr">FR <img class="flag" src="./assets/flags/fr.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="es">ES <img class="flag" src="./assets/flags/es.png"></a></li>
             </ul>
-          </div>
+          </div>          
         </div>
         <div id="menuja"  style="background-color: #FAF8F4;">
           <nav class="  navbar navbar-expand-lg container">
@@ -120,41 +120,22 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link menu-item " aria-current="page" href="index.html" data-i18n="nav.home">HOME</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="services.html">SERVICES</a>
+                    <a class="nav-link menu-item " href="services.html" data-i18n="nav.services">SERVICES</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="boat.html">BOAT TRIPS</a>
+                    <a class="nav-link menu-item " href="boat.html"  data-i18n="nav.boat">BOAT TRIPS</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="bus.html">DAILY TOURS</a>
+                    <a class="nav-link menu-item " href="bus.html"  data-i18n="nav.bus">DAILY TOURS</a>
                   </li>
-                  <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BOAT TRIPS
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Boat 1</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 2</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 3</a></li>
-                          </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BUS LINES
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Bus Line 1</a></li>
-                            <li><a class="dropdown-item" href="#">Bus Line 2</a></li>
-                          </ul>
-                        </li> -->
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="inclusive.html">INCLUSIVITY </a>
+                    <a class="nav-link menu-item " href="inclusive.html"  data-i18n="nav.inclusivity">INCLUSIVITY </a>
                   </li> 
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="contact.html">CONTACT</a>
+                    <a class="nav-link menu-item " href="contact.html"  data-i18n="nav.contact">CONTACT</a>
                   </li>
                 </ul>
               </div>
@@ -164,15 +145,15 @@
         </div>
         <div class="offcanvas offcanvas-end " data-bs-scroll="true"  tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Cart</h5>
+            <h5 id="offcanvasRightLabel"  data-i18n="cart.1">Cart</h5>
             <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body" id="cart-items">
           </div>
           <div class="cart-footer">
             <p id="grand-total"></p>
-            <button id="clearCart" class="btn-clear">Clear Cart</button>
-            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'">Checkout</button>
+            <button id="clearCart" class="btn-clear"  data-i18n="cart.clear">Clear Cart</button>
+            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'"  data-i18n="cart.checkout">Checkout</button>
         </div>
         </div>
         
@@ -183,61 +164,61 @@
       <section class="grid2" id="">
         <div class="grid2-col1 ">
           <div class="below-banner">
-            <h2 class="">Discover Vlora with Tourist Solutions</h2>
+            <h2 class=""  data-i18n="grid2.title">Discover Vlora with Tourist Solutions</h2>
             <img class="" src="./assets/images/double-line.svg" alt="" data-dont-replace="">
           </div>
           <img class="grid2-arrow" src="./assets/images/green-curve-shape-easy.svg" alt="" data-dont-replace="">
           <div class="grid2-cta"> 
-            <p class="below-banner-p">A multifunctional tourist info & service point, accessible to all. Book boat trips and daily van tours online, and visit us for travel information, currency exchange, car rentals, and accommodations—ensuring a seamless experience in Vlora.</p>
-            <button type="button" class="btn hidden cta-link" onclick="window.location.href='./about.html'"> Learn More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+            <p class="below-banner-p"  data-i18n="grid2.paragrapgh">A multifunctional tourist info & service point, accessible to all. Book boat trips and daily van tours online, and visit us for travel information, currency exchange, car rentals, and accommodations—ensuring a seamless experience in Vlora.</p>
+            <button type="button" class="btn hidden cta-link" onclick="window.location.href='./about.html'"  data-i18n="grid2.cta"> Learn More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
             </svg></button>
           </div>
         </div>
         <section class="booking-section">
           <div class="container">
-            <h2 class="booking-title">Plan Your Adventure: Boat & Daily Van Tours</h2>
+            <h2 class="booking-title"  data-i18n="book.title">Plan Your Adventure: Boat & Daily Van Tours</h2>
             
             <!-- Boat Trips Section -->
             <div class="boat-trips-container">
-              <h2>Explore the Karaburun-Sazan National Marine Park</h2>
-              <p>Embark on a guided boat tour of the breathtaking Karaburun-Sazan National Marine Park. Experience crystal-clear waters, hidden caves, and pristine beaches. For an added thrill, include a speedboat excursion to the famous Haxhi Ali Cave. Choose from our three unique tour options:</p>
+              <h2  data-i18n="book.boat.title">Explore the Karaburun-Sazan National Marine Park</h2>
+              <p  data-i18n="book.boat.paragrapgh">Embark on a guided boat tour of the breathtaking Karaburun-Sazan National Marine Park. Experience crystal-clear waters, hidden caves, and pristine beaches. For an added thrill, include a speedboat excursion to the famous Haxhi Ali Cave. Choose from our three unique tour options:</p>
               <div class="boat-trips-grid">
                 <div class="boat-option">
-                  <img src="./assets/images//other pages/boat-trip/aqua1.jpeg"  class="booking-img">
-                  <h3>The Ultimate Party Cruise</h3>
-                  <p>A lively tour with guided exploration, beach stops, and onboard entertainment, featuring a DJ and a vibrant atmosphere.</p>
+                  <img src="./assets/images//other-pages/boat-trip/aqua1.jpeg"  class="booking-img">
+                  <h3  data-i18n="book.boat.opt1">The Ultimate Party Cruise</h3>
+                  <p  data-i18n="book.boat.opt1.paragrapgh">A lively tour with guided exploration, beach stops, and onboard entertainment, featuring a DJ and a vibrant atmosphere.</p>
                 </div>
                 <div class="boat-option">
-                  <img src="./assets/images//other pages/boat-trip/liburna1.jpg"  class="booking-img">
-                  <h3>The Adventure Voyage</h3>
-                  <p>A family-friendly journey with guided exploration, beach stops, and onboard entertainment with a pirate & monkey show.</p>
+                  <img src="./assets/images//other-pages/boat-trip/liburna1.jpg"  class="booking-img">
+                  <h3  data-i18n="book.boat.opt2">The Adventure Voyage</h3>
+                  <p  data-i18n="book.boat.opt2.paragrapgh">A family-friendly journey with guided exploration, beach stops, and onboard entertainment with a pirate & monkey show.</p>
                 </div>
                 <div class="boat-option">
-                  <img src="./assets/images//other pages/boat-trip/vlora3.png" class="booking-img">
-                  <h3>The Serenity Escape </h3>
-                  <p>A peaceful, relaxing tour for those seeking a quiet experience with guided exploration and tranquil beach stops.</p>
+                  <img src="./assets/images//other-pages/boat-trip/vlora3.png" class="booking-img">
+                  <h3  data-i18n="book.boat.opt3">The Serenity Escape </h3>
+                  <p  data-i18n="book.boat.opt3.paragrapgh">A peaceful, relaxing tour for those seeking a quiet experience with guided exploration and tranquil beach stops.</p>
                 </div>
               </div>
-              <a href="boat.html" class="btn">Book Now</a>
+              <a href="boat.html" class="btn"  data-i18n="book.boat.cta">Book Now</a>
             </div>
             
             <!-- Daily Van Tours Section -->
             <div class="van-tours-container">
-              <h2>Explore Albania’s Southern Gems with Our Daily Van Tours </h2>
-              <p>Explore the beauty of Albania’s southern coast with a visit to the Blue Eye spring, the lively city of Saranda, and the picturesque beaches of Ksamil. Or, immerse yourself in the history of Berat, a UNESCO city renowned for its Ottoman architecture and rich heritage.</p>
+              <h2  data-i18n="book.bus.title">Explore Albania’s Southern Gems with Our Daily Van Tours </h2>
+              <p  data-i18n="book.bus.paragrapgh">Explore the beauty of Albania’s southern coast with a visit to the Blue Eye spring, the lively city of Saranda, and the picturesque beaches of Ksamil. Or, immerse yourself in the history of Berat, a UNESCO city renowned for its Ottoman architecture and rich heritage.</p>
               <div class="van-tours-grid">
                 <div class="van-option">
                   <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="./assets/images/other pages/boat-trip/daily-tours/saranda1.jpeg" class="d-block w-100 rounded-top" alt="Tour View">
+                        <img src="./assets/images/other-pages/boat-trip/daily-tours/saranda1.jpeg" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                       <div class="carousel-item">
-                        <img src="./assets/images/other pages/boat-trip/daily-tours/saranda2.jpeg" class="d-block w-100 rounded-top" alt="Tour View">
+                        <img src="./assets/images/other-pages/boat-trip/daily-tours/saranda2.jpeg" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                       <div class="carousel-item">
-                        <img src="./assets/images/other pages/boat-trip/daily-tours/saranda3.png" class="d-block w-100 rounded-top" alt="Tour View">
+                        <img src="./assets/images/other-pages/boat-trip/daily-tours/saranda3.png" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev">
@@ -247,20 +228,20 @@
                       <span class="carousel-control-next-icon"></span>
                     </button>
                   </div>
-                  <h3>Saranda & Ksamil Escape</h3>
-                  <p>Explore the southern coast from Vlora, visiting the Blue Eye spring, Saranda, and the white-sand beaches of Ksamil, with time to relax and enjoy local dining.</p>
+                  <h3  data-i18n="book.bus.opt1">Saranda & Ksamil Escape</h3>
+                  <p  data-i18n="book.bus.opt1.paragrapgh">Explore the southern coast from Vlora, visiting the Blue Eye spring, Saranda, and the white-sand beaches of Ksamil, with time to relax and enjoy local dining.</p>
                 </div>
                 <div class="van-option">
                   <div id="carouselExample2" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img src="./assets/images/other pages/boat-trip/daily-tours/berat1.jpeg" class="d-block w-100 rounded-top" alt="Tour View">
+                        <img src="./assets/images/other-pages/boat-trip/daily-tours/berat1.jpeg" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                       <div class="carousel-item">
-                        <img src="./assets/images/other pages/boat-trip/daily-tours/berat2.png" class="d-block w-100 rounded-top" alt="Tour View">
+                        <img src="./assets/images/other-pages/boat-trip/daily-tours/berat2.png" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                       <div class="carousel-item">
-                        <img src="./assets/images/other pages/boat-trip/daily-tours/berat3.jpg" class="d-block w-100 rounded-top" alt="Tour View">
+                        <img src="./assets/images/other-pages/boat-trip/daily-tours/berat3.jpg" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
@@ -270,11 +251,11 @@
                       <span class="carousel-control-next-icon"></span>
                     </button>
                   </div>
-                  <h3>Berat Heritage Tour</h3>
-                  <p>Discover Berat, a UNESCO city renowned for its Ottoman architecture, historic streets, and Berat Castle, offering a rich cultural experience on a day trip from Vlora.</p>
+                  <h3  data-i18n="book.bus.opt2">Berat Heritage Tour</h3>
+                  <p  data-i18n="book.bus.opt2.paragrapgh">Discover Berat, a UNESCO city renowned for its Ottoman architecture, historic streets, and Berat Castle, offering a rich cultural experience on a day trip from Vlora.</p>
                 </div>
               </div>
-              <a href="bus.html" class="btn">Book Now</a>
+              <a href="bus.html" class="btn"  data-i18n="book.bus.cta">Book Now</a>
             </div>
           </div>
         </section>
@@ -282,11 +263,11 @@
           <div class="grid2-col2-card">
             <div class="grid2-col2-1">
               <h3 class="">
-                <span>Seamless ticketing to </span>
-                <span class="enhanced">enhance</span>
-                <span>your adventure</span>
+                <span  data-i18n="grid2.card1.title">Seamless ticketing to </span>
+                <span class="enhanced" data-i18n="grid2.card1.middle">enhance</span>
+                <span data-i18n="grid2.card1.end">your adventure</span>
               </h3>
-              <p class="text-muted">Purchase your boat and daily tour tickets effortlessly through our user-friendly platform, ensuring a hassle-free start to your adventure in Vlora.</p>
+              <p class="text-muted" data-i18n="grid2.card1.paragrapgh">Purchase your boat and daily tour tickets effortlessly through our user-friendly platform, ensuring a hassle-free start to your adventure in Vlora.</p>
               <img class="" src="./assets/images/swirl.svg" alt="">
             </div>
             <div class="lupa-div lupa-div-first">
@@ -300,11 +281,11 @@
           <div class="grid2-col2-card">
             <div class="grid2-col2-1">
               <h3 class="">
-                <span>Accessible maps designed to </span>
-                <span class="enhanced">guide</span>
-                <span>every tourist</span>
+                <span data-i18n="grid2.card2.title">Accessible maps designed to </span>
+                <span class="enhanced" data-i18n="grid2.card2.middle">guide</span>
+                <span data-i18n="grid2.card2.end">every tourist</span>
               </h3>
-              <p class="text-muted">Utilize our specialized maps, including braille formats, to navigate Vlora's stunning landscapes, ensuring inclusivity for all tourists.</p>
+              <p class="text-muted" data-i18n="grid2.card2.paragrapgh">Utilize our specialized maps, including braille formats, to navigate Vlora's stunning landscapes, ensuring inclusivity for all tourists.</p>
               <img class="" src="./assets/images/globe.svg" alt="">
             </div>
             <div class="lupa-div lupa-div-main">
@@ -321,11 +302,11 @@
           <div class="grid2-col2-card">
             <div class="grid2-col2-1">
               <h3 class="">
-                <span>Engaging resources for</span>
-                <span class="enhanced">vivid experiences</span>
-                <span>in Vlora</span>
+                <span data-i18n="grid2.card3.title">Engaging resources for</span>
+                <span class="enhanced" data-i18n="grid2.card3.middle">vivid experiences</span>
+                <span data-i18n="grid2.card3.end">in Vlora</span>
               </h3>
-              <p class="text-muted">Take advantage of our audio information and sign language descriptions, fostering a deeper connection with Albanian culture.</p>
+              <p class="text-muted" data-i18n="grid2.card3.paragrapgh">Take advantage of our audio information and sign language descriptions, fostering a deeper connection with Albanian culture.</p>
               <img class="" src="./assets/images/arrow.svg" alt="">
             </div>
             <div class="lupa-div">
@@ -343,22 +324,22 @@
         <div class="counter-row row ">
           <div class="col-md-2 col-md-offset-2">      
             <h2><span class="counter" data-target="10000">0</span></h2>
-            <p>Tourists Helped</p>
+            <p data-i18n="numbers.1">Tourists Helped</p>
           </div>
           
           <div class="col-md-2">
             <h2><span class="counter" data-target="2500">0</span></h2>
-            <p>Boat Trips Booked</p>
+            <p data-i18n="numbers.2">Boat Trips Booked</p>
           </div>
           
           <div class="col-md-2">
             <h2><span class="counter" data-target="15000">0</span></h2>
-            <p> Van Tour Tickets Sold</p>
+            <p data-i18n="numbers.3"> Van Tour Tickets Sold</p>
           </div>
           
           <div class="col-md-2 counter-percent">
             <h2 style="color:#ff9c04;font-size:2.7rem;"><span class="counter" data-target="94">0 </span> %</h2>
-            <p>Happy Clients</p>
+            <p data-i18n="numbers.4">Happy Clients</p>
           </div>
            
         </div>
@@ -366,8 +347,8 @@
       <div class="grid3 testimonials-wrap">
         <div class="container">
           <div class="heading-section">
-            <span class="sub-heading">Testimonials</span>
-            <h2>Happy Clients &amp; Feedbacks</h2>
+            <span class="sub-heading" data-i18n="reviews.0">Testimonials</span>
+            <h2 data-i18n="reviews.title">Happy Clients &amp; Feedbacks</h2>
             <img src="./assets/images/four-angle-star.svg">
             <img src="./assets/images/four-angle-star.svg">
           </div>
@@ -379,12 +360,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Magda Bertino</p>
+                  <p class="name" data-i18n="review.1">Magda Bertino</p>
                     <span class="text-muted review-date" data-date="2024-07-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>Excellent experience, super helpful and competent also through Whatsapp, immediate response.</p>
+              <p data-i18n="review1.txt">Excellent experience, super helpful and competent also through Whatsapp, immediate response.</p>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -393,12 +374,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Léa Montañola</p>
+                  <p class="name" data-i18n="review.2">Léa Montañola</p>
                     <span class="text-muted review-date" data-date="2024-08-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>Very warm welcome and helpful and attentive people!</p>
+              <p data-i18n="review2.txt">Very warm welcome and helpful and attentive people!</p>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -407,12 +388,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Carmen Maestre</p>
+                  <p class="name"data-i18n="review.3">Carmen Maestre</p>
                     <span class="text-muted review-date" data-date="2024-07-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>The girl who helped us was very friendly and spoke perfect English.</p>
+              <p data-i18n="review3.txt">The girl who helped us was very friendly and spoke perfect English.</p>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -421,13 +402,13 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Megi Zenaj</p>
+                  <p class="name" data-i18n="review.4">Megi Zenaj</p>
                     <span class="text-muted review-date" data-date="2024-07-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p class="review-text">If you are looking for the best and useful information about tourism in Vlora, this info point is the right place. The staff are dedicated and very knowledgeable, offering helpful tips for exploring all the attractions this city has to offer. An excellent help for those who want to enjoy the natural beauty and culture of Vlora!</p>
-              <button class="read-more-btn">Read More</button>
+              <p class="review-text" data-i18n="review4.txt">If you are looking for the best and useful information about tourism in Vlora, this info point is the right place. The staff are dedicated and very knowledgeable, offering helpful tips for exploring all the attractions this city has to offer. An excellent help for those who want to enjoy the natural beauty and culture of Vlora!</p>
+              <button class="read-more-btn">▼▼▼</button>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -436,14 +417,14 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Armand Barjami</p>
+                  <p class="name" data-i18n="review.5">Armand Barjami</p>
                     <span class="text-muted review-date" data-date="2024-12-10"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p class="review-text">Great service, great information. We book a boat tour and I am very satisfied.
+              <p class="review-text" data-i18n="review5.txt">Great service, great information. We book a boat tour and I am very satisfied.
                 The first point in Albania that also offers information for people with different abilities.</p>
-                <button class="read-more-btn">Read More</button>
+                <button class="read-more-btn" >▼▼▼</button>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -452,15 +433,15 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Stelina Brakaj</p>
+                  <p class="name" data-i18n="review.6">Stelina Brakaj</p>
                     <span class="text-muted review-date" data-date="2024-06-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p class="review-text">All the information you may need in one place! Exchange, ATM, information for places to stay, to rental cars/motorcycles.  Very communicative people willing to help you!
+              <p class="review-text" data-i18n="review6.txt">All the information you may need in one place! Exchange, ATM, information for places to stay, to rental cars/motorcycles.  Very communicative people willing to help you!
                 They also offered information about daily trips by tourist boat to the island of Sazan, the peninsula of Karaburun and the cave of Haxhi Ali.
                 The thing that I liked the most is that it is also accessible for every person with disabilities and it is the only point in Vlore where you can get oriented.</p>
-                <button class="read-more-btn">Read More</button>
+                <button class="read-more-btn" >▼▼▼</button>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -469,13 +450,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">eX ELENT</p>
+                  <p class="name" data-i18n="review.7">eX ELENT</p>
                     <span class="text-muted review-date" data-date="2024-07-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>
-                The best place for every info you may need. Very helpful & friendly staff. We booked a boat trip & it was exactly as described!</p>
+              <p data-i18n="review7.txt">The best place for every info you may need. Very helpful & friendly staff. We booked a boat trip & it was exactly as described!</p>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -484,14 +464,14 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Ais16</p>
+                  <p class="name" data-i18n="review.8">Ais16</p>
                     <span class="text-muted review-date" data-date="2024-06-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p class="review-text">The ambiance here is always inviting and comfortable. They are reliable, honest and operate with integrity.
+              <p class="review-text" data-i18n="review8.txt">The ambiance here is always inviting and comfortable. They are reliable, honest and operate with integrity.
                 They always take the time to answer any questions I may have and provide me with all the options available for tourist trips in Vlora. Thank you for your fantastic recommendations!</p>
-              <button class="read-more-btn">Read More</button>
+              <button class="read-more-btn" >▼▼▼</button>
               </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -500,12 +480,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Odee Dj</p>
+                  <p class="name" data-i18n="review.9">Odee Dj</p>
                     <span class="text-muted review-date" data-date="2024-09-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>Wonderful service and a very kind staff!</p>
+              <p data-i18n="review9.txt">Wonderful service and a very kind staff!</p>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -514,12 +494,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Olivia Messner</p>
+                  <p class="name" data-i18n="review.10">Olivia Messner</p>
                     <span class="text-muted review-date" data-date="2024-07-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>The staff is really friendly & does their best to help you. You can ask them any questions you have regarding busses, timetables etc.</p>
+              <p data-i18n="review10.txt">The staff is really friendly & does their best to help you. You can ask them any questions you have regarding busses, timetables etc.</p>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -528,12 +508,12 @@
                 </div>
                 <div class="text pl-4">
                   <span class="quote"><i class="fa fa-quote-left"></i></span>
-                  <p class="name">Fatma Agushi</p>
+                  <p class="name" data-i18n="review.11">Fatma Agushi</p>
                     <span class="text-muted review-date" data-date="2024-07-01"></span>
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                 </div>
               </div>
-              <p>Very organized staff, finally a point of comprehensive solutions in Vlore.</p>
+              <p data-i18n="review11.txt">Very organized staff, finally a point of comprehensive solutions in Vlore.</p>
             </div>
           </div>
         </div>
@@ -542,11 +522,11 @@
       <div class="grid5 container">
         <div class="grid5-row"> 
           <div class="grid5-banner">
-            <h2 class="">Why Choose Us?</h2>
+            <h2 class="" data-i18n="grid5.title">Why Choose Us?</h2>
             <img class="" src="./assets/images/double-line.svg" alt="" data-dont-replace="">
           </div>
           <img class="" src="./assets/images/four-angle-star.svg" alt="" >
-          <p class="grid5-intro">Experience Vlora like never before with Tourist Solutions, your dedicated hub for seamless travel planning. Our center caters to all your needs, providing boat and daily van tour tickets, along with essential tourist information in various accessible formats. Learn more about our inclusivity <u><b><a href="./inclusive.html">here</a></b></u> .</p>
+          <p class="grid5-intro" data-i18n="grid5.txt">Experience Vlora like never before with Tourist Solutions, your dedicated hub for seamless travel planning. Our center caters to all your needs, providing boat and daily van tour tickets, along with essential tourist information in various accessible formats. Learn more about our inclusivity <u><b><a href="./inclusive.html">here</a></b></u> .</p>
           <img class="arrow" src="./assets/images/green-curve-shape-choose.svg" alt="">
         </div>
         <section class="why-choose-us">
@@ -554,18 +534,18 @@
             <div class="grid">
               <div class="feature">
                 <div class="icon"><img src="./assets/images/info.png"></div>
-                <h3>Comprehensive Info</h3>
-                <p>Get expert guidance on must-visit spots, travel tips, and essential tourist info.</p>
+                <h3 data-i18n="grid5.1">Comprehensive Info</h3>
+                <p data-i18n="grid5.1txt">Get expert guidance on must-visit spots, travel tips, and essential tourist info.</p>
               </div>
               <div class="feature">
                 <div class="icon"><img src="./assets/images/ticketss.jpeg"></div>
-                <h3>Boat & Daily tour Booking</h3>
-                <p>Book boat trips and van tour tickets online with ease for a seamless journey.</p>
+                <h3 data-i18n="grid5.2">Boat & Daily tour Booking</h3>
+                <p data-i18n="grid5.2txt">Book boat trips and van tour tickets online with ease for a seamless journey.</p>
               </div>
               <div class="feature">
                 <div class="icon"><img src="./assets/images/inclusive.jpeg"></div>
-                <h3>Accessibility</h3>
-                <p>Our services are designed to be inclusive for everyone, including those with special needs.</p>
+                <h3 data-i18n="grid5.3">Accessibility</h3>
+                <p data-i18n="grid5.3txt">Our services are designed to be inclusive for everyone, including those with special needs.</p>
               </div>
             </div>
           </div>
@@ -573,17 +553,16 @@
       </div>
       <section class="grid6 final-section shadow-lg">
         <div class="container">
-          <h2>Ready to Explore Vlora?</h2>
-          <p>
-            Plan your journey with us today! Whether you're booking a boat trip, a daily van tour ticket, or have any questions or inquiries, we're here to help.</p>
-          <a href="contact.html" class="cta-button">Get in Touch</a>
+          <h2 data-i18n="grid.6">Ready to Explore Vlora?</h2>
+          <p data-i18n="grid6.txt"> Plan your journey with us today! Whether you're booking a boat trip, a daily van tour ticket, or have any questions or inquiries, we're here to help.</p>
+          <a href="contact.html" class="cta-button" data-i18n="grid6.cta">Get in Touch</a>
         </div>
       </section>
       <footer class="">
         <div class="footer-columns-div">
           <div class="footer-columns col1">
             <img src="./assets/images/white-logo.png">
-            <p>
+            <p data-i18n="footer.txt">
               Your go-to travel partner in Vlora. From boat trips to daily van tours and local travel services, we’re here to make your journey smooth and enjoyable.
             </p>
             <div class="social-icons">
@@ -600,37 +579,37 @@
             </div>
           </div>
           <div class="footer-columns col2">
-            <h6>QUICK LINKS</h6>
+            <h6 data-i18n="quick.links">QUICK LINKS</h6>
             <ul>
               <li class="">
-                <a href="./about.html" class="">
+                <a href="./about.html" class="" data-i18n="quick.1">
                   About Us
                  </a>
               </li>
               <li class="">
-                <a href="./boat.html" class="">
+                <a href="./boat.html" class="" data-i18n="quick.2">
                   Book a Boat Tour
                 </a>
               </li>
               <li class="">
-                <a href="./bus.html" class="">
+                <a href="./bus.html" class="" data-i18n="quick.3">
                  Book a Van Tour
                 </a>
               </li>
               <li class="">
-                <a href="./faqs.html" class="">
+                <a href="./faqs.html" class="" data-i18n="quick.4">
                   FAQs
                 </a>
               </li>
               <li class="">
-                <a href="./contact.html" class="">
+                <a href="./contact.html" class="" data-i18n="quick.5">
                   Contact Us
                 </a>
               </li>
             </ul>
           </div>
           <div class="footer-columns col3">
-            <h6>GET IN TOUCH</h6>
+            <h6 data-i18n="footer.getintouch">GET IN TOUCH</h6>
             <ul class="get_say_info_sec">
               <li>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill=" #faf8f4b0" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -653,7 +632,7 @@
               </li>
               <li> 
                 
-                <a class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
+                <a data-i18n="find.locations" class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg> Find other locations</a>
               </li>
@@ -661,8 +640,8 @@
           </div>
         </div>
         <div class="rights ">
-          <p class="">
-            © <span id="year"> </span> | All rights reserved
+          <p class="" >
+            © <span id="year"> </span> | <span data-i18n="copy.right">All rights reserved</span>
           </p>
         </div>
         <button id="backToTopBtn">
@@ -737,6 +716,9 @@ document.addEventListener("DOMContentLoaded", () => {
   <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./index.js"></script>
-  <script src="./scripts/mainpage.js"></script>
+
+  <script src="translations.js"></script>
+<script src="lang.js"></script> 
+
 </body>
 </html>

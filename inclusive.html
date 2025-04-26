@@ -24,9 +24,9 @@
 <body>
   <div class="body-container">
      <div class="grid1">
-      <img class="banner" src="./assets/images//other pages/inclusivity.jpeg"> 
+      <img class="banner" src="./assets/images//other-pages/inclusivity.jpeg"> 
       <div class="banner-div">
-        <h1>Inclusivity</h1>
+        <h1 data-i18n="inclusivity.title">Inclusivity</h1>
         <!-- <h4>Boat trips, bus tickets, and travel info—all in one place.</h4> -->
         <!-- <button type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'"> Get Started </button> -->
       </div>
@@ -66,18 +66,18 @@
             </a>
           </div>
           <div class="dropdown-lang">
-            <button class="btn  dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               EN
             </button>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-              <li><a class="dropdown-item actively" href=""  aria-current="true" >EN <img class="flag" src="./assets/flags/en.png"></a></li>
-              <li><a class="dropdown-item" href="" >AL <img class="flag" src="./assets/flags/al.png"></a></li>
-              <li><a class="dropdown-item" href="" >IT <img class="flag" src="./assets/flags/it.png"></a></li>
-              <li><a class="dropdown-item" href="" >RU <img class="flag" src="./assets/flags/ru.png"></a></li>
-              <li><a class="dropdown-item" href="" >FR <img class="flag" src="./assets/flags/fr.png"></a></li>
-              <li><a class="dropdown-item" href="" >ES <img class="flag" src="./assets/flags/es.png"></a></li>
+              <li><a class="dropdown-item actively" href="#" data-lang="en">EN <img class="flag" src="./assets/flags/en.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="sq">AL <img class="flag" src="./assets/flags/al.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="it">IT <img class="flag" src="./assets/flags/it.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="ru">RU <img class="flag" src="./assets/flags/ru.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="fr">FR <img class="flag" src="./assets/flags/fr.png"></a></li>
+              <li><a class="dropdown-item" href="#" data-lang="es">ES <img class="flag" src="./assets/flags/es.png"></a></li>
             </ul>
-          </div>
+          </div>          
         </div>
         <div id="menuja"  style="background-color: #FAF8F4;">
           <nav class="  navbar navbar-expand-lg container">
@@ -99,41 +99,22 @@
               <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " aria-current="page" href="index.html">HOME</a>
+                    <a class="nav-link menu-item " aria-current="page" href="index.html" data-i18n="nav.home">HOME</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="services.html">SERVICES</a>
+                    <a class="nav-link menu-item " href="services.html" data-i18n="nav.services">SERVICES</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="boat.html">BOAT TRIPS</a>
+                    <a class="nav-link menu-item " href="boat.html"  data-i18n="nav.boat">BOAT TRIPS</a>
                   </li>
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="bus.html">DAILY TOURS</a>
+                    <a class="nav-link menu-item " href="bus.html"  data-i18n="nav.bus">DAILY TOURS</a>
                   </li>
-                  <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BOAT TRIPS
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Boat 1</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 2</a></li>
-                            <li><a class="dropdown-item" href="#">Boat 3</a></li>
-                          </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            BUS LINES
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Bus Line 1</a></li>
-                            <li><a class="dropdown-item" href="#">Bus Line 2</a></li>
-                          </ul>
-                        </li> -->
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="inclusive.html">INCLUSIVITY </a>
+                    <a class="nav-link menu-item " href="inclusive.html"  data-i18n="nav.inclusivity">INCLUSIVITY </a>
                   </li> 
                   <li class="nav-item nav-border-bottom">
-                    <a class="nav-link menu-item " href="contact.html">CONTACT</a>
+                    <a class="nav-link menu-item " href="contact.html"  data-i18n="nav.contact">CONTACT</a>
                   </li>
                 </ul>
               </div>
@@ -143,15 +124,15 @@
         </div>
         <div class="offcanvas offcanvas-end " data-bs-scroll="true"  tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Cart</h5>
+            <h5 id="offcanvasRightLabel"  data-i18n="cart.1">Cart</h5>
             <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body" id="cart-items">
           </div>
           <div class="cart-footer">
             <p id="grand-total"></p>
-            <button id="clearCart" class="btn-clear">Clear Cart</button>
-            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'">Checkout</button>
+            <button id="clearCart" class="btn-clear"  data-i18n="cart.clear">Clear Cart</button>
+            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'"  data-i18n="cart.checkout">Checkout</button>
         </div>
         </div>
         
@@ -159,46 +140,46 @@
      </div>
      <div class="content ">
         <section class="inclusivity-intro container">
-              <p>We believe that everyone should have the opportunity to experience the very best that Vlora has to offer. That's why we are committed to making our services as inclusive and accessible as possible. From the moment you arrive, we ensure a seamless and enjoyable experience for every traveler, regardless of their needs. Whether it's providing essential information in multiple formats or ensuring physical accessibility, our goal is to make Vlora welcoming for all.</p>
+              <p data-i18n="inclusivity.txt">We believe that everyone should have the opportunity to experience the very best that Vlora has to offer. That's why we are committed to making our services as inclusive and accessible as possible. From the moment you arrive, we ensure a seamless and enjoyable experience for every traveler, regardless of their needs. Whether it's providing essential information in multiple formats or ensuring physical accessibility, our goal is to make Vlora welcoming for all.</p>
               <video  class="inclusive-video" autoplay loop muted playsinline >
-                <source src="./assets/images/other pages/inclusive-video.mp4" type="video/mp4">
+                <source src="./assets/images/other-pages/inclusive-video.mp4" type="video/mp4">
               </video>  
-              <a href="services.html" class="btn-warning">View Services</a>
+              <a href="services.html" class="btn-warning" data-i18n="inclusivity.cta">View Services</a>
           </section>
           <section class="inclusivity-features">
             <div class="container">
-              <h3>How We Make Our Info Point Inclusive? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-wheelchair" viewBox="0 0 16 16">
+              <h3 data-i18n="inclusivity.features.title">How We Make Our Info Point Inclusive? <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-wheelchair" viewBox="0 0 16 16">
                 <path d="M12 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3m-.663 2.146a1.5 1.5 0 0 0-.47-2.115l-2.5-1.508a1.5 1.5 0 0 0-1.676.086l-2.329 1.75a.866.866 0 0 0 1.051 1.375L7.361 3.37l.922.71-2.038 2.445A4.73 4.73 0 0 0 2.628 7.67l1.064 1.065a3.25 3.25 0 0 1 4.574 4.574l1.064 1.063a4.73 4.73 0 0 0 1.09-3.998l1.043-.292-.187 2.991a.872.872 0 1 0 1.741.098l.206-4.121A1 1 0 0 0 12.224 8h-2.79zM3.023 9.48a3.25 3.25 0 0 0 4.496 4.496l1.077 1.077a4.75 4.75 0 0 1-6.65-6.65z"/>
               </svg></h3>
               <div class="features-grid">
                 <div class="feature">
-                  <img src="./assets/images/other pages/braille.png" alt="Braille Maps">
-                  <h4>Braille Maps</h4>
-                  <p>Navigation assistance with 3d maps and info & pamflets in braille for visually impaired travelers.</p>
+                  <img src="./assets/images/other-pages/braille.png" alt="Braille Maps">
+                  <h4 data-i18n="inclusivity.feature1.title">Braille Maps</h4>
+                  <p data-i18n="inclusivity.feature1.txt">Navigation assistance with 3d maps and info & pamflets in braille for visually impaired travelers.</p>
                 </div>
                 <div class="feature">
-                  <img src="./assets/images/other pages/signlang.png" alt="Sign Language Info">
-                  <h4>Sign Language Information</h4>
-                  <p>Essential travel details available in sign language for deaf and hard-of-hearing travelers.</p>
+                  <img src="./assets/images/other-pages/signlang.png" alt="Sign Language Info">
+                  <h4 data-i18n="inclusivity.feature2.title">Sign Language Information</h4>
+                  <p data-i18n="inclusivity.feature2.txt">Essential travel details available in sign language for deaf and hard-of-hearing travelers.</p>
                 </div>
                 <div class="feature">
-                  <img src="./assets/images/other pages/wheelchair.png" alt="Wheelchair Access">
-                  <h4>Wheelchair Accessibility</h4>
-                  <p>Barrier-free access inside the Info Point center for wheelchair users and individuals with mobility impairments.</p>
+                  <img src="./assets/images/other-pages/wheelchair.png" alt="Wheelchair Access">
+                  <h4 data-i18n="inclusivity.feature3.title">Wheelchair Accessibility</h4>
+                  <p data-i18n="inclusivity.feature3.txt">Barrier-free access inside the Info Point center for wheelchair users and individuals with mobility impairments.</p>
                 </div>
                 <div class="feature">
-                  <img src="./assets/images/other pages/audio.png" alt="Audio Guides">
-                  <h4>Audio Guides</h4>
-                  <p>Descriptive audio for key and essential travel information to assist visually impaired travelers.</p>
+                  <img src="./assets/images/other-pages/audio.png" alt="Audio Guides">
+                  <h4 data-i18n="inclusivity.feature4.title">Audio Guides</h4>
+                  <p data-i18n="inclusivity.feature4.txt">Descriptive audio for key and essential travel information to assist visually impaired travelers.</p>
                 </div>
               </div>
             </div>
           </section>
           <section class="cta-contact shadow-lg">
             <div class="container">
-              <h3>Have Questions About Accessibility?</h3>
-              <p>Contact us for more details on how we can assist you during your travels.</p>
-              <a href="contact.html" class="btn-primary">Get in Touch <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+              <h3 data-i18n="inclusivity.end">Have Questions About Accessibility?</h3>
+              <p data-i18n="inclusivity.end.txt">Contact us for more details on how we can assist you during your travels.</p>
+              <a href="contact.html" class="btn-primary" data-i18n="inclusivity.end.cta">Get in Touch <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
               </svg></a>
             </div>
@@ -208,7 +189,7 @@
             <div class="footer-columns-div">
               <div class="footer-columns col1">
                 <img src="./assets/images/white-logo.png">
-                <p>
+                <p data-i18n="footer.txt">
                   Your go-to travel partner in Vlora. From boat trips to daily van tours and local travel services, we’re here to make your journey smooth and enjoyable.
                 </p>
                 <div class="social-icons">
@@ -225,37 +206,37 @@
                 </div>
               </div>
               <div class="footer-columns col2">
-                <h6>QUICK LINKS</h6>
+                <h6 data-i18n="quick.links">QUICK LINKS</h6>
                 <ul>
                   <li class="">
-                    <a href="./about.html" class="">
+                    <a href="./about.html" class="" data-i18n="quick.1">
                       About Us
                      </a>
                   </li>
                   <li class="">
-                    <a href="./boat.html" class="">
+                    <a href="./boat.html" class="" data-i18n="quick.2">
                       Book a Boat Tour
                     </a>
                   </li>
                   <li class="">
-                    <a href="./bus.html" class="">
+                    <a href="./bus.html" class="" data-i18n="quick.3">
                      Book a Van Tour
                     </a>
                   </li>
                   <li class="">
-                    <a href="./faqs.html" class="">
+                    <a href="./faqs.html" class="" data-i18n="quick.4">
                       FAQs
                     </a>
                   </li>
                   <li class="">
-                    <a href="./contact.html" class="">
+                    <a href="./contact.html" class="" data-i18n="quick.5">
                       Contact Us
                     </a>
                   </li>
                 </ul>
               </div>
               <div class="footer-columns col3">
-                <h6>GET IN TOUCH</h6>
+                <h6 data-i18n="footer.getintouch">GET IN TOUCH</h6>
                 <ul class="get_say_info_sec">
                   <li>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill=" #faf8f4b0" class="bi bi-envelope-fill" viewBox="0 0 16 16">
@@ -278,7 +259,7 @@
                   </li>
                   <li> 
                     
-                    <a class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
+                    <a data-i18n="find.locations" class="find-other-locations" href="./contact.html#location-section"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2973B2" class="bi bi-search" viewBox="0 0 16 16">
                       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                     </svg> Find other locations</a>
                   </li>
@@ -286,8 +267,8 @@
               </div>
             </div>
             <div class="rights ">
-              <p class="">
-                © <span id="year"> </span> | All rights reserved
+              <p class="" >
+                © <span id="year"> </span> | <span data-i18n="copy.right">All rights reserved</span>
               </p>
             </div>
             <button id="backToTopBtn">
@@ -319,5 +300,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="./index.js"></script>
+  <script src="translations.js"></script>
+  <script src="lang.js"></script> 
 </body>
 </html>

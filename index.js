@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
             button.style.display = "inline-block";
 
             button.addEventListener("click", function () {
-                if (button.innerText === "Read More") {
+                if (button.innerText === "▼▼▼") {
                     review.innerHTML = fullText;
-                    button.innerText = "Read Less";
+                    button.innerText = "▲▲▲";
                 } else {
                     review.innerHTML = truncatedText;
-                    button.innerText = "Read More";
+                    button.innerText = "▼▼▼";
                 }
             });
         } else {
@@ -129,42 +129,55 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateCartDisplay() {
         cartItemsContainer.innerHTML = "";
         let total = 0;
-
         cart.forEach((item, index) => {
             total += item.totalPrice;
             const cartItem = document.createElement("div");
             cartItem.classList.add("cart-item");
+    
             cartItem.innerHTML = `
                 <img src="${item.image}" class="cart-image" alt="${item.name}">
                 <div>
-                    <p><strong>${item.name} ${item.headline}</strong></p>
-                    <p>${item.date}</p>
-                    ${item.adults ? `<p>Adults: ${item.adults}</p>` : ""}
-                    ${item.children ? `<p>Children: ${item.children}</p>` : ""}
-                    ${item.infants ? `<p>Infants: ${item.infants}</p>` : ""}
-                    <p><strong>Total: €${item.totalPrice?.toLocaleString() || "0"} </strong></p>
-                     <button class="remove-btn" data-index="${index}">Remove</button>
+                    <p><strong>${item.name} ${t(item.headlineKey)}</strong></p>
+                    <p >${item.date}</p>
+                    ${item.adults ? `<p><span data-i18n="cart.item.adults">Adults</span> : ${item.adults}</p>` : ""}
+                    ${item.children ? `<p ><span data-i18n="cart.item.children">Children</span> : ${item.children}</p>` : ""}
+                    ${item.infants ? `<p ><span data-i18n="cart.item.infants">Infants</span> : ${item.infants}</p>` : ""}
+                    ${item.extras && item.extras.length
+                        ? `<p>${t("checkout.extras")} ` +
+                            item.extras.map(e => `${t(e.key)} x${e.qty}`).join(", ") +
+                          `</p>`
+                        : ""
+                      }
+                    <p><strong ><span data-i18n="cart.item.total">Total </span>: €${item.totalPrice.toLocaleString()}</strong></p>
+                    <button class="remove-btn" data-index="${index}" data-i18n="cart.item.remove">Remove</button>
                 </div>
             `;
+            
             cartItemsContainer.appendChild(cartItem);
         });
-
-        grandTotalContainer.textContent = `Grand total: € ${total.toLocaleString()} `;
+    
+        // grandTotalContainer.setAttribute("data-i18n", "cart.grandTotal");
+        grandTotalContainer.innerHTML = `<span data-i18n="cart.grandTotal">Grand total</span>: €${total.toLocaleString()}`;
         cartItemCount.textContent = cart.length;
-
-               // Get buttons
-    const clearCartBtn = document.getElementById("clearCart");
-    const checkoutBtn = document.getElementById("checkout");
-
-    // Disable buttons if cart is empty
-    if (cart.length === 0) {
-        clearCartBtn.disabled = true;
-        checkoutBtn.disabled = true;
-    } else {
-        clearCartBtn.disabled = false;
-        checkoutBtn.disabled = false;
+    
+        // Get buttons
+        const clearCartBtn = document.getElementById("clearCart");
+        const checkoutBtn = document.getElementById("checkout");
+    
+        // Disable buttons if cart is empty
+        if (cart.length === 0) {
+            clearCartBtn.disabled = true;
+            checkoutBtn.disabled = true;
+        } else {
+            clearCartBtn.disabled = false;
+            checkoutBtn.disabled = false;
+        }
+    
+        // ✅ Refresh translations
+        applyTranslations(localStorage.getItem("lang") || "en");
     }
-    }
+    
+    
 
     document.getElementById("clearCart").addEventListener("click", function () {
         cart = [];
