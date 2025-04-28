@@ -554,7 +554,7 @@ const translations = {
   "nav.contact": "KONTAKT",
   "cart.1": "Shporta",
   "cart.clear": "Pastro Shportën",
-  "cart.checkout": "Pagesë",
+  "cart.checkout": "Paguaj",
   grid2: {
     title: "Zbuloni Vlorën me Tourist Solutions",
     paragrapgh: "Një pikë multifunksionale informacioni & shërbimi për turistët, e aksesueshme për të gjithë. Rezervoni online udhëtime me anije dhe ture me minibus, dhe vizitoni shtëpinë tonë për informacione udhëtimi, këmbim valute, makina me qira dhe akomodim—për një eksperiencë pa shqetësime në Vlorë.",

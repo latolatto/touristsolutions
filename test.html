@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form">
+        <form action="mailto:latolatto16@gmail.com?subject=MessageFromWebsite" method="post" enctype="text/plain" id="myform" target="_blank">
+          <label>Name:</label>
+          <input type="text" name="yourName"><br>
+          <label>Email:</label>
+          <input type="email" name="yourEmail"><br>
+          <label>Message:</label><br>
+          <textarea rows="10" cols="30" name="yourMessage"></textarea><br>
+          <button type="submit" class="button"><span>Submit</span></button>
+        </form>
+      </div>
+
+      <script>
+        window.addEventListener("load", function() {
+  document.getElementById("myform").addEventListener("click", function(e) {
+    e.preventDefault() // remove after testing
+    let url = new URL(this.href);
+    const name = document.querySelector("[name=yourName]").value.trim();
+    const email = document.querySelector("[name=yourEmail]").value.trim();
+    const message = document.querySelector("[name=yourMessage]").value.trim();
+    url.searchParams.set("from", email);
+    url.searchParams.set("subject", "Message from " + (document.title || location.hostname))
+    url.searchParams.set("body", name + " said " + message)
+    this.href=url;
+    console.log(url)
+  })
+});
+      </script>
+</body>
+</html>

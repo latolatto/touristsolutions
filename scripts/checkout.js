@@ -124,13 +124,52 @@ ${item.infants? t("checkout.infants")+": "+item.infants+"\n":""}`;
 
 
     // Attach PDF and submit email via fetch
-    const dt = new DataTransfer();
-    dt.items.add(new File([pdfBlob],filename,{type:"application/pdf"}));
-    document.getElementById("pdfInput").files = dt.files;
+//     const dt = new DataTransfer();
+//     dt.items.add(new File([pdfBlob],filename,{type:"application/pdf"}));
+//     document.getElementById("pdfInput").files = dt.files;
 
-    const form = document.getElementById("hidden-email-form");
-    fetch(form.action, { method:"POST", body:new FormData(form) });
-console.log("email sent successfully");
+//     const form = document.getElementById("hidden-email-form");
+
+
+
+// fetch(form.action, { method: "POST", body: new FormData(form) })
+//   .then(response => {
+//     if (response.ok) {
+//       console.log("Email sent successfully");
+//     } else {
+//       console.error("Failed to send email");
+//     }
+//   })
+//   .catch(error => {
+//     console.error("Error sending email:", error);
+//   });
+// 1. Grab the hidden form
+const form = document.getElementById("hidden-email-form");
+
+// 2. Build a fresh FormData from it
+const formData = new FormData(form);
+
+// 3. Manually append the PDF blob so it works on mobile
+formData.append("pdfInput",
+  new File([pdfBlob], filename, { type: "application/pdf" })
+);
+
+// 4. Send to FormSubmit
+fetch(form.action, { method: "POST", body: formData })
+  .then(response => {
+    if (response.ok) {
+      console.log("Email sent successfully");
+    } else {
+      console.error("FormSubmit error:", response.status, response.statusText);
+    }
+  })
+  .catch(err => {
+    console.error("Network error sending email:", err);
+  });
+
+
+
+
     // Clear storage
     localStorage.removeItem("cart");
     localStorage.removeItem("customerData");
@@ -191,118 +230,107 @@ console.log("email sent successfully");
     }
   }).render("#paypal-button-container");
 
-  // PDF generation (keeps your layout)
-  function generatePDF(customerData, returnBlob = true) {
-    return new Promise((resolve) => {
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      const pageHeight = doc.internal.pageSize.getHeight();
-      const marginBottom = 10;
-      const newPageTopMargin = 40;
-  
-      // Logo & header
-      let logoPromise = new Promise(res => {
-        let img = new Image();
-        img.src = "./assets/images/logo.png";
-        img.onload = () => {
-          doc.addImage(img, "PNG", 80, 5, 50, 20);
-          res();
-        };
+// PDF generation (keeps your layout)
+async function generatePDF(customerData, returnBlob = true) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const marginBottom = 10;
+  const newPageTopMargin = 40;
+
+  // Logo & header
+  await new Promise(res => {
+    const img = new Image();
+    img.src = "./assets/images/logo.png";
+    img.onload = () => {
+      doc.addImage(img, "PNG", 80, 5, 50, 20);
+      res();
+    };
+  });
+
+  // Business info
+  doc.setFontSize(16).text("Tourist Solutions", 80, 30);
+  doc.setFontSize(10)
+     .text("Email: support@touristsolutions.info", 80, 37)
+     .text("Phone: +355698136849", 80, 44);
+
+  // Customer details
+  doc.setFontSize(12).text("Order Confirmation", 10, 55);
+  doc.setFontSize(10);
+  let y = 65;
+  doc.text(`Name: ${customerData.name} ${customerData.surname}`, 10, y); y += 8;
+  doc.text(`Email: ${customerData.email}`, 10, y);                     y += 8;
+  doc.text(`Phone: ${customerData.phone}`, 10, y);                     y += 8;
+  doc.text(`Agency: ${customerData.agency || "______________________________"}`, 10, y); y += 12;
+
+  // Order Tickets header
+  doc.setFontSize(12).text("Order Tickets:", 10, y);
+  y += 10;
+
+  let total = 0;
+
+  // Loop tickets synchronously
+  for (const item of cart) {
+    // Page break if needed
+    if (y + 60 > pageHeight - marginBottom) {
+      doc.addPage();
+      y = newPageTopMargin;
+    }
+    const ticketY = y;
+    total += item.totalPrice;
+
+    // Draw border & text
+    doc.setDrawColor(0).setLineWidth(0.5).rect(10, ticketY, 180, 55);
+    const isBus = item.name.includes("Vlora-");
+    const headline = isBus ? "Daily Van Tour" : "Boat Tour";
+    doc.setFont("helvetica","bold").text(`${item.name} - ${headline}`, 45, ticketY + 10);
+    doc.setFont("helvetica","normal").text(`Date: ${item.date}`, 45, ticketY + 18);
+    if (item.adults)   doc.text(`Adults: ${item.adults}`, 45, ticketY + 36);
+    if (item.children) doc.text(`Children: ${item.children}`, 45, ticketY + 44);
+    if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
+    doc.text("Extras:", 120, ticketY + 10);
+    if (item.extras?.length) {
+      item.extras.forEach((e, i) => {
+        const label = translations.en[e.key];
+        doc.text(`• ${label} x${e.qty}`, 120, ticketY + 18 + i * 8);
       });
-  
-      // Business info
-      doc.setFontSize(16).text("Tourist Solutions", 80, 30);
-      doc.setFontSize(10)
-         .text("Email: support@touristsolutions.info", 80, 37)
-         .text("Phone: +355698136849", 80, 44);
-  
-      // Customer details
-      doc.setFontSize(12).text("Order Confirmation", 10, 55);
-      doc.setFontSize(10);
-      let y = 65;
-      doc.text(`Name: ${customerData.name} ${customerData.surname}`, 10, y); y+=8;
-      doc.text(`Email: ${customerData.email}`, 10, y);                     y+=8;
-      doc.text(`Phone: ${customerData.phone}`, 10, y);                     y+=8;
-      doc.text(`Agency: ${customerData.agency||"______________________________"}`, 10, y);              y+=12;
-  
-      // Order Tickets
-      doc.setFontSize(12).text("Order Tickets:", 10, y); y+=10;
-      let promises = [logoPromise];
-      let total = 0;
-  
-      cart.forEach(item => {
-        if (y + 60 > pageHeight - marginBottom) {
-          doc.addPage();
-          y = newPageTopMargin;
-        }
-        const ticketY = y;
-        total += item.totalPrice;
-  
-        // Ticket border
-        doc.setDrawColor(0).setLineWidth(0.5).rect(10, ticketY, 180, 55);
-  
-        // Item image
-        let imgP = new Promise(res => {
-          let img = new Image();
-          img.src = item.image;
-          img.onload = () => {
-            doc.addImage(img, "JPEG", 12, ticketY + 3, 30, 30);
-            res();
-          };
-        });
-        promises.push(imgP);
-  
-        // Headline in English
-        const isBus = item.name.includes("Vlora-");
-        const headline = isBus ? "Daily Van Tour" : "Boat Tour";
-        doc.setFont("helvetica","bold").text(`${item.name} - ${headline}`,45,ticketY+10);
-        doc.setFont("helvetica","normal").text(`Date: ${item.date}`,45,ticketY+18);
-  
-        if (item.adults)   doc.text(`Adults: ${item.adults}`,45,ticketY+36);
-        if (item.children) doc.text(`Children: ${item.children}`,45,ticketY+44);
-        if (item.infants)  doc.text(`Infants: ${item.infants}`,45,ticketY+52);
-  
-        // Extras as array
-        doc.text("Extras:", 120, ticketY + 10);
-        if (Array.isArray(item.extras) && item.extras.length) {
-          item.extras.forEach((e, idx) => {
-            // For the PDF, we want English labels (per your earlier request)
-            const label = translations.en[e.key];
-            doc.text(`• ${label} x${e.qty}`, 120, ticketY + 18 + idx * 8);
-          });
-        } else {
-          doc.text("None", 120, ticketY + 18);
-        }
-        doc.setFont("helvetica","bold")
-           .text(`Price: €${item.totalPrice.toLocaleString()}`,120,ticketY+40);
-  
-        y += 60;
-      });
-  
-      // Total Price
-      if (y > pageHeight - marginBottom) {
-        doc.addPage();
-        y = newPageTopMargin;
-      }
-      doc.setFontSize(12).text(`Total: € ${total.toLocaleString()}`, 10, y);
-  
-      // Wait for all images to finish
-      Promise.all(promises).then(() => {
-        if (returnBlob) {
-          // For auto-download/email path
-          const blob = doc.output("blob");
-          resolve(blob);
-        } else {
-          // Manual download path
-          const count = localStorage.getItem("orderCount") || "1";
-          doc.save(`Order_Confirmation_#${count}.pdf`);
-          resolve();
-        }
-    });
+    } else {
+      doc.text("None", 120, ticketY + 18);
+    }
+    doc.setFont("helvetica","bold")
+       .text(`Price: €${item.totalPrice.toLocaleString()}`, 120, ticketY + 40);
+
+    // Load & draw image inline
+    await new Promise(res => {
+      const img = new Image();
+      img.src = item.image;
+      img.onload = () => {
+        doc.addImage(img, "JPEG", 12, ticketY + 3, 30, 30);
+        res();
+      };
+      img.onerror = () => res();
     });
 
-  
+    // Advance y
+    y += 70;
   }
+
+  // Total Price
+  if (y > pageHeight - marginBottom) {
+    doc.addPage();
+    y = newPageTopMargin;
+  }
+  doc.setFontSize(12).text(`Total: € ${total.toLocaleString()}`, 10, y);
+
+  // Return or save
+  if (returnBlob) {
+    return doc.output("blob");
+  } else {
+    const count = localStorage.getItem("orderCount") || "1";
+    doc.save(`Order_Confirmation_#${count}.pdf`);
+  }
+}
+
   
 
   // Disable if cart is empty
@@ -316,7 +344,7 @@ console.log("email sent successfully");
     location.reload();
     localStorage.removeItem("cart");
     localStorage.removeItem("customerData");
-     const formFields = document.querySelectora('form input, form select, form textarea, form button');
+     const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
         formFields.forEach(field => field.disabled = true);
 
 
