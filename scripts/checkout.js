@@ -102,8 +102,23 @@ ${item.infants? t("checkout.infants")+": "+item.infants+"\n":""}`;
       formatted+=`${t("checkout.subtotal")}: €${item.totalPrice.toLocaleString()}\n`;
     });
     formatted+=`==============================\n${t("checkout.total")}: €${orderTotal.textContent}`;
+    const hiddenForm = document.getElementById("hidden-email-form");
     document.getElementById("hidden-order-summary").value = formatted;
-
+    
+    // Append to DOM just to be safe
+    document.body.appendChild(hiddenForm);
+    
+    // Ensure the form has a visible submit button or trigger one manually
+    const fakeButton = document.createElement("button");
+    fakeButton.type = "submit";
+    fakeButton.style.display = "none";
+    hiddenForm.appendChild(fakeButton);
+    
+    // Actually submit the form
+    setTimeout(() => {
+      fakeButton.click();
+    }, 500);  // give it a small delay to settle
+    
     // Generate PDF (force English for pdf)
     const prevLang = localStorage.getItem("lang");
     localStorage.setItem("lang","en");
