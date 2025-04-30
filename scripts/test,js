@@ -96,27 +96,6 @@ ${item.infants? t("checkout.infants")+": "+item.infants+"\n":""}`;
 
     downloadOrderBtn.onclick = () => generatePDF(cust, false);
 
-
-    // Attach PDF and submit email via fetch
-//     const dt = new DataTransfer();
-//     dt.items.add(new File([pdfBlob],filename,{type:"application/pdf"}));
-//     document.getElementById("pdfInput").files = dt.files;
-
-//     const form = document.getElementById("hidden-email-form");
-
-
-
-// fetch(form.action, { method: "POST", body: new FormData(form) })
-//   .then(response => {
-//     if (response.ok) {
-//       console.log("Email sent successfully");
-//     } else {
-//       console.error("Failed to send email");
-//     }
-//   })
-//   .catch(error => {
-//     console.error("Error sending email:", error);
-//   });
 // 1. Grab the hidden form
 const form = document.getElementById("hidden-email-form");
 
