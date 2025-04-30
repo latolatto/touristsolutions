@@ -44,88 +44,126 @@ document.addEventListener("DOMContentLoaded", function () {
   async function showConfirmation() {
     if (!transactionSucceeded) return;
     modal.style.display = "flex";
-  
-    // 1️⃣ Build modal display
+
+    // Retrieve customer data
     const cust = JSON.parse(localStorage.getItem("customerData")) || {};
+
+    // Build modal HTML
     orderDetails.innerHTML = `
       <h3>${t("checkout.customer.details")}</h3>
       <p><strong>${t("checkout.name")}:</strong> ${cust.name} ${cust.surname}</p>
       <p><strong>${t("checkout.email")}:</strong> ${cust.email}</p>
       <p><strong>${t("checkout.phone")}:</strong> ${cust.phone}</p>
-      <p><strong>${t("checkout.agency")}:</strong> ${cust.agency || "—"}</p>
+      <p><strong>${t("checkout.agency")}:</strong> ${cust.agency||"_________________________________"}</p>
       <h3>${t("checkout.order.summary")}</h3>
       ${cart.map((item,i)=>`
         <div class="order-item">
           <p><strong>${t("checkout.product")} ${i+1}:</strong> ${item.name}</p>
           <p>${t("checkout.date")}: ${item.date}</p>
-          ${item.adults ? `<p>${t("checkout.adults")}: ${item.adults}</p>` : ""}
-          ${item.children ? `<p>${t("checkout.children")}: ${item.children}</p>` : ""}
-          ${item.infants ? `<p>${t("checkout.infants")}: ${item.infants}</p>` : ""}
-          ${item.extras?.length
-            ? `<p>${t("checkout.extras")}: ` +
-                item.extras.map(e=>`${t(e.key)} x${e.qty}`).join(", ")
-              + `</p>`
+          ${item.adults    ? `<p>${t("checkout.adults")}: ${item.adults}</p>`    : ""}
+          ${item.children  ? `<p>${t("checkout.children")}: ${item.children}</p>`: ""}
+          ${item.infants   ? `<p>${t("checkout.infants")}: ${item.infants}</p>`  : ""}
+          ${item.extras&&item.extras.length
+            ? `<p>${t("checkout.extras")}: `+
+                item.extras.map(e=>`${t(e.key)} x${e.qty}`).join(", ")+
+              `</p>`
             : ""
           }
           <p><strong>€${item.totalPrice.toLocaleString()}</strong></p>
         </div>`).join("")}
       <h3>${t("checkout.total")}: €${orderTotal.textContent}</h3>
     `;
-  
-    // 2️⃣ Populate hidden form fields
+
+    // Prepare hidden form fields
     document.getElementById("hidden-name").value    = cust.name;
     document.getElementById("hidden-surname").value = cust.surname;
     document.getElementById("hidden-email").value   = cust.email;
     document.getElementById("hidden-phone").value   = cust.phone;
-    document.getElementById("hidden-agency").value  = cust.agency || "";
-  
-    // Build plaintext summary
+    document.getElementById("hidden-agency").value  = cust.agency||"__________________";
+
+    // Build plain‐text order summary for email
     let formatted = "";
-    cart.forEach((item,i) => {
-      formatted += `\n------------------------------\n`;
-      formatted += `${t("checkout.product")} ${i+1}: ${item.name.toUpperCase()}\n`;
-      if(item.date)     formatted += `${t("checkout.date")}: ${item.date}\n`;
-      if(item.adults)   formatted += `${t("checkout.adults")}: ${item.adults}\n`;
-      if(item.children) formatted += `${t("checkout.children")}: ${item.children}\n`;
-      if(item.infants)  formatted += `${t("checkout.infants")}: ${item.infants}\n`;
-      if(item.extras?.length) {
-        formatted += `${t("checkout.extras")}:\n`;
-        item.extras.forEach(e => {
-          formatted += `  • ${t(e.key)} x${e.qty}\n`;
+    cart.forEach((item,i)=>{
+      formatted+=`
+------------------------------
+${t("checkout.product")} ${i+1}: ${item.name.toUpperCase()}
+${item.date? t("checkout.date")+": "+item.date+"\n":""}
+${item.adults? t("checkout.adults")+": "+item.adults+"\n":""}
+${item.children? t("checkout.children")+": "+item.children+"\n":""}
+${item.infants? t("checkout.infants")+": "+item.infants+"\n":""}`;
+      if(item.extras&&item.extras.length){
+        formatted+=t("checkout.extras")+":\n";
+        item.extras.forEach(e=>{
+          formatted+=`  • ${t(e.key)} x${e.qty}\n`;
         });
+      } else {
+        formatted+=`${t("checkout.extras")}: None\n`;
       }
-      formatted += `${t("checkout.subtotal")}: €${item.totalPrice.toLocaleString()}\n`;
+      formatted+=`${t("checkout.subtotal")}: €${item.totalPrice.toLocaleString()}\n`;
     });
-    formatted += `\n==============================\n${t("checkout.total")}: €${orderTotal.textContent}`;
+    formatted+=`==============================\n${t("checkout.total")}: €${orderTotal.textContent}`;
+    const hiddenForm = document.getElementById("hidden-email-form");
     document.getElementById("hidden-order-summary").value = formatted;
-  
-    // 3️⃣ Generate the PDF (force English)
+    
+    // Append to DOM just to be safe
+    document.body.appendChild(hiddenForm);
+    
+    // Ensure the form has a visible submit button or trigger one manually
+    const fakeButton = document.createElement("button");
+    fakeButton.type = "submit";
+    fakeButton.style.display = "none";
+    hiddenForm.appendChild(fakeButton);
+
+    // document.querySelector('input[name="_next"]').value = "";
+    
+    // Actually submit the form
+    setTimeout(() => {
+      fakeButton.click();
+    }, 500);  // give it a small delay to settle
+    
+    // Generate PDF (force English for pdf)
     const prevLang = localStorage.getItem("lang");
     localStorage.setItem("lang","en");
     const pdfBlob = await generatePDF(cust);
     localStorage.setItem("lang", prevLang);
-  
-    // Auto-download PDF
-    const count = parseInt(localStorage.getItem("orderCount")||"0",10) + 1;
-    localStorage.setItem("orderCount", count);
+
+    // Auto‐download PDF
+    const count = parseInt(localStorage.getItem("orderCount")||"0",10)+1;
+    localStorage.setItem("orderCount",count);
     const filename = `Order_Confirmation_#${count}.pdf`;
     document.querySelector('input[name="_subject"]').value = `Order Confirmation #${count}`;
     const a = document.createElement("a");
     a.href = URL.createObjectURL(pdfBlob);
     a.download = filename;
     a.click();
-  
-    // 4️⃣ Attach PDF to form and submit into hidden iframe
-    const hiddenForm = document.getElementById("hidden-email-form");
-    const pdfInput   = document.getElementById("pdfInput");
-    const dt         = new DataTransfer();
-    dt.items.add(new File([pdfBlob], filename, { type: "application/pdf" }));
-    pdfInput.files = dt.files;
-  
-    // Perform a native form POST into the invisible iframe
-    hiddenForm.submit();
-  
-    // 5️⃣ Cleanup
+
+    downloadOrderBtn.onclick = () => generatePDF(cust, false);
+
+// 1. Grab the hidden form
+const form = document.getElementById("hidden-email-form");
+
+// 2. Build a fresh FormData from it
+const formData = new FormData(form);
+
+// 3. Manually append the PDF blob so it works on mobile
+formData.append("pdfInput",
+  new File([pdfBlob], filename, { type: "application/pdf" })
+);
+
+// 4. Send to FormSubmit
+fetch(form.action, { method: "POST", body: formData })
+  .then(response => {
+    if (response.ok) {
+      console.log("Email sent successfully");
+    } else {
+      console.error("FormSubmit error:", response.status, response.statusText);
+    }
+  })
+  .catch(err => {
+    console.error("Network error sending email:", err);
+  });
+
+    // Clear storage
     localStorage.removeItem("cart");
     localStorage.removeItem("customerData");
   }
