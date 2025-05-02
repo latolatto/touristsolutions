@@ -189,7 +189,7 @@ document.getElementById("hidden-order-summary").value = formatted;
 
     // 5) Build and send FormData
     const fd = new FormData(hiddenForm);
-    fd.append("_attachment", new File([pdfBlob], `Order_${count}.pdf`, {
+    fd.append("_attachment", new File([pdfBlob], `Order_${orderNumber}.pdf`, {
       type: "application/pdf"
     }));
 
