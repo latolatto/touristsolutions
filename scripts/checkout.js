@@ -181,7 +181,7 @@ document.getElementById("hidden-order-summary").value = formatted;
     hiddenForm.querySelector("#hidden-email").value   = cust.email;
     hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
     hiddenForm.querySelector("#hidden-agency").value  = cust.agency||"";
-    hiddenForm.querySelector("#hidden-order-summary").value = summary;
+    hiddenForm.querySelector("#hidden-order-summary").value = formatted;
     hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
     // 4) Generate PDF
