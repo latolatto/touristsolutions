@@ -110,46 +110,71 @@ document.addEventListener("DOMContentLoaded", function () {
     // Populate modal (exactly as you had)
     const cust = JSON.parse(localStorage.getItem("customerData")) || {};
     orderDetails.innerHTML = `
-      <h3>Customer Details</h3>
-      <p>Name: ${cust.name} ${cust.surname}</p>
-      <p>Email: ${cust.email}</p>
-      <p>Phone: ${cust.phone}</p>
-      <p>Agency: ${cust.agency||"—"}</p>
-      <h3>Order Summary</h3>
-      ${cart.map((it,i)=>`
-        <div class="order-item">
-          <p><strong>Product ${i+1}:</strong> ${it.name}</p>
-          <p>Date: ${it.date}</p>
-          ${it.adults? `<p>Adults: ${it.adults}</p>` : ""}
-          ${it.children? `<p>Children: ${it.children}</p>` : ""}
-          ${it.infants? `<p>Infants: ${it.infants}</p>` : ""}
-          <p><strong>€${it.totalPrice.toLocaleString()}</strong></p>
-        </div>`).join("")}
-      <h3>Total: €${orderTotal.textContent}</h3>
-    `;
+    <h3>${t("checkout.customer.details")}</h3>
+    <p><strong>${t("checkout.name")}:</strong> ${cust.name} ${cust.surname}</p>
+    <p><strong>${t("checkout.email")}:</strong> ${cust.email}</p>
+    <p><strong>${t("checkout.phone")}:</strong> ${cust.phone}</p>
+    <p><strong>${t("checkout.agency")}:</strong> ${cust.agency||"_________________________________"}</p>
+    <h3>${t("checkout.order.summary")}</h3>
+    ${cart.map((item,i)=>`
+      <div class="order-item">
+        <p><strong>${t("checkout.product")} ${i+1}:</strong> ${item.name}</p>
+        <p>${t("checkout.date")}: ${item.date}</p>
+        ${item.adults    ? `<p>${t("checkout.adults")}: ${item.adults}</p>`    : ""}
+        ${item.children  ? `<p>${t("checkout.children")}: ${item.children}</p>`: ""}
+        ${item.infants   ? `<p>${t("checkout.infants")}: ${item.infants}</p>`  : ""}
+        ${item.extras&&item.extras.length
+          ? `<p>${t("checkout.extras")}: `+
+              item.extras.map(e=>`${t(e.key)} x${e.qty}`).join(", ")+
+            `</p>`
+          : ""
+        }
+        <p><strong>€${item.totalPrice.toLocaleString()}</strong></p>
+      </div>`).join("")}
+    <h3>${t("checkout.total")}: €${orderTotal.textContent}</h3>
+  `;
 
     // Now send email + PDF
     await submitOrder();
   }
 
   async function submitOrder() {
+    console.log("→ submitOrder fired");
     // 1) Prevent any native form redirect
     hiddenForm.addEventListener("submit", e => e.preventDefault());
 
     // 2) Gather data
     const cust = JSON.parse(localStorage.getItem("customerData")) || {};
-    const count = getOrderNumber();
+    const orderNumber = generateOrderNumber();
     // plain-text summary
-    let summary = cart.map((it,i)=>`
---- Product ${i+1} ---
-Name: ${it.name}
-Date: ${it.date}
-${it.adults? "Adults: "+it.adults+"\n":""}
-${it.children? "Children: "+it.children+"\n":""}
-${it.infants? "Infants: "+it.infants+"\n":""}
-€${it.totalPrice.toLocaleString()}
-`).join("\n");
-    summary += `\nTotal: €${orderTotal.textContent}`;
+// Build plain‑text order summary for email
+let formatted = "";
+cart.forEach((item, i) => {
+  formatted += `
+------------------------------
+${t("checkout.product")} ${i+1}: ${item.name.toUpperCase()}
+${item.date ? t("checkout.date") + ": " + item.date + "\n" : ""}
+${item.adults ? t("checkout.adults") + ": " + item.adults + "\n" : ""}
+${item.children ? t("checkout.children") + ": " + item.children + "\n" : ""}
+${item.infants ? t("checkout.infants") + ": " + item.infants + "\n" : ""}`;
+
+  if (item.extras && item.extras.length) {
+    formatted += `${t("checkout.extras")}:\n`;
+    item.extras.forEach(e => {
+      formatted += `  • ${t(e.key)} x${e.qty}\n`;
+    });
+  } else {
+    formatted += `${t("checkout.extras")}: None\n`;
+  }
+
+  formatted += `${t("checkout.subtotal")}: €${item.totalPrice.toLocaleString()}\n`;
+});
+
+formatted += `==============================\n${t("checkout.total")}: €${orderTotal.textContent}`;
+
+// Put into hidden field
+document.getElementById("hidden-order-summary").value = formatted;
+
 
     // 3) Fill hidden inputs
     hiddenForm.querySelector("#hidden-name").value    = cust.name;
@@ -158,7 +183,7 @@ ${it.infants? "Infants: "+it.infants+"\n":""}
     hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
     hiddenForm.querySelector("#hidden-agency").value  = cust.agency||"";
     hiddenForm.querySelector("#hidden-order-summary").value = summary;
-    hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${count}`;
+    hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
     // 4) Generate PDF
     const pdfBlob = await generatePDF(cust, true);
@@ -170,14 +195,13 @@ ${it.infants? "Infants: "+it.infants+"\n":""}
     }));
 
     try {
-      const res = await fetch(hiddenForm.action, {
-        method: hiddenForm.method,
-        body: fd
-      });
+      console.log("→ sending email…");
+      const res = await fetch(hiddenForm.action, { method: hiddenForm.method, body: fd });
+      console.log("FormSubmit responded:", res.status, res.statusText);
       if (!res.ok) throw new Error(res.statusText);
-      console.log("Email sent with PDF!");
+      console.log("✅ Email sent with PDF!");
     } catch (err) {
-      console.error("FormSubmit error:", err);
+      console.error("❌ FormSubmit error:", err);
     }
 
     // 6) Hook download button
@@ -189,11 +213,9 @@ ${it.infants? "Infants: "+it.infants+"\n":""}
   }
 
   // ───── Shared Order Count ─────
-  function getOrderNumber() {
-    const key = "globalOrderCount";
-    let n = parseInt(localStorage.getItem(key) || "0", 10) + 1;
-    localStorage.setItem(key, n);
-    return n;
+  function generateOrderNumber() {
+    const now = new Date();
+    return now.toISOString().replace(/[-:.]/g, "").replace("Z", "Z");
   }
 
 // PDF generation (keeps your layout)
@@ -264,7 +286,7 @@ async function generatePDF(customerData, returnBlob = true) {
       doc.text("None", 120, ticketY + 18);
     }
     doc.setFont("helvetica","bold")
-       .text(`Price: €${item.totalPrice.toLocaleString()}`, 120, ticketY + 40);
+       .text(`Price: € ${item.totalPrice.toLocaleString()}`, 120, ticketY + 40);
 
     // Load & draw image inline
     await new Promise(res => {
@@ -292,7 +314,7 @@ async function generatePDF(customerData, returnBlob = true) {
   if (returnBlob) {
     return doc.output("blob");
   } else {
-    doc.save(`Order_${getOrderNumber()}.pdf`);
+    doc.save(`Order_${orderNumber}.pdf`);
   }
 }
 
