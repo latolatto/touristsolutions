@@ -175,7 +175,6 @@ formatted += `==============================\n${t("checkout.total")}: €${order
 // Put into hidden field
 document.getElementById("hidden-order-summary").value = formatted;
 
-
     // 3) Fill hidden inputs
     hiddenForm.querySelector("#hidden-name").value    = cust.name;
     hiddenForm.querySelector("#hidden-surname").value = cust.surname;
