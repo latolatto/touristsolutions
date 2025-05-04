@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Departure -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/port.webp"></span>
+                                <span class="fs-4 me-3"><img alt="departure" width="70" src="./assets/images/other-pages/boat-trip/port.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.departure.title">Departure</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.departure.time"><strong>10:00 AM </strong>from Vlora Civil Port</p>
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Stop 1: Karaburun Beach -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/karaburun.webp"></span>
+                                <span class="fs-4 me-3"><img alt="beach" width="70" src="./assets/images/other-pages/boat-trip/karaburun.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop1">Stop 1 – Karaburun Beach</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.stop1.txt">Enjoy a relaxing beach stay (approximately <strong>3-4 hours</strong>).</p>
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Stop 2: Haxhi Ali Cave -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/haxhi-ali.webp"></span>
+                                <span class="fs-4 me-3"><img alt="cave" width="70" src="./assets/images/other-pages/boat-trip/haxhi-ali.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop2">Stop 2 – Haxhi Ali Cave</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.stop2.txt">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+ €15, ~20 minutes)</p>
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Stop 3: Sazan Island -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/sazan.webp"></span>
+                                <span class="fs-4 me-3"><img alt="island" width="70" src="./assets/images/other-pages/boat-trip/sazan.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop3">Stop 3 – Sazan Island</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.stop3.txt">Guided exploration of the island, including bunkers and historic sites (~<strong>1 hour</strong>).</p>
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Return -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/return.webp"></span>
+                                <span class="fs-4 me-3"><img alt="sea-coast" width="70" src="./assets/images/other-pages/boat-trip/return.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.return">Return</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.return.time">Arrival back at the starting point around <strong>06:00 PM</strong> .</p>
