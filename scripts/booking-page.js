@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
     const productDetails = {
       "Aquamarine": {
-        image: "./assets/images/other-pages/boat-trip/aqua1.jpeg",
+        image: "./assets/images/other-pages/boat-trip/aqua1.webp",
         features: [
           "features.aqua.1",
           "features.aqua.2",
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       },
       "Liburna": {
-        image: "./assets/images/other-pages/boat-trip/liburna1.jpg",
+        image: "./assets/images/other-pages/boat-trip/liburna1.webp",
         features: [
           "features.liburna.1",
           "features.liburna.2",
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.liburna"
       },
       "Vlora Cruise": {
-        image: "./assets/images/other-pages/boat-trip/vlora1.png",
+        image: "./assets/images/other-pages/boat-trip/vlora1.webp",
         features: [
           "features.cruise.1",
           "features.cruise.2",
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.cruise"
       },
       "Vlora-Saranda": {
-        image: "./assets/images/other-pages/boat-trip/saranda.png",
+        image: "./assets/images/other-pages/boat-trip/saranda.webp",
         features: [
           "features.bus.saranda.1",
           "features.bus.saranda.2",
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.saranda"
       },
       "Vlora-Berat": {
-        image: "./assets/images/other-pages/boat-trip/berat.jpg",
+        image: "./assets/images/other-pages/boat-trip/berat.webp",
         features: [
           "features.bus.berat.1",
           "features.bus.berat.2",
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Departure -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/port.jpg"></span>
+                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/port.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.departure.title">Departure</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.departure.time"><strong>10:00 AM </strong>from Vlora Civil Port</p>
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Stop 1: Karaburun Beach -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/karaburun.jpg"></span>
+                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/karaburun.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop1">Stop 1 – Karaburun Beach</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.stop1.txt">Enjoy a relaxing beach stay (approximately <strong>3-4 hours</strong>).</p>
@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Stop 2: Haxhi Ali Cave -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/haxhi-ali.jpg"></span>
+                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/haxhi-ali.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop2">Stop 2 – Haxhi Ali Cave</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.stop2.txt">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+ €15, ~20 minutes)</p>
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Stop 3: Sazan Island -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/sazan.jpeg"></span>
+                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/sazan.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop3">Stop 3 – Sazan Island</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.stop3.txt">Guided exploration of the island, including bunkers and historic sites (~<strong>1 hour</strong>).</p>
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
                             <!-- Return -->
                             <div class="d-flex align-items-center mb-5">
-                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/return.jpg"></span>
+                                <span class="fs-4 me-3"><img width="70" src="./assets/images/other-pages/boat-trip/return.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.return">Return</h5>
                                     <p class="mb-0" data-i18n="boat.itinerary.return.time">Arrival back at the starting point around <strong>06:00 PM</strong> .</p>
@@ -462,26 +462,26 @@ if (!date) {
 
         const boatDetails = {
             "Aquamarine": {
-                image: "./assets/images/other-pages/boat-trip/aqua1.jpeg",
+                image: "./assets/images/other-pages/boat-trip/aqua1.webp",
                 price: {
                     infant: 0, child: 15, adult: 25
                 },
                 extras: { speedboat: 15, meal: 15 }
             },
             "Liburna": {
-                image: "./assets/images/other-pages/boat-trip/liburna1.jpg",
+                image: "./assets/images/other-pages/boat-trip/liburna1.webp",
                 price: { infant: 0, child: 15, adult: 0.1 }
             },
             "Vlora Cruise": {
-                image: "./assets/images/other-pages/boat-trip/vlora1.png",
+                image: "./assets/images/other-pages/boat-trip/vlora1.webp",
                 price: { infant: 0, child: 15, adult: 25 }
             },
             "Vlora-Saranda": {
-                image: "./assets/images/other-pages/boat-trip/saranda.png",
+                image: "./assets/images/other-pages/boat-trip/saranda.webp",
                 price: { adult: 50, child: 40 }
             },
             "Vlora-Berat": {
-                image: "./assets/images/other-pages/boat-trip/berat.jpg",
+                image: "./assets/images/other-pages/boat-trip/berat.webp",
                 price: { adult: 40, child: 32 }
             }
         };

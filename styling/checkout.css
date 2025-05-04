@@ -223,3 +223,12 @@ color: #d9534f;
     }
 }
 
+
+
+@media (min-width:768px) and (max-width:935px){
+    .modal-footer {
+        justify-content: center;
+    }
+}
+
+

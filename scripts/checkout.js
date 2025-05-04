@@ -228,7 +228,7 @@ async function generatePDF(customerData, returnBlob = true) {
   // Logo & header
   await new Promise(res => {
     const img = new Image();
-    img.src = "./assets/images/logo.png";
+    img.src = "./assets/images/logo.webp";
     img.onload = () => {
       doc.addImage(img, "PNG", 80, 5, 50, 20);
       res();
