@@ -181,7 +181,7 @@ h1{
         1px 1px 0 black;   /* Bottom-right */
 }
 
-.banner-div h4{
+.banner-div h2{
     text-shadow: 
     -1px -1px 0 black, /* Top-left */
     1px -1px 0 black,  /* Top-right */
@@ -1023,7 +1023,7 @@ h1{
     text-align: center;
 }
 
-.banner-div h4{
+.banner-div h2{
     font-size:1.4rem !important;
 }
 

@@ -48,8 +48,8 @@
      </div> 
       <div class="banner-div">
         <h1 data-i18n="banner.heading">Explore Vlora</h1>
-        <h4 data-i18n="banner.sub">Boat trips, daily tours, and travel info—all in one place.</h4>
-        <button data-i18n="get.started" type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'"> Get Started </button>
+        <h2 data-i18n="banner.sub">Boat trips, daily tours, and travel info—all in one place.</h2>
+        <button data-i18n="get.started" type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'" aria-label="get started"> Get Started </button>
       </div>
       <div class="fixed-top-div">
         <div class="top-bar ">
@@ -75,19 +75,19 @@
             </div>
           </div>
           <div class="socials">
-            <a href="https://www.facebook.com/AthleticsClean" class="" target="_blank">
+            <a href="https://www.facebook.com/AthleticsClean" class="" target="_blank" aria-label="Fb">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-facebook" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
               </svg>
             </a>
-            <a href="https://www.instagram.com/touristsolutionvlore/" class="" target="_blank">
+            <a href="https://www.instagram.com/touristsolutionvlore/" class="" target="_blank" aria-label="Ig">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-instagram" viewBox="0 0 16 16">
                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
               </svg>
             </a>
           </div>
           <div class="dropdown-lang">
-            <button class="btn dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn dropdown-toggle" aria-label="language" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
               EN
             </button>
             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
@@ -110,7 +110,7 @@
                 <img class="main-logo" src="./assets/images/logo.webp" alt="IMG-LOGO">
               </a>
               <div class="cart">
-                <button id="cartIcon"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                <button id="cartIcon" aria-label="Cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
                   </svg>
@@ -152,8 +152,8 @@
           </div>
           <div class="cart-footer">
             <p id="grand-total"></p>
-            <button id="clearCart" class="btn-clear"  data-i18n="cart.clear">Clear Cart</button>
-            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'"  data-i18n="cart.checkout">Checkout</button>
+            <button id="clearCart" class="btn-clear"  data-i18n="cart.clear" aria-label="Clear cart">Clear Cart</button>
+            <button id="checkout" class="btn-checkout" onclick="window.location.href='./checkout.html'" aria-label="Checkout" data-i18n="cart.checkout">Checkout</button>
         </div>
         </div>
         
@@ -170,7 +170,7 @@
           <img class="grid2-arrow" src="./assets/images/green-curve-shape-easy.svg" alt="green-curve" data-dont-replace="">
           <div class="grid2-cta"> 
             <p class="below-banner-p"  data-i18n="grid2.paragrapgh">A multifunctional tourist info & service point, accessible to all. Book boat trips and daily van tours online, and visit us for travel information, currency exchange, car rentals, and accommodations—ensuring a seamless experience in Vlora.</p>
-            <button type="button" class="btn hidden cta-link" onclick="window.location.href='./about.html'"  data-i18n="grid2.cta"> Learn More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
+            <button type="button" aria-label="banner" class="btn hidden cta-link" onclick="window.location.href='./about.html'"  data-i18n="grid2.cta"> Learn More <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0z"/>
             </svg></button>
           </div>
@@ -221,10 +221,10 @@
                         <img src="./assets/images/other-pages/boat-trip/daily-tours/saranda3.webp" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1" data-bs-slide="prev" aria-label="Prev">
                       <span class="carousel-control-prev-icon"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1" data-bs-slide="next" aria-label="Next">
                       <span class="carousel-control-next-icon"></span>
                     </button>
                   </div>
@@ -244,10 +244,10 @@
                         <img src="./assets/images/other-pages/boat-trip/daily-tours/berat3.webp" class="d-block w-100 rounded-top" alt="Tour View">
                       </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample2" data-bs-slide="prev" aria-label="Prev">
                       <span class="carousel-control-prev-icon"></span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample2" data-bs-slide="next" aria-label="Next">
                       <span class="carousel-control-next-icon"></span>
                     </button>
                   </div>
@@ -408,7 +408,7 @@
                 </div>
               </div>
               <p class="review-text" data-i18n="review4.txt"  data-full-text="If you are looking for the best and useful information about tourism in Vlora, this info point is the right place. The staff are dedicated and very knowledgeable, offering helpful tips for exploring all the attractions this city has to offer. An excellent help for those who want to enjoy the natural beauty and culture of Vlora!"></p>
-              <button class="read-more-btn">▼▼▼</button>
+              <button class="read-more-btn" aria-label="Read more">▼▼▼</button>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -424,7 +424,7 @@
               </div>
               <p class="review-text" data-i18n="review5.txt"  data-full-text="Great service, great information. We book a boat tour and I am very satisfied.
                 The first point in Albania that also offers information for people with different abilities."></p>
-                <button class="read-more-btn" >▼▼▼</button>
+                <button class="read-more-btn" aria-label="Read more" >▼▼▼</button>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -441,7 +441,7 @@
               <p class="review-text" data-i18n="review6.txt"  data-full-text="All the information you may need in one place! Exchange, ATM, information for places to stay, to rental cars/motorcycles.  Very communicative people willing to help you!
                 They also offered information about daily trips by tourist boat to the island of Sazan, the peninsula of Karaburun and the cave of Haxhi Ali.
                 The thing that I liked the most is that it is also accessible for every person with disabilities and it is the only point in Vlore where you can get oriented."></p>
-                <button class="read-more-btn" >▼▼▼</button>
+                <button class="read-more-btn" aria-label="read more">▼▼▼</button>
             </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -471,7 +471,7 @@
               </div>
               <p class="review-text" data-i18n="review8.txt"  data-full-text="The ambiance here is always inviting and comfortable. They are reliable, honest and operate with integrity.
                 They always take the time to answer any questions I may have and provide me with all the options available for tourist trips in Vlora. Thank you for your fantastic recommendations!"></p>
-              <button class="read-more-btn" >▼▼▼</button>
+              <button class="read-more-btn" aria-label="read more">▼▼▼</button>
               </div>
             <div class="item">
               <div class="testimonial-box d-flex">
@@ -555,7 +555,7 @@
         <div class="container">
           <h2 data-i18n="grid.6">Ready to Explore Vlora?</h2>
           <p data-i18n="grid6.txt"> Plan your journey with us today! Whether you're booking a boat trip, a daily van tour ticket, or have any questions or inquiries, we're here to help.</p>
-          <a href="contact.html" class="cta-button" data-i18n="grid6.cta">Get in Touch</a>
+          <a href="contact.html" class="cta-button" data-i18n="grid6.cta" aria-label="Get in touch">Get in Touch</a>
         </div>
       </section>
       <footer class="">
@@ -566,12 +566,12 @@
               Your go-to travel partner in Vlora. From boat trips to daily van tours and local travel services, we’re here to make your journey smooth and enjoyable.
             </p>
             <div class="social-icons">
-              <a href="https://www.facebook.com/AthleticsClean" class="" target="_blank">
+              <a href="https://www.facebook.com/AthleticsClean" class="" target="_blank" aria-label="Fb">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#faf8f4b0" class="bi bi-facebook" viewBox="0 0 16 16">
                   <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
                 </svg>
               </a>
-              <a href="https://www.instagram.com/touristsolutionvlore/" class="" target="_blank">
+              <a href="https://www.instagram.com/touristsolutionvlore/" class="" target="_blank" aria-label="Ig">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#faf8f4b0" class="bi bi-instagram" viewBox="0 0 16 16">
                   <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
                 </svg>
@@ -644,7 +644,7 @@
             © <span id="year"> </span> | <span data-i18n="copy.right">All rights reserved</span>
           </p>
         </div>
-        <button id="backToTopBtn">
+        <button id="backToTopBtn" aria-label="Back to top">
           <span class="arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#fff" class="bi bi-chevron-up" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
