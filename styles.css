@@ -25,7 +25,6 @@ width:100%;
     position:relative;
     height:100vh;
     z-index:-10;
-    /* width:100%; */
 }
 .banner {
     position:relative;
@@ -73,12 +72,8 @@ z-index:1050 ;
         border-bottom: 0.2px solid black;
 width:100%;
 z-index:100;
-/* border-bottom: 2px solid black; */
     }
 
-    div #menuja{
-        /* background-color: #FAF8F4 !important; */
-        }
 .main-logo{
     height:3rem;
 }
@@ -118,8 +113,6 @@ z-index:100;
     color:#fff;
     background-color: rgb(237, 108, 108);
     background-color: #ff9800;
-    /* border-radius: 50%; */
-    /* padding: 0; */
     font-size: 0.9rem;
     font-weight: 600;
 }
@@ -314,12 +307,9 @@ ul.dropdown-menu.show .dropdown-item{
 
 
 .grid2-col2-card{
-    /* display:flex;
-    flex-wrap: wrap; */
     position: relative;
     z-index:90;
     width:30%;
-    /* height:50vh; */
 }
 .grid2-col2-1{
     background-color:#E5E7EB;
@@ -508,9 +498,6 @@ height:2rem;
 }
 
 
-/* .owl-item.active{
-    width:450px !important;
-} */
   /*   */
 
   .booking-section {
@@ -996,11 +983,7 @@ width:max-content;
 }
 
 
-/* button:disabled {
-    background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(19, 1, 1, 0.3)) !important;
-    color: light-dark(rgba(16, 16, 16, 0.3), rgba(255, 255, 255, 0.3));
-    border-color: light-dark(rgba(78, 78, 78, 0.3), rgba(195, 195, 195, 0.3)) !important;
-} */
+
 
 button:disabled {
     background-color: #cccccc;
