@@ -782,8 +782,9 @@ flex-direction: column;
 gap:0.5rem;
 }
 .col1 img{
-    height:2.5rem;
-    width:fit-content ;
+    /* height:3rem; */
+    width:10vw;
+    /* width:fit-content ; */
 }
 
 .social-icons{
@@ -1005,6 +1006,12 @@ button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
+@media (max-width: 1029.33px){
+    .col1 img{
+        width:12vw;
+    }
+    
+}
 
 
 @media (max-width: 768px) {
@@ -1045,7 +1052,7 @@ width:70%
 }
 
 .col1 img{
-    width:7rem;
+    width:20vw;
 }
 }
 img#desktop{
@@ -1164,6 +1171,13 @@ display:none;
     }
 
 
+  }
+
+  @media (max-width: 480px) {
+    .col1 img{
+        width:25vw;
+    }
+    
   }
 
 @media screen and (max-width: 991.5px){
