@@ -658,11 +658,12 @@
     </div>
   </div>
   <script>
-    $(document).ready(function () {
-      $('.carousel-testimonial .owl-dot').each(function (index) {
-        $(this).attr('aria-label', 'Go to testimonial slide ' + (index + 1));
-      });
+    document.addEventListener("DOMContentLoaded", function () {
+    const dots = document.querySelectorAll('.carousel-testimonial .owl-dot');
+    dots.forEach((dot, index) => {
+      dot.setAttribute('aria-label', 'Go to testimonial slide ' + (index + 1));
     });
+  });
   </script>
   <Script>
     //counter
