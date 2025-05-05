@@ -183,6 +183,14 @@ h1{
     font-size: 1.5rem !important;
 }
 
+@font-face {
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/abrilfatface/v14/Z9XVDmdMWRiN1_T9ZczpD9PEw5g.woff2') format('woff2');
+  }
+
 .explore-btn{
     color:white;
     color:#FAF8F4;
