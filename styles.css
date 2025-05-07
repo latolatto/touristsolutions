@@ -1029,21 +1029,21 @@ width:70%
     width:20vw;
 }
 }
-img#desktop{
+/* img#desktop{
     display:block;
 }
 img#tel{
 display:none;
-  }
+  } */
 @media (max-width: 768px) {
 
-    img#desktop{
+    /* img#desktop{
         display:none;
     }
     
       img#tel{
         display:block;
-    }
+    } */
     
 
     h1{
