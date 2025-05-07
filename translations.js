@@ -126,7 +126,7 @@ const translations = {
     "review11.txt": "Very organized staff, finally a point of comprehensive solutions in Vlore.",
     "read.more": "Read More",
     "grid5.title": "Why Choose Us?",
-    "grid5.txt": "Experience Vlora like never before with Tourist Solutions, your dedicated hub for seamless travel planning. Our center caters to all your needs, providing boat and daily van tour tickets, along with essential tourist information in various accessible formats. Learn more about our inclusivity <u><b><a href=\"./inclusive.html\">here</a></b></u>.",
+    "grid5.txt": "Experience Vlora like never before with Tourist Solutions, your dedicated hub for seamless travel planning. Our center caters to all your needs, providing boat and daily van tour tickets, along with essential tourist information in various accessible formats. Learn more about our inclusivity <u><b><a href=\"./inclusive.html\">our inclusivity practices</a></b></u>.",
     "grid5.1": "Comprehensive Info",
     "grid5.1txt": "Get expert guidance on must-visit spots, travel tips, and essential tourist info.",
     "grid5.2": "Boat & Daily tour Booking",

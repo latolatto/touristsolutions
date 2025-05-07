@@ -329,7 +329,7 @@ ul.dropdown-menu.show .dropdown-item{
 }
 
 .enhanced{
-    color:#2973B2;
+    color: #1c4a80;;
 }
 
 
@@ -803,7 +803,8 @@ gap:0.5rem;
 }
 
 .find-other-locations{
-    color:#2973B2;
+    color:#50a1e7;
+    /* text-decoration: underline; */
 }
 
 
