@@ -162,7 +162,18 @@ width:100%;
 gap:1rem;
     }
 
-
+    h1{
+        font-family: "Abril Fatface", serif;
+        font-weight: 600 !important;
+        font-style: normal;
+        text-align: center;
+        font-size: 6rem !important;
+        text-shadow: 
+            -1px -1px 0 black, /* Top-left */
+            1px -1px 0 black,  /* Top-right */
+            -1px 1px 0 black,  /* Bottom-left */
+            1px 1px 0 black;   /* Bottom-right */
+    }
 .explore-btn{
     color:white;
     color:#FAF8F4;
@@ -1034,6 +1045,10 @@ display:none;
         display:block;
     } */
     
+
+    h1{
+        font-size:3rem !important;
+    }
     .grid2-col1 {
       flex-direction: column; /* Stack elements on smaller screens */
       padding-left: 2rem;
@@ -1324,4 +1339,12 @@ h3#booknow-title {
     cursor: pointer;
     padding-top: 10px;
     font-size: 1rem;
+  }
+
+  @font-face {
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://fonts.gstatic.com/s/abrilfatface/v14/Z9XVDmdMWRiN1_T9ZczpD9PEw5g.woff2') format('woff2');
   }
