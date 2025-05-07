@@ -288,7 +288,7 @@ ul.dropdown-menu.show .dropdown-item{
     width:100%;
 }
 .cta-link {
-    color: #007bff; /* Adjust color to match your theme */
+    color: #0557ae; 
     font-weight: bold;
     text-decoration: none;
     width:fit-content;
@@ -570,7 +570,12 @@ text-align: center;
     padding: 0.8rem 1.5rem;
     margin-top: 3rem;
     background: #ff9800;
-    color: white;
+    color: rgb(255, 255, 255);
+    text-shadow: 
+    -1px -1px 0 black, /* Top-left */
+    1px -1px 0 black,  /* Top-right */
+    -1px 1px 0 black,  /* Bottom-left */
+    1px 1px 0 black;   /* Bottom-right */
     text-decoration: none;
     border-radius: 0.5rem;
     font-weight: bold;
@@ -711,6 +716,11 @@ position: relative;
     font-size: 1.2rem;
     border-radius: 5px;
     font-weight: bold;
+    text-shadow:
+    -1px -1px 0 black, /* Top-left */
+    1px -1px 0 black,  /* Top-right */
+    -1px 1px 0 black,  /* Bottom-left */
+    1px 1px 0 black;   /* Bottom-right */
 
   }
   
