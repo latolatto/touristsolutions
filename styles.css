@@ -389,7 +389,7 @@ ul.dropdown-menu.show .dropdown-item{
 .sub-heading {
     display: block;
     font-weight: 600;
-    color: #2e9ca1;
+    color: #155a5e;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -424,7 +424,8 @@ height:2rem;
     flex-direction: column;
     min-height:40vh;
     width:90%;
-    background: #fff;
+    /* background: #fff; */
+    background: #f0f8f8; 
     border: 1px solid rgba(0,0,0,.03);
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, .08);

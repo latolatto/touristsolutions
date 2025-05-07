@@ -756,6 +756,24 @@ gap:1rem;
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Select the dynamically created buttons
+      const prevButton = document.querySelector('.owl-prev');
+      const nextButton = document.querySelector('.owl-next');
+  
+      if (prevButton) {
+        prevButton.removeAttribute('role'); // Remove invalid role
+        prevButton.setAttribute('aria-label', 'Previous testimonial');
+      }
+  
+      if (nextButton) {
+        nextButton.removeAttribute('role'); // Remove invalid role
+        nextButton.setAttribute('aria-label', 'Next testimonial');
+      }
+    });
+  </script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
     const dots = document.querySelectorAll('.carousel-testimonial .owl-dot');
     dots.forEach((dot, index) => {
       dot.setAttribute('aria-label', 'Go to testimonial slide ' + (index + 1));
