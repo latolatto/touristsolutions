@@ -3,6 +3,8 @@ overflow-x: hidden;
 font-family: "Raleway", serif;
 font-optical-sizing: auto;
 }
+
+
 .body-container{
     display:flex;
     flex-direction: column;
@@ -1357,11 +1359,11 @@ h3#booknow-title {
     padding-top: 10px;
     font-size: 1rem;
   }
-
+/* 
   @font-face {
     font-family: 'Abril Fatface';
     font-style: normal;
     font-weight: 400;
     font-display: swap;
     src: url('https://fonts.gstatic.com/s/abrilfatface/v14/Z9XVDmdMWRiN1_T9ZczpD9PEw5g.woff2') format('woff2');
-  }
+  } */
