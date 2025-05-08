@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const hiddenForm = document.getElementById("hidden-email-form");
 
 
+  let lastPdfBlob = null;
+  let lastPdfUrl = null;
 
 
   let transactionSucceeded = false;
@@ -134,8 +136,30 @@ document.addEventListener("DOMContentLoaded", function () {
     <h3>${t("checkout.total")}: €${orderTotal.textContent}</h3>
   `;
 
+
+  lastPdfBlob = await generatePDF(cust, true);
+  lastPdfUrl = URL.createObjectURL(lastPdfBlob);
+
+
+
+
+  // Auto download
+  const a = document.createElement('a');
+  a.href = lastPdfUrl;
+  a.download = `Order_${generateOrderNumber()}.pdf`;
+  a.click();
+
+  // Set button to re-download using the same URL
+  downloadOrderBtn.onclick = () => {
+    const a2 = document.createElement('a');
+    a2.href = lastPdfUrl;
+    a2.download = `Order_${generateOrderNumber()}.pdf`;
+    a2.click();
+  };
     // Now send email + PDF
     await submitOrder();
+
+   
   }
 
   async function submitOrder() {
@@ -313,7 +337,7 @@ async function generatePDF(customerData, returnBlob = true) {
   if (returnBlob) {
     return doc.output("blob");
   } else {
-    doc.save(`Order_${orderNumber}.pdf`);
+    doc.save(`Order_${generateOrderNumber()}.pdf`);
   }
 }
 
