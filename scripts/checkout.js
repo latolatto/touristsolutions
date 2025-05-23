@@ -200,14 +200,14 @@ formatted += `==============================\n${t("checkout.total")}: €${order
 document.getElementById("hidden-order-summary").value = formatted;
 
   // Generate PDF blob
-const pdfBlob = await generatePDF(customerData);
+const pdfBlob = await generatePDF(cust);
 
 // Create FormData
 const formData = new FormData();
-formData.append("name", customerData.name);
-formData.append("email", customerData.email);
-formData.append("phone", customerData.phone);
-formData.append("agency", customerData.agency || "N/A");
+formData.append("name", cust.name);
+formData.append("email", cust.email);
+formData.append("phone", cust.phone);
+formData.append("agency", cust.agency || "N/A");
 formData.append("attachment", new File([pdfBlob], `Order_${generateOrderNumber()}.pdf`, { type: "application/pdf" }));
 
 // Send email using FormSubmit
