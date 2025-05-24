@@ -199,29 +199,33 @@ formatted += `==============================\n${t("checkout.total")}: €${order
 // Put into hidden field
 document.getElementById("hidden-order-summary").value = formatted;
 
-  // Generate PDF blob
-const pdfBlob = await generatePDF(cust);
+    // 3) Fill hidden inputs
+    hiddenForm.querySelector("#hidden-name").value    = cust.name;
+    hiddenForm.querySelector("#hidden-surname").value = cust.surname;
+    hiddenForm.querySelector("#hidden-email").value   = cust.email;
+    hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
+    hiddenForm.querySelector("#hidden-agency").value  = cust.agency||"";
+    hiddenForm.querySelector("#hidden-order-summary").value = formatted;
+    hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
-// Create FormData
-const formData = new FormData();
-formData.append("name", cust.name);
-formData.append("email", cust.email);
-formData.append("phone", cust.phone);
-formData.append("agency", cust.agency || "N/A");
-formData.append("attachment", new File([pdfBlob], `Order_${generateOrderNumber()}.pdf`, { type: "application/pdf" }));
+    // 4) Generate PDF
+    const pdfBlob = await generatePDF(cust, true);
 
-// Send email using FormSubmit
-fetch("https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627", {
-  method: "POST",
-  body: formData,
-})
-.then(res => {
-  if (!res.ok) throw new Error("Email failed to send");
-  console.log("✅ Email sent successfully!");
-})
-.catch(err => {
-  console.error("❌ Error sending email:", err);
-});
+    // 5) Build and send FormData
+    const fd = new FormData(hiddenForm);
+    fd.append("_attachment", new File([pdfBlob], `Order_${orderNumber}.pdf`, {
+      type: "application/pdf"
+    }));
+
+    try {
+      console.log("→ sending email…");
+      const res = await fetch(hiddenForm.action, { method: hiddenForm.method, body: fd });
+      console.log("FormSubmit responded:", res.status, res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
+      console.log("✅ Email sent with PDF!");
+    } catch (err) {
+      console.error("❌ FormSubmit error:", err);
+    }
 
     // 6) Hook download button
     downloadOrderBtn.onclick = () => generatePDF(cust, false);
@@ -358,5 +362,4 @@ async function generatePDF(customerData, returnBlob = true) {
 
   displayCart();
 });
-
 
