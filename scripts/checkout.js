@@ -209,30 +209,39 @@ document.getElementById("hidden-order-summary").value = formatted;
     hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
     // 4) Generate PDF
-    const pdfBlob = await generatePDF(cust, true);
+ const pdfBlob = await generatePDF(cust, true);
+  const fd      = new FormData(hiddenForm);
+  fd.append("_attachment", new File([pdfBlob],
+    `Order_${orderNumber}.pdf`,
+    { type: "application/pdf" }
+  ));
 
-    // 5) Build and send FormData
-    const fd = new FormData(hiddenForm);
-    fd.append("_attachment", new File([pdfBlob], `Order_${orderNumber}.pdf`, {
-      type: "application/pdf"
-    }));
-
-    try {
-      console.log("→ sending email…");
-      const res = await fetch(hiddenForm.action, { method: hiddenForm.method, body: fd });
-      console.log("FormSubmit responded:", res.status, res.statusText);
-      if (!res.ok) throw new Error(res.statusText);
-      console.log("✅ Email sent with PDF!");
-    } catch (err) {
-      console.error("❌ FormSubmit error:", err);
+     let sent = false;
+  try {
+    const res = await fetch(hiddenForm.action, {
+      method: hiddenForm.method,
+      body: fd
+    });
+    if (res.ok) {
+      console.log("✅ Email with PDF sent via fetch()");
+      sent = true;
+    } else {
+      console.warn("fetch() returned", res.status, res.statusText);
     }
+  } catch (e) {
+    console.warn("fetch() failed:", e);
+  }
 
-    // 6) Hook download button
-    downloadOrderBtn.onclick = () => generatePDF(cust, false);
+  // 5) Fallback: if fetch() failed, submit form into hidden iframe (text-only)
+  if (!sent) {
+    console.log("→ fetch() failed or blocked; falling back to form.submit()");
+    hiddenForm.submit();
+  }
 
-    // 7) Clear cart/customer
-    localStorage.removeItem("cart");
-    localStorage.removeItem("customerData");
+  // 6) Re-hook download button & clean up
+  downloadOrderBtn.onclick = () => generatePDF(cust, false);
+  localStorage.removeItem("cart");
+  localStorage.removeItem("customerData");
   }
 
   // ───── Shared Order Count ─────
