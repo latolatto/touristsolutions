@@ -163,82 +163,92 @@ document.addEventListener("DOMContentLoaded", function () {
    
   }
 
-  async function submitOrder() {
+async function submitOrder() {
   console.log("→ submitOrder() start");
-    // 1) Prevent any native form redirect
-    hiddenForm.addEventListener("submit", e => e.preventDefault());
 
-    // 2) Gather data
-const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
+  // 1) Gather data
+  const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
   const orderNumber = generateOrderNumber();
-    // plain-text summary
-// Build plain‑text order summary for email
-let formatted = "";
-cart.forEach((item, i) => {
-  formatted += `
+  console.log("  • cust =", cust, "orderNumber =", orderNumber);
+
+  // 2) Build plain-text summary
+  let formatted = "";
+  cart.forEach((item, i) => {
+    formatted += `
 ------------------------------
-${t("checkout.product")} ${i+1}: ${item.name.toUpperCase()}
-${item.date ? t("checkout.date") + ": " + item.date + "\n" : ""}
-${item.adults ? t("checkout.adults") + ": " + item.adults + "\n" : ""}
-${item.children ? t("checkout.children") + ": " + item.children + "\n" : ""}
-${item.infants ? t("checkout.infants") + ": " + item.infants + "\n" : ""}`;
+Product ${i+1}: ${item.name.toUpperCase()}
+Date: ${item.date || "—"}
+Adults: ${item.adults || 0}
+Children: ${item.children || 0}
+Infants: ${item.infants || 0}
+Extras: ${
+      item.extras?.length
+        ? item.extras.map(e => `${e.key} x${e.qty}`).join(", ")
+        : "None"
+    }
+Subtotal: €${item.totalPrice.toLocaleString()}
+`;
+  });
+  formatted += `\n==============================\nTotal: €${orderTotal.textContent}`;
+  console.log("  • formatted summary:", formatted);
 
-  if (item.extras && item.extras.length) {
-    formatted += `${t("checkout.extras")}:\n`;
-    item.extras.forEach(e => {
-      formatted += `  • ${t(e.key)} x${e.qty}\n`;
-    });
-  } else {
-    formatted += `${t("checkout.extras")}: None\n`;
-  }
+  // 3) Populate hidden fields
+  hiddenForm.querySelector("#hidden-name").value    = cust.name;
+  hiddenForm.querySelector("#hidden-surname").value = cust.surname;
+  hiddenForm.querySelector("#hidden-email").value   = cust.email;
+  hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
+  hiddenForm.querySelector("#hidden-agency").value  = cust.agency || "";
+  hiddenForm.querySelector("#hidden-order-summary").value = formatted;
+  hiddenForm.querySelector('input[name="_subject"]').value  = `New Order #${orderNumber}`;
 
-  formatted += `${t("checkout.subtotal")}: €${item.totalPrice.toLocaleString()}\n`;
-});
-
-formatted += `==============================\n${t("checkout.total")}: €${orderTotal.textContent}`;
-
-// Put into hidden field
-document.getElementById("hidden-order-summary").value = formatted;
-
-    // 3) Fill hidden inputs
-    hiddenForm.querySelector("#hidden-name").value    = cust.name;
-    hiddenForm.querySelector("#hidden-surname").value = cust.surname;
-    hiddenForm.querySelector("#hidden-email").value   = cust.email;
-    hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
-    hiddenForm.querySelector("#hidden-agency").value  = cust.agency||"";
-    hiddenForm.querySelector("#hidden-order-summary").value = formatted;
-    hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
-
-// 4) Generate PDF blob
-  console.log("  • Generating PDF blob...");
+  // 4) Generate PDF blob
+  console.log("  • generating PDF blob…");
   const pdfBlob = await generatePDF(cust, true);
-  console.log("  • PDF blob size:", pdfBlob.size, "bytes");
+  console.log("  • pdfBlob.size =", pdfBlob.size);
 
-  // 5) Inject PDF into hidden <input type="file" id="pdfInput">
-  console.log("  • Injecting PDF into hidden file input");
+  // 5) Inject PDF into hidden <input type="file">
+  console.log("  • injecting into #pdfInput");
   const dt = new DataTransfer();
   dt.items.add(new File(
     [pdfBlob],
     `Order_${orderNumber}.pdf`,
     { type: "application/pdf" }
   ));
-  const pdfInput = document.getElementById("pdfInput");
-  pdfInput.files = dt.files;
-  console.log("  • pdfInput.files length:", pdfInput.files.length);
-  console.log("  • pdfInput.files[0].name:", pdfInput.files[0].name);
+  document.getElementById("pdfInput").files = dt.files;
+  console.log("  • pdfInput.files length:", document.getElementById("pdfInput").files.length);
 
-  // 6) Native form submit — this reliably includes the file on all browsers
-  console.log("  • Submitting hidden form to FormSubmit.co");
-  hiddenForm.submit();
+  // 6) Safari detection
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  console.log("  • isSafari =", isSafari);
 
+  if (isSafari) {
+    // —— Safari/WebKit: use XHR to include the file reliably
+    console.log("  • Sending via XMLHttpRequest for Safari");
+    const xhr = new XMLHttpRequest();
+    xhr.open(hiddenForm.method, hiddenForm.action, true);
+    xhr.onload = () => {
+      console.log("  • XHR onload, status:", xhr.status);
+    };
+    xhr.onerror = () => {
+      console.warn("  • XHR error");
+    };
+    // Build a fresh FormData so XHR picks up everything
+    const fd = new FormData(hiddenForm);
+    xhr.send(fd);
 
+  } else {
+    // —— All other browsers: native form submit into iframe
+    console.log("  • Submitting hidden form natively");
+    hiddenForm.submit();
+  }
 
-
-  // 7) Re-hook download button & clean up
-  downloadOrderBtn.onclick = () => generatePDF(cust, false);
+  // 7) Cleanup
+  console.log("  • cleaning up localStorage");
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
+  console.log("→ submitOrder() end");
 }
+
   
 
   // ───── Shared Order Count ─────
