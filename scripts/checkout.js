@@ -253,8 +253,11 @@ document.getElementById("hidden-order-summary").value = formatted;
     });
 
   } else {
+
     // — All other browsers: programmatic file‐input + native form submit
     console.log("  • Falling back to form.submit() with DataTransfer hack");
+
+        hiddenForm.querySelector("#hidden-email").value = cust.email;
     const dt = new DataTransfer();
     dt.items.add(new File(
       [pdfBlob],
