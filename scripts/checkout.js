@@ -168,8 +168,8 @@ document.addEventListener("DOMContentLoaded", function () {
     hiddenForm.addEventListener("submit", e => e.preventDefault());
 
     // 2) Gather data
-    const cust = JSON.parse(localStorage.getItem("customerData")) || {};
-    const orderNumber = generateOrderNumber();
+const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
+  const orderNumber = generateOrderNumber();
     // plain-text summary
 // Build plain‑text order summary for email
 let formatted = "";
@@ -208,15 +208,15 @@ document.getElementById("hidden-order-summary").value = formatted;
     hiddenForm.querySelector("#hidden-order-summary").value = formatted;
     hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
-    // 4) Generate PDF
- const pdfBlob = await generatePDF(cust, true);
-  const fd      = new FormData(hiddenForm);
-  fd.append("_attachment", new File([pdfBlob],
-    `Order_${orderNumber}.pdf`,
-    { type: "application/pdf" }
-  ));
+  // 4) Generate PDF blob
+  const pdfBlob = await generatePDF(cust, true);
 
-     let sent = false;
+  // 5) Build FormData **with an explicit filename** for iOS Safari
+  const fd = new FormData(hiddenForm);
+  fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
+
+  // 6) Send via fetch (FormSubmit.co will see it as a file upload)
+  let sent = false;
   try {
     const res = await fetch(hiddenForm.action, {
       method: hiddenForm.method,
@@ -232,17 +232,18 @@ document.getElementById("hidden-order-summary").value = formatted;
     console.warn("fetch() failed:", e);
   }
 
-  // 5) Fallback: if fetch() failed, submit form into hidden iframe (text-only)
+ // 7) Fallback: if fetch() failed, submit form into hidden iframe (text-only)
   if (!sent) {
     console.log("→ fetch() failed or blocked; falling back to form.submit()");
     hiddenForm.submit();
   }
 
-  // 6) Re-hook download button & clean up
+  // 8) Re-hook download button & clean up
   downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
-  }
+}
+  
 
   // ───── Shared Order Count ─────
   function generateOrderNumber() {
