@@ -229,7 +229,34 @@ document.getElementById("hidden-order-summary").value = formatted;
   fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
 
   // 6) Send via fetch (FormSubmit.co will see it as a file upload)
-   let sent = false;
+ let sent = false;
+
+// Simple user‐agent sniff for iOS WebKit:
+const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+if (isiOS) {
+  // ==== iOS: use XHR ====
+  await new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(hiddenForm.method, hiddenForm.action, true);
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        console.log("✅ Email with PDF sent via XHR on iOS");
+        sent = true;
+        resolve();
+      } else {
+        console.warn("XHR returned", xhr.status, xhr.statusText);
+        resolve();  // still resolve so fallback can run
+      }
+    };
+    xhr.onerror = () => {
+      console.warn("XHR error", xhr.statusText);
+      resolve();
+    };
+    xhr.send(fd);
+  });
+} else {
+  // ==== non-iOS: use fetch ====
   try {
     const res = await fetch(hiddenForm.action, {
       method: hiddenForm.method,
@@ -244,6 +271,7 @@ document.getElementById("hidden-order-summary").value = formatted;
   } catch (e) {
     console.warn("fetch() failed:", e);
   }
+}
 
 
  // 7) Fallback: if fetch() failed, submit form into hidden iframe (text-only)
