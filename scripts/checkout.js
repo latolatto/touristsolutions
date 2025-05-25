@@ -210,75 +210,29 @@ document.getElementById("hidden-order-summary").value = formatted;
     hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
   // 4) Generate PDF blob
+  console.log("  • Generating PDF blob...");
   const pdfBlob = await generatePDF(cust, true);
+  console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
-  // 5) Build FormData **with an explicit filename** for iOS Safari
-  const fd = new FormData(hiddenForm); 
-  fd.append("First Name", cust.name);
-  fd.append("Last Name",  cust.surname);
-  fd.append("Email",      cust.email);
-  fd.append("Phone",      cust.phone);
-  fd.append("Agency/Hotel", cust.agency || "");
-  fd.append("Order Summary", formatted);
-  // Anything else you had hidden:
-  fd.append("_captcha", "false");
-  fd.append("_template", "table");
-  fd.append("_subject", `New Order #${orderNumber}`);
-  fd.append("_cc", "latolatto16@gmail.com");
+  // 5) Inject PDF into hidden <input type="file" id="pdfInput">
+  console.log("  • Injecting PDF into hidden file input");
+  const dt = new DataTransfer();
+  dt.items.add(new File(
+    [pdfBlob],
+    `Order_${orderNumber}.pdf`,
+    { type: "application/pdf" }
+  ));
+  const pdfInput = document.getElementById("pdfInput");
+  pdfInput.files = dt.files;
+  console.log("  • pdfInput.files length:", pdfInput.files.length);
+  console.log("  • pdfInput.files[0].name:", pdfInput.files[0].name);
 
-  fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
-
-  // 6) Send via fetch (FormSubmit.co will see it as a file upload)
- let sent = false;
-
-// Simple user‐agent sniff for iOS WebKit:
-const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-if (isiOS) {
-  // ==== iOS: use XHR ====
-  await new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.open(hiddenForm.method, hiddenForm.action, true);
-    xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        console.log("✅ Email with PDF sent via XHR on iOS");
-        sent = true;
-        resolve();
-      } else {
-        console.warn("XHR returned", xhr.status, xhr.statusText);
-        resolve();  // still resolve so fallback can run
-      }
-    };
-    xhr.onerror = () => {
-      console.warn("XHR error", xhr.statusText);
-      resolve();
-    };
-    xhr.send(fd);
-  });
-} else {
-  // ==== non-iOS: use fetch ====
-  try {
-    const res = await fetch(hiddenForm.action, {
-      method: hiddenForm.method,
-      body: fd
-    });
-    if (res.ok) {
-      console.log("✅ Email with PDF sent via fetch()");
-      sent = true;
-    } else {
-      console.warn("fetch() returned", res.status, res.statusText);
-    }
-  } catch (e) {
-    console.warn("fetch() failed:", e);
-  }
-}
+  // 6) Native form submit — this reliably includes the file on all browsers
+  console.log("  • Submitting hidden form to FormSubmit.co");
+  hiddenForm.submit();
 
 
- // 7) Fallback: if fetch() failed, submit form into hidden iframe (text-only)
-  if (!sent) {
-    console.log("→ fetch() failed or blocked; falling back to form.submit()");
-    hiddenForm.submit();
-  }
+
 
   // 8) Re-hook download button & clean up
   downloadOrderBtn.onclick = () => generatePDF(cust, false);
