@@ -209,65 +209,28 @@ document.getElementById("hidden-order-summary").value = formatted;
     hiddenForm.querySelector("#hidden-order-summary").value = formatted;
     hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
 
-  // 4) Generate PDF blob
+// 4) Generate PDF blob
   console.log("  • Generating PDF blob...");
   const pdfBlob = await generatePDF(cust, true);
   console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
+  // 5) Inject PDF into hidden <input type="file" id="pdfInput">
+  console.log("  • Injecting PDF into hidden file input");
+  const dt = new DataTransfer();
+  dt.items.add(new File(
+    [pdfBlob],
+    `Order_${orderNumber}.pdf`,
+    { type: "application/pdf" }
+  ));
+  const pdfInput = document.getElementById("pdfInput");
+  pdfInput.files = dt.files;
+  console.log("  • pdfInput.files length:", pdfInput.files.length);
+  console.log("  • pdfInput.files[0].name:", pdfInput.files[0].name);
 
-   // 5) Build a fresh FormData (with explicit filename!)
-  const fd = new FormData();
-  fd.append("First Name",       cust.name);
-  fd.append("Last Name",        cust.surname);
-  fd.append("Email",            cust.email);
-  fd.append("Phone",            cust.phone);
-  fd.append("Agency/Hotel",     cust.agency || "");
-  fd.append("Order Summary",    formatted);
-  fd.append("_captcha",         "false");
-  fd.append("_template",        "table");
-  fd.append("_subject",         `New Order #${orderNumber}`);
-  fd.append("_cc",              "latolatto16@gmail.com");
-  fd.append("_attachment",      pdfBlob, `Order_${orderNumber}.pdf`);
-  console.log("  • FormData built, keys:", [...fd.keys()]);
+  // 6) Native form submit — this reliably includes the file on all browsers
+  console.log("  • Submitting hidden form to FormSubmit.co");
+  hiddenForm.submit();
 
-
-   // 6) Detect Safari/WebKit (Safari *and* iOS Chrome)
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  console.log("  • isSafari =", isSafari);
-
-  if (isSafari) {
-    // — Safari path: XHR reliably includes the blob
-    console.log("  • Sending via XHR (WebKit)");
-    await new Promise(resolve => {
-      const xhr = new XMLHttpRequest();
-      xhr.open(hiddenForm.method, hiddenForm.action, true);
-      xhr.onload = () => {
-        console.log(`  • XHR onload: status=${xhr.status}`);
-        resolve();
-      };
-      xhr.onerror = () => {
-        console.warn("  • XHR error");
-        resolve();
-      };
-      xhr.send(fd);
-    });
-
-  } else {
-
-    // — All other browsers: programmatic file‐input + native form submit
-    console.log("  • Falling back to form.submit() with DataTransfer hack");
-
-        hiddenForm.querySelector("#hidden-email").value = cust.email;
-    const dt = new DataTransfer();
-    dt.items.add(new File(
-      [pdfBlob],
-      `Order_${orderNumber}.pdf`,
-      { type: "application/pdf" }
-    ));
-    document.getElementById("pdfInput").files = dt.files;
-    hiddenForm.submit();
-    console.log("  • hiddenForm.submit() called");
-  }
 
 
 
