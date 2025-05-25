@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <img src="${item.image}" alt="${item.name}">
           <div class="cart-item-details">
             <p><strong>${item.name} ${t(item.headlineKey)}</strong></p>
+          
             <p><span data-i18n="checkout.date">Date:</span> ${item.date}</p>
             ${item.adults    ? `<p><span data-i18n="checkout.adults">Adults:</span> ${item.adults}</p>`    : ""}
             ${item.children  ? `<p><span data-i18n="checkout.children">Children:</span> ${item.children}</p>`: ""}
@@ -212,11 +213,23 @@ document.getElementById("hidden-order-summary").value = formatted;
   const pdfBlob = await generatePDF(cust, true);
 
   // 5) Build FormData **with an explicit filename** for iOS Safari
-  const fd = new FormData(hiddenForm);
+  const fd = new FormData(hiddenForm); 
+  fd.append("First Name", cust.name);
+  fd.append("Last Name",  cust.surname);
+  fd.append("Email",      cust.email);
+  fd.append("Phone",      cust.phone);
+  fd.append("Agency/Hotel", cust.agency || "");
+  fd.append("Order Summary", formatted);
+  // Anything else you had hidden:
+  fd.append("_captcha", "false");
+  fd.append("_template", "table");
+  fd.append("_subject", `New Order #${orderNumber}`);
+  fd.append("_cc", "latolatto16@gmail.com");
+
   fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
 
   // 6) Send via fetch (FormSubmit.co will see it as a file upload)
-  let sent = false;
+   let sent = false;
   try {
     const res = await fetch(hiddenForm.action, {
       method: hiddenForm.method,
@@ -231,6 +244,7 @@ document.getElementById("hidden-order-summary").value = formatted;
   } catch (e) {
     console.warn("fetch() failed:", e);
   }
+
 
  // 7) Fallback: if fetch() failed, submit form into hidden iframe (text-only)
   if (!sent) {
