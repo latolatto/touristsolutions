@@ -210,6 +210,9 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   const pdfBlob = await generatePDF(cust, true);
   console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
+
+
+
   // 4) inject into file input via DataTransfer
   const dt = new DataTransfer();
   dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {
