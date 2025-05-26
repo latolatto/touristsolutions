@@ -169,7 +169,6 @@ async function submitOrder() {
   // 1) Gather data
   const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
   const orderNumber = generateOrderNumber();
-  console.log("  • cust =", cust, "orderNumber =", orderNumber);
 
   // 2) Build plain-text summary
   let formatted = "";
@@ -202,51 +201,68 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   hiddenForm.querySelector('input[name="_subject"]').value  = `New Order #${orderNumber}`;
 
   // 4) Generate PDF blob
-  console.log("  • generating PDF blob…");
+  console.log("  • generating PDF");
   const pdfBlob = await generatePDF(cust, true);
-  console.log("  • pdfBlob.size =", pdfBlob.size);
 
-  // 5) Inject PDF into hidden <input type="file">
-  console.log("  • injecting into #pdfInput");
-  const dt = new DataTransfer();
-  dt.items.add(new File(
-    [pdfBlob],
-    `Order_${orderNumber}.pdf`,
-    { type: "application/pdf" }
-  ));
-  document.getElementById("pdfInput").files = dt.files;
-  console.log("  • pdfInput.files length:", document.getElementById("pdfInput").files.length);
+   // 5. Try DataTransfer + native form.submit()
+  if (window.DataTransfer) {
+    try {
+      console.log("  • using DataTransfer + form.submit()");
+      // inject PDF into hidden file input
+      const dt = new DataTransfer();
+      dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, { type: "application/pdf" }));
+      const pdfInput = document.getElementById("pdfInput");
+      pdfInput.files = dt.files;
 
-  // 6) Safari detection
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  console.log("  • isSafari =", isSafari);
+      // remove any other empty file inputs (Safari multipart bug)
+      hiddenForm.querySelectorAll("input[type=file]").forEach(input => {
+        if (!input.files.length) input.remove();
+      });
 
-  if (isSafari) {
-    // —— Safari/WebKit: use XHR to include the file reliably
-    console.log("  • Sending via XMLHttpRequest for Safari");
-    const xhr = new XMLHttpRequest();
-    xhr.open(hiddenForm.method, hiddenForm.action, true);
-    xhr.onload = () => {
-      console.log("  • XHR onload, status:", xhr.status);
-    };
-    xhr.onerror = () => {
-      console.warn("  • XHR error");
-    };
-    // Build a fresh FormData so XHR picks up everything
-    const fd = new FormData(hiddenForm);
-    xhr.send(fd);
+      // submit into hidden iframe
+      hiddenForm.submit();
+      console.log("  • form.submit() done");
+      cleanup();
+      return;
+    } catch (err) {
+      console.warn("  • DataTransfer path failed, falling back:", err);
+    }
+  }
+ // 6. Fallback: fetch() with FormData
+  console.log("  • using fetch() fallback");
+  const fd = new FormData();
+  // repeat all fields manually
+  fd.append("First Name",    cust.name);
+  fd.append("Last Name",     cust.surname);
+  fd.append("Email",         cust.email);
+  fd.append("Phone",         cust.phone);
+  fd.append("Agency/Hotel",  cust.agency || "");
+  fd.append("Order Summary", formatted);
+  fd.append("_captcha",      "false");
+  fd.append("_template",     "table");
+  fd.append("_subject",      `Order #${orderNumber}`);
+  fd.append("_cc",           "latolatto16@gmail.com");
+  fd.append("_attachment",   pdfBlob, `Order_${orderNumber}.pdf`);
 
-  } else {
-    // —— All other browsers: native form submit into iframe
-    console.log("  • Submitting hidden form natively");
-    hiddenForm.submit();
+  try {
+    const res = await fetch(hiddenForm.action, {
+      method: hiddenForm.method,
+      body: fd
+    });
+    console.log("  • fetch() status:", res.status);
+  } catch (err) {
+    console.error("  • fetch() error:", err);
   }
 
+  cleanup();
+
   // 7) Cleanup
-  console.log("  • cleaning up localStorage");
-  localStorage.removeItem("cart");
-  localStorage.removeItem("customerData");
-  console.log("→ submitOrder() end");
+   function cleanup() {
+    downloadOrderBtn.onclick = () => generatePDF(cust, false);
+    localStorage.removeItem("cart");
+    localStorage.removeItem("customerData");
+    console.log("→ submitOrder() end");
+  }
 }
 
   
