@@ -167,6 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function submitOrder() {
   console.log("→ submitOrder() start");
+  alert("submitOrder() fired; PDF size=" + lastPdfBlob.size);
+
 
   // 1) Gather data
   const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
@@ -217,6 +219,13 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   const pdfInput = document.getElementById("pdfInput");
   pdfInput.files = dt.files;
 
+document.body.insertAdjacentHTML(
+  "beforeend",
+  `<pre style="position:fixed;bottom:0;left:0;background:#000;color:#0f0;padding:5px;">
+   PDF size: ${lastPdfBlob.size} bytes
+   DataTransfer files: ${document.getElementById('pdfInput').files.length}
+   </pre>`
+);
 
 
   // 6) Remove any other empty file inputs (Safari quirk)
