@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function () {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const cartSummary      = document.getElementById("cart-summary");
@@ -204,65 +206,33 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   console.log("  • generating PDF");
   const pdfBlob = await generatePDF(cust, true);
 
-   // 5. Try DataTransfer + native form.submit()
-  if (window.DataTransfer) {
-    try {
-      console.log("  • using DataTransfer + form.submit()");
-      // inject PDF into hidden file input
-      const dt = new DataTransfer();
-      dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, { type: "application/pdf" }));
-      const pdfInput = document.getElementById("pdfInput");
-      pdfInput.files = dt.files;
+   // 5) Use DataTransfer to inject PDF into the hidden <input type="file">
+  console.log("  • injecting PDF into file input");
+  const dt = new DataTransfer();
+  dt.items.add(new File(
+    [pdfBlob],
+    `Order_${orderNumber}.pdf`,
+    { type: "application/pdf" }
+  ));
+  const pdfInput = document.getElementById("pdfInput");
+  pdfInput.files = dt.files;
 
-      // remove any other empty file inputs (Safari multipart bug)
-      hiddenForm.querySelectorAll("input[type=file]").forEach(input => {
-        if (!input.files.length) input.remove();
-      });
 
-      // submit into hidden iframe
-      hiddenForm.submit();
-      console.log("  • form.submit() done");
-      cleanup();
-      return;
-    } catch (err) {
-      console.warn("  • DataTransfer path failed, falling back:", err);
-    }
-  }
- // 6. Fallback: fetch() with FormData
-  console.log("  • using fetch() fallback");
-  const fd = new FormData();
-  // repeat all fields manually
-  fd.append("First Name",    cust.name);
-  fd.append("Last Name",     cust.surname);
-  fd.append("Email",         cust.email);
-  fd.append("Phone",         cust.phone);
-  fd.append("Agency/Hotel",  cust.agency || "");
-  fd.append("Order Summary", formatted);
-  fd.append("_captcha",      "false");
-  fd.append("_template",     "table");
-  fd.append("_subject",      `Order #${orderNumber}`);
-  fd.append("_cc",           "latolatto16@gmail.com");
-  fd.append("_attachment",   pdfBlob, `Order_${orderNumber}.pdf`);
 
-  try {
-    const res = await fetch(hiddenForm.action, {
-      method: hiddenForm.method,
-      body: fd
-    });
-    console.log("  • fetch() status:", res.status);
-  } catch (err) {
-    console.error("  • fetch() error:", err);
-  }
+  // 6) Remove any other empty file inputs (Safari quirk)
+  hiddenForm.querySelectorAll("input[type=file]").forEach(input => {
+    if (!input.files.length) input.remove();
+  });
 
-  cleanup();
+  // 7) Submit the form into the hidden iframe
+  console.log("  • submitting form to FormSubmit.co");
+  hiddenForm.submit();
 
-  // 7) Cleanup
-   function cleanup() {
-    downloadOrderBtn.onclick = () => generatePDF(cust, false);
-    localStorage.removeItem("cart");
-    localStorage.removeItem("customerData");
-    console.log("→ submitOrder() end");
-  }
+  // 8) Cleanup
+  downloadOrderBtn.onclick = () => generatePDF(cust, false);
+  localStorage.removeItem("cart");
+  localStorage.removeItem("customerData");
+  console.log("→ submitOrder() end");
 }
 
   
@@ -394,4 +364,3 @@ async function generatePDF(customerData, returnBlob = true) {
 
   displayCart();
 });
-
