@@ -167,7 +167,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function submitOrder() {
   console.log("→ submitOrder() start");
-  alert("submitOrder() fired; PDF size=" + lastPdfBlob.size);
 
 
   // 1) Gather data
@@ -195,49 +194,50 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   formatted += `\n==============================\nTotal: €${orderTotal.textContent}`;
   console.log("  • formatted summary:", formatted);
 
-  // 3) Populate hidden fields
-  hiddenForm.querySelector("#hidden-name").value    = cust.name;
-  hiddenForm.querySelector("#hidden-surname").value = cust.surname;
-  hiddenForm.querySelector("#hidden-email").value   = cust.email;
-  hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
-  hiddenForm.querySelector("#hidden-agency").value  = cust.agency || "";
-  hiddenForm.querySelector("#hidden-order-summary").value = formatted;
-  hiddenForm.querySelector('input[name="_subject"]').value  = `New Order #${orderNumber}`;
 
-  // 4) Generate PDF blob
+  // 3) Generate PDF blob
   console.log("  • generating PDF");
   const pdfBlob = await generatePDF(cust, true);
+  console.log("  • PDF size:", pdfBlob.size);
 
-   // 5) Use DataTransfer to inject PDF into the hidden <input type="file">
-  console.log("  • injecting PDF into file input");
-  const dt = new DataTransfer();
-  dt.items.add(new File(
-    [pdfBlob],
-    `Order_${orderNumber}.pdf`,
-    { type: "application/pdf" }
-  ));
-  const pdfInput = document.getElementById("pdfInput");
-  pdfInput.files = dt.files;
-
-document.body.insertAdjacentHTML(
-  "beforeend",
-  `<pre style="position:fixed;bottom:0;left:0;background:#000;color:#0f0;padding:5px;">
-   PDF size: ${lastPdfBlob.size} bytes
-   DataTransfer files: ${document.getElementById('pdfInput').files.length}
-   </pre>`
-);
+   // 4) Build AJAX-style FormData
+  const fd = new FormData();
+  // your mapped fields:
+  fd.append("First Name",    cust.name);
+  fd.append("Last Name",     cust.surname);
+  fd.append("email",         cust.email);
+  fd.append("Phone",         cust.phone);
+  fd.append("Agency/Hotel",  cust.agency || "");
+  fd.append("Order Summary", formatted);
+  // Formsubmit settings:
+  fd.append("_captcha",      "false");
+  fd.append("_template",     "table");
+  fd.append("_subject",      `New Order #${orderNumber}`);
+  fd.append("_cc",           "latolatto16@gmail.com");
+  // **attach** your PDF blob, with name — Safari/Chrome/Edge all handle this
+  fd.append("_attachment",   pdfBlob, `Order_${orderNumber}.pdf`);
 
 
-  // 6) Remove any other empty file inputs (Safari quirk)
-  hiddenForm.querySelectorAll("input[type=file]").forEach(input => {
-    if (!input.files.length) input.remove();
-  });
+  
+  // 5) Post to **AJAX** endpoint (note the `/ajax/` path!)
+  try {
+    const res = await fetch(
+      hiddenForm.action.replace(/\/2ce673b9bc3539ee449be95aaf832627$/, "/ajax/2ce673b9bc3539ee449be95aaf832627"),
+      { method: "POST", body: fd }
+    );
+    const data = await res.json();
+    console.log("  • FormSubmit response:", data);
+    if (data.success) {
+      console.log("✅ Email + PDF sent!");
+    } else {
+      console.warn("⚠️ FormSubmit reported an issue:", data);
+    }
+  } catch (err) {
+    console.error("❌ fetch() failed:", err);
+  }
 
-  // 7) Submit the form into the hidden iframe
-  console.log("  • submitting form to FormSubmit.co");
-  hiddenForm.submit();
 
-  // 8) Cleanup
+    // 6) clean up + re-hook PDF-download
   downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
