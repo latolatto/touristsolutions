@@ -195,38 +195,35 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   console.log("  • formatted summary:", formatted);
 
 
-  // populate your hidden text fields (so AJAX payload matches form)
-  hiddenForm.querySelector("#hidden-name").value    = cust.name;
-  hiddenForm.querySelector("#hidden-surname").value = cust.surname;
-  hiddenForm.querySelector("#hidden-email").value   = cust.email;
-  hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
-  hiddenForm.querySelector("#hidden-agency").value  = cust.agency||"";
-  hiddenForm.querySelector("#hidden-order-summary").value = formatted;
-  hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
+ // 3) Populate hidden inputs so FormData(hiddenForm) catches them
+  hiddenForm.querySelector("#hidden-name").value            = cust.name;
+  hiddenForm.querySelector("#hidden-surname").value         = cust.surname;
+  hiddenForm.querySelector("#hidden-email").value           = cust.email;
+  hiddenForm.querySelector("#hidden-phone").value           = cust.phone;
+  hiddenForm.querySelector("#hidden-agency").value          = cust.agency || "";
+  hiddenForm.querySelector("#hidden-order-summary").value   = formatted;
+  hiddenForm.querySelector('input[name="_subject"]').value  = `New Order #${orderNumber}`;
 
 
-   // generate PDF blob
+    // 4) Generate the PDF Blob
   console.log("  • generating PDF");
   const pdfBlob = await generatePDF(cust, true);
-  console.log("  • PDF blob:", pdfBlob.size, "bytes");
+  console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
-
-   // build FormData for AJAX
-  const fd = new FormData(hiddenForm);   // picks up your hidden inputs
+   // 5) Build a FormData off the hiddenForm (it will include your hidden fields)
+  const fd = new FormData(hiddenForm);
+  // 6) Append the Blob with an explicit filename
   fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
-  // note: FormSubmit auto-fills the other hidden fields (_captcha, _template, _cc, etc.)
 
-  // POST to the AJAX endpoint (must use /ajax/ in the URL)
+
+   // 7) POST to the **AJAX** endpoint (this works in ALL browsers instantly)
   const ajaxUrl = hiddenForm.action.replace(
-    /\/([^/]+)$/,
+    /\/([^\/]+)$/,   // swap the tail
     "/ajax/$1"
   );
-  console.log("  • posting to", ajaxUrl);
+  console.log("  • POSTing to", ajaxUrl);
   try {
-    const res = await fetch(ajaxUrl, {
-      method: "POST",
-      body: fd
-    });
+    const res  = await fetch(ajaxUrl, { method: "POST", body: fd });
     const json = await res.json();
     console.log("  • response:", json);
     if (json.success) {
@@ -238,7 +235,7 @@ Subtotal: €${item.totalPrice.toLocaleString()}
     console.error("❌ fetch() failed:", err);
   }
 
-  // re-hook your download button and clear storage
+  // 8) Cleanup + re-hook your PDF-download button
   downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
