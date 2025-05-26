@@ -210,32 +210,20 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   const pdfBlob = await generatePDF(cust, true);
   console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
-   // 5) Build a FormData off the hiddenForm (it will include your hidden fields)
-  const fd = new FormData(hiddenForm);
-  // 6) Append the Blob with an explicit filename
-  fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
+  // 4) inject into file input via DataTransfer
+  const dt = new DataTransfer();
+  dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {
+    type: "application/pdf"
+  }));
+  document.getElementById("pdfInput").files = dt.files;
 
+  
 
-   // 7) POST to the **AJAX** endpoint (this works in ALL browsers instantly)
-  const ajaxUrl = hiddenForm.action.replace(
-    /\/([^\/]+)$/,   // swap the tail
-    "/ajax/$1"
-  );
-  console.log("  • POSTing to", ajaxUrl);
-  try {
-    const res  = await fetch(ajaxUrl, { method: "POST", body: fd });
-    const json = await res.json();
-    console.log("  • response:", json);
-    if (json.success) {
-      console.log("✅ Email + PDF delivered!");
-    } else {
-      console.warn("⚠️ FormSubmit error:", json);
-    }
-  } catch (err) {
-    console.error("❌ fetch() failed:", err);
-  }
+    // 5) submit the form into the hidden iframe
+  console.log("  • submitting hidden form");
+  hiddenForm.submit();
 
-  // 8) Cleanup + re-hook your PDF-download button
+  // 6) cleanup
   downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
