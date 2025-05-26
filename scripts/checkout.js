@@ -195,49 +195,50 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   console.log("  • formatted summary:", formatted);
 
 
-  // 3) Generate PDF blob
+  // populate your hidden text fields (so AJAX payload matches form)
+  hiddenForm.querySelector("#hidden-name").value    = cust.name;
+  hiddenForm.querySelector("#hidden-surname").value = cust.surname;
+  hiddenForm.querySelector("#hidden-email").value   = cust.email;
+  hiddenForm.querySelector("#hidden-phone").value   = cust.phone;
+  hiddenForm.querySelector("#hidden-agency").value  = cust.agency||"";
+  hiddenForm.querySelector("#hidden-order-summary").value = formatted;
+  hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
+
+
+   // generate PDF blob
   console.log("  • generating PDF");
   const pdfBlob = await generatePDF(cust, true);
-  console.log("  • PDF size:", pdfBlob.size);
-
-   // 4) Build AJAX-style FormData
-  const fd = new FormData();
-  // your mapped fields:
-  fd.append("First Name",    cust.name);
-  fd.append("Last Name",     cust.surname);
-  fd.append("email",         cust.email);
-  fd.append("Phone",         cust.phone);
-  fd.append("Agency/Hotel",  cust.agency || "");
-  fd.append("Order Summary", formatted);
-  // Formsubmit settings:
-  fd.append("_captcha",      "false");
-  fd.append("_template",     "table");
-  fd.append("_subject",      `New Order #${orderNumber}`);
-  fd.append("_cc",           "latolatto16@gmail.com");
-  // **attach** your PDF blob, with name — Safari/Chrome/Edge all handle this
-  fd.append("_attachment",   pdfBlob, `Order_${orderNumber}.pdf`);
+  console.log("  • PDF blob:", pdfBlob.size, "bytes");
 
 
-  
-  // 5) Post to **AJAX** endpoint (note the `/ajax/` path!)
+   // build FormData for AJAX
+  const fd = new FormData(hiddenForm);   // picks up your hidden inputs
+  fd.append("_attachment", pdfBlob, `Order_${orderNumber}.pdf`);
+  // note: FormSubmit auto-fills the other hidden fields (_captcha, _template, _cc, etc.)
+
+  // POST to the AJAX endpoint (must use /ajax/ in the URL)
+  const ajaxUrl = hiddenForm.action.replace(
+    /\/([^/]+)$/,
+    "/ajax/$1"
+  );
+  console.log("  • posting to", ajaxUrl);
   try {
-    const res = await fetch(
-      hiddenForm.action.replace(/\/2ce673b9bc3539ee449be95aaf832627$/, "/ajax/2ce673b9bc3539ee449be95aaf832627"),
-      { method: "POST", body: fd }
-    );
-    const data = await res.json();
-    console.log("  • FormSubmit response:", data);
-    if (data.success) {
-      console.log("✅ Email + PDF sent!");
+    const res = await fetch(ajaxUrl, {
+      method: "POST",
+      body: fd
+    });
+    const json = await res.json();
+    console.log("  • response:", json);
+    if (json.success) {
+      console.log("✅ Email + PDF delivered!");
     } else {
-      console.warn("⚠️ FormSubmit reported an issue:", data);
+      console.warn("⚠️ FormSubmit error:", json);
     }
   } catch (err) {
     console.error("❌ fetch() failed:", err);
   }
 
-
-    // 6) clean up + re-hook PDF-download
+  // re-hook your download button and clear storage
   downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
