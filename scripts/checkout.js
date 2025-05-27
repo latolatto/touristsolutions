@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     style:{layout:"vertical",color:"gold",shape:"rect"},
     onApprove(data,actions){
-      return actions.order.capture().then( details=>{
+      return actions.order.capture().then(details=>{
         transactionSucceeded=true;
         showConfirmation();
         
@@ -165,69 +165,100 @@ document.addEventListener("DOMContentLoaded", function () {
    
   }
 
-
-/* JS: add helper to send email via fetch */
-async function sendEmailWithPDF(pdfBlob, customer, orderSummary) {
-  const formData = new FormData();
-  formData.append("First Name", customer.name);
-  formData.append("Last Name", customer.surname);
-  formData.append("email", customer.email);
-  formData.append("Phone", customer.phone);
-  formData.append("Agency/Hotel", customer.agency || "");
-  formData.append("Order Summary", orderSummary);
-  formData.append("_captcha", "false");
-  formData.append("_template", "table");
-  formData.append("_subject", `New Order #${generateOrderNumber()}`);
-  formData.append("_cc", "latolatto16@gmail.com");
-  formData.append("_attachment", new File([pdfBlob], `Order_${generateOrderNumber()}.pdf`, { type: "application/pdf" }));
-
-  const response = await fetch("https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627", {
-    method: "POST",
-    body: formData
-  });
-  if (!response.ok) throw new Error(`Email send failed: ${response.status}`);
-}
-
-
-
 async function submitOrder() {
   console.log("→ submitOrder() start");
 
 
   // 1) Gather data
- const customer = JSON.parse(localStorage.getItem("customerData")) || {};
+  const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
   const orderNumber = generateOrderNumber();
 
- let formatted = "";
+  // 2) Build plain-text summary
+  let formatted = "";
   cart.forEach((item, i) => {
-    formatted += `\n--- Product ${i+1}: ${item.name.toUpperCase()}\n` +
-      `Date: ${item.date || "—"}\n` +
-      `Adults: ${item.adults || 0}\n` +
-      `Children: ${item.children || 0}\n` +
-      `Infants: ${item.infants || 0}\n` +
-      `Extras: ${item.extras?.length ? item.extras.map(e => `${e.key} x${e.qty}`).join(", ") : "None"}\n` +
-      `Subtotal: €${item.totalPrice.toLocaleString()}\n`;
+    formatted += `
+------------------------------
+Product ${i+1}: ${item.name.toUpperCase()}
+Date: ${item.date || "—"}
+Adults: ${item.adults || 0}
+Children: ${item.children || 0}
+Infants: ${item.infants || 0}
+Extras: ${
+      item.extras?.length
+        ? item.extras.map(e => `${e.key} x${e.qty}`).join(", ")
+        : "None"
+    }
+Subtotal: €${item.totalPrice.toLocaleString()}
+`;
   });
-  formatted += `\nTotal: €${orderTotal.textContent}`;
+  formatted += `\n==============================\nTotal: €${orderTotal.textContent}`;
   console.log("  • formatted summary:", formatted);
 
-  // Generate PDF blob
+
+ // 3) Generate PDF blob
   console.log("  • generating PDF");
-  const pdfBlob = await generatePDF(customer, true);
-  console.log("  • PDF blob size:", pdfBlob.size);
+  const pdfBlob = await generatePDF(cust, true);
+  const filename = `Order_${orderNumber}.pdf`;
+  console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
-  // Send via fetch + FormData (works on iOS Safari)
-  try {
-    await sendEmailWithPDF(pdfBlob, customer, formatted);
-    console.log("→ submitOrder() email sent");
-    // cleanup
-      downloadOrderBtn.onclick = () => generatePDF(cust, false);
-    localStorage.removeItem("cart");
-    localStorage.removeItem("customerData");
+  // 4) Detect iOS Safari
+  const ua = navigator.userAgent;
+  const isIOSSafari = /\b(iPad|iPhone|iPod)\b/.test(ua) && /\bSafari\b/.test(ua) && !/\bCriOS\b/.test(ua);
 
-  } catch (err) {
-    console.error(err);
+  if (isIOSSafari) {
+    // ─────────── AJAX path for iOS Safari ───────────
+    console.log("→ using AJAX upload for iOS Safari");
+    const fd = new FormData();
+    fd.append("First Name",       cust.name);
+    fd.append("Last Name",        cust.surname);
+    fd.append("email",            cust.email);
+    fd.append("Phone",            cust.phone);
+    fd.append("Agency/Hotel",     cust.agency || "");
+    fd.append("Order Summary",    formatted);
+    fd.append("_captcha",         "false");
+    fd.append("_template",        "table");
+    fd.append("_subject",         `New Order #${orderNumber}`);
+    fd.append("_cc",              "latolatto16@gmail.com");
+    fd.append("_attachment",      pdfBlob, filename);
+
+    try {
+      const res = await fetch(
+        "https://formsubmit.co/ajax/2ce673b9bc3539ee449be95aaf832627",
+        { method: "POST", body: fd }
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      console.log("→ submitOrder() done via AJAX");
+    } catch (err) {
+      console.error("→ AJAX upload failed:", err);
+      alert(t("alert.email.failed") || "Failed to send confirmation email. Please contact us.");
+    }
+
+  } else {
+    // ─────────── fallback for other browsers ───────────
+    console.log("→ using hidden form submit");
+    hiddenForm.querySelector("#hidden-name" ).value = cust.name;
+    hiddenForm.querySelector("#hidden-surname").value = cust.surname;
+    hiddenForm.querySelector("#hidden-email" ).value = cust.email;
+    hiddenForm.querySelector("#hidden-phone" ).value = cust.phone;
+    hiddenForm.querySelector("#hidden-agency").value = cust.agency || "";
+    hiddenForm.querySelector("#hidden-order-summary").value = formatted;
+    hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
+
+    // inject file
+    const dt = new DataTransfer();
+    dt.items.add(new File([pdfBlob], filename, { type: "application/pdf" }));
+    document.getElementById("pdfInput").files = dt.files;
+
+    // submit as you had
+    hiddenForm.submit();
+    console.log("→ submitOrder() done via hidden form");
   }
+
+  // 5) Cleanup
+  localStorage.removeItem("cart");
+  localStorage.removeItem("customerData");
+  downloadOrderBtn.onclick = () => generatePDF(cust, false);
+
 }
 
   
