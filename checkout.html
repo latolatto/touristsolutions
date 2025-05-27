@@ -152,19 +152,19 @@
             <form id="checkout-form"action="" method="POST" >
 
                 <label for="name" data-i18n="checkout.fname">First Name<span style="color:red;">*</span></label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" name="fname" required>
                 
                 <label for="surname" data-i18n="checkout.lname">Surname<span style="color:red;">*</span></label>
-                <input type="text" id="surname" required>
+                <input type="text" id="surname" name="lname" required>
                 
                 <label for="email" data-i18n="checkout.email">Email<span style="color:red;">*</span></label>
-                <input type="email" id="email" required placeholder="example@example.com">
+                <input type="email" id="email" name="email" required placeholder="example@example.com">
                 
                 <label for="phone" data-i18n="checkout.phone">Phone<span style="color:red;">*</span></label>
-                <input type="text" id="phone" required placeholder="">
+                <input type="text" id="phone" name="phone" required placeholder="">
 
                 <label for="agency" data-i18n="checkout.agency">Agency/Hotel (Optional)</label>
-                <input type="text" id="agency" placeholder="Enter the name of your tour agency or hotel">
+                <input type="text" id="agency" name="agency" placeholder="Enter the name of your tour agency or hotel">
                 
                 <p id="result" style="margin-top:2rem"></p>
                 <button type="submit" id="proceed-to-payment" aria-label="Proceed to payment" data-i18n="checkout.proceed">Proceed to Payment</button>
@@ -180,9 +180,11 @@
         </div>
     </div>
 
-
+ 
   <!-- Hidden Form for FormSubmit -->
-  <form id="hidden-email-form" action="https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627" method="POST" enctype="multipart/form-data"  target="email-target"  style="opacity: 0;"> 
+     <div style="position: absolute; left: -9999px; width: 0; height: 0; overflow: hidden;">
+
+  <form id="mailForm" action="https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627" method="POST" enctype="multipart/form-data"  target="submitFrame" > 
     <input type="hidden" name="First Name" id="hidden-name">
     <input type="hidden" name="Last Name" id="hidden-surname">
     <input type="hidden" name="email" id="hidden-email">
@@ -190,15 +192,15 @@
     <input type="hidden" name="Agency/Hotel" id="hidden-agency">
     <input type="hidden" name="Order Summary" id="hidden-order-summary">
     <input type="hidden" name="_captcha" value="false">
-    <input type="file" name="_attachment" id="pdfInput" style="opacity: 0;" accept=".pdf,application/pdf">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_subject" value="">
     <input type="hidden" name="_next" value="">
     <input type="hidden" name="_cc" value="latolatto16@gmail.com">
 
+    <iframe name="submitFrame" style="position:absolute; opacity:0; width:0; height:0; border:0;"></iframe>
 
   </form>
-<iframe name="email-target" style="opacity:0;"></iframe>
+  </div>
 
 
   
