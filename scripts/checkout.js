@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", function () {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const cartSummary      = document.getElementById("cart-summary");
@@ -195,70 +193,39 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   console.log("  • formatted summary:", formatted);
 
 
- // 3) Generate PDF blob
+ // 3) Populate hidden inputs so FormData(hiddenForm) catches them
+  hiddenForm.querySelector("#hidden-name").value            = cust.name;
+  hiddenForm.querySelector("#hidden-surname").value         = cust.surname;
+  hiddenForm.querySelector("#hidden-email").value           = cust.email;
+  hiddenForm.querySelector("#hidden-phone").value           = cust.phone;
+  hiddenForm.querySelector("#hidden-agency").value          = cust.agency || "";
+  hiddenForm.querySelector("#hidden-order-summary").value   = formatted;
+  hiddenForm.querySelector('input[name="_subject"]').value  = `New Order #${orderNumber}`;
+
+
+    // 4) Generate the PDF Blob
   console.log("  • generating PDF");
   const pdfBlob = await generatePDF(cust, true);
-  const filename = `Order_${orderNumber}.pdf`;
   console.log("  • PDF blob size:", pdfBlob.size, "bytes");
 
-  // 4) Detect iOS Safari
-  const ua = navigator.userAgent;
-  const isIOSSafari = /\b(iPad|iPhone|iPod)\b/.test(ua) && /\bSafari\b/.test(ua) && !/\bCriOS\b/.test(ua);
+  // 4) inject into file input via DataTransfer
+  const dt = new DataTransfer();
+  dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {
+    type: "application/pdf"
+  }));
+  document.getElementById("pdfInput").files = dt.files;
 
-  if (isIOSSafari) {
-    // ─────────── AJAX path for iOS Safari ───────────
-    console.log("→ using AJAX upload for iOS Safari");
-    const fd = new FormData();
-    fd.append("First Name",       cust.name);
-    fd.append("Last Name",        cust.surname);
-    fd.append("email",            cust.email);
-    fd.append("Phone",            cust.phone);
-    fd.append("Agency/Hotel",     cust.agency || "");
-    fd.append("Order Summary",    formatted);
-    fd.append("_captcha",         "false");
-    fd.append("_template",        "table");
-    fd.append("_subject",         `New Order #${orderNumber}`);
-    fd.append("_cc",              "latolatto16@gmail.com");
-    fd.append("_attachment",      pdfBlob, filename);
+  
 
-    try {
-      const res = await fetch(
-        "https://formsubmit.co/ajax/2ce673b9bc3539ee449be95aaf832627",
-        { method: "POST", body: fd }
-      );
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      console.log("→ submitOrder() done via AJAX");
-    } catch (err) {
-      console.error("→ AJAX upload failed:", err);
-      alert(t("alert.email.failed") || "Failed to send confirmation email. Please contact us.");
-    }
+    // 5) submit the form into the hidden iframe
+  console.log("  • submitting hidden form");
+  hiddenForm.submit();
 
-  } else {
-    // ─────────── fallback for other browsers ───────────
-    console.log("→ using hidden form submit");
-    hiddenForm.querySelector("#hidden-name" ).value = cust.name;
-    hiddenForm.querySelector("#hidden-surname").value = cust.surname;
-    hiddenForm.querySelector("#hidden-email" ).value = cust.email;
-    hiddenForm.querySelector("#hidden-phone" ).value = cust.phone;
-    hiddenForm.querySelector("#hidden-agency").value = cust.agency || "";
-    hiddenForm.querySelector("#hidden-order-summary").value = formatted;
-    hiddenForm.querySelector('input[name="_subject"]').value = `New Order #${orderNumber}`;
-
-    // inject file
-    const dt = new DataTransfer();
-    dt.items.add(new File([pdfBlob], filename, { type: "application/pdf" }));
-    document.getElementById("pdfInput").files = dt.files;
-
-    // submit as you had
-    hiddenForm.submit();
-    console.log("→ submitOrder() done via hidden form");
-  }
-
-  // 5) Cleanup
+  // 6) cleanup
+  downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
-  downloadOrderBtn.onclick = () => generatePDF(cust, false);
-
+  console.log("→ submitOrder() end");
 }
 
   
