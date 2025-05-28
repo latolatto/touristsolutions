@@ -180,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 async function submitOrder() {
   console.log("→ submitOrder() start");
 
+
   // 1) Gather data
   const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
   const orderNumber = generateOrderNumber();
