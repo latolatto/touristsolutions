@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append('_captcha', 'false');
     formData.append('_subject', `New Order #${orderNumber}`);
     formData.append('_cc', 'latolatto16@gmail.com');
-    formData.append('attachment', pdfBlob, `Order_${orderNumber}.pdf`);
+    formData.append('_attachment', pdfBlob, `Order_${orderNumber}.pdf`);
 
     try {
       const response = await fetch('https://formsubmit.co/ajax/2ce673b9bc3539ee449be95aaf832627', {
