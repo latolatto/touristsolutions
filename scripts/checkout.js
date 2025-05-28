@@ -184,6 +184,8 @@ async function showConfirmation() {
       'Agency/Hotel': cust.agency || '',
       'Order Summary': summary,
       '_captcha': 'false',
+      '_next': "",
+      '_template': 'table',
       '_subject': `New Order #${orderNumber}`,
       '_cc': 'latolatto16@gmail.com'
     };
