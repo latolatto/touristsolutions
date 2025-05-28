@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\+?[1-9]\d{7,14}$/;
 
+
     if(!name||!surname||!email||!phone){
       alert(t("alert.missing.fields")); return;
     }
@@ -75,6 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
     paypalContainer.style.display="block";
     proceedBtn.style.display="none";
   });
+
+
+
 
   // PayPal integration
   paypal.Buttons({
@@ -105,127 +109,115 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  // ───── showConfirmation & submitOrder ─────
-  async function showConfirmation() {
-    if (!transactionSucceeded) return;
-    modal.style.display = "flex";
+// ─── Updated showConfirmation() ───
+async function showConfirmation() {
+  if (!transactionSucceeded) return;
+  // Show the modal
+  modal.style.display = 'flex';
 
-    // Populate modal (exactly as you had)
-    const cust = JSON.parse(localStorage.getItem("customerData")) || {};
-    orderDetails.innerHTML = `
-    <h3>${t("checkout.customer.details")}</h3>
-    <p><strong>${t("checkout.name")}:</strong> ${cust.name} ${cust.surname}</p>
-    <p><strong>${t("checkout.email")}:</strong> ${cust.email}</p>
-    <p><strong>${t("checkout.phone")}:</strong> ${cust.phone}</p>
-    <p><strong>${t("checkout.agency")}:</strong> ${cust.agency||"_________________________________"}</p>
-    <h3>${t("checkout.order.summary")}</h3>
-    ${cart.map((item,i)=>`
+  // Load customer and cart
+  const cust = JSON.parse(localStorage.getItem('customerData')) || {};
+
+  // Fill in the modal details
+  orderDetails.innerHTML = `
+    <h3>${t('checkout.customer.details')}</h3>
+    <p><strong>${t('checkout.name')}:</strong> ${cust.name} ${cust.surname}</p>
+    <p><strong>${t('checkout.email')}:</strong> ${cust.email}</p>
+    <p><strong>${t('checkout.phone')}:</strong> ${cust.phone}</p>
+    <p><strong>${t('checkout.agency')}:</strong> ${cust.agency || '________________'}</p>
+    <h3>${t('checkout.order.summary')}</h3>
+    ${cart.map((item,i) => `
       <div class="order-item">
-        <p><strong>${t("checkout.product")} ${i+1}:</strong> ${item.name}</p>
-        <p>${t("checkout.date")}: ${item.date}</p>
-        ${item.adults    ? `<p>${t("checkout.adults")}: ${item.adults}</p>`    : ""}
-        ${item.children  ? `<p>${t("checkout.children")}: ${item.children}</p>`: ""}
-        ${item.infants   ? `<p>${t("checkout.infants")}: ${item.infants}</p>`  : ""}
-        ${item.extras&&item.extras.length
-          ? `<p>${t("checkout.extras")}: `+
-              item.extras.map(e=>`${t(e.key)} x${e.qty}`).join(", ")+
-            `</p>`
-          : ""
-        }
+        <p><strong>${t('checkout.product')} ${i+1}:</strong> ${item.name}</p>
+        <p>${t('checkout.date')}: ${item.date}</p>
+        ${item.adults ? `<p>${t('checkout.adults')}: ${item.adults}</p>` : ''}
+        ${item.children ? `<p>${t('checkout.children')}: ${item.children}</p>` : ''}
+        ${item.infants ? `<p>${t('checkout.infants')}: ${item.infants}</p>` : ''}
+        ${item.extras?.length ? `<p>${t('checkout.extras')}: ${item.extras.map(e => `${t(e.key)} x${e.qty}`).join(', ')}</p>` : ''}
         <p><strong>€${item.totalPrice.toLocaleString()}</strong></p>
-      </div>`).join("")}
-    <h3>${t("checkout.total")}: €${orderTotal.textContent}</h3>
+      </div>
+    `).join('')}
+    <h3>${t('checkout.total')}: €${orderTotal.textContent}</h3>
   `;
 
-
+  // Generate PDF blob and URL
   lastPdfBlob = await generatePDF(cust, true);
-  lastPdfUrl = URL.createObjectURL(lastPdfBlob);
+  lastPdfUrl  = URL.createObjectURL(lastPdfBlob);
 
-
-
-
-  // Auto download
+  // Auto-download PDF for user
   const a = document.createElement('a');
-  a.href = lastPdfUrl;
+  a.href     = lastPdfUrl;
   a.download = `Order_${generateOrderNumber()}.pdf`;
   a.click();
+  downloadOrderBtn.onclick = () => a.click();
 
-  // Set button to re-download using the same URL
-  downloadOrderBtn.onclick = () => {
-    const a2 = document.createElement('a');
-    a2.href = lastPdfUrl;
-    a2.download = `Order_${generateOrderNumber()}.pdf`;
-    a2.click();
-  };
-    // Now send email + PDF
-    await submitOrder();
+  // Build a plain-text summary for the email
+  let summary = '';
+  cart.forEach((item, i) => {
+    summary += `Product ${i+1}: ${item.name}\n` +
+               `Date: ${item.date || '-'}\n` +
+               `Adults: ${item.adults||0}, Children: ${item.children||0}, Infants: ${item.infants||0}\n` +
+               `Extras: ${item.extras?.map(e=>`${e.key} x${e.qty}`).join(', ')||'None'}\n` +
+               `Subtotal: €${item.totalPrice}\n\n`;
+  });
+  summary += `Total: €${orderTotal.textContent}`;
 
-   
-  }
+  // Finally, submit email + PDF via dynamic form
+  const orderNumber = generateOrderNumber();
+  createAndSubmitForm(cust, summary, lastPdfBlob, orderNumber);
+}
+
 
   
- async function submitOrder() {
-    console.log("→ submitOrder() start");
+  function createAndSubmitForm(cust, summary, pdfBlob, orderNumber) {
+    const form = document.createElement('form');
+    form.action = 'https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627';
+    form.method = 'POST';
+    form.enctype = 'multipart/form-data';
+    form.style.display = 'none';
 
-    const cust = JSON.parse(localStorage.getItem('customerData')) || {};
-    const orderNumber = generateOrderNumber();
-
-    // Build plain-text summary
-    let summary = '';
-    cart.forEach((item, i) => {
-      summary += `Product ${i+1}: ${item.name}\n` +
-                 `Date: ${item.date || '—'}\n` +
-                 `Adults: ${item.adults || 0}, Children: ${item.children || 0}, Infants: ${item.infants || 0}\n` +
-                 `Extras: ${item.extras?.map(e => `${e.key} x${e.qty}`).join(', ') || 'None'}\n` +
-                 `Subtotal: €${item.totalPrice}\n\n`;
+    const data = {
+      'First Name': cust.name,
+      'Last Name': cust.surname,
+      'email': cust.email,
+      'Phone': cust.phone,
+      'Agency/Hotel': cust.agency || '',
+      'Order Summary': summary,
+      '_captcha': 'false',
+      '_subject': `New Order #${orderNumber}`,
+      '_cc': 'latolatto16@gmail.com'
+    };
+    Object.entries(data).forEach(([name, val]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden'; input.name = name; input.value = val;
+      form.appendChild(input);
     });
-    summary += `Total: €${orderTotal.textContent}`;
 
-    // Generate PDF Blob
-      console.log("  • generating PDF");
-    const pdfBlob = await generatePDF(cust, true);
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.name = '_attachment';
+    fileInput.accept = 'application/pdf';
+    // off-screen but in DOM
+    fileInput.style.position = 'absolute';
+    fileInput.style.left = '-9999px';
+    form.appendChild(fileInput);
 
-    // Prepare FormData for FormSubmit AJAX endpoint
-    const formData = new FormData();
-    formData.append('First Name', cust.name);
-    formData.append('Last Name', cust.surname);
-    formData.append('email', cust.email);
-    formData.append('Phone', cust.phone);
-    formData.append('Agency/Hotel', cust.agency || '');
-    formData.append('Order Summary', summary);
-    formData.append('_captcha', 'false');
-    formData.append('_subject', `New Order #${orderNumber}`);
-    formData.append('_cc', 'latolatto16@gmail.com');
-    formData.append('_attachment', pdfBlob, `Order_${orderNumber}.pdf`);
+    document.body.appendChild(form);
 
-    try {
-      const response = await fetch('https://formsubmit.co/ajax/2ce673b9bc3539ee449be95aaf832627', {
-        method: 'POST',
-        body: formData
-      });
-      const result = await response.json();
-      console.log('FormSubmit response', result);
-      // Optionally handle success UI here
-    } catch (err) {
-      console.error('FormSubmit AJAX error', err);
-      alert(t('alert.email.failed'));
-    } finally {
-      // Cleanup
-      localStorage.removeItem('cart');
-      localStorage.removeItem('customerData');
-        downloadOrderBtn.onclick = () => generatePDF(cust, false);
-  console.log("→ submitOrder() end");
+    // use DataTransfer to set file list
+    const dt = new DataTransfer();
+    dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {type:'application/pdf'}));
+    fileInput.files = dt.files;
 
-    }
+    // submit form
+    form.submit();
   }
 
 
   
 
-  // ───── Shared Order Count ─────
   function generateOrderNumber() {
-    const now = new Date();
-    return now.toISOString().replace(/[-:.]/g, "").replace("Z", "Z");
+    return new Date().toISOString().replace(/[\-:.]/g, '') + 'Z';
   }
 
 // PDF generation (keeps your layout)
