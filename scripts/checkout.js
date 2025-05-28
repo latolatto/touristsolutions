@@ -189,10 +189,11 @@ downloadOrderBtn.addEventListener('click', () => {
         .map(e => `${translations.en[e.key]} x${e.qty}`)
         .join(', ')
     : 'None'
-}\n\n`;                `Subtotal: €${item.totalPrice.toLocaleString()}`;
+}\n\n`;                
+summary += `Subtotal: €${item.totalPrice.toLocaleString()}\n\n`;
 
   });
-  summary += `Total: €${orderTotal.textContent}`;
+summary += `------------------------------\nTotal: €${orderTotal.textContent}`;
 
   // finally: send email + PDF
   createAndSubmitForm(cust, summary, pdfBlob);
