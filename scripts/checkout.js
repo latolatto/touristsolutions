@@ -163,70 +163,62 @@ document.addEventListener("DOMContentLoaded", function () {
    
   }
 
-async function submitOrder() {
-  console.log("→ submitOrder() start");
-
-
-  // 1) Gather data
-  const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
-  const orderNumber = generateOrderNumber();
-
-  // 2) Build plain-text summary
-  let formatted = "";
-  cart.forEach((item, i) => {
-    formatted += `
-------------------------------
-Product ${i+1}: ${item.name.toUpperCase()}
-Date: ${item.date || "—"}
-Adults: ${item.adults || 0}
-Children: ${item.children || 0}
-Infants: ${item.infants || 0}
-Extras: ${
-      item.extras?.length
-        ? item.extras.map(e => `${e.key} x${e.qty}`).join(", ")
-        : "None"
-    }
-Subtotal: €${item.totalPrice.toLocaleString()}
-`;
-  });
-  formatted += `\n==============================\nTotal: €${orderTotal.textContent}`;
-  console.log("  • formatted summary:", formatted);
-
-
- // 3) Populate hidden inputs so FormData(hiddenForm) catches them
-  hiddenForm.querySelector("#hidden-name").value            = cust.name;
-  hiddenForm.querySelector("#hidden-surname").value         = cust.surname;
-  hiddenForm.querySelector("#hidden-email").value           = cust.email;
-  hiddenForm.querySelector("#hidden-phone").value           = cust.phone;
-  hiddenForm.querySelector("#hidden-agency").value          = cust.agency || "";
-  hiddenForm.querySelector("#hidden-order-summary").value   = formatted;
-  hiddenForm.querySelector('input[name="_subject"]').value  = `New Order #${orderNumber}`;
-
-
-    // 4) Generate the PDF Blob
-  console.log("  • generating PDF");
-  const pdfBlob = await generatePDF(cust, true);
-  console.log("  • PDF blob size:", pdfBlob.size, "bytes");
-
-  // 4) inject into file input via DataTransfer
-  const dt = new DataTransfer();
-  dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {
-    type: "application/pdf"
-  }));
-  document.getElementById("pdfInput").files = dt.files;
-
   
+ async function submitOrder() {
+    console.log("→ submitOrder() start");
 
-    // 5) submit the form into the hidden iframe
-  console.log("  • submitting hidden form");
-  hiddenForm.submit();
+    const cust = JSON.parse(localStorage.getItem('customerData')) || {};
+    const orderNumber = generateOrderNumber();
 
-  // 6) cleanup
-  downloadOrderBtn.onclick = () => generatePDF(cust, false);
-  localStorage.removeItem("cart");
-  localStorage.removeItem("customerData");
+    // Build plain-text summary
+    let summary = '';
+    cart.forEach((item, i) => {
+      summary += `Product ${i+1}: ${item.name}\n` +
+                 `Date: ${item.date || '—'}\n` +
+                 `Adults: ${item.adults || 0}, Children: ${item.children || 0}, Infants: ${item.infants || 0}\n` +
+                 `Extras: ${item.extras?.map(e => `${e.key} x${e.qty}`).join(', ') || 'None'}\n` +
+                 `Subtotal: €${item.totalPrice}\n\n`;
+    });
+    summary += `Total: €${orderTotal.textContent}`;
+
+    // Generate PDF Blob
+      console.log("  • generating PDF");
+    const pdfBlob = await generatePDF(cust, true);
+
+    // Prepare FormData for FormSubmit AJAX endpoint
+    const formData = new FormData();
+    formData.append('First Name', cust.name);
+    formData.append('Last Name', cust.surname);
+    formData.append('email', cust.email);
+    formData.append('Phone', cust.phone);
+    formData.append('Agency/Hotel', cust.agency || '');
+    formData.append('Order Summary', summary);
+    formData.append('_captcha', 'false');
+    formData.append('_subject', `New Order #${orderNumber}`);
+    formData.append('_cc', 'latolatto16@gmail.com');
+    formData.append('attachment', pdfBlob, `Order_${orderNumber}.pdf`);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/2ce673b9bc3539ee449be95aaf832627', {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      console.log('FormSubmit response', result);
+      // Optionally handle success UI here
+    } catch (err) {
+      console.error('FormSubmit AJAX error', err);
+      alert(t('alert.email.failed'));
+    } finally {
+      // Cleanup
+      localStorage.removeItem('cart');
+      localStorage.removeItem('customerData');
+        downloadOrderBtn.onclick = () => generatePDF(cust, false);
   console.log("→ submitOrder() end");
-}
+
+    }
+  }
+
 
   
 
