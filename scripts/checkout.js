@@ -91,9 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
         transactionSucceeded=true;
         showConfirmation();
         
-    downloadOrderBtn.onclick = function () {
-      generatePDF(cust, false);
-    };
       });
     },
     onError(err){
@@ -232,7 +229,6 @@ Subtotal: €${item.totalPrice.toLocaleString()}
   hiddenForm.submit();
 
   // 6) cleanup
-  downloadOrderBtn.onclick = () => generatePDF(cust, false);
   localStorage.removeItem("cart");
   localStorage.removeItem("customerData");
   console.log("→ submitOrder() end");
