@@ -142,21 +142,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
   lastPdfBlob = await generatePDF(cust, true);
   lastPdfUrl = URL.createObjectURL(lastPdfBlob);
-  // Set button to re-download using the same URL
-  downloadOrderBtn.onclick = () => {
-    const a2 = document.createElement('a');
-    a2.href = lastPdfUrl;
-    a2.download = `Order_${generateOrderNumber()}.pdf`;
-    a2.click();
-  };
+
+
+downloadOrderBtn.addEventListener('click', () => {
+  if (!lastPdfUrl) return;
+
+  // trigger download
+  const link = document.createElement('a');
+  link.href = lastPdfUrl;
+  link.download = `Order_${generateOrderNumber()}.pdf`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  // 2) swap to “Success✓” + green background
+  const originalText = downloadOrderBtn.textContent;
+  const originalBg   = downloadOrderBtn.style.backgroundColor;
+  const originalColor= downloadOrderBtn.style.color;
+
+  downloadOrderBtn.textContent        = 'Success ✓✓✓✓';
+  downloadOrderBtn.style.backgroundColor = '#28a745';  // bootstrap-green
+  downloadOrderBtn.style.color           = '#fff';
+  downloadOrderBtn.disabled              = true;
+
+  // 3) after 3s, restore
+  setTimeout(() => {
+    downloadOrderBtn.textContent        = originalText;
+    downloadOrderBtn.style.backgroundColor = originalBg;
+    downloadOrderBtn.style.color           = originalColor;
+    downloadOrderBtn.disabled              = false;
+  }, 3000);
+});
+
 
     // build plain-text summary
   let summary = '';
   cart.forEach((item,i)=>{
-    summary += `Product ${i+1}: ${item.name}\n` +
+    summary += `------------------------------
+
+    Product ${i+1}: ${item.name}\n` +
                `Date: ${item.date||'-'}\n` +
                `Adults: ${item.adults||0}, Children: ${item.children||0}, Infants: ${item.infants||0}\n` +
-               `Extras: ${(item.extras?.map(e=>`${e.key} x${e.qty}`).join(', '))||'None'}\n\n`;
+               `Extras: ${item.extras && item.extras.length ? item.extras.map(e => `${e.key} x ${e.qty}`).join(", "): "None"}\n\n`;
+                `Subtotal: €${item.totalPrice.toLocaleString()}`;
+
   });
   summary += `Total: €${orderTotal.textContent}`;
 
@@ -190,7 +219,7 @@ Children: ${item.children || 0}
 Infants: ${item.infants || 0}
 Extras: ${
       item.extras?.length
-        ? item.extras.map(e => `${e.key} x${e.qty}`).join(", ")
+        ? item.extras.map(e => `${t(e.key)} x${e.qty}`).join(", ")
         : "None"
     }
 Subtotal: €${item.totalPrice.toLocaleString()}
