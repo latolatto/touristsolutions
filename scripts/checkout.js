@@ -141,14 +141,21 @@ document.addEventListener("DOMContentLoaded", function () {
    // generate PDF
   const pdfBlob = await generatePDF(cust, true);
 
-  // auto-download for user
-  const url = URL.createObjectURL(pdfBlob);
+ // Auto download
   const a = document.createElement('a');
-  a.href = url;
+  a.href = lastPdfUrl;
   a.download = `Order_${generateOrderNumber()}.pdf`;
   a.click();
-  downloadOrderBtn.onclick = () => a.click();
 
+  lastPdfBlob = await generatePDF(cust, true);
+  lastPdfUrl = URL.createObjectURL(lastPdfBlob);
+  // Set button to re-download using the same URL
+  downloadOrderBtn.onclick = () => {
+    const a2 = document.createElement('a');
+    a2.href = lastPdfUrl;
+    a2.download = `Order_${generateOrderNumber()}.pdf`;
+    a2.click();
+  };
 
     // build plain-text summary
   let summary = '';
@@ -172,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function submitOrder() {
   console.log("→ submitOrder() start");
-
 
   // 1) Gather data
   const cust        = JSON.parse(localStorage.getItem("customerData")) || {};
