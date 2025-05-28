@@ -183,8 +183,13 @@ downloadOrderBtn.addEventListener('click', () => {
     Product ${i+1}: ${item.name}\n` +
                `Date: ${item.date||'-'}\n` +
                `Adults: ${item.adults||0}, Children: ${item.children||0}, Infants: ${item.infants||0}\n` +
-               `Extras: ${item.extras && item.extras.length ? item.extras.map(e => `${e.key} x ${e.qty}`).join(", "): "None"}\n\n`;
-                `Subtotal: €${item.totalPrice.toLocaleString()}`;
+`Extras: ${
+  item.extras && item.extras.length
+    ? item.extras
+        .map(e => `${translations.en[e.key]} x${e.qty}`)
+        .join(', ')
+    : 'None'
+}\n\n`;                `Subtotal: €${item.totalPrice.toLocaleString()}`;
 
   });
   summary += `Total: €${orderTotal.textContent}`;
