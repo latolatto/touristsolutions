@@ -141,11 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
    // generate PDF
   const pdfBlob = await generatePDF(cust, true);
 
- // Auto download
-  const a = document.createElement('a');
-  a.href = lastPdfUrl;
-  a.download = `Order_${generateOrderNumber()}.pdf`;
-  a.click();
+
 
   lastPdfBlob = await generatePDF(cust, true);
   lastPdfUrl = URL.createObjectURL(lastPdfBlob);
@@ -407,7 +403,8 @@ function createAndSubmitForm(cust, summary, pdfBlob) {
     '_captcha':      'false',
     '_subject':      `New Order #${orderNumber}`,
     '_cc':           'latolatto16@gmail.com',
-    '_template':     'table'
+    '_template':     'table',
+    '_redirect':     'false'
     // no _next field
   };
   Object.entries(data).forEach(([k,v]) => {
