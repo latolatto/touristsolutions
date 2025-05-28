@@ -376,36 +376,49 @@ async function generatePDF(customerData, returnBlob = true) {
 function createAndSubmitForm(cust, summary, pdfBlob) {
   const orderNumber = new Date().toISOString().replace(/[-:.]/g,'') + 'Z';
 
-  // 1) form container
+  // 1) Dynamically create a hidden iframe
+  const iframe = document.createElement('iframe');
+  iframe.name = 'email-target';
+  iframe.style.display = 'none';
+  document.body.appendChild(iframe);
+
+  // 2) Create the form and target it into that iframe
   const form = document.createElement('form');
   form.action  = 'https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627';
   form.method  = 'POST';
   form.enctype = 'multipart/form-data';
+  form.target  = 'email-target';  // ← send the POST here
   form.style.display = 'none';
 
-  // 2) hidden text fields
+  // 3) Prevent the browser from navigating on submit
+  form.addEventListener('submit', e => {
+    e.preventDefault();  // stops any navigation
+    // we still let the browser send the request into the iframe
+  });
+
+  // 4) Append your hidden fields
   const data = {
     'First Name':    cust.name,
     'Last Name':     cust.surname,
     'email':         cust.email,
     'Phone':         cust.phone,
-    'Agency/Hotel':  cust.agency||'',
+    'Agency/Hotel':  cust.agency || '',
     'Order Summary': summary,
     '_captcha':      'false',
     '_subject':      `New Order #${orderNumber}`,
     '_cc':           'latolatto16@gmail.com',
-    '_template' : 'table',
-    '_next' : ""
+    '_template':     'table'
+    // no _next field
   };
-  Object.entries(data).forEach(([k,v])=>{
-    const i = document.createElement('input');
-    i.type  = 'hidden';
-    i.name  = k;
-    i.value = v;
-    form.appendChild(i);
+  Object.entries(data).forEach(([k,v]) => {
+    const inp = document.createElement('input');
+    inp.type  = 'hidden';
+    inp.name  = k;
+    inp.value = v;
+    form.appendChild(inp);
   });
 
-  // 3) off-screen file input
+  // 5) Off-screen file input
   const fileInput = document.createElement('input');
   fileInput.type   = 'file';
   fileInput.name   = '_attachment';
@@ -416,13 +429,14 @@ function createAndSubmitForm(cust, summary, pdfBlob) {
 
   document.body.appendChild(form);
 
-  // 4) attach the PDF blob
+  // 6) Populate the file input
   const dt = new DataTransfer();
   dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {type:'application/pdf'}));
   fileInput.files = dt.files;
 
-  // 5) submit!
+  // 7) Trigger the submit (fires into the iframe, no navigation)
   form.submit();
 }
+
 
 });
