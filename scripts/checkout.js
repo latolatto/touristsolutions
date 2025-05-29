@@ -143,38 +143,53 @@ document.addEventListener("DOMContentLoaded", function () {
   lastPdfBlob = await generatePDF(cust, true);
   lastPdfUrl = URL.createObjectURL(lastPdfBlob);
 
-
 downloadOrderBtn.addEventListener('click', () => {
-  if (!lastPdfUrl) return;
+  if (!lastPdfBlob) return;
 
-  // trigger download
+  // --- DOWNLOAD ---
+  const blobUrl = URL.createObjectURL(lastPdfBlob);
   const link = document.createElement('a');
-  link.href = lastPdfUrl;
+  link.href = blobUrl;
   link.download = `Order_${generateOrderNumber()}.pdf`;
+  link.target = '_blank';
+  link.style.display = 'none';
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
 
-  // 2) swap to “Success✓” + green background
-  const originalText = downloadOrderBtn.textContent;
-  const originalBg   = downloadOrderBtn.style.backgroundColor;
-  const originalColor= downloadOrderBtn.style.color;
+  // --- FLASH BUTTON ---
+  const originalBg    = downloadOrderBtn.style.backgroundColor;
+  const originalColor = downloadOrderBtn.style.color;
 
-  downloadOrderBtn.textContent        = 'Success ✓✓✓✓';
-  downloadOrderBtn.style.backgroundColor = '#28a745';  // bootstrap-green
-  downloadOrderBtn.style.color           = '#fff';
-  downloadOrderBtn.disabled              = true;
+  downloadOrderBtn.style.backgroundColor = '#28a745';
+  downloadOrderBtn.style.color            = '#fff';
+  downloadOrderBtn.disabled               = true;
 
-  // 3) after 3s, restore
+  // --- SHOW CHECKMARK in reserved span ---
+  checkmarkPlaceholder.textContent = '✓';
+  checkmarkPlaceholder.style.color = '#28a745';
+
+  // --- RESTORE after 3s ---
   setTimeout(() => {
-    downloadOrderBtn.textContent        = originalText;
     downloadOrderBtn.style.backgroundColor = originalBg;
-    downloadOrderBtn.style.color           = originalColor;
-    downloadOrderBtn.disabled              = false;
+    downloadOrderBtn.style.color            = originalColor;
+    downloadOrderBtn.disabled               = false;
+
+    checkmarkPlaceholder.textContent = '';
   }, 3000);
 });
 
 
+// 1) Reserve a space for the checkmark
+const checkmarkPlaceholder = document.createElement('span');
+checkmarkPlaceholder.id = 'download-success-check';
+checkmarkPlaceholder.style.display = 'inline-block';
+checkmarkPlaceholder.style.width = '1em';       // space for one character
+checkmarkPlaceholder.style.marginLeft = '8px';  // tweak as you like
+checkmarkPlaceholder.style.textAlign = 'center';
+downloadOrderBtn.parentNode.insertBefore(checkmarkPlaceholder, downloadOrderBtn.nextSibling);
+ 
     // build plain-text summary
   let summary = '';
   cart.forEach((item,i)=>{
