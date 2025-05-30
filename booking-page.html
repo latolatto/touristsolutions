@@ -426,6 +426,22 @@ document.addEventListener("DOMContentLoaded", function () {
             // "2025-06-13"
         ]
     };
+      const extraDisabledDates = {
+        "Vlora-Berat": [
+            // "2025-07-20",
+            // "2025-08-17" 
+                 "2025-06-01","2025-06-02","2025-06-03","2025-06-04","2025-06-05","2025-06-06","2025-06-07",
+                 "2025-06-08","2025-06-09",
+                 "2025-06-10","2025-06-11","2025-06-12","2025-06-13","2025-06-14","2025-06-15"
+          
+        ],
+        "Vlora-Saranda": [
+            // "2025-06-15"
+                             "2025-06-01","2025-06-02","2025-06-03","2025-06-04","2025-06-05","2025-06-06","2025-06-07",
+                 "2025-06-08","2025-06-09",
+                 "2025-06-10","2025-06-11","2025-06-12","2025-06-13","2025-06-14","2025-06-15"
+        ]
+    };
 
     function getDisabledDates(busType, oddOrEven) {
         let disabledDates = [];
@@ -441,6 +457,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Skip if manually enabled
                 if (extraEnabledDates[busType]?.includes(formatted)) continue;
 
+                    // Disable if manually disabled
+                if (extraDisabledDates[busType]?.includes(formatted)) {
+                    disabledDates.push(formatted);
+                    continue;
+                }
                 // Apply odd/even logic
                 if ((oddOrEven === "even" && day % 2 !== 0) ||
                     (oddOrEven === "odd" && day % 2 === 0)) {
