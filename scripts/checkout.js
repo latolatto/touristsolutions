@@ -151,8 +151,12 @@ downloadOrderBtn.addEventListener('click', () => {
   const blobUrl = URL.createObjectURL(lastPdfBlob);
 
   // Detect iOS Safari
-  const isIosSafari = /iP(hone|od|ad)/.test(navigator.platform)
-                     && navigator.userAgent.includes('Safari');
+  const isIosSafari =
+    /iP(hone|od|ad)/.test(navigator.platform) &&
+    navigator.userAgent.includes('Safari') &&
+    !navigator.userAgent.includes('CriOS') && 
+    !navigator.userAgent.includes('FxiOS') &&
+    !navigator.userAgent.includes('EdgiOS');
   
   if (isIosSafari) {
     // Open the blob in a new tab (so Safari won’t replace your checkout page)
