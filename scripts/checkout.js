@@ -148,21 +148,15 @@ document.addEventListener("DOMContentLoaded", function () {
 downloadOrderBtn.addEventListener('click', () => {
   if (!lastPdfBlob) return;
 
-  // 1) detect iOS Safari
-  const isIosSafari = /iP(hone|od|ad)/.test(navigator.platform)
-    && navigator.userAgent.includes('Safari');
+  const blobUrl = URL.createObjectURL(lastPdfBlob);
 
+  // Detect iOS Safari
+  const isIosSafari = /iP(hone|od|ad)/.test(navigator.platform)
+                     && navigator.userAgent.includes('Safari');
+  
   if (isIosSafari) {
-    // iOS Safari: open a new blank tab immediately…
-    const newWin = window.open('', '_blank');
-    if (!newWin) {
-      alert('Please allow pop-ups to view your PDF.');
-      return;
-    }
-    // …then convert blob → data:URI → navigate the new tab to it
-    const reader = new FileReader();
-    reader.onloadend = () => newWin.location.href = reader.result;
-    reader.readAsDataURL(lastPdfBlob);
+    // Open the blob in a new tab (so Safari won’t replace your checkout page)
+    window.open(blobUrl, '_blank');
 
   } else {
     // All other browsers: force a download
