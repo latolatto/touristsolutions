@@ -144,63 +144,65 @@ document.addEventListener("DOMContentLoaded", function () {
   lastPdfUrl = URL.createObjectURL(lastPdfBlob);
   
 
-downloadOrderBtn.addEventListener('click', async () => {
+// — inside showConfirmation(), after you set lastPdfBlob/lastPdfUrl —
+downloadOrderBtn.addEventListener('click', () => {
   if (!lastPdfBlob) return;
 
-  // 1) iOS Safari detection
+  // 1) detect iOS Safari
   const isIosSafari = /iP(hone|od|ad)/.test(navigator.platform)
-    && navigator.userAgent.includes('Safari')
-    && !navigator.userAgent.includes('Chrome');
+    && navigator.userAgent.includes('Safari');
 
   if (isIosSafari) {
-    // ——— iOS Safari path: Data-URI into a new tab ———
-    const reader = new FileReader();
-    // open a blank tab immediately (avoid popup blockers)
+    // iOS Safari: open a new blank tab immediately…
     const newWin = window.open('', '_blank');
-    reader.onloadend = () => {
-      // reader.result -> "data:application/pdf;base64,…"
-      if (newWin) newWin.location.href = reader.result;
-    };
+    if (!newWin) {
+      alert('Please allow pop-ups to view your PDF.');
+      return;
+    }
+    // …then convert blob → data:URI → navigate the new tab to it
+    const reader = new FileReader();
+    reader.onloadend = () => newWin.location.href = reader.result;
     reader.readAsDataURL(lastPdfBlob);
 
   } else {
-    // ——— Other browsers: normal download ———
+    // All other browsers: force a download
     const blobUrl = URL.createObjectURL(lastPdfBlob);
-    const link    = document.createElement('a');
-    link.href     = blobUrl;
-    link.download = `Order_${generateOrderNumber()}.pdf`;
+    const link   = document.createElement('a');
+    link.href    = blobUrl;
+    link.download= `Order_${generateOrderNumber()}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
   }
 
-  // ——— FLASH BUTTON FEEDBACK (same as you already have) ———
-  const originalBg    = downloadOrderBtn.style.backgroundColor;
-  const originalColor = downloadOrderBtn.style.color;
+  // 2) Flash the button green + ✓ for 3s
+  const origBg    = downloadOrderBtn.style.backgroundColor;
+  const origColor = downloadOrderBtn.style.color;
+
   downloadOrderBtn.style.backgroundColor = '#28a745';
   downloadOrderBtn.style.color           = '#fff';
   downloadOrderBtn.disabled              = true;
   checkmarkPlaceholder.textContent       = '✓';
 
   setTimeout(() => {
-    downloadOrderBtn.style.backgroundColor = originalBg;
-    downloadOrderBtn.style.color           = originalColor;
+    downloadOrderBtn.style.backgroundColor = origBg;
+    downloadOrderBtn.style.color           = origColor;
     downloadOrderBtn.disabled              = false;
     checkmarkPlaceholder.textContent       = '';
   }, 3000);
 });
 
-
-
-// 1) Reserve a space for the checkmark
+// (somewhere after you grab `downloadOrderBtn` but before any clicks fire)
 const checkmarkPlaceholder = document.createElement('span');
-checkmarkPlaceholder.id = 'download-success-check';
-checkmarkPlaceholder.style.display = 'inline-block';
-checkmarkPlaceholder.style.width = '1em';       // space for one character
-checkmarkPlaceholder.style.marginLeft = '8px';  // tweak as you like
-checkmarkPlaceholder.style.textAlign = 'center';
-downloadOrderBtn.parentNode.insertBefore(checkmarkPlaceholder, downloadOrderBtn.nextSibling);
+checkmarkPlaceholder.style.display    = 'inline-block';
+checkmarkPlaceholder.style.width      = '1em';
+checkmarkPlaceholder.style.marginLeft = '8px';
+downloadOrderBtn.parentNode.insertBefore(
+  checkmarkPlaceholder,
+  downloadOrderBtn.nextSibling
+);
+
  
     // build plain-text summary
   let summary = '';
