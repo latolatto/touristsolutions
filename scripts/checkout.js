@@ -319,15 +319,29 @@ async function generatePDF(customerData, returnBlob = true) {
   });
 
   // Business info
+    doc.setTextColor(0, 0, 0);
+
+  
   doc.setFontSize(16).text("Tourist Solutions", 80, 30);
   doc.setFontSize(10)
      .text("Email: support@touristsolutions.info", 80, 37)
      .text("Phone: +355698136849", 80, 44);
+ // ** RED DISCLAIMER **
+  doc.setFontSize(15);
+  doc.setTextColor(255, 0, 0);               // red
+    doc.setFont("helvetica", "bold");
+  doc.text(
+    "!! Screenshot or save this order receipt as a document to not lose it !! ",
+    10, 50,                                  // x=10, y=50
+    { maxWidth: 190 }                        // wrap if needed
+  );
 
   // Customer details
-  doc.setFontSize(12).text("Order Confirmation", 10, 55);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(0, 0, 0);
+  doc.setFontSize(12).text("Order Confirmation", 10, 65);
   doc.setFontSize(10);
-  let y = 65;
+  let y = 75;
   doc.text(`Name: ${customerData.name} ${customerData.surname}`, 10, y); y += 8;
   doc.text(`Email: ${customerData.email}`, 10, y);                     y += 8;
   doc.text(`Phone: ${customerData.phone}`, 10, y);                     y += 8;
