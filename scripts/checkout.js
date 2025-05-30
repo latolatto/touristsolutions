@@ -17,6 +17,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let transactionSucceeded = false;
 
+  const modalWasShown = sessionStorage.getItem("modalWasShown");
+const modalWasClosed = sessionStorage.getItem("modalWasClosed");
+
+if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
+  // User closed the browser while the modal was open
+  localStorage.removeItem("cart");
+  localStorage.removeItem("customerData");
+       const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
+        formFields.forEach(field => field.disabled = true);
+
+  // Hide modal defensively
+  modal.style.display = "none";
+
+  // Clean up session flags
+  sessionStorage.removeItem("modalWasShown");
+  sessionStorage.removeItem("modalWasClosed");
+}
+
   function displayCart() {
     cartSummary.innerHTML = "";
     let total = 0;
@@ -106,6 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
   async function showConfirmation() {
     if (!transactionSucceeded) return;
     modal.style.display = "flex";
+
+    sessionStorage.setItem("modalWasShown", "true");
 
     // Populate modal (exactly as you had)
     const cust = JSON.parse(localStorage.getItem("customerData")) || {};
@@ -429,14 +449,17 @@ async function generatePDF(customerData, returnBlob = true) {
   closeModal.addEventListener("click",()=>{
     modal.style.display="none";
     location.reload();
-    localStorage.removeItem("cart");
-    localStorage.removeItem("customerData");
-     const formFields = document.querySelectorAll('form input, form select, form textarea, form button');
-        formFields.forEach(field => field.disabled = true);
+  sessionStorage.setItem("modalWasClosed", "true");
+
 
 
   });
 
+
+
+
+
+  
   displayCart();
   /**
  * Builds a tiny off-screen form, injects all your fields + PDF, and submits it.
