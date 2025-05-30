@@ -142,43 +142,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
   lastPdfBlob = await generatePDF(cust, true);
   lastPdfUrl = URL.createObjectURL(lastPdfBlob);
+  
 
-downloadOrderBtn.addEventListener('click', () => {
+downloadOrderBtn.addEventListener('click', async () => {
   if (!lastPdfBlob) return;
 
-  // --- DOWNLOAD ---
-  const blobUrl = URL.createObjectURL(lastPdfBlob);
-  const link = document.createElement('a');
-  link.href = blobUrl;
-  link.download = `Order_${generateOrderNumber()}.pdf`;
-  link.target = '_blank';
-  link.style.display = 'none';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+  // 1) iOS Safari detection
+  const isIosSafari = /iP(hone|od|ad)/.test(navigator.platform)
+    && navigator.userAgent.includes('Safari')
+    && !navigator.userAgent.includes('Chrome');
 
-  // --- FLASH BUTTON ---
+  if (isIosSafari) {
+    // ——— iOS Safari path: Data-URI into a new tab ———
+    const reader = new FileReader();
+    // open a blank tab immediately (avoid popup blockers)
+    const newWin = window.open('', '_blank');
+    reader.onloadend = () => {
+      // reader.result -> "data:application/pdf;base64,…"
+      if (newWin) newWin.location.href = reader.result;
+    };
+    reader.readAsDataURL(lastPdfBlob);
+
+  } else {
+    // ——— Other browsers: normal download ———
+    const blobUrl = URL.createObjectURL(lastPdfBlob);
+    const link    = document.createElement('a');
+    link.href     = blobUrl;
+    link.download = `Order_${generateOrderNumber()}.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+  }
+
+  // ——— FLASH BUTTON FEEDBACK (same as you already have) ———
   const originalBg    = downloadOrderBtn.style.backgroundColor;
   const originalColor = downloadOrderBtn.style.color;
-
   downloadOrderBtn.style.backgroundColor = '#28a745';
-  downloadOrderBtn.style.color            = '#fff';
-  downloadOrderBtn.disabled               = true;
+  downloadOrderBtn.style.color           = '#fff';
+  downloadOrderBtn.disabled              = true;
+  checkmarkPlaceholder.textContent       = '✓';
 
-  // --- SHOW CHECKMARK in reserved span ---
-  checkmarkPlaceholder.textContent = '✓';
-  checkmarkPlaceholder.style.color = '#28a745';
-
-  // --- RESTORE after 3s ---
   setTimeout(() => {
     downloadOrderBtn.style.backgroundColor = originalBg;
-    downloadOrderBtn.style.color            = originalColor;
-    downloadOrderBtn.disabled               = false;
-
-    checkmarkPlaceholder.textContent = '';
+    downloadOrderBtn.style.color           = originalColor;
+    downloadOrderBtn.disabled              = false;
+    checkmarkPlaceholder.textContent       = '';
   }, 3000);
 });
+
 
 
 // 1) Reserve a space for the checkmark
