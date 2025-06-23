@@ -355,7 +355,7 @@ async function generatePDF(customerData, returnBlob = true) {
   doc.setTextColor(255, 0, 0);               // red
     doc.setFont("helvetica", "bold");
   doc.text(
-    "!! Screenshot or save this order receipt as a document to not lose it !! ",
+    "!! Screenshot this order receipt and send it to us via Whatsapp for order confirmation !! ",
     10, 50,                                  // x=10, y=50
     { maxWidth: 190 }                        // wrap if needed
   );
