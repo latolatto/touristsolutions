@@ -111,8 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "features.cruise.2",
           "features.cruise.3",
           "features.cruise.4",
-          "features.cruise.5",
-          "features.cruise.6"
+          "features.cruise.5"
         ],
         price: {
           infant: { age: "0-3", value: 0 },

@@ -315,7 +315,6 @@ const translations = {
     "opt3.feature3": "🚤 Speedboat Option: Haxhi Ali Cave (+ €15)",
     "opt3.feature4": "🧘 Relaxing Experience: Perfect for those who prefer a quiet trip without loud music or partying",
     "opt3.feature5": "🍹 Bar: Refreshing drinks",
-    "opt3.feature6": "🥪 Included: Free sandwich",
     "opt3.feature7": "⏳ Please arrive 30-40 minutes before departure for check-in.",
     "opt3.cta": "Book Now",
 
@@ -443,7 +442,6 @@ const translations = {
   "features.cruise.3": "🚤 Speedboat Option: Haxhi Ali Cave (+ €15 )",
   "features.cruise.4": "🧘 Relaxing Experience: Quiet & peaceful trip",
   "features.cruise.5": "🍹 Bar: Refreshing drinks",
-  "features.cruise.6": "🥪 Included: Free sandwich",
   "maininfo.cruise": "Guided boat tour of Karaburun-Sazan National Marine Park",
 
   // Vlora-Saranda Bus Tour
