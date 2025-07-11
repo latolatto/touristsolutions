@@ -499,9 +499,10 @@ document.addEventListener("DOMContentLoaded", function () {
             disable: []
         };
 
-        if (bus === "Vlora-Saranda") {
-            config.disable = getDisabledDates("Vlora-Saranda", "odd");
-        } else if (bus === "Vlora-Berat") {
+        // if (bus === "Vlora-Saranda") {
+        //     config.disable = getDisabledDates("Vlora-Saranda", "odd");
+        // } else 
+        if (bus === "Vlora-Berat") {
             config.disable = getDisabledDates("Vlora-Berat", "even");
         } else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
             config.disable = [];
