@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         mainInfo: "maininfo.aqua",
         extras: {
-          speedboat: { label: "extras.aqua.speedboat", price: 15 },
+          speedboat: { label: "extras.aqua.speedboat", price: 20 },
           meal: { label: "extras.aqua.meal", price: 15 }
         }
       },
@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <span class="fs-4 me-3"><img alt="cave" width="70" src="./assets/images/other-pages/boat-trip/haxhi-ali.webp"></span>
                                 <div>
                                     <h5 class="mb-1" data-i18n="boat.itinerary.stop2">Stop 2 – Haxhi Ali Cave</h5>
-                                    <p class="mb-0" data-i18n="boat.itinerary.stop2.txt">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+ €15, ~20 minutes)</p>
+                                    <p class="mb-0" data-i18n="boat.itinerary.stop2.txt">Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (~20 minutes)</p>
                                 </div>
                             </div>
         
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <ul class="list-unstyled text-center mt-3">
                                 <li data-i18n="boat.itinerary.excluded1">🍽️ Food & drinks from the onboard restaurant/bar</li>
                                 <li data-i18n="boat.itinerary.excluded2">⛱️ Sunbeds and umbrellas at the beach</li>
-                                <li data-i18n="boat.itinerary.excluded3">🚤 Optional speedboat tour inside Haxhi Ali Cave (+ €15 )</li>
+                                <li data-i18n="boat.itinerary.excluded3">🚤 Optional speedboat tour inside Haxhi Ali Cave (+ €15-€20 )</li>
                             </ul>
                         </div>
                     </div>
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (productName === "Aquamarine") {
             const speedboatQty = document.getElementById("speedboat-tickets").valueAsNumber || 0;
             const mealQty      = document.getElementById("meal-tickets").valueAsNumber      || 0;
-            total += speedboatQty * 15;
+            total += speedboatQty * 20;
             total += mealQty      * 15;
           }
           
@@ -465,7 +465,7 @@ if (!date) {
                 price: {
                     infant: 0, child: 15, adult: 25
                 },
-                extras: { speedboat: 15, meal: 15 }
+                extras: { speedboat: 20, meal: 15 }
             },
             "Liburna": {
                 image: "./assets/images/other-pages/boat-trip/liburna1.webp",

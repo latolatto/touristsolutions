@@ -282,7 +282,7 @@ const translations = {
     "opt1.price.adults": "Adults (11+ years): €25",
     "opt1.feature1": "🌊 Boat Tour: Guided exploration",
     "opt1.feature2": "🏝️ Beach Stops: Relaxing breaks",
-    "opt1.feature3": "🚤 Speedboat Option: Haxhi Ali Cave (+ €15 )",
+    "opt1.feature3": "🚤 Speedboat Option: Haxhi Ali Cave (+ €20 )",
     "opt1.feature4": "🎶 Party Onboard: DJ & entertainment",
     "opt1.feature5": "🍽️ Dining: Bar & restaurant (meat & fish + €15 )",
     "opt1.feature6": "🍉 Included: Free large fruit banquet",
@@ -327,7 +327,7 @@ const translations = {
       "stop1": "Stop 1 – Karaburun Beach",
       "stop1.txt": "Enjoy a relaxing beach stay (approximately <strong>3-4 hours</strong>).",
       "stop2": "Stop 2 – Haxhi Ali Cave",
-      "stop2.txt": "Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+ €15, ~20 minutes)",
+      "stop2.txt": "Panoramic visit of the famous sea cave; <strong>optional</strong> speedboat entrance (+ €15-€20, ~20 minutes)",
       "stop3": "Stop 3 – Sazan Island",
       "stop3.txt": "Guided exploration of the island, including bunkers and historic sites (~<strong>1 hour</strong>).",
       "return": "Return",
@@ -338,7 +338,7 @@ const translations = {
       },
       "excluded1": "🍽️ Food & drinks from the onboard restaurant/bar",
       "excluded2": "⛱️ Sunbeds and umbrellas at the beach",
-      "excluded3": "🚤 Optional speedboat tour inside Haxhi Ali Cave (+ €15 )"
+      "excluded3": "🚤 Optional speedboat tour inside Haxhi Ali Cave (+ €15-€20 )"
     }
   },
 
@@ -402,7 +402,7 @@ const translations = {
   "booking.children": "Children:",
   "booking.infants": "Infants:",
   "booking.extras": "Optional Add-ons",
-  "booking.extra1": "🚤 Speedboat Tour (+ €15 per person)",
+  "booking.extra1": "🚤 Speedboat Tour (+ €20 per person)",
   "booking.extra2": "🍽️ Meat/Fish Meal (+ €15 per person)",
   "booking.addedtocart": "Added to Cart !",
   "booking.addtocart": "Add to Cart",
@@ -419,7 +419,7 @@ const translations = {
   // Aquamarine Features
   "features.aqua.1": "🌊 Boat Tour: Guided exploration",
   "features.aqua.2": "🏝️ Beach Stops: Relaxing breaks",
-  "features.aqua.3": "🚤 Speedboat Option: Haxhi Ali Cave (+ €15 )",
+  "features.aqua.3": "🚤 Speedboat Option: Haxhi Ali Cave (+ €20 )",
   "features.aqua.4": "🎶 Party Onboard: DJ & entertainment",
   "features.aqua.5": "🍽️ Dining: Bar & restaurant (meat & fish + €15 )",
   "features.aqua.6": "🍉 Included: Free large fruit banquet",
@@ -802,7 +802,7 @@ boat: {
   "opt1.price.adults": " të Rriturit (11+ vjeç): 25 €",
   "opt1.feature1": "🌊 Tur me anije: Eksplorim me guidë",
   "opt1.feature2": "🏝️ Ndalesa nëpër Plazhe",
-  "opt1.feature3": "🚤 Opsion Me Motor: Shpella Haxhi Ali (+ 15 €)",
+  "opt1.feature3": "🚤 Opsion Me Motor: Shpella Haxhi Ali (+ 20 €)",
   "opt1.feature4": "🎶 Festë Në Bord: DJ & argëtim",
   "opt1.feature5": "🍽️ Ushqim: Bar & restorant (mish & peshk + 15 €)",
   "opt1.feature6": "🍉 Përfshirë: Banket i madh frutash falas",
@@ -846,7 +846,7 @@ boat: {
     "stop1": "Ndalimi 1 – Plazhi i Karaburunit",
     "stop1.txt": "Shijoni një qëndrim relaksues në plazh (rreth <strong>3-4 orë</strong>).",
     "stop2": "Ndalimi 2 – Shpella e Haxhi Aliut",
-    "stop2.txt": "Vizitë panoramike e shpellës së famshme detare; hyrje <strong>opsionale</strong> me skaf (+ €15, ~20 minuta)",
+    "stop2.txt": "Vizitë panoramike e shpellës së famshme detare; hyrje <strong>opsionale</strong> me skaf (+ €15-€20, ~20 minuta)",
     "stop3": "Ndalimi 3 – Ishulli i Sazanit",
     "stop3.txt": "Eksplorim me guidë i ishullit, përfshirë bunkerët dhe vendet historike (~<strong>1 orë</strong>).",
     "return": "Kthimi",
@@ -857,7 +857,7 @@ boat: {
     },
     "excluded1": "🍽️ Ushqime & pije nga restoranti/bar në bord",
     "excluded2": "⛱️ Shezlongë dhe çadra në plazh",
-    "excluded3": "🚤 Udhëtim opsional me skaf brenda Shpellës së Haxhi Aliut (+ €15 )"
+    "excluded3": "🚤 Udhëtim opsional me skaf brenda Shpellës së Haxhi Aliut (+ €15-€20 )"
   }
 },
 
@@ -922,14 +922,14 @@ boat: {
   "booking.children": "Fëmijë:",
   "booking.infants": "Foshnja:",
   "booking.extras": "Shtesa Opsionale",
-  "booking.extra1": "🚤 Turne me Motor (+ 15 € për person)",
+  "booking.extra1": "🚤 Turne me Motor (+ 20 € për person)",
   "booking.extra2": "🍽️ Vakt Mish/Peshk (+ 15 € për person)",
   "booking.addedtocart": "Shtuar në Shportë !",
   "booking.addtocart": "Shto në Shportë",
 
   "features.aqua.1": "🌊 Turne me anije: Eksplorim i udhëhequr",
   "features.aqua.2": "🏝️ Ndalesa në Plazh: Pushime relaksuese",
-  "features.aqua.3": "🚤 Opsion Me Motor: Shpella Haxhi Ali (+ 15 €)",
+  "features.aqua.3": "🚤 Opsion Me Motor: Shpella Haxhi Ali (+20 €)",
   "features.aqua.4": "🎶 Festë në Bord: DJ & argëtim",
   "features.aqua.5": "🍽️ Ushqim: Bar & restorant (mish & peshk + 15 €)",
   "features.aqua.6": "🍉 Përfshirë: Banket i madh frutash falas",
@@ -1299,7 +1299,7 @@ boat: {
   "opt1.price.adults": "Adulti (11+ anni): 25 €",
   "opt1.feature1": "🌊 Tour in Barca: Esplorazione guidata",
   "opt1.feature2": "🏝️ Soste in Spiaggia: Relax",
-  "opt1.feature3": "🚤 Opzione Motoscafo: Grotta di Haxhi Ali (+ 15 €)",
+  "opt1.feature3": "🚤 Opzione Motoscafo: Grotta di Haxhi Ali (+ 20 €)",
   "opt1.feature4": "🎶 Festa a Bordo: DJ & intrattenimento",
   "opt1.feature5": "🍽️ Ristorante: Bar & ristorante (carne & pesce + 15 €)",
   "opt1.feature6": "🍉 Incluso: Grande banchetto di frutta gratuito",
@@ -1343,7 +1343,7 @@ boat: {
     "stop1": "Fermata 1 – Spiaggia di Karaburun",
     "stop1.txt": "Goditi una sosta rilassante in spiaggia (circa <strong>3-4 ore</strong>).",
     "stop2": "Fermata 2 – Grotta di Haxhi Ali",
-    "stop2.txt": "Visita panoramica della famosa grotta marina; ingresso <strong>opzionale</strong> con motoscafo (+ €15, ~20 minuti)",
+    "stop2.txt": "Visita panoramica della famosa grotta marina; ingresso <strong>opzionale</strong> con motoscafo (+ €15-€20, ~20 minuti)",
     "stop3": "Fermata 3 – Isola di Sazan",
     "stop3.txt": "Esplorazione guidata dell'isola, inclusi bunker e siti storici (~<strong>1 ora</strong>).",
     "return": "Ritorno",
@@ -1354,7 +1354,7 @@ boat: {
     },
     "excluded1": "🍽️ Cibo e bevande dal ristorante/bar a bordo",
     "excluded2": "⛱️ Lettini e ombrelloni in spiaggia",
-    "excluded3": "🚤 Tour opzionale in motoscafo dentro la Grotta di Haxhi Ali (+ €15 )"
+    "excluded3": "🚤 Tour opzionale in motoscafo dentro la Grotta di Haxhi Ali  (€15-€20))"
   }
 },
 
@@ -1418,14 +1418,14 @@ boat: {
   "booking.children": "Bambini:",
   "booking.infants": "Neonati:",
   "booking.extras": "Extra Opzionali",
-  "booking.extra1": "🚤 Tour in Motoscafo (+ 15 € a persona)",
+  "booking.extra1": "🚤 Tour in Motoscafo (+ 20 € a persona)",
   "booking.extra2": "🍽️ Pasto Carne/Pesce (+ 15 € a persona)",
   "booking.addedtocart": "Aggiunto al Carrello !",
   "booking.addtocart": "Aggiungi al Carrello",
 
   "features.aqua.1": "🌊 Tour in Barca: Esplorazione guidata",
   "features.aqua.2": "🏝️ Soste in Spiaggia: Relax",
-  "features.aqua.3": "🚤 Opzione Motoscafo: Grotta di Haxhi Ali (+ 15 €)",
+  "features.aqua.3": "🚤 Opzione Motoscafo: Grotta di Haxhi Ali (+ 20 €)",
   "features.aqua.4": "🎶 Festa a Bordo: DJ & intrattenimento",
   "features.aqua.5": "🍽️ Ristorante: Bar & ristorante (carne & pesce + 15 €)",
   "features.aqua.6": "🍉 Incluso: Grande banchetto di frutta gratuito",
@@ -1799,7 +1799,7 @@ boat: {
   "opt1.price.adults": "Adultes (11+ ans) : 25 €",
   "opt1.feature1": "🌊 Tour en Bateau : Exploration guidée",
   "opt1.feature2": "🏝️ Arrêts Plage : Moments détente",
-  "opt1.feature3": "🚤 Option Hors-Bord : Grotte de Haxhi Ali (+ 15 €)",
+  "opt1.feature3": "🚤 Option Hors-Bord : Grotte de Haxhi Ali (+ 20 €)",
   "opt1.feature4": "🎶 Fête à Bord : DJ & animations",
   "opt1.feature5": "🍽️ Restauration : Bar & restaurant (viande & poisson + 15 €)",
   "opt1.feature6": "🍉 Inclus : Grand banquet de fruits gratuit",
@@ -1843,7 +1843,7 @@ boat: {
     "stop1": "Arrêt 1 – Plage de Karaburun",
     "stop1.txt": "Profitez d'une pause détente à la plage (environ <strong>3-4 heures</strong>).",
     "stop2": "Arrêt 2 – Grotte de Haxhi Ali",
-    "stop2.txt": "Visite panoramique de la célèbre grotte marine ; entrée <strong>optionnelle</strong> en hors-bord (+ €15, ~20 minutes)",
+    "stop2.txt": "Visite panoramique de la célèbre grotte marine ; entrée <strong>optionnelle</strong> en hors-bord (+ €15-€20, ~20 minutes)",
     "stop3": "Arrêt 3 – Île de Sazan",
     "stop3.txt": "Exploration guidée de l'île, y compris des bunkers et des sites historiques (~<strong>1 heure</strong>).",
     "return": "Retour",
@@ -1854,7 +1854,7 @@ boat: {
     },
     "excluded1": "🍽️ Nourriture et boissons du restaurant/bar à bord",
     "excluded2": "⛱️ Transats et parasols sur la plage",
-    "excluded3": "🚤 Excursion en hors-bord optionnelle dans la grotte de Haxhi Ali (+ €15 )"
+    "excluded3": "🚤 Excursion en hors-bord optionnelle dans la grotte de Haxhi Ali (€15-€20)"
   }
 },
 
@@ -1921,14 +1921,14 @@ van:{
       "booking.children": "Enfants :",
       "booking.infants": "Bébés :",
       "booking.extras": "Options Supplémentaires",
-      "booking.extra1": "🚤 Excursion en Hors-bord (+ 15 € par personne)",
+      "booking.extra1": "🚤 Excursion en Hors-bord (+ 20 € par personne)",
       "booking.extra2": "🍽️ Repas Viande/Poisson (+ 15 € par personne)",
       "booking.addedtocart": "Ajouté au Panier !",
       "booking.addtocart": "Ajouter au Panier",
     
       "features.aqua.1": "🌊 Tour en Bateau : Exploration guidée",
       "features.aqua.2": "🏝️ Arrêts Plage : Moments détente",
-      "features.aqua.3": "🚤 Option Hors-bord : Grotte de Haxhi Ali (+ 15 €)",
+      "features.aqua.3": "🚤 Option Hors-bord : Grotte de Haxhi Ali (+ 20 €)",
       "features.aqua.4": "🎶 Fête à Bord : DJ & animations",
       "features.aqua.5": "🍽️ Restauration : Bar & restaurant (viande & poisson + 15 €)",
       "features.aqua.6": "🍉 Inclus : Grand banquet de fruits gratuit",
@@ -2297,7 +2297,7 @@ boat: {
   "opt1.price.adults": "Взрослые (11+ лет): 25 €",
   "opt1.feature1": "🌊 Поездка на Лодке: Экскурсия с гидом",
   "opt1.feature2": "🏝️ Остановки на Пляже: Отдых",
-  "opt1.feature3": "🚤 Опция Скоростной Лодки: Пещера Хаджи Али (+ 15 €)",
+  "opt1.feature3": "🚤 Опция Скоростной Лодки: Пещера Хаджи Али (+ 20 €)",
   "opt1.feature4": "🎶 Вечеринка на Борту: DJ & развлечения",
   "opt1.feature5": "🍽️ Питание: Бар & ресторан (мясо & рыба + 15 €)",
   "opt1.feature6": "🍉 Включено: Большой бесплатный фруктовый банкет",
@@ -2340,7 +2340,7 @@ boat: {
     "stop1": "Остановка 1 – Пляж Карабурун",
     "stop1.txt": "Наслаждайтесь отдыхом на пляже (примерно <strong>3–4 часа</strong>).",
     "stop2": "Остановка 2 – Пещера Хаджи Али",
-    "stop2.txt": "Панорамный осмотр знаменитой морской пещеры; <strong>по желанию</strong> вход на скоростной лодке (+ €15, ~20 минут)",
+    "stop2.txt": "Панорамный осмотр знаменитой морской пещеры; <strong>по желанию</strong> вход на скоростной лодке (+ €15-€20, ~20 минут)",
     "stop3": "Остановка 3 – Остров Сазан",
     "stop3.txt": "Экскурсия с гидом по острову с посещением бункеров и исторических мест (~<strong>1 час</strong>).",
     "return": "Возвращение",
@@ -2351,7 +2351,7 @@ boat: {
     },
     "excluded1": "🍽️ Питание и напитки из ресторана/бара на борту",
     "excluded2": "⛱️ Шезлонги и зонты на пляже",
-    "excluded3": "🚤 Дополнительный тур на скоростной лодке по пещере Хаджи Али (+ €15 )"
+    "excluded3": "🚤 Дополнительный тур на скоростной лодке по пещере Хаджи Али (+ €15-€20 )"
   }
 },
 
@@ -2415,14 +2415,14 @@ van:{
   "booking.children": "Дети:",
   "booking.infants": "Младенцы:",
   "booking.extras": "Дополнительные Опции",
-  "booking.extra1": "🚤 Экскурсия на Скоростной Лодке (+ 15 € с человека)",
+  "booking.extra1": "🚤 Экскурсия на Скоростной Лодке (+ 20 € с человека)",
   "booking.extra2": "🍽️ Блюдо Мясо/Рыба (+ 15 € с человека)",
   "booking.addedtocart": "Добавлено в Корзину !",
   "booking.addtocart": "Добавить в Корзину",
 
   "features.aqua.1": "🌊 Поездка на Лодке: Экскурсия с гидом",
   "features.aqua.2": "🏝️ Остановки на Пляже: Отдых",
-  "features.aqua.3": "🚤 Опция Скоростной Лодки: Пещера Хаджи Али (+ 15 €)",
+  "features.aqua.3": "🚤 Опция Скоростной Лодки: Пещера Хаджи Али (+ 20 €)",
   "features.aqua.4": "🎶 Вечеринка на Борту: DJ & развлечения",
   "features.aqua.5": "🍽️ Питание: Бар & ресторан (мясо & рыба + 15 €)",
   "features.aqua.6": "🍉 Включено: Большой фруктовый банкет бесплатно",
@@ -2792,7 +2792,7 @@ van:{
         "opt1.price.adults": "Adultos (11+ años): 25 €",
         "opt1.feature1": "🌊 Paseo en Barco: Exploración guiada",
         "opt1.feature2": "🏝️ Paradas en Playa: Descanso",
-        "opt1.feature3": "🚤 Opción Lancha Rápida: Cueva de Haxhi Ali (+ 15 €)",
+        "opt1.feature3": "🚤 Opción Lancha Rápida: Cueva de Haxhi Ali (+ 20 €)",
         "opt1.feature4": "🎶 Fiesta a Bordo: DJ & entretenimiento",
         "opt1.feature5": "🍽️ Comida: Bar & restaurante (carne & pescado + 15 €)",
         "opt1.feature6": "🍉 Incluye: Gran banquete de frutas gratis",
@@ -2836,7 +2836,7 @@ van:{
           "stop1": "Parada 1 – Playa de Karaburun",
           "stop1.txt": "Disfruta de una estancia relajante en la playa (aproximadamente <strong>3-4 horas</strong>).",
           "stop2": "Parada 2 – Cueva de Haxhi Ali",
-          "stop2.txt": "Visita panorámica de la famosa cueva marina; entrada <strong>opcional</strong> en lancha rápida (+ €15, ~20 minutos)",
+          "stop2.txt": "Visita panorámica de la famosa cueva marina; entrada <strong>opcional</strong> en lancha rápida (€15-€20, ~20 minutos)",
           "stop3": "Parada 3 – Isla de Sazan",
           "stop3.txt": "Exploración guiada de la isla, incluidos búnkeres y sitios históricos (~<strong>1 hora</strong>).",
           "return": "Regreso",
@@ -2847,7 +2847,7 @@ van:{
           },
           "excluded1": "🍽️ Comida y bebidas del restaurante/bar a bordo",
           "excluded2": "⛱️ Camas solares y sombrillas en la playa",
-          "excluded3": "🚤 Excursión opcional en lancha rápida dentro de la Cueva de Haxhi Ali (+ €15 )"
+          "excluded3": "🚤 Excursión opcional en lancha rápida dentro de la Cueva de Haxhi Ali (€15-€20)"
         }
       },
 
@@ -2913,14 +2913,14 @@ van:{
   "booking.children": "Niños:",
   "booking.infants": "Bebés:",
   "booking.extras": "Complementos Opcionales",
-  "booking.extra1": "🚤 Tour en Lancha Rápida (+ 15 € por persona)",
+  "booking.extra1": "🚤 Tour en Lancha Rápida (+ 20 € por persona)",
   "booking.extra2": "🍽️ Comida Carne/Pescado (+ 15 € por persona)",
   "booking.addedtocart": "¡Añadido al Carrito!",
   "booking.addtocart": "Añadir al Carrito",
 
   "features.aqua.1": "🌊 Paseo en Barco: Exploración guiada",
   "features.aqua.2": "🏝️ Paradas en Playa: Descanso",
-  "features.aqua.3": "🚤 Opción Lancha Rápida: Cueva de Haxhi Ali (+ 15 €)",
+  "features.aqua.3": "🚤 Opción Lancha Rápida: Cueva de Haxhi Ali (+ 20 €)",
   "features.aqua.4": "🎶 Fiesta a Bordo: DJ & entretenimiento",
   "features.aqua.5": "🍽️ Comida: Bar & restaurante (carne & pescado + 15 €)",
   "features.aqua.6": "🍉 Incluye: Gran banquete de frutas gratis",
