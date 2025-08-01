@@ -469,7 +469,7 @@ if (!date) {
             },
             "Liburna": {
                 image: "./assets/images/other-pages/boat-trip/liburna1.webp",
-                price: { infant: 0, child: 15, adult: 25 }
+                price: { infant: 0, child: 15, adult: 30 }
             },
             "Vlora Cruise": {
                 image: "./assets/images/other-pages/boat-trip/vlora1.webp",
