@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         price: {
           infant: { age: "0-3", value: 0 },
           child: { age: "4-6", value: 15 },
-          adult: { age: "7+", value: 25 }
+          adult: { age: "7+", value: 30 }
         },
         mainInfo: "maininfo.liburna"
       },
