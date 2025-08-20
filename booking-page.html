@@ -445,6 +445,20 @@ document.addEventListener("DOMContentLoaded", function () {
         ]
     };
 
+    const extraDisabledDatesBoats = {
+    "Aquamarine": [
+        //"2025-08-15", "2025-08-20"
+    ],
+    "Liburna": [
+       // "2025-07-10", 
+       "2025-08-21"
+    ],
+    "Vlora Cruise": [
+        //"2025-06-05",
+        "2025-08-21"
+    ]
+};
+
     function getDisabledDates(busType, oddOrEven) {
         let disabledDates = [];
         const currentYear = new Date().getFullYear();
@@ -505,9 +519,9 @@ document.addEventListener("DOMContentLoaded", function () {
         config.disable = getDisabledDates("Vlora-Saranda"); 
     } else if (bus === "Vlora-Berat") {
         config.disable = getDisabledDates("Vlora-Berat", "even");
-    } else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
-        config.disable = [];
-    }
+} else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
+    config.disable = extraDisabledDatesBoats[boat] || [];
+}
 
         flatpickr("#tour-date", config);
     }
