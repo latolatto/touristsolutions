@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         price: {
           infant: { age: "0-2", value: 0 },
-          child: { age: "3-6", value: 40 },
-          adult: { age: "7+", value: 50 }
+          child: { age: "3-6", value: 55 },
+          adult: { age: "7+", value: 65 }
         },
         mainInfo: "maininfo.saranda"
       },
@@ -153,8 +153,46 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         price: {
           infant: { age: "0-2", value: 0 },
-          child: { age: "3-6", value: 32 },
-          adult: { age: "7+", value: 40 }
+          child: { age: "3-6", value: 45 },
+          adult: { age: "7+", value: 54 }
+        },
+        mainInfo: "maininfo.berat"
+      },
+      "Vlora-City": {
+        image: "./assets/images/other-pages/boat-trip/berat.webp",
+        features: [
+          "features.bus.vlora.1",
+          "features.bus.vlora.2",
+          "features.bus.vlora.3",
+          "features.bus.vlora.4",
+          "features.bus.vlora.5",
+          "features.bus.vlora.6",
+          "features.bus.vlora.7",
+          "features.bus.berat.8"
+        ],
+        price: {
+          infant: { age: "0-2", value: 0 },
+          child: { age: "3-6", value: 40 },
+          adult: { age: "7+", value: 45 }
+        },
+        mainInfo: "maininfo.berat"
+      },
+      "Vlora-Adventure": {
+        image: "./assets/images/other-pages/boat-trip/berat.webp",
+        features: [
+          "features.bus.adventure.1",
+          "features.bus.adventure.2",
+          "features.bus.adventure.3",
+          "features.bus.adventure.4",
+          "features.bus.adventure.5",
+          "features.bus.adventure.6",
+          "features.bus.adventure.7",
+          "features.bus.berat.8"
+        ],
+        price: {
+          infant: { age: "0-2", value: 0 },
+          child: { age: "3-6", value: 45 },
+          adult: { age: "7+", value: 64 }
         },
         mainInfo: "maininfo.berat"
       }
@@ -480,6 +518,14 @@ if (!date) {
                 price: { adult: 50, child: 40 }
             },
             "Vlora-Berat": {
+                image: "./assets/images/other-pages/boat-trip/berat.webp",
+                price: { adult: 40, child: 32 }
+            },
+             "Vlora-City": {
+                image: "./assets/images/other-pages/boat-trip/berat.webp",
+                price: { adult: 40, child: 32 }
+            },
+             "Vlora-Adventure Trip": {
                 image: "./assets/images/other-pages/boat-trip/berat.webp",
                 price: { adult: 40, child: 32 }
             }
