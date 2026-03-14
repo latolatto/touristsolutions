@@ -47,6 +47,7 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
             <p><strong>${item.name} ${t(item.headlineKey)}</strong></p>
           
             <p><span data-i18n="checkout.date">Date:</span> ${item.date}</p>
+            ${item.departureTime ? `<p><span data-i18n="departure.time">Departure time:</span> ${item.departureTime}</p>` : ""}
             ${item.adults    ? `<p><span data-i18n="checkout.adults">Adults:</span> ${item.adults}</p>`    : ""}
             ${item.children  ? `<p><span data-i18n="checkout.children">Children:</span> ${item.children}</p>`: ""}
             ${item.infants   ? `<p><span data-i18n="checkout.infants">Infants:</span> ${item.infants}</p>`  : ""}
@@ -56,7 +57,7 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
                 `</p>`
               : ""
             }
-            <p class="price"><strong>€${item.totalPrice.toLocaleString()}</strong></p>
+            <p class="price"><strong>€${(item.totalPrice || 0).toLocaleString()}</strong></p>
           </div>
         </div>`;
       cartSummary.insertAdjacentHTML("beforeend", html);
@@ -64,7 +65,39 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
     orderTotal.textContent = total.toLocaleString();
     applyTranslations(localStorage.getItem("lang")||"en");
   }
+function validateForm() {
+  const name    = document.getElementById("name").value.trim();
+  const surname = document.getElementById("surname").value.trim();
+  const email   = document.getElementById("email").value.trim();
+  const phone   = document.getElementById("phone").value.trim();
+  const agency  = document.getElementById("agency").value.trim();
 
+  const nameRegex  = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\+\d{6,15}$/;
+
+  const isValid = 
+      name && surname && email && phone &&
+      nameRegex.test(name) &&
+      nameRegex.test(surname) &&
+      emailRegex.test(email) &&
+      phoneRegex.test(phone);
+
+  // Show/hide PayPal button and proceed button
+  const paypalContainer = document.getElementById("paypal-button-container");
+  const proceedBtn = document.getElementById("proceed-to-payment");
+
+  if (!isValid) {
+    paypalContainer.style.display = "none";
+    proceedBtn.style.display = "inline-block";
+  }
+
+  return isValid;
+}
+
+document.querySelectorAll("#name, #surname, #email, #phone, #agency").forEach(input => {
+  input.addEventListener("input", validateForm);
+});
 
   // Form validation + show PayPal button
   proceedBtn.addEventListener("click", function(e){
@@ -77,7 +110,7 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
 
     const nameRegex  = /^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?[1-9]\d{7,14}$/;
+    const phoneRegex = /^\+\d{6,15}$/;
 
     if(!name||!surname||!email||!phone){
       alert(t("alert.missing.fields")); return;
@@ -92,8 +125,10 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
     );
     paypalContainer.style.display="block";
     proceedBtn.style.display="none";
+    validateForm();
   });
 
+  
   // PayPal integration
   paypal.Buttons({
     createOrder(data,actions){
@@ -149,7 +184,7 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
             `</p>`
           : ""
         }
-        <p><strong>€${item.totalPrice.toLocaleString()}</strong></p>
+        <p><strong>€${(item.totalPrice || 0).toLocaleString()}</strong></p>
       </div>`).join("")}
     <h3>${t("checkout.total")}: €${orderTotal.textContent}</h3>
   `;
@@ -275,7 +310,7 @@ Extras: ${
         ? item.extras.map(e => `${t(e.key)} x${e.qty}`).join(", ")
         : "None"
     }
-Subtotal: €${item.totalPrice.toLocaleString()}
+Subtotal: €${(item.totalPrice || 0).toLocaleString()}
 `;
   });
   formatted += `\n==============================\nTotal: €${orderTotal.textContent}`;

@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div>
                     <p><strong>${item.name} ${t(item.headlineKey)}</strong></p>
                     <p >${item.date}</p>
+                     ${item.departureTime ? `<p><span data-i18n="departure.time">Departure time:</span> ${item.departureTime}</p>` : ""}
                     ${item.adults ? `<p><span data-i18n="cart.item.adults">Adults</span> : ${item.adults}</p>` : ""}
                     ${item.children ? `<p ><span data-i18n="cart.item.children">Children</span> : ${item.children}</p>` : ""}
                     ${item.infants ? `<p ><span data-i18n="cart.item.infants">Infants</span> : ${item.infants}</p>` : ""}
@@ -139,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                           `</p>`
                         : ""
                       }
-                    <p><strong ><span data-i18n="cart.item.total">Total </span>: €${item.totalPrice.toLocaleString()}</strong></p>
+                    <p><strong ><span data-i18n="cart.item.total">Total </span>: €${(item.totalPrice || 0).toLocaleString()}</strong></p>
                     <button class="remove-btn" data-index="${index}" data-i18n="cart.item.remove">Remove</button>
                 </div>
             `;

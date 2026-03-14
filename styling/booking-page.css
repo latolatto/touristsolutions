@@ -51,6 +51,15 @@ gap:5rem;
     justify-content: center;
     width: 100%;
 }
+
+.departure-time{
+    font-size: 1.1rem;
+     display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    justify-content: space-around;
+    width: 100%;
+}
 label {
     font-size: 1.1rem;
     width: 40%;
@@ -429,4 +438,23 @@ input#meal-tickets{
         text-align: center;
     }
   }
+.departure-time{
+    font-size: 1.1rem;
+     display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    justify-content: center;
+    width: 100%;
+    /* gap:10%; */
+}
+  .time-options{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+.departure-card{
+    width:inherit;
+    display: block;
+}

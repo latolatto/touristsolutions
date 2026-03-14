@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.cruise"
       },
       "Vlora-Saranda": {
-        image: "./assets/images/other-pages/boat-trip/saranda.webp",
+        // image: "./assets/images/other-pages/boat-trip/saranda.webp",
         features: [
           "features.bus.saranda.1",
           "features.bus.saranda.2",
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.saranda"
       },
       "Vlora-Berat": {
-        image: "./assets/images/other-pages/boat-trip/berat.webp",
+        // image: "./assets/images/other-pages/boat-trip/berat.webp",
         features: [
           "features.bus.berat.1",
           "features.bus.berat.2",
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.berat"
       },
       "Vlora-City": {
-        image: "./assets/images/other-pages/boat-trip/berat.webp",
+        // image: "./assets/images/other-pages/boat-trip/berat.webp",
         features: [
           "features.bus.vlora.1",
           "features.bus.vlora.2",
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.berat"
       },
       "Vlora-Adventure": {
-        image: "./assets/images/other-pages/boat-trip/berat.webp",
+        // image: "./assets/images/other-pages/boat-trip/berat.webp",
         features: [
           "features.bus.adventure.1",
           "features.bus.adventure.2",
@@ -197,12 +197,21 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.berat"
       }
     };
-  
-      
+    let urlParams = new URLSearchParams(window.location.search);
+    let bus = urlParams.get("bus");
+    let boat = urlParams.get("boat");
+ 
+        if (bus === "Vlora-City") {
+  document.getElementById("departure-time-container").style.display = "block";
+}else{
+    document.getElementById("departure-time-container").style.display = "none";
+
+}     
 
     // Display product details
     if (productName && productDetails[productName]) {
         const isitbus = productName.includes("Vlora-");
+
         const additionalinfo = isitbus ? "" : `      
                <div class="container my-5">
             <div class="row justify-content-center">
@@ -371,6 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div>
                     <p><strong>${item.name} ${t(item.headlineKey)}</strong></p>
                     <p >${item.date}</p>
+                    ${item.departureTime ? `<p><span data-i18n="departure.time">Departure time:</span> ${item.departureTime}</p>` : ""}
                     ${item.adults ? `<p><span data-i18n="cart.item.adults">Adults</span> : ${item.adults}</p>` : ""}
                     ${item.children ? `<p ><span data-i18n="cart.item.children">Children</span> : ${item.children}</p>` : ""}
                     ${item.infants ? `<p ><span data-i18n="cart.item.infants">Infants</span> : ${item.infants}</p>` : ""}
@@ -380,7 +390,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           `</p>`
                         : ""
                       }
-                    <p><strong ><span data-i18n="cart.item.total">Total </span>: €${item.totalPrice.toLocaleString()}</strong></p>
+                    <p><strong ><span data-i18n="cart.item.total">Total </span>: €${(item.totalPrice || 0).toLocaleString()}</strong></p>
                     <button class="remove-btn" data-index="${index}" data-i18n="cart.item.remove">Remove</button>
                 </div>
             `;
@@ -428,6 +438,22 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCartDisplay(); // ✅ Ensures cart updates correctly on page load
 
     document.getElementById("bookNow").addEventListener("click", function (event) {
+
+
+let departureTime = "";
+    let urlParams = new URLSearchParams(window.location.search);
+    let bus = urlParams.get("bus");
+
+if (bus === "Vlora-City") {
+  const selected = document.querySelector('input[name="departureTime"]:checked');
+
+  if (!selected) {
+    alert("Please select a departure time.");
+    return;
+  }
+
+  departureTime = selected.value;
+}
         event.preventDefault();
 
         const boatName = document.getElementById("boat-name").textContent;
@@ -514,20 +540,20 @@ if (!date) {
                 price: { infant: 0, child: 15, adult: 25 }
             },
             "Vlora-Saranda": {
-                image: "./assets/images/other-pages/boat-trip/saranda.webp",
-                price: { adult: 50, child: 40 }
+                // image: "./assets/images/other-pages/boat-trip/saranda.webp",
+                price: { adult: 65, child: 55 }
             },
             "Vlora-Berat": {
-                image: "./assets/images/other-pages/boat-trip/berat.webp",
-                price: { adult: 40, child: 32 }
+                // image: "./assets/images/other-pages/boat-trip/berat.webp",
+                price: { adult: 54, child: 45 }
             },
              "Vlora-City": {
-                image: "./assets/images/other-pages/boat-trip/berat.webp",
-                price: { adult: 40, child: 32 }
+                // image: "./assets/images/other-pages/boat-trip/berat.webp",
+                price: { adult: 45, child: 40 }
             },
-             "Vlora-Adventure Trip": {
-                image: "./assets/images/other-pages/boat-trip/berat.webp",
-                price: { adult: 40, child: 32 }
+             "Vlora-Adventure": {
+                // image: "./assets/images/other-pages/boat-trip/berat.webp",
+                price: { adult: 64, child: 45 }
             }
         };
 
@@ -585,6 +611,7 @@ cart.push({
   name:        boatName,
   headlineKey: isBus ? "tour.headline.bus" : "tour.headline.boat",
   date:        date,
+  departureTime:  departureTime,
   adults:      adults,
   children:    children,
   infants:     infants,
