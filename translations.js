@@ -90,10 +90,13 @@ const translations = {
           opt1: "Saranda & Ksamil Escape",
           "opt1.paragrapgh": "Explore the southern coast from Vlora, visiting the Blue Eye spring, Saranda, and the white-sand beaches of Ksamil, with time to relax and enjoy local dining.",
           opt2: "Berat Heritage Tour",
-          "opt2.paragrapgh": "Discover Berat, a UNESCO city renowned for its Ottoman architecture, historic streets, and Berat Castle, offering a rich cultural experience on a day trip from Vlora.",
+          "opt2.paragrapgh": "Discover the UNESCO city of Berat on a day trip from Vlora, visiting Berat Castle, Mangalem Quarter, and Gorica Bridge while enjoying its unique history and views.",
           cta: "Book Now",
           opt3: "Vlora City Tour",
-          "opt3.paragrapgh": "Experience Vlora’s rich heritage with visits to Zvernec Monastery, Kanina Castle, and the Ancient City of Orikum, paired with scenic coastal views and a relaxing beach stop."
+          "opt3.paragrapgh": "Experience Vlora with visits to Zvërnec Monastery, scenic viewpoints, and a shooting range experience, combining nature, views, and adventure.",
+          opt4: "Ardenica & Berat Adventure",
+          "opt4.paragrapgh": "Discover Berat and its surroundings with visits to Ardenica Monastery, Berat Castle, combined with a shooting range experience and free time to explore."
+        
         }
       },
       numbers: {
@@ -649,11 +652,14 @@ const translations = {
       opt1: "Arratisja Sarandë & Ksamil",
       "opt1.paragrapgh": "Eksploroni bregdetin jugor nga Vlora, duke vizituar Syrin e Kaltër, Sarandën dhe plazhet me rërë të bardhë të Ksamilit, me kohë për relaks dhe kuzhinë lokale.",
       opt2: "Turi Trashëgimor i Beratit",
-      "opt2.paragrapgh": "Zbuloni Beratin, një qytet UNESCO i njohur për arkitekturën osmane, rrugicat historike dhe Kalaja e Beratit, duke ofruar një përvojë kulturore të pasur në një ditë udhëtimi nga Vlora.",
+      "opt2.paragrapgh": "Zbuloni qytetin e UNESCO-s, Beratin, në një udhëtim ditor nga Vlora, duke vizituar Kalanë e Beratit dhe lagjet historike.",
       cta: "Rezervo Tani",
          opt3: "Tur i Qytetit të Vlorës",
-    "opt3.paragrapgh": "Përjetoni trashëgiminë e pasur të Vlorës me vizita në Manastirin e Zvërnecit, Kalanë e Kaninës dhe Qytetin Antik të Orikumit, të shoqëruara me pamje bregdetare mahnitëse dhe ndalesa relaksuese në plazh."
-    }
+    "opt3.paragrapgh": "Përjetoni Vlorën me vizita në Manastirin e Zvërnecit, pika panoramike dhe një eksperiencë shooting, duke kombinuar natyrën, pamjet dhe aventurën.",
+              opt4: "Aventurë në Ardenicë & Berat",
+          "opt4.paragrapgh": "Zbuloni Beratin dhe zonat përreth me vizita në Manastirin e Ardenicës dhe Kalanë e Beratit, të kombinuara me një eksperiencë shooting dhe kohë të lirë për eksplorim."
+        
+  }
   },
   numbers: {
     1: "Turistë të Ndihmuar",
@@ -1190,10 +1196,13 @@ book: {
     opt1: "Escape Saranda & Ksamil",
     "opt1.paragrapgh": "Esplora la costa meridionale da Vlorë, visitando la sorgente di Syri i Kaltër, Saranda e le spiagge bianche di Ksamil, con tempo per relax e gastronomia locale.",
     opt2: "Tour del Patrimonio di Berat",
-    "opt2.paragrapgh": "Scopri Berat, città UNESCO nota per l’architettura ottomana, le vie storiche e il Castello di Berat, offrendo un’esperienza culturale ricca in una gita di un giorno da Vlorë.",
+    "opt2.paragrapgh": "Scopri la città UNESCO di Berat in un'escursione giornaliera da Valona, visitando il Castello di Berat e i suoi quartieri storici.",
     cta: "Prenota Ora",
      opt3: "Tour della Città di Valona",
-    "opt3.paragrapgh": "Scopri il ricco patrimonio di Valona con visite al Monastero di Zvernec, al Castello di Kanina e all’Antica Città di Orikum, accompagnate da viste costiere panoramiche e una sosta rilassante in spiaggia."
+    "opt3.paragrapgh": "Scopri Valona con visite al Monastero di Zvërnec, punti panoramici e un'esperienza di tiro, combinando natura, panorami e avventura.",
+                opt4: "Avventura Ardenica & Berat",
+          "opt4.paragrapgh": "Scopri Berat e i suoi dintorni con visite al Monastero di Ardenica e al Castello di Berat, combinati con un'esperienza di tiro e tempo libero per esplorare."
+        
   }
 },
 numbers: {
@@ -1726,10 +1735,13 @@ book: {
     opt1: "Évasion Saranda & Ksamil",
     "opt1.paragrapgh": "Explorez la côte sud depuis Vlora, en visitant la source de l’Œil Bleu, Saranda et les plages de sable blanc de Ksamil, avec du temps pour se détendre et profiter de la gastronomie locale.",
     opt2: "Visite du Patrimoine de Berat",
-    "opt2.paragrapgh": "Découvrez Berat, ville UNESCO renommée pour son architecture ottomane, ses rues historiques et son château, offrant une expérience culturelle riche lors d’une excursion d’une journée depuis Vlora.",
+    "opt2.paragrapgh": "Découvrez la ville UNESCO de Berat lors d'une excursion d'une journée depuis Vlora, en visitant le Château de Berat et ses quartiers historiques.",
     cta: "Réservez Maintenant",
       opt3: "Visite de la ville de Vlora",
-    "opt3.paragrapgh": "Découvrez le riche patrimoine de Vlora avec des visites au monastère de Zvernec, au château de Kanina et à l’ancienne ville d’Orikum, accompagnées de vues côtières pittoresques et d’une pause détente à la plage."
+    "opt3.paragrapgh": "Découvrez Vlora avec des visites au Monastère de Zvërnec, des points de vue panoramiques et une expérience de tir, combinant nature, paysages et aventure.",
+                  opt4: "Aventure Ardenica & Berat",
+          "opt4.paragrapgh": "Découvrez Berat et ses environs avec des visites au Monastère d’Ardenica et au Château de Berat, combinées avec une expérience de tir et du temps libre pour explorer."
+     
   }
 },
 numbers: {
@@ -2267,10 +2279,13 @@ van:{
      opt1: "Саранда & Ксамиль",
      "opt1.paragrapgh": "Исследуйте южный берег от Влёры: посетите Голубое Око, Саранду и белоснежные пляжи Ксамиля, с возможностью отдохнуть и попробовать местную кухню.",
      opt2: "Наследие Берата",
-     "opt2.paragrapgh": "Откройте для себя Берат, город ЮНЕСКО, известный своей османской архитектурой, историческими улицами и крепостью, предлагая насыщенную культурную программу во время однодневной поездки из Влёры.",
+     "opt2.paragrapgh": "Откройте для себя внесенный в список ЮНЕСКО город Берат во время однодневной поездки из Влёры, посетив Бератский замок и его исторические кварталы.",
      cta: "Забронировать Сейчас",
       opt3: "Тур по городу Влёра",
-    "opt3.paragrapgh": "Познакомьтесь с богатым наследием Влёры, посетив монастырь Звернец, крепость Канина и древний город Орикум, в сопровождении живописных прибрежных видов и расслабляющей остановки на пляже."
+    "opt3.paragrapgh": "Познакомьтесь Влёру с посещением монастыря Звернец, панорамных точек и стрельбища, сочетая природу, виды и приключения.",
+                  opt4: "Арденница и Берат — тур",
+          "opt4.paragrapgh": "Откройте для себя Берат и окрестности с посещением монастыря Арденица и замка Берата, в сочетании со стрельбой и свободным временем для прогулок."
+     
    }
  },
  numbers: {
@@ -2801,10 +2816,13 @@ van:{
      opt1: "Escape Saranda & Ksamil",
      "opt1.paragrapgh": "Explora la costa sur desde Vlora, visitando el manantial Ojo Azul, Saranda y las playas de arena blanca de Ksamil, con tiempo para relajarte y disfrutar de la gastronomía local.",
      opt2: "Tour del Patrimonio de Berat",
-     "opt2.paragrapgh": "Descubre Berat, una ciudad UNESCO famosa por su arquitectura otomana, calles históricas y el Castillo de Berat, ofreciendo una rica experiencia cultural en una excursión de un día desde Vlora.",
+     "opt2.paragrapgh": "Descubre la ciudad de Berat, patrimonio de la UNESCO, en una excursión de un día desde Vlora, visitando el Castillo de Berat y sus barrios históricos.",
      cta: "Reservar Ahora",
     opt3: "Tour por la Ciudad de Vlorë",
-    "opt3.paragrapgh": "Descubre el rico patrimonio de Vlorë con visitas al Monasterio de Zvernec, el Castillo de Kanina y la Ciudad Antigua de Orikum, acompañado de vistas costeras panorámicas y una parada relajante en la playa."
+    "opt3.paragrapgh": "Descubre Vlora con visitas al Monasterio de Zvërnec, miradores panorámicos y una experiencia de tiro, combinando naturaleza, vistas y aventura.",
+                      opt4: "Aventura Ardenica y Berat",
+          "opt4.paragrapgh": "Descubre Berat y sus alrededores con visitas al Monasterio de Ardenica, el Castillo de Berat y los barrios históricos, combinado con una experiencia de tiro y tiempo libre para explorar."
+     
    }
  },
  numbers: {

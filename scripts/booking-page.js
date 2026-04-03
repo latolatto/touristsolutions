@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.cruise"
       },
       "Vlora-Saranda": {
-        // image: "./assets/images/other-pages/boat-trip/saranda.webp",
+        image: "./assets/images/other-pages/boat-trip/daily-tours/sarandavan.webp",
         features: [
           "features.bus.saranda.1",
           "features.bus.saranda.2",
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.saranda"
       },
       "Vlora-Berat": {
-        // image: "./assets/images/other-pages/boat-trip/berat.webp",
+        image: "./assets/images/other-pages/boat-trip/daily-tours/beratvan.webp",
         features: [
           "features.bus.berat.1",
           "features.bus.berat.2",
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainInfo: "maininfo.berat"
       },
       "Vlora-City": {
-        // image: "./assets/images/other-pages/boat-trip/berat.webp",
+        image: "./assets/images/other-pages/boat-trip/daily-tours/vloravan.png",
         features: [
           "features.bus.vlora.1",
           "features.bus.vlora.2",
@@ -177,8 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         mainInfo: "maininfo.berat"
       },
-      "Vlora-Adventure": {
-        // image: "./assets/images/other-pages/boat-trip/berat.webp",
+      "Berat-Adventure": {
+        image: "./assets/images/other-pages/boat-trip/daily-tours/adventurevan.webp",
         features: [
           "features.bus.adventure.1",
           "features.bus.adventure.2",
@@ -540,20 +540,20 @@ if (!date) {
                 price: { infant: 0, child: 15, adult: 25 }
             },
             "Vlora-Saranda": {
-                // image: "./assets/images/other-pages/boat-trip/saranda.webp",
-                price: { adult: 65, child: 55 }
+        image: "./assets/images/other-pages/boat-trip/daily-tours/sarandavan.webp",
+                        price: { adult: 65, child: 55 }
             },
             "Vlora-Berat": {
-                // image: "./assets/images/other-pages/boat-trip/berat.webp",
-                price: { adult: 54, child: 45 }
+       image: "./assets/images/other-pages/boat-trip/daily-tours/beratvan.webp",
+                       price: { adult: 54, child: 45 }
             },
              "Vlora-City": {
-                // image: "./assets/images/other-pages/boat-trip/berat.webp",
-                price: { adult: 45, child: 40 }
+    image: "./assets/images/other-pages/boat-trip/daily-tours/vloravan.png",
+                    price: { adult: 45, child: 40 }
             },
-             "Vlora-Adventure": {
-                // image: "./assets/images/other-pages/boat-trip/berat.webp",
-                price: { adult: 64, child: 45 }
+             "Berat-Adventure": {
+        image: "./assets/images/other-pages/boat-trip/daily-tours/adventurevan.webp",
+                        price: { adult: 64, child: 45 }
             }
         };
 

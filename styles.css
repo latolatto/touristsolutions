@@ -547,18 +547,26 @@ text-align: center;
   .boat-trips-grid, .van-tours-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content:stretch;
     gap: 2rem;
     align-items: center;
     
   }
-  .boat-option, .van-option {
+  .boat-option {
     flex: 1 1 30%;
     background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 1rem;
     text-align: center;
   }
+     .van-option {
+    flex: 1 1 21%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    height:max-content;
+  } 
   .booking-img {
     width: 100%;
     height: auto;
