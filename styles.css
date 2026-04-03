@@ -208,8 +208,8 @@ font-weight: 500;
             font-weight: 700;
 /* THE MAGIC: Glassmorphism */
   background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
-  backdrop-filter: blur(10px); /* Blurs the background */
-  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  backdrop-filter: blur(8px); /* Blurs the background */
+  -webkit-backdrop-filter: blur(18px); /* Safari support */
   transition: all 0.4s ease;
   /* border: 1px solid rgba(255, 255, 255, 0.1); */
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
@@ -1039,8 +1039,8 @@ button:disabled {
             font-size:1.1rem;
 /* THE MAGIC: Glassmorphism */
   background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
-  backdrop-filter: blur(10px); /* Blurs the background */
-  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  backdrop-filter: blur(4px); /* Blurs the background */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
   transition: all 0.4s ease;
   /* border: 1px solid rgba(255, 255, 255, 0.1); */
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
