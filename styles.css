@@ -192,7 +192,6 @@ gap:1rem;
 .explore-btn{
     color:white;
     color:#FAF8F4;
-
     border:2px solid #FAF8F4;
 
     border-radius:10px;
@@ -425,7 +424,7 @@ height:2rem;
     min-height:40vh;
     width:90%;
     /* background: #fff; */
-    background: #f0f8f8; 
+    background: #E5E7EB; 
     border: 1px solid rgba(0,0,0,.03);
     border-radius: 5px;
     box-shadow: 0 0 20px rgba(0, 0, 0, .08);
@@ -1025,6 +1024,19 @@ button:disabled {
 
 @media (max-width: 768px) {
 
+    .explore-btn{
+        height: 3rem;
+    width: 50%;
+            font-weight: 700;
+            font-size:1.1rem;
+/* THE MAGIC: Glassmorphism */
+  background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blurs the background */
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  transition: all 0.4s ease;
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
 .links{
 display:none;
 }
@@ -1035,12 +1047,13 @@ h1{
 
 .banner-div{
     padding:1rem;
-    top:60%;
+    top:40%;
     text-align: center;
 }
 
 .banner-div h2{
     font-size:1.4rem !important;
+      font-weight: 600;
 }
 
 
