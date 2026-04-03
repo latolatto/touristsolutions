@@ -1,5 +1,20 @@
 const translations = {
     en: {
+
+
+          "exclusive_label": "Exclusive Group Service",
+    "title_main": "Your Journey.",
+    "title_highlight": "Your Way.",
+    "description": "Beyond our daily routes in Vlorë, Berat, and Sarandë, we offer tailored private tours for groups of 4+. Whether it's a hidden beach or a historic mountain village, choose your destination, set your pace, and let us handle the logistics.",
+    "dest_uji_ftohte": "Uji i Ftohtë",
+    "dest_benje": "Bënjë Thermal Baths",
+    "dest_gjirokaster": "Gjirokastër",
+    "dest_apollonia": "Apollonia",
+    "dest_tirana": "Tirana",
+    "dest_durres": "Durrës",
+    "dest_custom": "+ Custom Locations",
+    "cta_button": "Get a Quote",
+
 "alert.payment.failed":"An error occurred. Please try again.",
       "contact.success":"Thank you for your message! We will get back to you via email as soon as possible",
       "contact.error":"Something went wrong",
@@ -564,6 +579,19 @@ const translations = {
 
     
     sq: {
+
+          "exclusive_label": "Shërbim Ekskluziv për Grupe",
+    "title_main": "Udhëtimi Juaj.",
+    "title_highlight": "Në Mënyrën Tuaj.",
+    "description": "Përtej rrugëve tona të përditshme në Vlorë, Berat dhe Sarandë, ne ofrojmë ture private të personalizuara për grupe mbi 4 persona. Qoftë një plazh i fshehur apo një fshat historik malor, zgjidhni destinacionin, vendosni ritmin dhe ne kujdesemi për pjesën tjetër.",
+    "dest_uji_ftohte": "Uji i Ftohtë",
+    "dest_benje": "Banjat Termale të Bënjës",
+    "dest_gjirokaster": "Gjirokastër",
+    "dest_apollonia": "Apoloni",
+    "dest_tirana": "Tiranë",
+    "dest_durres": "Durrës",
+    "dest_custom": "+ Destinacione të Personalizuara",
+    "cta_button": "Merr një çmim",
       "contact.success": "Faleminderit për mesazhin tuaj! Do t’ju kontaktojmë me email sa më shpejt të jetë e mundur",
 "contact.error": "Diçka shkoi keq",
 "contact.wait": "Ju lutem prisni...",
@@ -1108,6 +1136,18 @@ boat: {
 
 
     it: {
+  "exclusive_label": "Servizio Esclusivo per Gruppi",
+    "title_main": "Il Tuo Viaggio.",
+    "title_highlight": "A Modo Tuo.",
+    "description": "Oltre ai nostri percorsi giornalieri a Valona, Berat e Saranda, offriamo tour privati su misura per gruppi di 4+. Che si tratti di una spiaggia nascosta o di un villaggio storico di montagna, scegli la destinazione, imposta il ritmo e lascia a noi la logistica.",
+    "dest_uji_ftohte": "Uji i Ftohtë",
+    "dest_benje": "Terme di Bënjë",
+    "dest_gjirokaster": "Gjirokastër",
+    "dest_apollonia": "Apollonia",
+    "dest_tirana": "Tirana",
+    "dest_durres": "Durazzo",
+    "dest_custom": "+ Destinazioni Personalizzate",
+    "cta_button": "Richiedi un Preventivo",
       "contact.success": "Grazie per il tuo messaggio! Ti risponderemo via email il prima possibile",
 "contact.error": "Qualcosa è andato storto",
 "contact.wait": "Attendere prego...",
@@ -1647,6 +1687,18 @@ boat: {
 
 
     fr: {
+        "exclusive_label": "Service Exclusif pour Groupes",
+    "title_main": "Votre Voyage.",
+    "title_highlight": "À Votre Façon.",
+    "description": "Au-delà de nos trajets quotidiens à Vlorë, Berat et Sarandë, nous proposons des visites privées sur mesure pour des groupes de 4+. Que ce soit une plage cachée ou un village historique de montagne, choisissez votre destination, votre rythme, et laissez-nous gérer la logistique.",
+    "dest_uji_ftohte": "Uji i Ftohtë",
+    "dest_benje": "Thermes de Bënjë",
+    "dest_gjirokaster": "Gjirokastër",
+    "dest_apollonia": "Apollonie",
+    "dest_tirana": "Tirana",
+    "dest_durres": "Durrës",
+    "dest_custom": "+ Destinations Personnalisées",
+    "cta_button": "Obtenir un Devis",
       "contact.success": "Merci pour votre message ! Nous vous répondrons par e-mail dès que possible",
 "contact.error": "Une erreur est survenue",
 "contact.wait": "Veuillez patienter...",
@@ -2191,6 +2243,19 @@ van:{
 
 
     ru: {
+          "exclusive_label": "Эксклюзивный Сервис для Групп",
+    "title_main": "Ваше Путешествие.",
+    "title_highlight": "По-Вашему.",
+    "description": "Помимо наших ежедневных маршрутов во Влёре, Берате и Саранде, мы предлагаем индивидуальные туры для групп от 4 человек. Будь то скрытый пляж или историческая горная деревня — выберите направление, задайте темп, а мы позаботимся обо всём остальном.",
+    "dest_uji_ftohte": "Uji i Ftohtë",
+    "dest_benje": "Термальные источники Беня",
+    "dest_gjirokaster": "Гирокастра",
+    "dest_apollonia": "Аполлония",
+    "dest_tirana": "Тирана",
+    "dest_durres": "Дуррес",
+    "dest_custom": "+ Индивидуальные направления",
+    "cta_button": "Получить предложение",
+
       "contact.success": "Спасибо за ваше сообщение! Мы свяжемся с вами по электронной почте как можно скорее",
 "contact.error": "Что-то пошло не так",
 "contact.wait": "Пожалуйста, подождите...",
@@ -2727,6 +2792,18 @@ van:{
 
 
     es: {
+          "exclusive_label": "Servicio Exclusivo para Grupos",
+    "title_main": "Tu Viaje.",
+    "title_highlight": "A Tu Manera.",
+    "description": "Más allá de nuestras rutas diarias en Vlorë, Berat y Sarandë, ofrecemos tours privados personalizados para grupos de más de 4 personas. Ya sea una playa escondida o un pueblo histórico de montaña, elige tu destino, marca tu ritmo y nosotros nos encargamos de la logística.",
+    "dest_uji_ftohte": "Uji i Ftohtë",
+    "dest_benje": "Baños Termales de Bënjë",
+    "dest_gjirokaster": "Gjirokastër",
+    "dest_apollonia": "Apolonia",
+    "dest_tirana": "Tirana",
+    "dest_durres": "Durres",
+    "dest_custom": "+ Ubicaciones Personalizadas",
+    "cta_button": "Solicitar Presupuesto",
       "contact.success": "¡Gracias por tu mensaje! Te responderemos por correo electrónico lo antes posible",
 "contact.error": "Algo salió mal",
 "contact.wait": "Por favor, espera...",

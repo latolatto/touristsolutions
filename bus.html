@@ -21,7 +21,7 @@
     <link href="./styling/bus.css" rel="stylesheet">
 <style>
 :root {
-  --brand-gold: #ffc107;
+  --brand-gold: #ff9800;
   --dark-text: #1a1a1a;
   --muted-text: #4b5563;
   --pill-bg: #f3f4f6;
@@ -30,7 +30,7 @@
 .custom-tour-wrapper {
   width: 100%;
   padding: 2rem 0; /* Vertical spacing only */
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* font-family: 'Inter', system-ui, -apple-system, sans-serif; */
 }
 
 /* Title that stretches across the container */
@@ -484,29 +484,29 @@
   <div class="custom-tour-wrapper">
     
     <div class="header-stack">
-      <span class="premium-label">Exclusive Group Service</span>
-      <h2 class="ultra-wide-title">
-        Your Journey. <span>Your Way.</span>
+      <span class="premium-label" data-i18n="exclusive_label">Exclusive Group Service</span>
+      <h2 class="ultra-wide-title" data-i18n="title_main">
+        Your Journey. <span data-i18n="title_highlight">Your Way.</span>
       </h2>
     </div>
 
     <div class="content-stack">
-      <p class="wide-description">
+      <p class="wide-description" data-i18n="description">
         Beyond our daily routes in <strong>Vlorë, Berat, and Sarandë</strong>, we offer tailored private tours for groups of 4+. Whether it's a hidden beach or a historic mountain village, choose your destination, set your pace, and let us handle the logistics.
       </p>
 
       <div class="badge-cloud">
-        <span class="item-pill">Uji i Ftohtë</span>
-        <span class="item-pill">Bënjë Thermal Baths</span>
-        <span class="item-pill">Gjirokastër</span>
-        <span class="item-pill">Apolloni</span>
-        <span class="item-pill">Tiranë</span>
-        <span class="item-pill">Durrës</span>
-        <span class="item-pill highlight-pill">+ Custom Locations</span>
+        <span class="item-pill" data-i18n="dest_uji_ftohte">Uji i Ftohtë</span>
+        <span class="item-pill" data-i18n="dest_benje">Bënjë Thermal Baths</span>
+        <span class="item-pill" data-i18n="dest_gjirokaster">Gjirokastër</span>
+        <span class="item-pill" data-i18n="dest_apollonia">Apolloni</span>
+        <span class="item-pill" data-i18n="dest_tirana">Tiranë</span>
+        <span class="item-pill" data-i18n="dest_durres">Durrës</span>
+        <span class="item-pill highlight-pill" data-i18n="dest_custom">+ Custom Locations</span>
       </div>
 
       <div class="cta-area">
-        <a target="_blank" href="https://wa.me/355692097659?text=I%20want%20to%20book%20a%20personalized%20tour" class="modern-wa-btn">
+        <a target="_blank" href="https://wa.me/355692097659?text=I%20want%20to%20book%20a%20personalized%20tour" class="modern-wa-btn" data-i18n="cta_button">
           Get a  Quote
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>

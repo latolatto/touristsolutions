@@ -443,8 +443,11 @@ input#meal-tickets{
      display: flex;
     align-items: center;
     margin-bottom: 2rem;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
+    gap:2rem;
+    padding-left:2rem;
+    padding-right:2rem;
     /* gap:10%; */
 }
   .time-options{
@@ -455,6 +458,25 @@ input#meal-tickets{
   }
 
 .departure-card{
-    width:inherit;
+    /* width:inherit; */
     display: block;
+}
+
+.departure-time label{
+    display:flex;
+    width:100%;
+}
+
+
+.departure-time span{
+    width:100%;
+}
+
+@media (max-width: 768px) {
+.departure-time{
+
+    padding-left:0;
+    padding-right:0;
+    /* gap:10%; */
+}
 }
