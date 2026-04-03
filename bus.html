@@ -20,7 +20,124 @@
     <link rel="stylesheet" href="styles.css" >
     <link href="./styling/bus.css" rel="stylesheet">
 <style>
+:root {
+  --brand-gold: #ffc107;
+  --dark-text: #1a1a1a;
+  --muted-text: #4b5563;
+  --pill-bg: #f3f4f6;
+}
 
+.custom-tour-wrapper {
+  width: 100%;
+  padding: 2rem 0; /* Vertical spacing only */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Title that stretches across the container */
+.ultra-wide-title {
+  font-weight: 900;
+  color: var(--dark-text);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+  width: 100%; /* Ensures it hits the edges */
+}
+
+.ultra-wide-title span {
+  color: var(--muted-text);
+  font-weight: 300;
+}
+
+.premium-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  color: var(--brand-gold);
+  margin-bottom: 0.5rem;
+}
+
+/* Description stretching to 100% width */
+.wide-description {
+  /* font-size: clamp(1.1rem, 2vw, 1.35rem); */
+  color: var(--muted-text);
+  line-height: 1.6;
+  width: 100%;
+  max-width: 100%; /* Removed the previous restriction */
+  margin-bottom: 2.5rem;
+}
+
+/* Badge Cloud Styling */
+.badge-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  justify-content: center;
+}
+
+.item-pill {
+  padding: 0.6rem 1.2rem;
+  background: var(--pill-bg);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  /* font-size: 0.95rem; */
+  color: var(--dark-text);
+  transition: all 0.2s ease;
+}
+
+.highlight-pill {
+  background: #fffbeb;
+  border-color: var(--brand-gold);
+  color: #92400e;
+}
+
+/* Toned-down, high-end button */
+.modern-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 2.5rem;
+  background: var(--brand-gold);
+  color: #000 !important;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 1.25rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.modern-wa-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 25px -5px rgba(255, 193, 7, 0.3);
+}
+
+.modern-wa-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.modern-wa-btn:hover svg {
+  transform: translateX(6px);
+}
+
+.my-5{
+  text-align: center;
+}
+/* Mobile Tweaks */
+@media (max-width: 768px) {
+  .custom-tour-wrapper {
+    text-align: center;
+  }
+  .badge-cloud {
+    justify-content: center;
+  }
+  .modern-wa-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
 </style>
 </head>
 <body>
@@ -363,7 +480,41 @@
             </div>
             </div>
 </div> 
-         
+     <div class="container my-5">
+  <div class="custom-tour-wrapper">
+    
+    <div class="header-stack">
+      <span class="premium-label">Exclusive Group Service</span>
+      <h2 class="ultra-wide-title">
+        Your Journey. <span>Your Way.</span>
+      </h2>
+    </div>
+
+    <div class="content-stack">
+      <p class="wide-description">
+        Beyond our daily routes in <strong>Vlorë, Berat, and Sarandë</strong>, we offer tailored private tours for groups of 4+. Whether it's a hidden beach or a historic mountain village, choose your destination, set your pace, and let us handle the logistics.
+      </p>
+
+      <div class="badge-cloud">
+        <span class="item-pill">Uji i Ftohtë</span>
+        <span class="item-pill">Bënjë Thermal Baths</span>
+        <span class="item-pill">Gjirokastër</span>
+        <span class="item-pill">Apolloni</span>
+        <span class="item-pill">Tiranë</span>
+        <span class="item-pill">Durrës</span>
+        <span class="item-pill highlight-pill">+ Custom Locations</span>
+      </div>
+
+      <div class="cta-area">
+        <a target="_blank" href="https://wa.me/355692097659?text=I%20want%20to%20book%20a%20personalized%20tour" class="modern-wa-btn">
+          Get a  Quote
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>    
 <footer class="">
   <div class="footer-columns-div">
     <div class="footer-columns col1">
