@@ -47,7 +47,7 @@ if (localStorage.getItem("cart") && modalWasShown && !modalWasClosed) {
             <p><strong>${item.name} ${t(item.headlineKey)}</strong></p>
           
             <p><span data-i18n="checkout.date">Date:</span> ${item.date}</p>
-            ${item.departureTime ? `<p><span data-i18n="departure.time">Departure time:</span> ${item.departureTime}</p>` : ""}
+            ${item.departureTime ? `<p><span data-i18n="departure.time.van">Departure time:</span> ${item.departureTime}</p>` : ""}
             ${item.adults    ? `<p><span data-i18n="checkout.adults">Adults:</span> ${item.adults}</p>`    : ""}
             ${item.children  ? `<p><span data-i18n="checkout.children">Children:</span> ${item.children}</p>`: ""}
             ${item.infants   ? `<p><span data-i18n="checkout.infants">Infants:</span> ${item.infants}</p>`  : ""}
@@ -175,6 +175,7 @@ document.querySelectorAll("#name, #surname, #email, #phone, #agency").forEach(in
       <div class="order-item">
         <p><strong>${t("checkout.product")} ${i+1}:</strong> ${item.name}</p>
         <p>${t("checkout.date")}: ${item.date}</p>
+        ${item.departureTime ? `<p>${t("departure.time.van")}: ${item.departureTime}</p>` : ""}
         ${item.adults    ? `<p>${t("checkout.adults")}: ${item.adults}</p>`    : ""}
         ${item.children  ? `<p>${t("checkout.children")}: ${item.children}</p>`: ""}
         ${item.infants   ? `<p>${t("checkout.infants")}: ${item.infants}</p>`  : ""}
@@ -264,6 +265,7 @@ downloadOrderBtn.parentNode.insertBefore(
 
     Product ${i+1}: ${item.name}\n` +
                `Date: ${item.date||'-'}\n` +
+               (item.departureTime ? `Departure time : ${item.departureTime}\n` : "") +
                `Adults: ${item.adults||0}, Children: ${item.children||0}, Infants: ${item.infants||0}\n` +
 `Extras: ${
   item.extras && item.extras.length
@@ -428,9 +430,14 @@ async function generatePDF(customerData, returnBlob = true) {
     const headline = isBus ? "Daily Van Tour" : "Boat Tour";
     doc.setFont("helvetica","bold").text(`${item.name} - ${headline}`, 45, ticketY + 10);
     doc.setFont("helvetica","normal").text(`Date: ${item.date}`, 45, ticketY + 18);
-    if (item.adults)   doc.text(`Adults: ${item.adults}`, 45, ticketY + 36);
-    if (item.children) doc.text(`Children: ${item.children}`, 45, ticketY + 44);
-    if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
+    if (item.departureTime) {
+  doc.text(`Departure time: ${item.departureTime}`, 45, ticketY + 26);
+}
+
+if (item.adults)   doc.text(`Adults: ${item.adults}`, 45, ticketY + 36);
+if (item.children) doc.text(`Children: ${item.children}`, 45, ticketY + 44);
+if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
+
     doc.text("Extras:", 120, ticketY + 10);
     if (item.extras?.length) {
       item.extras.forEach((e, i) => {

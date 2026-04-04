@@ -1,7 +1,7 @@
 const translations = {
     en: {
- "departure_time_input": "Select departure time:",
-
+ "departure.time.input": "Select departure time:",
+ "departure.time.van": "Departure time:",
           "exclusive_label": "Exclusive Group Service",
     "title_main": "Your Journey.",
     "title_highlight": "Your Way.",
@@ -579,7 +579,8 @@ const translations = {
 
     
     sq: {
-    "departure_time_input": "Zgjidh orën e nisjes:",
+      "departure.time.van": "Ora e nisjes:",
+    "departure.time.input": "Zgjidh orën e nisjes:",
           "exclusive_label": "Shërbim Ekskluziv për Grupe",
     "title_main": "Udhëtimi Juaj.",
     "title_highlight": "Në Mënyrën Tuaj.",
@@ -1136,7 +1137,8 @@ boat: {
 
 
     it: {
-          "departure_time_input": "Seleziona l'orario di partenza:",
+      "departure.time.van": "Ora e nisjes:",
+          "departure.time.input": "Seleziona l'orario di partenza:",
   "exclusive_label": "Servizio Esclusivo per Gruppi",
     "title_main": "Il Tuo Viaggio.",
     "title_highlight": "A Modo Tuo.",
@@ -1688,7 +1690,8 @@ boat: {
 
 
     fr: {
-          "departure_time_input": "Sélectionnez l'heure de départ :",
+        "departure.time.van": "Heure de départ :",
+          "departure.time.input": "Sélectionnez l'heure de départ :",
         "exclusive_label": "Service Exclusif pour Groupes",
     "title_main": "Votre Voyage.",
     "title_highlight": "À Votre Façon.",
@@ -2245,7 +2248,8 @@ van:{
 
 
     ru: {
-         "departure_time_input": "Выберите время отправления:",
+        "departure.time.van": "Heure de départ :",
+         "departure.time.input": "Выберите время отправления:",
           "exclusive_label": "Эксклюзивный Сервис для Групп",
     "title_main": "Ваше Путешествие.",
     "title_highlight": "По-Вашему.",
@@ -2795,7 +2799,8 @@ van:{
 
 
     es: {
-         "departure_time_input": "Selecciona la hora de salida:",
+       "departure.time.van": "Время отправления:",
+         "departure.time.input": "Selecciona la hora de salida:",
           "exclusive_label": "Servicio Exclusivo para Grupos",
     "title_main": "Tu Viaje.",
     "title_highlight": "A Tu Manera.",

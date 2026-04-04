@@ -65,7 +65,9 @@ gap:1rem;
         font-size: 1.4rem;
       }
     }
-
+.d-grid{
+  justify-items: center;
+}
       </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,7 +120,11 @@ gap:1rem;
       <div class="banner-div">
         <h1 data-i18n="banner.heading">Explore Vlora</h1>
         <h2 data-i18n="banner.sub">Boat trips, daily tours, and travel info—all in one place.</h2>
-        <button data-i18n="get.started" type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'" aria-label="get started"> Get Started </button>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center w-100"> 
+          <button data-i18n="nav.boat" type="button" class="btn hidden explore-btn btn-lg gap-3" onclick="window.location.href='./boat.html'" aria-label="get started">BOAT TRIPS</button> 
+          <button data-i18n="nav.bus" type="button" class="btn hidden explore-btn btn-lg gap-3" onclick="window.location.href='./bus.html'" aria-label="get started">DAILY TOURS</button> 
+        </div>
+        <!-- <button data-i18n="get.started" type="button" class="btn hidden explore-btn" onclick="window.location.href='./services.html'" aria-label="get started"> Get Started </button> -->
       </div>
       <div class="fixed-top-div">
         <div class="top-bar ">
