@@ -1,5 +1,6 @@
 const translations = {
     en: {
+"alert.departure.time": "Please select a departure time.",
  "departure.time.input": "Select departure time:",
  "departure.time.van": "Departure time:",
           "exclusive_label": "Exclusive Group Service",
@@ -433,6 +434,20 @@ const translations = {
 "van.opt4.return": "⏳ Return to Vlora at the end of the tour",
 "van.opt4.recommended": "🎒 Recommended: Backpack, water bottle, comfortable clothes, camera",
 
+"van.opt5": "Vlora Tour: Kanina, St Mary Monastery & Zvernec Beach",
+    "van.opt5.txt": "Daily Tours",
+    "van.opt5.pricing": "Pricing",
+    "van.opt5.price.infants": "Infants (0-2 years): FREE on a seat with 1 adult",
+    "van.opt5.price.kids": "Children (3-6 years): €45",
+    "van.opt5.price.adults": "Adults (7+ years): €50",
+    "van.opt5.departure": "🕒 Departures: Tourist Solutions Office – 09:30 AM & 02:00 PM",
+    "van.opt5.stop1": "📍 Stop 1: Kanina Viewpoint – Enjoy panoramic views over Vlora and the coastline",
+    "van.opt5.stop2": "📍 Stop 2: Zvërnec Monastery – Visit the historic monastery on the island",
+    "van.opt5.break": "☕ Free Time: Walk, take photos, and explore the surrounding nature",
+    "van.opt5.stop3": "📍 Stop 3: Zvërnec Beach – Relax and enjoy 4–5 hours at the beach",
+    "van.opt5.included": "☂ Included: Beach umbrella (for every 2 people), 2 sunbeds & 1 drink per person",
+    "van.opt5.return": "⏳ Return to Vlora after the beach stay concludes",
+    "van.opt5.recommended": "🎒 Recommended: Swimwear, beach towel, sunscreen, hat, and camera",
 
   //BOOKING PAGE
   "booking.title": "Booking Page",
@@ -522,7 +537,13 @@ const translations = {
 "features.bus.adventure.5": "🔫 5 bullets included – Shooting range experience with professional instructors",
 "features.bus.adventure.6": "⏳ Return to Vlora at the end of the tour",
 "features.bus.adventure.7": "🎒 Recommended: Backpack, water bottle, comfortable clothes, camera",
-
+"features.bus.zvernec.1": "🕒 Departures: Tourist Solutions Office – 09:30 AM & 02:00 PM",
+"features.bus.zvernec.2": "📍 Stop 1: Kanina Viewpoint – Enjoy panoramic views over Vlora and the coastline",
+"features.bus.zvernec.3": "📍 Stop 2: Zvërnec Monastery – Visit the historic monastery on the island",
+"features.bus.zvernec.4": "☕ Free Time: Walk, take photos, and explore the surrounding nature",
+"features.bus.zvernec.5": "📍 Stop 3: Zvërnec Beach – Relax and enjoy 4–5 hours at the beach",
+"features.bus.zvernec.6": "☂ Included: Beach umbrella (for every 2 people), 2 sunbeds & 1 drink per person",
+"features.bus.zvernec.7": "🎒 Recommended: Swimwear, beach towel, sunscreen, hat, and camera",
 "cart.grandTotal" : "Grand total",
 
 
@@ -579,6 +600,7 @@ const translations = {
 
     
     sq: {
+      "alert.departure.time": "Ju lutemi zgjidhni një orar nisjeje.",
       "departure.time.van": "Ora e nisjes:",
     "departure.time.input": "Zgjidh orën e nisjes:",
           "exclusive_label": "Shërbim Ekskluziv për Grupe",
@@ -1010,7 +1032,20 @@ boat: {
 "van.opt4.return": "⏳ Kthimi në Vlorë në fund të turit",
 "van.opt4.recommended": "🎒 Rekomandohet: Çantë shpine, shishe uji, rroba të rehatshme, aparat fotografik",
 
-
+"van.opt5": "Tur Vlorë: Kanina, Manastiri i Shën Mërisë & Plazhi i Zvërnecit",
+    "van.opt5.txt": "Ture Ditore",
+    "van.opt5.pricing": "Çmimet",
+    "van.opt5.price.infants": "Foshnjat (0-2 vjeç): FALAS në një sedilje me 1 të rritur",
+    "van.opt5.price.kids": "Fëmijët (3-6 vjeç): €45",
+    "van.opt5.price.adults": "Të Rriturit (7+ vjeç): €50",
+    "van.opt5.departure": "🕒 Nisja: Zyra Tourist Solutions – 09:30 & 14:00",
+    "van.opt5.stop1": "📍 Ndalesa 1: Pikëpamja e Kaninës – Shijoni pamjet panoramike mbi Vlorën dhe bregdetin",
+    "van.opt5.stop2": "📍 Ndalesa 2: Manastiri i Shën Mërisë – Vizitoni manastirin historik në ishull",
+    "van.opt5.break": "☕ Kohë e Lirë: Shëtitje, fotografi dhe eksplorim i natyrës përreth",
+    "van.opt5.stop3": "📍 Ndalesa 3: Plazhi i Zvërnecit – Relaksohuni dhe shijoni 4–5 orë në plazh",
+    "van.opt5.included": "☂ Përfshihet: Çadër plazhi (për çdo 2 persona), 2 shezlongë dhe 1 pije për person",
+    "van.opt5.return": "⏳ Kthimi në Vlorë pas përfundimit të qëndrimit në plazh",
+    "van.opt5.recommended": "🎒 Rekomandohet: Rroba banje, peshqir plazhi, krem dielli, kapele dhe aparat fotografik",
   //BOOKING PAGE
   "booking.title": "Faqja e Rezervimit",
   "booking.alert": "⏳ Ju lutem arrini <strong>30-40 minuta përpara nisjes</strong> për check-in.",
@@ -1087,7 +1122,13 @@ boat: {
 "features.bus.adventure.5": "🔫 5 fishekë të përfshirë – Eksperiencë qitjeje me instruktorë profesionistë",
 "features.bus.adventure.6": "⏳ Kthimi në Vlorë në fund të turit",
 "features.bus.adventure.7": "🎒 Rekomandohet: Çantë shpine, ujë, rroba të rehatshme, aparat fotografik",
-
+"features.bus.zvernec.1": "🕒 Nisjet: Zyra Tourist Solutions – 09:30 & 14:00",
+"features.bus.zvernec.2": "📍 Ndalesa 1: Pikëpamja e Kaninës – Shijoni pamje panoramike mbi Vlorën dhe bregdetin",
+"features.bus.zvernec.3": "📍 Ndalesa 2: Manastiri i Zvërnecit – Vizitoni manastirin historik në ishull",
+"features.bus.zvernec.4": "☕ Kohë e lirë: Ecni, bëni foto dhe eksploroni natyrën përreth",
+"features.bus.zvernec.5": "📍 Ndalesa 3: Plazhi i Zvërnecit – Relaksohuni dhe shijoni 4–5 orë në plazh",
+"features.bus.zvernec.6": "☂ Përfshihet: 1 çadër plazhi (për çdo 2 persona), 2 shezlongë dhe 1 pije për person",
+"features.bus.zvernec.7": "🎒 Rekomandohet: Rroba banje, peshqir plazhi, krem mbrojtës, kapele dhe aparat fotografik",
   "cart.grandTotal": "Totali i Përgjithshëm",
 
   "tour.headline.boat": "Turne me anije",
@@ -1137,6 +1178,7 @@ boat: {
 
 
     it: {
+      "alert.departure.time": "Seleziona un orario di partenza.",
       "departure.time.van": "Ora e nisjes:",
           "departure.time.input": "Seleziona l'orario di partenza:",
   "exclusive_label": "Servizio Esclusivo per Gruppi",
@@ -1564,6 +1606,21 @@ boat: {
 "van.opt4.return": "⏳ Ritorno a Vlora al termine del tour",
 "van.opt4.recommended": "🎒 Consigliato: zaino, bottiglia d'acqua, vestiti comodi, macchina fotografica",
 
+
+"van.opt5": "Tour di Valona: Kanina, Monastero di Santa Maria e Spiaggia di Zvernec",
+    "van.opt5.txt": "Tour Giornalieri",
+    "van.opt5.pricing": "Prezzi",
+    "van.opt5.price.infants": "Neonati (0-2 anni): GRATIS sul posto con 1 adulto",
+    "van.opt5.price.kids": "Bambini (3-6 anni): €45",
+    "van.opt5.price.adults": "Adulti (7+ anni): €50",
+    "van.opt5.departure": "🕒 Partenze: Ufficio Tourist Solutions – 09:30 e 14:00",
+    "van.opt5.stop1": "📍 Fermata 1: Belvedere di Kanina – Goditi una vista panoramica su Valona e la costa",
+    "van.opt5.stop2": "📍 Fermata 2: Monastero di Santa Maria – Visita lo storico monastero sull'isola",
+    "van.opt5.break": "☕ Tempo Libero: Passeggia, scatta foto ed esplora la natura circostante",
+    "van.opt5.stop3": "📍 Fermata 3: Spiaggia di Zvernec – Rilassati e goditi 4–5 ore in spiaggia",
+    "van.opt5.included": "☂ Incluso: Ombrellone (ogni 2 persone), 2 lettini e 1 bevanda a persona",
+    "van.opt5.return": "⏳ Ritorno a Valona al termine della permanenza in spiaggia",
+    "van.opt5.recommended": "🎒 Consigliato: Costume da bagno, telo mare, crema solare, cappello e macchina fotografica",
       //BOOKING PAGE 
 "booking.title": "Pagina di Prenotazione",
   "booking.alert": "⏳ Si prega di arrivare <strong>30-40 minuti prima della partenza</strong> per il check-in.",
@@ -1639,7 +1696,13 @@ boat: {
 "features.bus.adventure.5": "🔫 5 proiettili inclusi – Esperienza al poligono di tiro con istruttori professionisti",
 "features.bus.adventure.6": "⏳ Ritorno a Vlora alla fine del tour",
 "features.bus.adventure.7": "🎒 Consigliato: Zaino, acqua, vestiti comodi, macchina fotografica",
-
+"features.bus.zvernec.1": "🕒 Partenze: Ufficio Tourist Solutions – 09:30 e 14:00",
+"features.bus.zvernec.2": "📍 Fermata 1: Belvedere di Kanina – Goditi una vista panoramica su Valona e sulla costa",
+"features.bus.zvernec.3": "📍 Fermata 2: Monastero di Zvërnec – Visita lo storico monastero sull'isola",
+"features.bus.zvernec.4": "☕ Tempo libero: Passeggia, scatta foto ed esplora la natura circostante",
+"features.bus.zvernec.5": "📍 Fermata 3: Spiaggia di Zvërnec – Rilassati e goditi 4–5 ore in spiaggia",
+"features.bus.zvernec.6": "☂ Incluso: 1 ombrellone (ogni 2 persone), 2 lettini e 1 bevanda a persona",
+"features.bus.zvernec.7": "🎒 Consigliato: Costume da bagno, telo mare, crema solare, cappello e macchina fotografica",
   "cart.grandTotal": "Totale Complessivo",
 
   "tour.headline.boat": "Tour in Barca",
@@ -1690,6 +1753,7 @@ boat: {
 
 
     fr: {
+      "alert.departure.time": "Veuillez sélectionner une heure de départ.",
         "departure.time.van": "Heure de départ :",
           "departure.time.input": "Sélectionnez l'heure de départ :",
         "exclusive_label": "Service Exclusif pour Groupes",
@@ -2118,7 +2182,23 @@ van:{
 "opt4.shooting": "🎯 Arrêt 4 : Expérience de tir avec instructeurs professionnels",
 "opt4.bullets": "🔫 Inclus : 5 balles offertes par participant",
 "opt4.return": "⏳ Retour à Vlora à la fin du tour",
-"opt4.recommended": "🎒 Recommandé : sac à dos, bouteille d'eau, vêtements confortables, appareil photo"
+"opt4.recommended": "🎒 Recommandé : sac à dos, bouteille d'eau, vêtements confortables, appareil photo",
+ 
+"opt5": "Excursion à Vlora : Kanina, Monastère Sainte-Marie et Plage de Zvernec",
+    "opt5.txt": "Excursions Quotidiennes",
+    "opt5.pricing": "Tarifs",
+    "opt5.price.infants": "Bébés (0-2 ans) : GRATUIT sur un siège avec 1 adulte",
+    "opt5.price.kids": "Enfants (3-6 ans) : €45",
+    "opt5.price.adults": "Adultes (7+ ans) : €50",
+    "opt5.departure": "🕒 Départs : Bureau Tourist Solutions – 09h30 et 14h00",
+    "opt5.stop1": "📍 Arrêt 1 : Point de Vue de Kanina – Profitez d'une vue panoramique sur Vlora et le littoral",
+    "opt5.stop2": "📍 Arrêt 2 : Monastère Sainte-Marie – Visitez le monastère historique sur l'île",
+    "opt5.break": "☕ Temps Libre : Promenez-vous, prenez des photos et explorez la nature environnante",
+    "opt5.stop3": "📍 Arrêt 3 : Plage de Zvernec – Détendez-vous et profitez de 4 à 5 heures à la plage",
+    "opt5.included": "☂ Inclus : Parasol (pour 2 personnes), 2 transats et 1 boisson par personne",
+    "opt5.return": "⏳ Retour à Vlora après la fin du séjour à la plage",
+    "opt5.recommended": "🎒 Recommandé : Maillot de bain, serviette de plage, crème solaire, chapeau et appareil photo",
+
 },
 "info.notincluded": "🚫 Déjeuner non inclus",
 
@@ -2199,7 +2279,13 @@ van:{
 "features.bus.adventure.5": "🔫 5 balles incluses – Expérience au stand de tir avec des instructeurs professionnels",
 "features.bus.adventure.6": "⏳ Retour à Vlora à la fin du tour",
 "features.bus.adventure.7": "🎒 Recommandé: Sac à dos, eau, vêtements confortables, appareil photo",
-
+"features.bus.zvernec.1": "🕒 Départs : Bureau Tourist Solutions – 09h30 et 14h00",
+"features.bus.zvernec.2": "📍 Arrêt 1 : Point de vue de Kanina – Profitez d'une vue panoramique sur Vlora et le littoral",
+"features.bus.zvernec.3": "📍 Arrêt 2 : Monastère de Zvërnec – Visitez le monastère historique situé sur l'île",
+"features.bus.zvernec.4": "☕ Temps libre : Promenez-vous, prenez des photos et explorez la nature environnante",
+"features.bus.zvernec.5": "📍 Arrêt 3 : Plage de Zvërnec – Détendez-vous et profitez de 4 à 5 heures à la plage",
+"features.bus.zvernec.6": "☂ Inclus : 1 parasol (pour 2 personnes), 2 transats et 1 boisson par personne",
+"features.bus.zvernec.7": "🎒 Recommandé : Maillot de bain, serviette de plage, crème solaire, chapeau et appareil photo",
       "cart.grandTotal": "Total Général",
     
       "tour.headline.boat": "Tour en Bateau",
@@ -2248,6 +2334,9 @@ van:{
 
 
     ru: {
+             "departure.time.van": "Время отправления:",
+
+      "alert.departure.time": "Пожалуйста, выберите время отправления.",
         "departure.time.van": "Heure de départ :",
          "departure.time.input": "Выберите время отправления:",
           "exclusive_label": "Эксклюзивный Сервис для Групп",
@@ -2672,7 +2761,22 @@ van:{
 "opt4.shooting": "🎯 Остановка 4: Стрельбище — стрельба из настоящего оружия с инструкторами",
 "opt4.bullets": "🔫 Включено: 5 бесплатных патронов на участника",
 "opt4.return": "⏳ Возвращение во Влёру в конце тура",
-"opt4.recommended": "🎒 Рекомендуется: рюкзак, бутылка воды, удобная одежда, камера"
+"opt4.recommended": "🎒 Рекомендуется: рюкзак, бутылка воды, удобная одежда, камера",
+
+ "opt5": "Тур по Влёре: Канина, Монастырь Святой Марии и Пляж Звернец",
+    "opt5.txt": "Ежедневные Туры",
+    "opt5.pricing": "Цены",
+    "opt5.price.infants": "Младенцы (0-2 года): БЕСПЛАТНО на одном месте со взрослым",
+    "opt5.price.kids": "Дети (3-6 лет): €45",
+    "opt5.price.adults": "Взрослые (7+ лет): €50",
+    "opt5.departure": "🕒 Отправление: Офис Tourist Solutions – 09:30 и 14:00",
+    "opt5.stop1": "📍 Остановка 1: Смотровая площадка Канина – Насладитесь панорамным видом на Влёру и побережье",
+    "opt5.stop2": "📍 Остановка 2: Монастырь Святой Марии – Посетите исторический монастырь на острове",
+    "opt5.break": "☕ Свободное время: Прогулки, фотографии и знакомство с окружающей природой",
+    "opt5.stop3": "📍 Остановка 3: Пляж Звернец – Отдохните и проведите 4–5 часов на пляже",
+    "opt5.included": "☂ Включено: Пляжный зонт (на каждые 2 человека), 2 лежака и 1 напиток на человека",
+    "opt5.return": "⏳ Возвращение во Влёру после завершения отдыха на пляже",
+    "opt5.recommended": "🎒 Рекомендуется: Купальник, пляжное полотенце, солнцезащитный крем, шляпа и фотоаппарат",
 },
 "info.notincluded": "🚫 Обед не включён",
 
@@ -2752,6 +2856,13 @@ van:{
 "features.bus.adventure.5": "🔫 5 патронов включено – Стрельба в тире с профессиональными инструкторами",
 "features.bus.adventure.6": "⏳ Возвращение во Влёру в конце тура",
 "features.bus.adventure.7": "🎒 Рекомендуется: Рюкзак, вода, удобная одежда, камера",
+"features.bus.zvernec.1": "🕒 Отправление: Офис Tourist Solutions – 09:30 и 14:00",
+"features.bus.zvernec.2": "📍 Остановка 1: Смотровая площадка Канина – Насладитесь панорамным видом на Влёру и побережье",
+"features.bus.zvernec.3": "📍 Остановка 2: Монастырь Звернец – Посетите исторический монастырь на острове",
+"features.bus.zvernec.4": "☕ Свободное время: Прогуляйтесь, сделайте фотографии и исследуйте окружающую природу",
+"features.bus.zvernec.5": "📍 Остановка 3: Пляж Звернец – Отдохните и проведите 4–5 часов на пляже",
+"features.bus.zvernec.6": "☂ Включено: 1 пляжный зонт (на каждые 2 человека), 2 лежака и 1 напиток на человека",
+"features.bus.zvernec.7": "🎒 Рекомендуется: Купальник, пляжное полотенце, солнцезащитный крем, шляпа и фотоаппарат",
   "cart.grandTotal": "Общий Итого",
 
   "tour.headline.boat": "Поездка на Лодке",
@@ -2799,7 +2910,8 @@ van:{
 
 
     es: {
-       "departure.time.van": "Время отправления:",
+              "departure.time.van": "Heure de départ :",
+"alert.departure.time": "Por favor, selecciona una hora de salida.",
          "departure.time.input": "Selecciona la hora de salida:",
           "exclusive_label": "Servicio Exclusivo para Grupos",
     "title_main": "Tu Viaje.",
@@ -3227,7 +3339,22 @@ van:{
 "opt4.shooting": "🎯 Parada 4: Experiencia en campo de tiro con instructores profesionales",
 "opt4.bullets": "🔫 Incluido: 5 balas gratuitas por participante",
 "opt4.return": "⏳ Regreso a Vlora al final del tour",
-"opt4.recommended": "🎒 Recomendado: mochila, botella de agua, ropa cómoda, cámara"
+"opt4.recommended": "🎒 Recomendado: mochila, botella de agua, ropa cómoda, cámara",
+
+   "opt5": "Tour por Vlora: Kanina, Monasterio de Santa María y Playa de Zvernec ",
+    "opt5.txt": "Tours Diarios",
+    "opt5.pricing": "Precios",
+    "opt5.price.infants": "Bebés (0-2 años): GRATIS en un asiento con 1 adulto",
+    "opt5.price.kids": "Niños (3-6 años): €45",
+    "opt5.price.adults": "Adultos (7+ años): €50",
+    "opt5.departure": "🕒 Salidas: Oficina de Tourist Solutions – 09:30 y 14:00",
+    "opt5.stop1": "📍 Parada 1: Mirador de Kanina – Disfrute de vistas panorámicas de Vlora y la costa",
+    "opt5.stop2": "📍 Parada 2: Monasterio de Santa María – Visite el histórico monasterio en la isla",
+    "opt5.break": "☕ Tiempo Libre: Camine, tome fotos y explore la naturaleza circundante",
+    "opt5.stop3": "📍 Parada 3: Playa de Zvernec – Relájese y disfrute de 4–5 horas en la playa",
+    "opt5.included": "☂ Incluido: Sombrilla de playa (cada 2 personas), 2 tumbonas y 1 bebida por persona",
+    "opt5.return": "⏳ Regreso a Vlora después de finalizar la estancia en la playa",
+    "opt5.recommended": "🎒 Recomendado: Traje de baño, toalla de playa, protector solar, sombrero y cámara",
     },
 
       //BOOKING PAGE
@@ -3305,6 +3432,13 @@ van:{
 "features.bus.adventure.5": "🔫 5 balas incluidas – Experiencia en campo de tiro con instructores profesionales",
 "features.bus.adventure.6": "⏳ Regreso a Vlora al final del tour",
 "features.bus.adventure.7": "🎒 Recomendado: Mochila, agua, ropa cómoda, cámara",
+"features.bus.zvernec.1": "🕒 Salidas: Oficina de Tourist Solutions – 09:30 y 14:00",
+"features.bus.zvernec.2": "📍 Parada 1: Mirador de Kanina – Disfruta de vistas panorámicas de Vlora y la costa",
+"features.bus.zvernec.3": "📍 Parada 2: Monasterio de Zvërnec – Visita el histórico monasterio situado en la isla",
+"features.bus.zvernec.4": "☕ Tiempo libre: Pasea, toma fotografías y explora la naturaleza de los alrededores",
+"features.bus.zvernec.5": "📍 Parada 3: Playa de Zvërnec – Relájate y disfruta de 4–5 horas en la playa",
+"features.bus.zvernec.6": "☂ Incluido: 1 sombrilla de playa (por cada 2 personas), 2 tumbonas y 1 bebida por persona",
+"features.bus.zvernec.7": "🎒 Recomendado: Traje de baño, toalla de playa, protector solar, sombrero y cámara",
   "cart.grandTotal": "Total General",
 
   "tour.headline.boat": "Paseo en Barco",

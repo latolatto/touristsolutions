@@ -261,7 +261,7 @@
         <div class="container px-4 py-5" id="custom-cards">
             <h2 class="pb-2 border-bottom text-center" data-i18n="van.title.txt">Daily Scenic Van Tours</h2>
         
-            <div class="row row-cols-1 row-cols-md-2 g-4 py-5">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-3 g-4 py-5">
                 <!-- Bus Line 1: Vlora - Saranda - Vlora -->
                 <div class="col">
                     <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
@@ -418,7 +418,7 @@
         <img alt="van3-img" src="./assets/images/other-pages/boat-trip/daily-tours/adventurevan.webp" class="card-img-top">
         <div class="card-body text-center p-4">
             <h5 class="fw-bold" data-i18n="van.opt4">Outdoor Adventure: Ardenica, UNESCO Berat & Gun Shooting</h5>
-            <p class="text-muted" data-i18n="van.opt3.txt">Daily Tours</p>
+            <p class="text-muted" data-i18n="van.opt5.txt">Daily Tours</p>
 
             <div class="pricing text-center my-3 pb-2">
               <h4 class="fw-bold text-primary" data-i18n="van.opt2.pricing">Pricing</h4>
@@ -473,7 +473,72 @@
         </ul>
 
         <div class="text-center pb-3">
-            <a href="booking-page.html?bus=Berat-Adventure" class="btn book-btn" data-i18n="van.opt3.cta">Book Now</a>
+            <a href="booking-page.html?bus=Vlora-Berat-Adventure" class="btn book-btn" data-i18n="van.opt3.cta">Book Now</a>
+        </div>
+    </div>
+</div>
+                <!--bus 5 : zvernec-->
+
+<div class="col">
+    <div class="card h-100 shadow-lg border-0 rounded-4 overflow-hidden">
+        <img alt="van5-img" src="./assets/images/other-pages/boat-trip/daily-tours/zverncecvan.webp" class="card-img-top">
+
+        <div class="card-body text-center p-4">
+            <h5 class="fw-bold" data-i18n="van.opt5">Zvërnec Beach & Monastery Tour</h5>
+            <p class="text-muted" data-i18n="van.opt5.txt">Daily Tours</p>
+
+            <div class="pricing text-center my-3 pb-2">
+                <h4 class="fw-bold text-primary" data-i18n="van.opt5.pricing">Pricing</h4>
+                <p><span class="badge bg-success" data-i18n="van.opt5.price.infants">Infants (0-2 years): FREE on a seat with 1 adult</span></p>
+                <p><span class="badge bg-danger" data-i18n="van.opt5.price.kids">Children(3-6 years): €45</span></p>
+                <p><span class="badge bg-warning text-dark" data-i18n="van.opt5.price.adults">Adults(7+ years): €50</span></p>
+            </div>
+
+            <ul class="list-unstyled text-center mt-3 bg-light">
+                <li data-i18n="info.notincluded">🚫 Lunch not included</li>
+            </ul>
+        </div>
+
+        <ul class="list-group list-group-flush px-3 pb-3">
+
+            <li class="list-group-item" data-i18n="van.opt5.departure">
+                🕒 Departures: Tourist Solutions Office – 09:30 AM & 02:00 PM
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.stop1">
+                📍 Stop 1: Kanina Viewpoint – Enjoy panoramic views over Vlora and the coastline
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.stop2">
+                📍 Stop 2: Zvërnec Monastery – Visit the historic monastery on the island
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.break">
+                ☕ Free Time: Walk, take photos, and explore the surrounding nature
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.stop3">
+                📍 Stop 3: Zvërnec Beach – Relax and enjoy 4–5 hours at the beach
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.included">
+                ☂ Included: Beach umbrella(for every 2 people), 2 sunbeds & 1 drink per person
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.return">
+                ⏳ Return to Vlora after the beach stay concludes
+            </li>
+
+            <li class="list-group-item" data-i18n="van.opt5.recommended">
+                🎒 Recommended: Swimwear, beach towel, sunscreen, hat, and camera
+            </li>
+
+        </ul>
+
+        <div class="text-center pb-3">
+            <a href="booking-page.html?bus=Vlora-Zvernec-Beach" class="btn book-btn" data-i18n="van.opt3.cta">
+                Book Now
+            </a>
         </div>
     </div>
 </div>
@@ -632,5 +697,186 @@
   <script src="./index.js"></script>
   <script src="translations.js"></script>
   <script src="lang.js"></script> 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('#custom-cards .card').forEach(function (card) {
+        if (card.querySelector('.scroll-indicator')) return;
+        var list = card.querySelector('.list-group');
+        var cta = card.querySelector('.text-center.pb-3');
+
+        var indicator = document.createElement('div');
+        indicator.className = 'scroll-indicator';
+
+        var downBtn = document.createElement('button');
+        downBtn.className = 'scroll-arrow down';
+        downBtn.setAttribute('aria-label', 'scroll down');
+        downBtn.textContent = '\u25BC';
+
+        var upBtn = document.createElement('button');
+        upBtn.className = 'scroll-arrow up';
+        upBtn.setAttribute('aria-label', 'scroll up');
+        upBtn.textContent = '\u25B2';
+
+        // default hidden until we determine scrollability
+        downBtn.hidden = true;
+        upBtn.hidden = true;
+
+        indicator.appendChild(downBtn);
+        indicator.appendChild(upBtn);
+
+        if (list) {
+          var scrollBlock = document.createElement('div');
+          scrollBlock.className = 'scroll-block';
+
+          var contentWrapper = document.createElement('div');
+          contentWrapper.className = 'scrollable-content';
+
+          var scrollWrapper = document.createElement('div');
+          scrollWrapper.className = 'scroll-wrapper';
+
+          var toggleButton = document.createElement('button');
+          toggleButton.className = 'scroll-toggler';
+          toggleButton.type = 'button';
+          toggleButton.textContent = 'Show details';
+          toggleButton.setAttribute('aria-expanded', 'false');
+
+          list.parentNode.insertBefore(scrollBlock, list);
+          scrollBlock.appendChild(toggleButton);
+          scrollBlock.appendChild(contentWrapper);
+          scrollWrapper.appendChild(list);
+          contentWrapper.appendChild(scrollWrapper);
+          contentWrapper.appendChild(indicator);
+
+          var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+          if (isMobile) {
+            contentWrapper.classList.add('collapsed');
+            toggleButton.textContent = 'Show details';
+            toggleButton.setAttribute('aria-expanded', 'false');
+          } else {
+            contentWrapper.classList.add('expanded');
+            toggleButton.hidden = true;
+          }
+
+          function setExpanded(expanded) {
+            if (expanded) {
+              contentWrapper.classList.remove('collapsed');
+              contentWrapper.classList.add('expanded');
+              toggleButton.textContent = 'Hide details';
+              toggleButton.setAttribute('aria-expanded', 'true');
+            } else {
+              contentWrapper.classList.remove('expanded');
+              contentWrapper.classList.add('collapsed');
+              toggleButton.textContent = 'Show details';
+              toggleButton.setAttribute('aria-expanded', 'false');
+            }
+          }
+
+          toggleButton.addEventListener('click', function () {
+            setExpanded(contentWrapper.classList.contains('collapsed'));
+          });
+
+          // Add persistent touch scrollbar elements when device is coarse (touch)
+          if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            scrollWrapper.style.position = scrollWrapper.style.position || 'relative';
+            if (!scrollWrapper.querySelector('.scroll-track')) {
+              var track = document.createElement('div');
+              track.className = 'scroll-track';
+              var thumb = document.createElement('div');
+              thumb.className = 'scroll-thumb';
+              scrollWrapper.appendChild(track);
+              scrollWrapper.appendChild(thumb);
+
+              function updateThumb() {
+                var sh = list.scrollHeight, ch = list.clientHeight;
+                if (sh <= ch) { thumb.style.display = 'none'; track.style.display = 'none'; return; }
+                track.style.display = 'block'; thumb.style.display = 'block';
+                var ratio = ch / sh;
+                var thumbH = Math.max(24, Math.floor((ch - 12) * ratio));
+                thumb.style.height = thumbH + 'px';
+                var maxTop = (ch - 12) - thumbH;
+                var top = Math.floor((list.scrollTop / (sh - ch)) * maxTop) + 6;
+                thumb.style.top = top + 'px';
+              }
+
+              list.addEventListener('scroll', updateThumb);
+              window.addEventListener('resize', updateThumb);
+              if (window.ResizeObserver) new ResizeObserver(updateThumb).observe(list);
+              updateThumb();
+            }
+          }
+
+          var lastScrollTop = list.scrollTop || 0;
+          var lastDir = 'down';
+
+          function updateArrows() {
+            if (list.scrollHeight <= list.clientHeight) {
+              downBtn.hidden = true;
+              upBtn.hidden = true;
+              return;
+            }
+
+            var atTop = (list.scrollTop <= 0);
+            var atBottom = (list.scrollTop + list.clientHeight >= list.scrollHeight - 2);
+
+            if (atTop) {
+              downBtn.hidden = false;
+              upBtn.hidden = true;
+              return;
+            }
+            if (atBottom) {
+              downBtn.hidden = true;
+              upBtn.hidden = false;
+              return;
+            }
+
+            if (lastDir === 'up') {
+              downBtn.hidden = true;
+              upBtn.hidden = false;
+            } else {
+              downBtn.hidden = false;
+              upBtn.hidden = true;
+            }
+          }
+
+          list.addEventListener('scroll', function () {
+            var st = list.scrollTop;
+            if (st < lastScrollTop) lastDir = 'up';
+            else if (st > lastScrollTop) lastDir = 'down';
+            lastScrollTop = st;
+            updateArrows();
+          });
+
+          window.addEventListener('resize', function () {
+            var mobileNow = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+            if (!mobileNow) {
+              toggleButton.hidden = true;
+              setExpanded(true);
+            } else {
+              toggleButton.hidden = false;
+            }
+            updateArrows();
+          });
+
+          if (window.ResizeObserver) new ResizeObserver(updateArrows).observe(list);
+
+          downBtn.addEventListener('click', function () {
+            lastDir = 'down';
+            list.scrollBy({ top: list.clientHeight, behavior: 'smooth' });
+          });
+
+          upBtn.addEventListener('click', function () {
+            lastDir = 'up';
+            list.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+
+          setExpanded(!isMobile);
+          updateArrows();
+        } else {
+          if (cta) cta.insertAdjacentElement('beforebegin', indicator);
+          else card.appendChild(indicator);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

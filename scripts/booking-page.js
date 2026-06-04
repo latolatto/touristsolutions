@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         mainInfo: "maininfo.berat"
       },
-      "Berat-Adventure": {
+      "Vlora-Berat-Adventure": {
         image: "./assets/images/other-pages/boat-trip/daily-tours/adventurevan.webp",
         features: [
           "features.bus.adventure.1",
@@ -195,18 +195,59 @@ document.addEventListener("DOMContentLoaded", function () {
           adult: { age: "7+", value: 64 }
         },
         mainInfo: "maininfo.berat"
+      },
+      "Vlora-Zvernec-Beach": {
+        image: "./assets/images/other-pages/boat-trip/daily-tours/zverncecvan.webp",
+        features: [
+          "features.bus.zvernec.1",
+          "features.bus.zvernec.2",
+          "features.bus.zvernec.3",
+          "features.bus.zvernec.4",
+          "features.bus.zvernec.5",
+          "features.bus.zvernec.6",
+          "features.bus.zvernec.7",
+          "features.bus.berat.8"
+        ],
+        price: {
+          infant: { age: "0-2", value: 0 },
+          child: { age: "3-6", value: 45 },
+          adult: { age: "7+", value: 50 }
+        },
+        mainInfo: "maininfo.berat"
       }
     };
     let urlParams = new URLSearchParams(window.location.search);
     let bus = urlParams.get("bus");
     let boat = urlParams.get("boat");
- 
-        if (bus === "Vlora-City") {
-  document.getElementById("departure-time-container").style.display = "block";
-}else{
-    document.getElementById("departure-time-container").style.display = "none";
 
-}     
+    const departureTimesByBus = {
+      "Vlora-City": ["10:00", "15:00"],
+      "Vlora-Zvernec-Beach": ["09:30", "14:00"]
+    };
+
+    const departureTimeContainer = document.getElementById("departure-time-container");
+    const departureTimeOptions = document.getElementById("departure-time-options");
+
+    function renderDepartureTimes(times) {
+      if (!times || !times.length) {
+        departureTimeOptions.innerHTML = "";
+        departureTimeContainer.style.display = "none";
+        return;
+      }
+
+      departureTimeOptions.innerHTML = times.map((time) => {
+        const display = time === "10:00" ? "10:00 AM" : time === "15:00" ? "03:00 PM" : time === "09:30" ? "09:30 AM" : time === "14:00" ? "02:00 PM" : time;
+        return `
+          <label class="departure-option">
+            <input type="radio" name="departureTime" value="${time}">
+            <span class="departure-card">${display}</span>
+          </label>`;
+      }).join("");
+
+      departureTimeContainer.style.display = "block";
+    }
+
+    renderDepartureTimes(departureTimesByBus[bus]);
 
     // Display product details
     if (productName && productDetails[productName]) {
@@ -439,21 +480,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("bookNow").addEventListener("click", function (event) {
 
+      let departureTime = "";
+      let urlParams = new URLSearchParams(window.location.search);
+      let bus = urlParams.get("bus");
+      const departureTimesByBus = {
+        "Vlora-City": ["10:00", "15:00"],
+        "Vlora-Zvernec-Beach": ["09:30", "14:00"]
+      };
 
-let departureTime = "";
-    let urlParams = new URLSearchParams(window.location.search);
-    let bus = urlParams.get("bus");
-
-if (bus === "Vlora-City") {
-  const selected = document.querySelector('input[name="departureTime"]:checked');
-
-  if (!selected) {
-    alert("Please select a departure time.");
-    return;
-  }
-
-  departureTime = selected.value;
-}
+      if (departureTimesByBus[bus]) {
+        const selected = document.querySelector('input[name="departureTime"]:checked');
+        if (!selected) {
+  alert(t("alert.departure.time"));
+          return;
+        }
+        departureTime = selected.value;
+      }
         event.preventDefault();
 
         const boatName = document.getElementById("boat-name").textContent;
@@ -551,9 +593,13 @@ if (!date) {
     image: "./assets/images/other-pages/boat-trip/daily-tours/vloravan.png",
                     price: { adult: 45, child: 40 }
             },
-             "Berat-Adventure": {
+             "Vlora-Berat-Adventure": {
         image: "./assets/images/other-pages/boat-trip/daily-tours/adventurevan.webp",
                         price: { adult: 64, child: 45 }
+            },
+            "Vlora-Zvernec-Beach": {
+        image: "./assets/images/other-pages/boat-trip/daily-tours/zverncecvan.webp",
+                        price: { adult: 50, child: 45 }
             }
         };
 
