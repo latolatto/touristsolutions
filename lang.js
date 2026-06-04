@@ -13,7 +13,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Set dropdown label correctly on load
   const dropdownBtn = document.getElementById("languageDropdown");
-  if (dropdownBtn) dropdownBtn.innerText = savedLang.toUpperCase();
+  const languageFlagPaths = {
+    en: "./assets/flags/en.webp",
+    sq: "./assets/flags/al.webp",
+    fr: "./assets/flags/fr.webp",
+    it: "./assets/flags/it.webp",
+    ru: "./assets/flags/ru.webp",
+    es: "./assets/flags/es.webp"
+  };
+
+  function setLanguageDropdownLabel(lang) {
+    if (!dropdownBtn) return;
+    const flagSrc = languageFlagPaths[lang] || languageFlagPaths.en;
+    dropdownBtn.innerHTML = `<img src="${flagSrc}" alt="${lang} flag" class="flag selected-flag"> ${lang.toUpperCase()}`;
+  }
+
+  if (dropdownBtn) setLanguageDropdownLabel(savedLang);
 
   // Handle user changing the language
   document.querySelectorAll("[data-lang]").forEach((el) => {
@@ -33,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartDisplay();
       }
 
-      // Update the dropdown button text
-      if (dropdownBtn) dropdownBtn.innerText = selectedLang.toUpperCase();
+      // Update the dropdown button label and flag
+      setLanguageDropdownLabel(selectedLang);
 
       // Reload to rebuild dynamic content in new language
       window.location.reload();

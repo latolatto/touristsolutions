@@ -225,6 +225,9 @@ font-weight: 500;
     height:0.7rem;
 }
 
+.selected-flag {
+    margin-right: 0.35rem;
+}
 
 ul.dropdown-menu.show{
     width:10%;

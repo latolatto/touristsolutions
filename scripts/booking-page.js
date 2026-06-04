@@ -78,13 +78,13 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         price: {
           infant: { age: "0-4" , value: 0 },
-          child: { age: "5-10", value: 15 },
-          adult: { age: "11+", value: 25 }
+          child: { age: "5-10", value: 19 },
+          adult: { age: "11+", value: 29 }
         },
         mainInfo: "maininfo.aqua",
         extras: {
-          speedboat: { label: "extras.aqua.speedboat", price: 20 },
-          meal: { label: "extras.aqua.meal", price: 15 }
+          speedboat: { label: "extras.aqua.speedboat", price: 24 },
+          meal: { label: "extras.aqua.meal", price: 19 }
         }
       },
       "Liburna": {
@@ -569,9 +569,9 @@ if (!date) {
             "Aquamarine": {
                 image: "./assets/images/other-pages/boat-trip/aqua1.webp",
                 price: {
-                    infant: 0, child: 15, adult: 25
+                    infant: 0, child: 19, adult: 29
                 },
-                extras: { speedboat: 20, meal: 15 }
+                extras: { speedboat: 24, meal: 19 }
             },
             "Liburna": {
                 image: "./assets/images/other-pages/boat-trip/liburna1.webp",
