@@ -1,5 +1,7 @@
 const translations = {
     en: {
+        "book.bus.opt5": "Kanina, Zvërnec & Beach Escape",
+    "book.bus.opt5.paragrapgh": "Discover the highlights of Vlora with visits to Kanina Viewpoint and Zvërnec Monastery, combined with a relaxing beach stay and free time to explore.",
 "alert.departure.time": "Please select a departure time.",
  "departure.time.input": "Select departure time:",
  "departure.time.van": "Departure time:",
@@ -600,6 +602,8 @@ const translations = {
 
     
     sq: {
+          "book.bus.opt5": "Arratisje në Kaninë, Zvërnec & Plazh",
+    "book.bus.opt5.paragrapgh": "Zbuloni pikat kryesore të Vlorës me vizita në Pikëpamjen e Kaninës dhe Manastirin e Zvërnecit, të kombinuara me relaks në plazh dhe kohë të lirë për eksplorim.",
       "alert.departure.time": "Ju lutemi zgjidhni një orar nisjeje.",
       "departure.time.van": "Ora e nisjes:",
     "departure.time.input": "Zgjidh orën e nisjes:",
@@ -1178,6 +1182,8 @@ boat: {
 
 
     it: {
+          "book.bus.opt5": "Fuga a Kanina, Zvërnec e Spiaggia",
+    "book.bus.opt5.paragrapgh": "Scopri le attrazioni principali di Valona con visite al Belvedere di Kanina e al Monastero di Zvërnec, abbinate a un rilassante soggiorno in spiaggia e tempo libero per esplorare.",
       "alert.departure.time": "Seleziona un orario di partenza.",
       "departure.time.van": "Ora e nisjes:",
           "departure.time.input": "Seleziona l'orario di partenza:",
@@ -1753,6 +1759,8 @@ boat: {
 
 
     fr: {
+          "book.bus.opt5": "Escapade à Kanina, Zvërnec & Plage",
+    "book.bus.opt5.paragrapgh": "Découvrez les points forts de Vlora avec des visites du point de vue de Kanina et du monastère de Zvërnec, combinées à un moment de détente à la plage et du temps libre pour explorer.",
       "alert.departure.time": "Veuillez sélectionner une heure de départ.",
         "departure.time.van": "Heure de départ :",
           "departure.time.input": "Sélectionnez l'heure de départ :",
@@ -2334,6 +2342,8 @@ van:{
 
 
     ru: {
+          "book.bus.opt5": "Канина, Звернец и Пляжный Отдых",
+    "book.bus.opt5.paragrapgh": "Откройте для себя главные достопримечательности Влёры, посетив смотровую площадку Канина и монастырь Звернец, а также насладившись отдыхом на пляже и свободным временем для прогулок.",
              "departure.time.van": "Время отправления:",
 
       "alert.departure.time": "Пожалуйста, выберите время отправления.",
@@ -2910,6 +2920,8 @@ van:{
 
 
     es: {
+          "book.bus.opt5": "Escapada a Kanina, Zvërnec y Playa",
+    "book.bus.opt5.paragrapgh": "Descubre los principales atractivos de Vlora con visitas al Mirador de Kanina y al Monasterio de Zvërnec, combinadas con una relajante estancia en la playa y tiempo libre para explorar.",
               "departure.time.van": "Heure de départ :",
 "alert.departure.time": "Por favor, selecciona una hora de salida.",
          "departure.time.input": "Selecciona la hora de salida:",

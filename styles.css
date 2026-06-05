@@ -554,14 +554,22 @@ text-align: center;
   .boat-option p, .van-option p{
     font-size: 0.9rem;
   }
-  .boat-trips-grid, .van-tours-grid {
+  
+  .boat-trips-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content:stretch;
+    justify-content: stretch;
     gap: 2rem;
     align-items: center;
-    
   }
+  
+  .van-tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+  }
+  
   .boat-option {
     flex: 1 1 30%;
     background: rgba(255, 255, 255, 0.1);
@@ -569,13 +577,15 @@ text-align: center;
     border-radius: 1rem;
     text-align: center;
   }
-     .van-option {
-    flex: 1 1 21%;
+  
+  .van-option {
     background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     border-radius: 1rem;
     text-align: center;
-    height:max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   } 
   .booking-img {
     width: 100%;
@@ -599,11 +609,32 @@ text-align: center;
     background: #e68900;
   }
   @media (max-width: 768px) {
-    .boat-trips-grid, .van-tours-grid {
+    .boat-trips-grid {
       flex-direction: column;
     }
-    .boat-option, .van-option {
+    .boat-option {
       flex: 1 1 100%;
+    }
+    .van-tours-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .van-tours-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1399px) {
+    .van-tours-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .van-tours-grid {
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 
@@ -1029,6 +1060,7 @@ button:disabled {
 @media (max-width: 768px) {
 
     .explore-btn{
+                min-height: max-content;
         height: 3rem;
     width: 50%;
             font-weight: 700;
