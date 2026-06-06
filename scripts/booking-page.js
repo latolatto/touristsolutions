@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         price: {
           infant: { age: "0-3", value: 0 },
-          child: { age: "4-6", value: 15 },
+          child: { age: "4-6", value: 19 },
           adult: { age: "7+", value: 30 }
         },
         mainInfo: "maininfo.liburna"
@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         price: {
           infant: { age: "0-3", value: 0 },
-          child: { age: "4-9", value: 15 },
-          adult: { age: "10+", value: 25 }
+          child: { age: "4-9", value: 19 },
+          adult: { age: "10+", value: 29 }
         },
         mainInfo: "maininfo.cruise"
       },
@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         price: {
           infant: { age: "0-2", value: 0 },
-          child: { age: "3-6", value: 45 },
-          adult: { age: "7+", value: 50 }
+          child: { age: "3-6", value: 40 },
+          adult: { age: "7+", value: 45 }
         },
         mainInfo: "maininfo.berat"
       }
@@ -575,11 +575,11 @@ if (!date) {
             },
             "Liburna": {
                 image: "./assets/images/other-pages/boat-trip/liburna1.webp",
-                price: { infant: 0, child: 15, adult: 30 }
+                price: { infant: 0, child: 19, adult: 30 }
             },
             "Vlora Cruise": {
                 image: "./assets/images/other-pages/boat-trip/vlora1.webp",
-                price: { infant: 0, child: 15, adult: 25 }
+                price: { infant: 0, child: 19, adult: 29 }
             },
             "Vlora-Saranda": {
         image: "./assets/images/other-pages/boat-trip/daily-tours/sarandavan.webp",
@@ -599,7 +599,7 @@ if (!date) {
             },
             "Vlora-Zvernec-Beach": {
         image: "./assets/images/other-pages/boat-trip/daily-tours/zverncecvan.webp",
-                        price: { adult: 50, child: 45 }
+                        price: { adult: 45, child: 40 }
             }
         };
 
