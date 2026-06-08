@@ -1436,3 +1436,15 @@ h3#booknow-title {
     font-display: swap;
     src: url('https://fonts.gstatic.com/s/abrilfatface/v14/Z9XVDmdMWRiN1_T9ZczpD9PEw5g.woff2') format('woff2');
   } */
+
+  .explore-btn{
+                min-height: max-content !important;
+    
+  }
+
+  @media (max-width: 768px) {
+
+  .banner {
+    height: 115vh;
+  }
+}
