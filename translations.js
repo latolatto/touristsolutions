@@ -447,7 +447,7 @@ const translations = {
     "van.opt5.stop2": "📍 Stop 2: Zvërnec Monastery – Visit the historic monastery on the island",
     "van.opt5.break": "☕ Free Time: Walk, take photos, and explore the surrounding nature",
     "van.opt5.stop3": "📍 Stop 3: Zvërnec Beach – Relax and enjoy 4–5 hours at the beach",
-    "van.opt5.included": "☂ Included: Beach umbrella (for every 2 people), 2 sunbeds & 1 drink per person",
+    "van.opt5.included": "☂ Included: Beach umbrella (for every 2 people) & 2 sunbeds",
     "van.opt5.return": "⏳ Return to Vlora after the beach stay concludes",
     "van.opt5.recommended": "🎒 Recommended: Swimwear, beach towel, sunscreen, hat, and camera",
 
@@ -1047,7 +1047,7 @@ boat: {
     "van.opt5.stop2": "📍 Ndalesa 2: Manastiri i Shën Mërisë – Vizitoni manastirin historik në ishull",
     "van.opt5.break": "☕ Kohë e Lirë: Shëtitje, fotografi dhe eksplorim i natyrës përreth",
     "van.opt5.stop3": "📍 Ndalesa 3: Plazhi i Zvërnecit – Relaksohuni dhe shijoni 4–5 orë në plazh",
-    "van.opt5.included": "☂ Përfshihet: Çadër plazhi (për çdo 2 persona), 2 shezlongë dhe 1 pije për person",
+    "van.opt5.included": "☂ Përfshihet: Çadër plazhi (për çdo 2 persona) & 2 shezlongë",
     "van.opt5.return": "⏳ Kthimi në Vlorë pas përfundimit të qëndrimit në plazh",
     "van.opt5.recommended": "🎒 Rekomandohet: Rroba banje, peshqir plazhi, krem dielli, kapele dhe aparat fotografik",
   //BOOKING PAGE
@@ -1624,7 +1624,7 @@ boat: {
     "van.opt5.stop2": "📍 Fermata 2: Monastero di Santa Maria – Visita lo storico monastero sull'isola",
     "van.opt5.break": "☕ Tempo Libero: Passeggia, scatta foto ed esplora la natura circostante",
     "van.opt5.stop3": "📍 Fermata 3: Spiaggia di Zvernec – Rilassati e goditi 4–5 ore in spiaggia",
-    "van.opt5.included": "☂ Incluso: Ombrellone (ogni 2 persone), 2 lettini e 1 bevanda a persona",
+    "van.opt5.included": "☂ Incluso: Ombrellone (ogni 2 persone) & 2 lettini",
     "van.opt5.return": "⏳ Ritorno a Valona al termine della permanenza in spiaggia",
     "van.opt5.recommended": "🎒 Consigliato: Costume da bagno, telo mare, crema solare, cappello e macchina fotografica",
       //BOOKING PAGE 
@@ -2203,7 +2203,7 @@ van:{
     "opt5.stop2": "📍 Arrêt 2 : Monastère Sainte-Marie – Visitez le monastère historique sur l'île",
     "opt5.break": "☕ Temps Libre : Promenez-vous, prenez des photos et explorez la nature environnante",
     "opt5.stop3": "📍 Arrêt 3 : Plage de Zvernec – Détendez-vous et profitez de 4 à 5 heures à la plage",
-    "opt5.included": "☂ Inclus : Parasol (pour 2 personnes), 2 transats et 1 boisson par personne",
+    "opt5.included": "☂ Inclus : Parasol (pour 2 personnes) & 2 transats",
     "opt5.return": "⏳ Retour à Vlora après la fin du séjour à la plage",
     "opt5.recommended": "🎒 Recommandé : Maillot de bain, serviette de plage, crème solaire, chapeau et appareil photo",
 
@@ -2784,7 +2784,7 @@ van:{
     "opt5.stop2": "📍 Остановка 2: Монастырь Святой Марии – Посетите исторический монастырь на острове",
     "opt5.break": "☕ Свободное время: Прогулки, фотографии и знакомство с окружающей природой",
     "opt5.stop3": "📍 Остановка 3: Пляж Звернец – Отдохните и проведите 4–5 часов на пляже",
-    "opt5.included": "☂ Включено: Пляжный зонт (на каждые 2 человека), 2 лежака и 1 напиток на человека",
+    "opt5.included": "☂ Включено: Пляжный зонт (на каждые 2 человека) & 2 лежака",
     "opt5.return": "⏳ Возвращение во Влёру после завершения отдыха на пляже",
     "opt5.recommended": "🎒 Рекомендуется: Купальник, пляжное полотенце, солнцезащитный крем, шляпа и фотоаппарат",
 },
@@ -3364,7 +3364,7 @@ van:{
     "opt5.stop2": "📍 Parada 2: Monasterio de Santa María – Visite el histórico monasterio en la isla",
     "opt5.break": "☕ Tiempo Libre: Camine, tome fotos y explore la naturaleza circundante",
     "opt5.stop3": "📍 Parada 3: Playa de Zvernec – Relájese y disfrute de 4–5 horas en la playa",
-    "opt5.included": "☂ Incluido: Sombrilla de playa (cada 2 personas), 2 tumbonas y 1 bebida por persona",
+    "opt5.included": "☂ Incluido: Sombrilla de playa (cada 2 personas) & 2 tumbonas",
     "opt5.return": "⏳ Regreso a Vlora después de finalizar la estancia en la playa",
     "opt5.recommended": "🎒 Recomendado: Traje de baño, toalla de playa, protector solar, sombrero y cámara",
     },
