@@ -221,8 +221,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let boat = urlParams.get("boat");
 
     const departureTimesByBus = {
-      "Vlora-City": ["10:00", "15:00"],
-      "Vlora-Zvernec-Beach": ["09:30", "14:00"]
+      "Vlora-City": ["09:00", "13:30"],
+      "Vlora-Zvernec-Beach": ["09:00", "13:30"]
     };
 
     const departureTimeContainer = document.getElementById("departure-time-container");
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       departureTimeOptions.innerHTML = times.map((time) => {
-        const display = time === "10:00" ? "10:00 AM" : time === "15:00" ? "03:00 PM" : time === "09:30" ? "09:30 AM" : time === "14:00" ? "02:00 PM" : time;
+        const display = time === "09:00" ? "09:00 AM" : time === "13:30" ? "01:30 PM" : time === "09:00" ? "09:00 AM" : time === "13:30" ? "01:30 PM" : time;
         return `
           <label class="departure-option">
             <input type="radio" name="departureTime" value="${time}">
@@ -484,8 +484,8 @@ document.addEventListener("DOMContentLoaded", function () {
       let urlParams = new URLSearchParams(window.location.search);
       let bus = urlParams.get("bus");
       const departureTimesByBus = {
-        "Vlora-City": ["10:00", "15:00"],
-        "Vlora-Zvernec-Beach": ["09:30", "14:00"]
+        "Vlora-City": ["09:00", "13:30"],
+        "Vlora-Zvernec-Beach": ["09:00", "13:30"]
       };
 
       if (departureTimesByBus[bus]) {
