@@ -441,6 +441,12 @@ document.addEventListener("DOMContentLoaded", function () {
         ],
         "Vlora-City": [
           "2026-06-21"
+        ],
+        "Vlora-Zvernec-Beach":[
+                    "2026-06-21"
+        ],
+        "Vlora-Berat-Adventure" : [
+                    "2026-06-21"      
         ]
     };
 
@@ -517,6 +523,12 @@ document.addEventListener("DOMContentLoaded", function () {
         } else if (bus === "Vlora-City") {
     config.disable = getDisabledDates("Vlora-City");
 }
+        else if (bus === "Vlora-Zvernec-Beach") {
+            config.disable = getDisabledDates("Vlora-Zvernec-Beach");
+        } 
+        else if (bus === "Vlora-Berat-Adventure") {
+            config.disable = getDisabledDates("Vlora-Berat-Adventure");
+        }
         
         else if (boat === "Aquamarine" || boat === "Vlora Cruise" || boat === "Liburna") {
             config.disable = extraDisabledDatesBoats[boat] || [];
