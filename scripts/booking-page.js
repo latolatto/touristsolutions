@@ -626,6 +626,7 @@ if (!date) {
      addedToCartMessage.style.display = "none";
  }, 2000);
         }
+        
 
         let totalPrice = (adults * boat.price.adult) + (children * boat.price.child);
 // ✅ Fix: Add-on Calculation & totalPrice
