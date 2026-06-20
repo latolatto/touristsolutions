@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         price: {
           infant: { age: "0-4" , value: 0 },
           child: { age: "5-10", value: 19 },
-          adult: { age: "11+", value: 29 }
+          adult: { age: "11+", value: 0.1 }
         },
         mainInfo: "maininfo.aqua",
         extras: {
@@ -569,7 +569,7 @@ if (!date) {
             "Aquamarine": {
                 image: "./assets/images/other-pages/boat-trip/aqua1.webp",
                 price: {
-                    infant: 0, child: 19, adult: 29
+                    infant: 0, child: 19, adult: 0.1
                 },
                 extras: { speedboat: 24, meal: 19 }
             },
