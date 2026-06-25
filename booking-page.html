@@ -431,11 +431,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const extraEnabledDates = {
         "Vlora-Berat": [],
-        "Vlora-Saranda": []
+        "Vlora-Ksamil,Blue Eye,Borsh": []
     };
 
     const extraDisabledDates = {
-    "Vlora-Saranda":[
+    "Vlora-Ksamil,Blue Eye,Borsh":[
 "2026-06-23"
     ],
         "Vlora-Berat": [
@@ -518,8 +518,8 @@ document.addEventListener("DOMContentLoaded", function () {
             disable: []
         };
 
-        if (bus === "Vlora-Saranda") {
-            config.disable = getDisabledDates("Vlora-Saranda");
+        if (bus === "Vlora-Ksamil,Blue Eye,Borsh") {
+            config.disable = getDisabledDates("Vlora-Ksamil,Blue Eye,Borsh");
         } 
         else if (bus === "Vlora-Berat") {
             config.disable = getDisabledDates("Vlora-Berat");

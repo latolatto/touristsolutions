@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         mainInfo: "maininfo.cruise"
       },
-      "Vlora-Saranda": {
+      "Vlora-Ksamil,Blue Eye,Borsh": {
         image: "./assets/images/other-pages/boat-trip/daily-tours/sarandavan.webp",
         features: [
           "features.bus.saranda.1",
@@ -581,7 +581,7 @@ if (!date) {
                 image: "./assets/images/other-pages/boat-trip/vlora1.webp",
                 price: { infant: 0, child: 19, adult: 29 }
             },
-            "Vlora-Saranda": {
+            "Vlora-Ksamil,Blue Eye,Borsh": {
         image: "./assets/images/other-pages/boat-trip/daily-tours/sarandavan.webp",
                         price: { adult: 65, child: 55 }
             },
