@@ -503,74 +503,168 @@ if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
 
   
   displayCart();
-  /**
- * Builds a tiny off-screen form, injects all your fields + PDF, and submits it.
- */
-function createAndSubmitForm(cust, summary, pdfBlob) {
-  const orderNumber = new Date().toISOString().replace(/[-:.]/g,'') + 'Z';
+  
+  // ═══════════════════════════════════════════════════════════════
+  // EMAIL RETRY + OFFLINE QUEUE SYSTEM
+  // ═══════════════════════════════════════════════════════════════
 
-  // 1) Dynamically create a hidden iframe
-  const iframe = document.createElement('iframe');
-  iframe.name = 'email-target';
-  iframe.style.display = 'none';
-  document.body.appendChild(iframe);
+  // Convert Blob to Base64 for localStorage storage
+  async function blobToBase64(blob) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  }
 
-  // 2) Create the form and target it into that iframe
-  const form = document.createElement('form');
-  form.action  = 'https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627';
-  form.method  = 'POST';
-  form.enctype = 'multipart/form-data';
-  form.target  = 'email-target';  // ← send the POST here
-  form.style.display = 'none';
+  // Convert Base64 back to Blob
+  function base64ToBlob(base64String) {
+    const arr = base64String.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    const n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    for (let i = 0; i < n; i++) {
+      u8arr[i] = bstr.charCodeAt(i);
+    }
+    return new Blob([u8arr], { type: mime });
+  }
 
-  // 3) Prevent the browser from navigating on submit
-  form.addEventListener('submit', e => {
-    e.preventDefault();  // stops any navigation
-    // we still let the browser send the request into the iframe
-  });
+  // Save email to queue for persistent retry
+  async function savePendingEmail(cust, summary, pdfBlob) {
+    try {
+      const pending = JSON.parse(localStorage.getItem('pendingEmails') || '[]');
+      const orderNumber = generateOrderNumber();
+      const pdfBase64 = await blobToBase64(pdfBlob);
 
-  // 4) Append your hidden fields
-  const data = {
-    'First Name':    cust.name,
-    'Last Name':     cust.surname,
-    'email':         cust.email,
-    'Phone':         cust.phone,
-    'Agency/Hotel':  cust.agency || '',
-    'Order Summary': summary,
-    '_captcha':      'false',
-    '_subject':      `New Order #${orderNumber}`,
-    '_cc':           'latolatto16@gmail.com',
-    '_template':     'table',
-    '_redirect':     'false'
-    // no _next field
-  };
-  Object.entries(data).forEach(([k,v]) => {
-    const inp = document.createElement('input');
-    inp.type  = 'hidden';
-    inp.name  = k;
-    inp.value = v;
-    form.appendChild(inp);
-  });
+      pending.push({
+        id: orderNumber,
+        timestamp: Date.now(),
+        cust: cust,
+        summary: summary,
+        pdfBase64: pdfBase64,
+        retries: 0,
+        nextRetryTime: Date.now() + 2000
+      });
 
-  // 5) Off-screen file input
-  const fileInput = document.createElement('input');
-  fileInput.type   = 'file';
-  fileInput.name   = '_attachment';
-  fileInput.accept = 'application/pdf';
-  fileInput.style.position = 'absolute';
-  fileInput.style.left     = '-9999px';
-  form.appendChild(fileInput);
+      localStorage.setItem('pendingEmails', JSON.stringify(pending));
+      console.log('→ Email queued for background retry:', orderNumber);
+    } catch (error) {
+      console.error('Failed to queue email:', error);
+    }
+  }
 
-  document.body.appendChild(form);
+  // Send email via fetch to FormSubmit.co
+  async function sendEmailViaFetch(cust, summary, pdfBlob, orderNumber) {
+    try {
+      const formData = new FormData();
+      formData.append('First Name', cust.name);
+      formData.append('Last Name', cust.surname);
+      formData.append('email', cust.email);
+      formData.append('Phone', cust.phone);
+      formData.append('Agency/Hotel', cust.agency || '');
+      formData.append('Order Summary', summary);
+      formData.append('_captcha', 'false');
+      formData.append('_subject', `New Order #${orderNumber}`);
+      formData.append('_cc', 'latolatto16@gmail.com');
+      formData.append('_template', 'table');
+      formData.append('_redirect', 'false');
+      formData.append('_attachment', pdfBlob, `Order_${orderNumber}.pdf`);
 
-  // 6) Populate the file input
-  const dt = new DataTransfer();
-  dt.items.add(new File([pdfBlob], `Order_${orderNumber}.pdf`, {type:'application/pdf'}));
-  fileInput.files = dt.files;
+      const response = await fetch('https://formsubmit.co/2ce673b9bc3539ee449be95aaf832627', {
+        method: 'POST',
+        body: formData
+      });
 
-  // 7) Trigger the submit (fires into the iframe, no navigation)
-  form.submit();
-}
+      return response.ok;
+    } catch (error) {
+      console.error('Fetch error:', error);
+      return false;
+    }
+  }
+
+  // Process emails queued in localStorage
+  async function processPendingEmails() {
+    try {
+      const pending = JSON.parse(localStorage.getItem('pendingEmails') || '[]');
+      const now = Date.now();
+      let updated = false;
+
+      for (let i = pending.length - 1; i >= 0; i--) {
+        const email = pending[i];
+
+        // Skip if not ready to retry yet
+        if (email.nextRetryTime > now) continue;
+
+        // Max 5 retries
+        if (email.retries >= 5) {
+          console.warn('⚠️ Email', email.id, 'max retries reached');
+          pending.splice(i, 1);
+          updated = true;
+          continue;
+        }
+
+        email.retries++;
+        const pdfBlob = base64ToBlob(email.pdfBase64);
+        const success = await sendEmailViaFetch(email.cust, email.summary, pdfBlob, email.id);
+
+        if (success) {
+          console.log('✓ Queued email sent:', email.id);
+          pending.splice(i, 1);
+          updated = true;
+        } else {
+          // Schedule next retry with exponential backoff
+          const backoffMs = Math.pow(2, email.retries - 1) * 3000; // 3s, 6s, 12s, 24s, 48s
+          email.nextRetryTime = now + backoffMs;
+          console.log(`→ Retry ${email.retries} scheduled for ${(backoffMs / 1000).toFixed(0)}s`);
+          updated = true;
+        }
+      }
+
+      if (updated) {
+        localStorage.setItem('pendingEmails', JSON.stringify(pending));
+      }
+    } catch (error) {
+      console.error('Error processing pending emails:', error);
+    }
+  }
+
+  // Main function: Try immediately 3 times, then queue for background retry
+  async function createAndSubmitForm(cust, summary, pdfBlob) {
+    const orderNumber = generateOrderNumber();
+    const maxImmediateRetries = 3;
+
+    console.log('→ Attempting to send email for order:', orderNumber);
+
+    for (let attempt = 1; attempt <= maxImmediateRetries; attempt++) {
+      try {
+        const success = await sendEmailViaFetch(cust, summary, pdfBlob, orderNumber);
+        if (success) {
+          console.log('✓ Email sent successfully on attempt', attempt);
+          return true;
+        }
+      } catch (error) {
+        console.error(`✗ Attempt ${attempt} failed:`, error);
+      }
+
+      // Wait before next retry (1s, 2s)
+      if (attempt < maxImmediateRetries) {
+        const delayMs = 1000 * attempt;
+        await new Promise(r => setTimeout(r, delayMs));
+      }
+    }
+
+    // All immediate retries failed, queue for background retry
+    console.log('✗ Immediate retries exhausted, queuing for background retry...');
+    await savePendingEmail(cust, summary, pdfBlob);
+    return false;
+  }
+
+  // Process pending emails when page loads
+  processPendingEmails();
+
+  // Process pending emails every 30 seconds
+  setInterval(processPendingEmails, 30000);
 
 
 });
