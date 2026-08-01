@@ -155,6 +155,26 @@ document.querySelectorAll("#name, #surname, #email, #phone, #agency").forEach(in
 
 
 
+  function shouldShowBoatItinerary(item) {
+    return item && !item.name.includes("Vlora-");
+  }
+
+  function getBoatItineraryMarkup(item) {
+    return `
+      <p><strong>€${(item.totalPrice || 0).toLocaleString()}</strong></p>
+      <hr>
+      <p><strong>Boat departs at 10:00 AM from the Port of Vlora and returns around 6:00 PM.</strong></p>
+      <p><strong>---The itinerary includes:---</strong></p>
+      <ul>
+        <li>Beach stop at Karaburun – approximately 3/4-hour stay</li>
+        <li>Panoramic visit to the Cave of Haxhi Ali</li>
+        <li>Stop at Sazan Island – where you can either explore the old military town or enjoy the beach for about 1.5 hours</li>
+      </ul>
+      <p>At 09:00 you need to be at our office to take the physical ticket.</p>
+      <p>At 09:30 you need to be at the port.</p>
+    `;
+  }
+
   // ───── showConfirmation & submitOrder ─────
   async function showConfirmation() {
     if (!transactionSucceeded) return;
@@ -185,8 +205,10 @@ document.querySelectorAll("#name, #surname, #email, #phone, #agency").forEach(in
             `</p>`
           : ""
         }
-        <p><strong>€${(item.totalPrice || 0).toLocaleString()}</strong></p>
+        ${shouldShowBoatItinerary(item) ? getBoatItineraryMarkup(item) : `<p><strong>€${(item.totalPrice || 0).toLocaleString()}</strong></p>`}
+        <hr>
       </div>`).join("")}
+    <hr>
     <h3>${t("checkout.total")}: €${orderTotal.textContent}</h3>
   `;
 
@@ -416,8 +438,12 @@ async function generatePDF(customerData, returnBlob = true) {
 
   // Loop tickets synchronously
   for (const item of cart) {
+    const isBus = item.name.includes("Vlora-");
+    const isBoat = !isBus;
+    const cardHeight = isBoat ? 150 : 65;
+
     // Page break if needed
-    if (y + 60 > pageHeight - marginBottom) {
+    if (y + cardHeight > pageHeight - marginBottom) {
       doc.addPage();
       y = newPageTopMargin;
     }
@@ -425,18 +451,17 @@ async function generatePDF(customerData, returnBlob = true) {
     total += item.totalPrice;
 
     // Draw border & text
-    doc.setDrawColor(0).setLineWidth(0.5).rect(10, ticketY, 180, 55);
-    const isBus = item.name.includes("Vlora-");
+    doc.setDrawColor(0).setLineWidth(0.5).rect(10, ticketY, 180, cardHeight);
     const headline = isBus ? "Daily Van Tour" : "Boat Tour";
     doc.setFont("helvetica","bold").text(`${item.name} - ${headline}`, 45, ticketY + 10);
     doc.setFont("helvetica","normal").text(`Date: ${item.date}`, 45, ticketY + 18);
     if (item.departureTime) {
-  doc.text(`Departure time: ${item.departureTime}`, 45, ticketY + 26);
-}
+      doc.text(`Departure time: ${item.departureTime}`, 45, ticketY + 26);
+    }
 
-if (item.adults)   doc.text(`Adults: ${item.adults}`, 45, ticketY + 36);
-if (item.children) doc.text(`Children: ${item.children}`, 45, ticketY + 44);
-if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
+    if (item.adults)   doc.text(`Adults: ${item.adults}`, 45, ticketY + 34);
+    if (item.children) doc.text(`Children: ${item.children}`, 45, ticketY + 42);
+    if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 50);
 
     doc.text("Extras:", 120, ticketY + 10);
     if (item.extras?.length) {
@@ -447,8 +472,43 @@ if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
     } else {
       doc.text("None", 120, ticketY + 18);
     }
-    doc.setFont("helvetica","bold")
-       .text(`Price: € ${item.totalPrice.toLocaleString()}`, 120, ticketY + 40);
+
+    if (isBoat) {
+      doc.setFont("helvetica","bold")
+         .text(`Price: € ${item.totalPrice.toLocaleString()}`, 120, ticketY + 52);
+
+      const itineraryYStart = ticketY + 60;
+      doc.setDrawColor(120, 120, 120).line(15, itineraryYStart, 190, itineraryYStart);
+
+      const itineraryLines = [
+        "Boat departs at 10:00 AM from the Port of Vlora and returns around 6:00 PM.",
+        "",
+        "---The itinerary includes:---",
+        "• Beach stop at Karaburun – approximately 3/4-hour stay",
+        "• Panoramic visit to the Cave of Haxhi Ali",
+        "• Stop at Sazan Island – where you can either explore the old military town or enjoy the beach for about 1.5 hours",
+        "",
+        "At 09:00 you need to be at our office to take the physical ticket.",
+        "At 09:30 you need to be at the port."
+      ];
+
+      let itineraryY = itineraryYStart + 8;
+      itineraryLines.forEach((line) => {
+        if (!line) {
+          itineraryY += 6;
+          return;
+        }
+
+        const wrapped = doc.splitTextToSize(line, 165);
+        wrapped.forEach((wrappedLine) => {
+          doc.text(wrappedLine, 15, itineraryY);
+          itineraryY += 6;
+        });
+      });
+    } else {
+      doc.setFont("helvetica","bold")
+         .text(`Price: € ${item.totalPrice.toLocaleString()}`, 120, ticketY + 40);
+    }
 
     // Load & draw image inline
     await new Promise(res => {
@@ -462,7 +522,7 @@ if (item.infants)  doc.text(`Infants: ${item.infants}`, 45, ticketY + 52);
     });
 
     // Advance y
-    y += 70;
+    y += cardHeight + 10;
   }
 
   // Total Price
