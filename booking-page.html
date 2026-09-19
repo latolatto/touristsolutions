@@ -163,7 +163,7 @@
         <!-- Booking Section -->
         <div class="booking-container">
           <h3 id="booknow-title"></h3>
-          <p class="date-warning" data-i18n="booking.date.warning">*Reservations are available only from June to September!</p>
+          <p class="date-warning" data-i18n="booking.date.warning">*Reservations are available only from June to October!</p>
           <div class="book-date">
             <label for="tour-date" >
               <span class="icon">
@@ -436,20 +436,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const extraDisabledDates = {
     "Vlora-Ksamil,Blue Eye,Borsh":[
-"2026-06-23","2026-07-30","2026-07-31","2026-08-01", "2026-08-02"
     ],
         "Vlora-Berat": [
             //"2025-06-01","2025-06-02","2025-06-03"
-            "2026-06-23", "2026-07-28","2026-07-29","2026-07-30","2026-08-01", "2026-08-07"
         ],
         "Vlora-City": [
-          "2026-06-23"
+        
         ],
         "Vlora-Zvernec-Beach":[
-                    "2026-06-23"
+                    
         ],
         "Vlora-Berat-Adventure" : [
-                    "2026-06-23", "2026-07-28","2026-07-29","2026-07-30","2026-08-01", "2026-08-07"
         ]
     };
 
@@ -513,7 +510,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let config = {
             dateFormat: "Y-m-d",
             minDate: getAdjustedMinDate(),
-            maxDate: new Date().getFullYear() + "-09-30",
+            maxDate: new Date().getFullYear() + "-10-31",
             disableMobile: true,
             disable: []
         };

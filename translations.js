@@ -453,7 +453,7 @@ const translations = {
   //BOOKING PAGE
   "booking.title": "Booking Page",
   "booking.alert": "⏳ Please arrive <strong>30-40 minutes before departure</strong> for check-in.",
-  "booking.date.warning": "*Reservations are available only from June to September!",
+  "booking.date.warning": "*Reservations are available only from June to October!",
   "booking.select.date": "Select Date:",
   "booking.adults": "Adults:",
   "booking.children": "Children:",
@@ -1052,7 +1052,7 @@ boat: {
   //BOOKING PAGE
   "booking.title": "Faqja e Rezervimit",
   "booking.alert": "⏳ Ju lutem arrini <strong>30-40 minuta përpara nisjes</strong> për check-in.",
-  "booking.date.warning": "*Rezervimet janë të disponueshme vetëm nga qershori deri në shtator!*",
+  "booking.date.warning": "*Rezervimet janë të disponueshme vetëm nga qershori deri në tetor!*",
   "booking.select.date": "Zgjidh Datën:",
   "booking.adults": "Të Rritur:",
   "booking.children": "Fëmijë:",
@@ -1629,7 +1629,7 @@ boat: {
       //BOOKING PAGE 
 "booking.title": "Pagina di Prenotazione",
   "booking.alert": "⏳ Si prega di arrivare <strong>30-40 minuti prima della partenza</strong> per il check-in.",
-  "booking.date.warning": "*Le prenotazioni sono disponibili solo da giugno a settembre!*",
+  "booking.date.warning": "*Le prenotazioni sono disponibili solo da giugno a ottobre!*",
   "booking.select.date": "Seleziona Data:",
   "booking.adults": "Adulti:",
   "booking.children": "Bambini:",
@@ -2214,7 +2214,7 @@ van:{
       //BOOKING PAGE
       "booking.title": "Page de Réservation",
       "booking.alert": "⏳ Merci d’arriver <strong>30-40 minutes avant le départ</strong> pour l’enregistrement.",
-      "booking.date.warning": "*Les réservations ne sont disponibles que de juin à septembre !*",
+      "booking.date.warning": "*Les réservations ne sont disponibles que de juin à octobre !*",
       "booking.select.date": "Sélectionnez la Date :",
       "booking.adults": "Adultes :",
       "booking.children": "Enfants :",
@@ -2796,7 +2796,7 @@ van:{
       //BOOKING PAGE
 "booking.title": "Страница Бронирования",
   "booking.alert": "⏳ Пожалуйста, приезжайте <strong>за 30-40 минут до отправления</strong> для регистрации.",
-  "booking.date.warning": "*Бронирования доступны только с июня по сентябрь!*",
+  "booking.date.warning": "*Бронирования доступны только с июня по октябрь!*",
   "booking.select.date": "Выберите Дату:",
   "booking.adults": "Взрослые:",
   "booking.children": "Дети:",
@@ -3373,7 +3373,7 @@ van:{
       //BOOKING PAGE
 "booking.title": "Página de Reserva",
   "booking.alert": "⏳ Por favor llega <strong>30-40 minutos antes de la salida</strong> para el check-in.",
-  "booking.date.warning": "*¡Las reservas están disponibles solo de junio a septiembre!*",
+  "booking.date.warning": "*¡Las reservas están disponibles solo de junio a octubre!*",
   "booking.select.date": "Selecciona Fecha:",
   "booking.adults": "Adultos:",
   "booking.children": "Niños:",
